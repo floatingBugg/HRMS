@@ -7,4 +7,4 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = Web.Data
-build_property.ProjectDir = D:\Project\TestingAPIForHawklogix (JWT implemented)\Web.DLL\
+build_property.ProjectDir = D:\HRMS\Web.DLL\
