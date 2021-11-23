@@ -8,9 +8,17 @@
 
 ############################# Telespecialists Files #############################
 /packages
-/Telespecialists.Web/Web.config
-/TeleSpecialists.BLL/App.Config
-
+/TestingAPIForHawklogix/Web.config
+/TestingAPIForHawklogix/obj
+/TestingAPIForHawklogix/
+/Web.BLL/obj
+/Web.BLL/bin
+/Web.DLL/obj
+/Web.DLL/bin
+/Web.DLL/obj
+/Web.DLL/.vs
+/Web.DLL/Db_Context
+/Web.Model/obj
 
 
 
@@ -80,6 +88,7 @@ BenchmarkDotNet.Artifacts/
 project.lock.json
 project.fragment.lock.json
 artifacts/
+
 
 # StyleCop
 StyleCopReport.xml
