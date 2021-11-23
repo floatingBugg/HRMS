@@ -4,21 +4,18 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # User-specific files
-/TestingAPIForHawklogix.sln
-/TestingAPIForHawklogix/Web.config
 /TestingAPIForHawklogix/obj
-/TestingAPIForHawklogix/
+/TestingAPIForHawklogix/bin
 /Web.BLL/obj
 /Web.BLL/bin
 /Web.DLL/obj
 /Web.DLL/bin
 /Web.DLL/obj
 /Web.DLL/.vs
-/Web.DLL/Db_Context
 /Web.Model/obj
 /Web.Model/Web.Model.csproj
 /Web.DLL/Web.DLL.csproj
-/Web.DLL/efpt.config.json
+/Web.BLL/Web.Services.csproj
 
 *.rsuser
 *.suo
