@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Web.API.Helper;
+using Web.Model;
 using Web.Model.Common;
 using Web.Services;
 
@@ -23,19 +24,13 @@ namespace Web.API.Controllers
         }
        
         [HttpPost("auth/userAuth")]
-        public IActionResult Login([FromBody] UserCredential login)
+        public BaseResponse Login([FromBody] UserCredential login)
         {
             try
             {
-                IActionResult response = Unauthorized();
-                string generatedToken = _jwtAuth.Authentication(login);
-
-                if (!string.IsNullOrEmpty(generatedToken))
-                {
-                    response = Ok(new { token = generatedToken });
-                }
-
-                return response;
+                BaseResponse response = new BaseResponse();
+                response = _jwtAuth.Authentication(login);
+                return response;                
             }
             catch(Exception ex)
             {

@@ -1,9 +1,10 @@
-﻿using Web.Model.Common;
+﻿using Web.Model;
+using Web.Model.Common;
 namespace Web.Services
 {
     public interface IJwtAuthService
     {
-        string Authentication(UserCredential login);
+        BaseResponse Authentication(UserCredential login);
 
         string Register(RegisterCredential register);
     }

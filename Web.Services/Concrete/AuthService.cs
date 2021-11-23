@@ -9,6 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using Web.Data.Interfaces;
 using Web.DLL;
 using Web.DLL.Models;
+using Web.Model;
 using Web.Model.Common;
 
 namespace Web.Services
@@ -25,18 +26,28 @@ namespace Web.Services
         }
 
 
-        public string Authentication(UserCredential login)
+        public BaseResponse Authentication(UserCredential login)
         {
+            bool isExist = false;
+            BaseResponse response = new BaseResponse();
           // first validate the username and password from the db and then generate token
           if(!string.IsNullOrEmpty(login.username) && !string.IsNullOrEmpty(login.password))
             {
                 var result = _hrmsUserAuthRepository.Table.Where(x => x.EthuUserName == login.username && x.EthuPassword == login.password).FirstOrDefault();
                 if(result != null)
                 {
-                    return GenerateJSONWebToken(login);
+                    response.Data = GenerateJSONWebToken(login);
+                    response.Success = true;
+                    response.Message = "User found";
+                }
+                else
+                {
+                    response.Data = null;
+                    response.Success = false;
+                    response.Message = "User not found";
                 }
             }
-            return null;  
+            return response;
         }
 
         private string GenerateJSONWebToken(UserCredential userInfo)
