@@ -1,0 +1,64 @@
+E:\TestingAPIForHawklogix\Web.Model\bin\Debug\net5.0\Web.Model.exe
+E:\TestingAPIForHawklogix\Web.Model\bin\Debug\net5.0\Web.Model.deps.json
+E:\TestingAPIForHawklogix\Web.Model\bin\Debug\net5.0\Web.Model.runtimeconfig.json
+E:\TestingAPIForHawklogix\Web.Model\bin\Debug\net5.0\Web.Model.runtimeconfig.dev.json
+E:\TestingAPIForHawklogix\Web.Model\bin\Debug\net5.0\Web.Model.dll
+E:\TestingAPIForHawklogix\Web.Model\bin\Debug\net5.0\ref\Web.Model.dll
+E:\TestingAPIForHawklogix\Web.Model\bin\Debug\net5.0\Web.Model.pdb
+E:\TestingAPIForHawklogix\Web.Model\obj\Debug\net5.0\Web.Model.GeneratedMSBuildEditorConfig.editorconfig
+E:\TestingAPIForHawklogix\Web.Model\obj\Debug\net5.0\Web.Model.AssemblyInfoInputs.cache
+E:\TestingAPIForHawklogix\Web.Model\obj\Debug\net5.0\Web.Model.AssemblyInfo.cs
+E:\TestingAPIForHawklogix\Web.Model\obj\Debug\net5.0\Web.Model.csproj.CoreCompileInputs.cache
+E:\TestingAPIForHawklogix\Web.Model\obj\Debug\net5.0\Web.Model.dll
+E:\TestingAPIForHawklogix\Web.Model\obj\Debug\net5.0\ref\Web.Model.dll
+E:\TestingAPIForHawklogix\Web.Model\obj\Debug\net5.0\Web.Model.pdb
+E:\TestingAPIForHawklogix\Web.Model\obj\Debug\net5.0\Web.Model.genruntimeconfig.cache
+E:\TestingAPIForHawklogix\Web.Model\obj\Debug\net5.0\Web.Model.csproj.AssemblyReference.cache
+E:\Ahmad\TestingAPIForHawklogix\Web.Model\bin\Debug\net5.0\Web.Model.exe
+E:\Ahmad\TestingAPIForHawklogix\Web.Model\bin\Debug\net5.0\Web.Model.deps.json
+E:\Ahmad\TestingAPIForHawklogix\Web.Model\bin\Debug\net5.0\Web.Model.runtimeconfig.json
+E:\Ahmad\TestingAPIForHawklogix\Web.Model\bin\Debug\net5.0\Web.Model.runtimeconfig.dev.json
+E:\Ahmad\TestingAPIForHawklogix\Web.Model\bin\Debug\net5.0\Web.Model.dll
+E:\Ahmad\TestingAPIForHawklogix\Web.Model\bin\Debug\net5.0\ref\Web.Model.dll
+E:\Ahmad\TestingAPIForHawklogix\Web.Model\bin\Debug\net5.0\Web.Model.pdb
+E:\Ahmad\TestingAPIForHawklogix\Web.Model\obj\Debug\net5.0\Web.Model.csproj.AssemblyReference.cache
+E:\Ahmad\TestingAPIForHawklogix\Web.Model\obj\Debug\net5.0\Web.Model.GeneratedMSBuildEditorConfig.editorconfig
+E:\Ahmad\TestingAPIForHawklogix\Web.Model\obj\Debug\net5.0\Web.Model.AssemblyInfoInputs.cache
+E:\Ahmad\TestingAPIForHawklogix\Web.Model\obj\Debug\net5.0\Web.Model.AssemblyInfo.cs
+E:\Ahmad\TestingAPIForHawklogix\Web.Model\obj\Debug\net5.0\Web.Model.csproj.CoreCompileInputs.cache
+E:\Ahmad\TestingAPIForHawklogix\Web.Model\obj\Debug\net5.0\Web.Model.dll
+E:\Ahmad\TestingAPIForHawklogix\Web.Model\obj\Debug\net5.0\ref\Web.Model.dll
+E:\Ahmad\TestingAPIForHawklogix\Web.Model\obj\Debug\net5.0\Web.Model.pdb
+E:\Ahmad\TestingAPIForHawklogix\Web.Model\obj\Debug\net5.0\Web.Model.genruntimeconfig.cache
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\Web.Model\bin\Debug\net5.0\Web.Model.exe
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\Web.Model\bin\Debug\net5.0\Web.Model.deps.json
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\Web.Model\bin\Debug\net5.0\Web.Model.runtimeconfig.json
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\Web.Model\bin\Debug\net5.0\Web.Model.runtimeconfig.dev.json
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\Web.Model\bin\Debug\net5.0\Web.Model.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\Web.Model\bin\Debug\net5.0\ref\Web.Model.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\Web.Model\bin\Debug\net5.0\Web.Model.pdb
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\Web.Model\obj\Debug\net5.0\Web.Model.GeneratedMSBuildEditorConfig.editorconfig
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\Web.Model\obj\Debug\net5.0\Web.Model.AssemblyInfoInputs.cache
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\Web.Model\obj\Debug\net5.0\Web.Model.AssemblyInfo.cs
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\Web.Model\obj\Debug\net5.0\Web.Model.csproj.CoreCompileInputs.cache
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\Web.Model\obj\Debug\net5.0\Web.Model.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\Web.Model\obj\Debug\net5.0\ref\Web.Model.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\Web.Model\obj\Debug\net5.0\Web.Model.pdb
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\Web.Model\obj\Debug\net5.0\Web.Model.genruntimeconfig.cache
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\Web.Model\obj\Debug\net5.0\Web.Model.csproj.AssemblyReference.cache
+D:\Project\TestingAPIForHawklogix (JWT implemented)\Web.Model\bin\Debug\net5.0\Web.Model.exe
+D:\Project\TestingAPIForHawklogix (JWT implemented)\Web.Model\bin\Debug\net5.0\Web.Model.deps.json
+D:\Project\TestingAPIForHawklogix (JWT implemented)\Web.Model\bin\Debug\net5.0\Web.Model.runtimeconfig.json
+D:\Project\TestingAPIForHawklogix (JWT implemented)\Web.Model\bin\Debug\net5.0\Web.Model.runtimeconfig.dev.json
+D:\Project\TestingAPIForHawklogix (JWT implemented)\Web.Model\bin\Debug\net5.0\Web.Model.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\Web.Model\bin\Debug\net5.0\ref\Web.Model.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\Web.Model\bin\Debug\net5.0\Web.Model.pdb
+D:\Project\TestingAPIForHawklogix (JWT implemented)\Web.Model\obj\Debug\net5.0\Web.Model.csproj.AssemblyReference.cache
+D:\Project\TestingAPIForHawklogix (JWT implemented)\Web.Model\obj\Debug\net5.0\Web.Model.GeneratedMSBuildEditorConfig.editorconfig
+D:\Project\TestingAPIForHawklogix (JWT implemented)\Web.Model\obj\Debug\net5.0\Web.Model.AssemblyInfoInputs.cache
+D:\Project\TestingAPIForHawklogix (JWT implemented)\Web.Model\obj\Debug\net5.0\Web.Model.AssemblyInfo.cs
+D:\Project\TestingAPIForHawklogix (JWT implemented)\Web.Model\obj\Debug\net5.0\Web.Model.csproj.CoreCompileInputs.cache
+D:\Project\TestingAPIForHawklogix (JWT implemented)\Web.Model\obj\Debug\net5.0\Web.Model.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\Web.Model\obj\Debug\net5.0\ref\Web.Model.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\Web.Model\obj\Debug\net5.0\Web.Model.pdb
+D:\Project\TestingAPIForHawklogix (JWT implemented)\Web.Model\obj\Debug\net5.0\Web.Model.genruntimeconfig.cache

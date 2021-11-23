@@ -1,0 +1,365 @@
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.csproj.AssemblyReference.cache
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.GeneratedMSBuildEditorConfig.editorconfig
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.AssemblyInfoInputs.cache
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.AssemblyInfo.cs
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.csproj.CoreCompileInputs.cache
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.MvcApplicationPartsAssemblyInfo.cache
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.MvcApplicationPartsAssemblyInfo.cs
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Model.deps.json
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Model.runtimeconfig.json
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Model.runtimeconfig.dev.json
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Model.exe
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\appsettings.Development.json
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\appsettings.json
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Web API.exe
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Web API.deps.json
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Web API.runtimeconfig.json
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Web API.runtimeconfig.dev.json
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Web API.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\ref\Web API.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Web API.pdb
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.Identity.Client.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.OpenApi.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Newtonsoft.Json.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\System.Configuration.ConfigurationManager.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\System.Runtime.Caching.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\System.Security.Cryptography.ProtectedData.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.pdb
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.pdb
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.pdb
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Data.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Model.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Services.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Services.pdb
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Data.pdb
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Model.pdb
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\obj\Debug\net5.0\staticwebassets\Web API.StaticWebAssets.Manifest.cache
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\obj\Debug\net5.0\staticwebassets\Web API.StaticWebAssets.xml
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\obj\Debug\net5.0\scopedcss\bundle\Web API.styles.css
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.RazorTargetAssemblyInfo.cache
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.csproj.CopyComplete
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\obj\Debug\net5.0\ref\Web API.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.pdb
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.genruntimeconfig.cache
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\log4net.config
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\log4net.dll
+E:\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.Extensions.Logging.Log4Net.AspNetCore.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Model.deps.json
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Model.runtimeconfig.json
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Model.runtimeconfig.dev.json
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Model.exe
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\log4net.config
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\appsettings.Development.json
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\appsettings.json
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Web API.exe
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Web API.deps.json
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Web API.runtimeconfig.json
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Web API.runtimeconfig.dev.json
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Web API.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\ref\Web API.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Web API.pdb
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\log4net.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.Data.Sqlite.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.DotNet.PlatformAbstractions.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Sqlite.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.Extensions.Logging.Log4Net.AspNetCore.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.Identity.Client.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.OpenApi.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\SQLitePCLRaw.batteries_v2.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\SQLitePCLRaw.nativelibrary.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\SQLitePCLRaw.core.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\SQLitePCLRaw.provider.dynamic_cdecl.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\System.Configuration.ConfigurationManager.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\System.Runtime.Caching.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\System.Security.Cryptography.ProtectedData.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.pdb
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.pdb
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.pdb
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\alpine-x64\native\libe_sqlite3.so
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\linux-arm\native\libe_sqlite3.so
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\linux-arm64\native\libe_sqlite3.so
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\linux-armel\native\libe_sqlite3.so
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\linux-mips64\native\libe_sqlite3.so
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\linux-musl-x64\native\libe_sqlite3.so
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\linux-x64\native\libe_sqlite3.so
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\linux-x86\native\libe_sqlite3.so
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\osx-x64\native\libe_sqlite3.dylib
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-arm\native\e_sqlite3.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-arm64\native\e_sqlite3.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-x64\native\e_sqlite3.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-x86\native\e_sqlite3.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Data.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Model.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Services.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Services.pdb
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Data.pdb
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Model.pdb
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.csproj.AssemblyReference.cache
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.GeneratedMSBuildEditorConfig.editorconfig
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.AssemblyInfoInputs.cache
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.AssemblyInfo.cs
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.csproj.CoreCompileInputs.cache
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.MvcApplicationPartsAssemblyInfo.cs
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.MvcApplicationPartsAssemblyInfo.cache
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\obj\Debug\net5.0\staticwebassets\Web API.StaticWebAssets.Manifest.cache
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\obj\Debug\net5.0\staticwebassets\Web API.StaticWebAssets.xml
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\obj\Debug\net5.0\scopedcss\bundle\Web API.styles.css
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.RazorTargetAssemblyInfo.cache
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.csproj.CopyComplete
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\obj\Debug\net5.0\ref\Web API.dll
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.pdb
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.genruntimeconfig.cache
+E:\Ahmad\TestingAPIForHawklogix\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\log4net.config
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\appsettings.Development.json
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Model.deps.json
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Model.runtimeconfig.json
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Model.runtimeconfig.dev.json
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Model.exe
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\appsettings.json
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Web API.exe
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Web API.deps.json
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Web API.runtimeconfig.json
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Web API.runtimeconfig.dev.json
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Web API.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\ref\Web API.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Web API.pdb
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\log4net.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.Data.Sqlite.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.DotNet.PlatformAbstractions.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Sqlite.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.Extensions.Logging.Log4Net.AspNetCore.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.Identity.Client.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.OpenApi.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\SQLitePCLRaw.batteries_v2.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\SQLitePCLRaw.nativelibrary.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\SQLitePCLRaw.core.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\SQLitePCLRaw.provider.dynamic_cdecl.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\System.Configuration.ConfigurationManager.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\System.Runtime.Caching.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\System.Security.Cryptography.ProtectedData.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\alpine-x64\native\libe_sqlite3.so
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\linux-arm\native\libe_sqlite3.so
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\linux-arm64\native\libe_sqlite3.so
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\linux-armel\native\libe_sqlite3.so
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\linux-mips64\native\libe_sqlite3.so
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\linux-musl-x64\native\libe_sqlite3.so
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\linux-x64\native\libe_sqlite3.so
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\linux-x86\native\libe_sqlite3.so
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\osx-x64\native\libe_sqlite3.dylib
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-arm\native\e_sqlite3.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-arm64\native\e_sqlite3.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-x64\native\e_sqlite3.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-x86\native\e_sqlite3.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Data.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Model.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Services.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Services.pdb
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Data.pdb
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Model.pdb
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.csproj.AssemblyReference.cache
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.GeneratedMSBuildEditorConfig.editorconfig
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.AssemblyInfoInputs.cache
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.AssemblyInfo.cs
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.csproj.CoreCompileInputs.cache
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.MvcApplicationPartsAssemblyInfo.cs
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.MvcApplicationPartsAssemblyInfo.cache
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\obj\Debug\net5.0\staticwebassets\Web API.StaticWebAssets.Manifest.cache
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\obj\Debug\net5.0\staticwebassets\Web API.StaticWebAssets.xml
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\obj\Debug\net5.0\scopedcss\bundle\Web API.styles.css
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.RazorTargetAssemblyInfo.cache
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.csproj.CopyComplete
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\obj\Debug\net5.0\ref\Web API.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.pdb
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.genruntimeconfig.cache
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Newtonsoft.Json.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Scrutor.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Swashbuckle.AspNetCore.Annotations.dll
+D:\Ahmad\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Swashbuckle.AspNetCore.Filters.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\log4net.config
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\appsettings.Development.json
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\appsettings.json
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Model.deps.json
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Model.runtimeconfig.json
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Model.runtimeconfig.dev.json
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Model.exe
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Web API.exe
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Web API.deps.json
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Web API.runtimeconfig.json
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Web API.runtimeconfig.dev.json
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Web API.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\ref\Web API.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Web API.pdb
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\log4net.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.Data.Sqlite.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.DotNet.PlatformAbstractions.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Sqlite.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.Extensions.Logging.Log4Net.AspNetCore.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.Identity.Client.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Microsoft.OpenApi.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Newtonsoft.Json.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Scrutor.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\SQLitePCLRaw.batteries_v2.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\SQLitePCLRaw.nativelibrary.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\SQLitePCLRaw.core.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\SQLitePCLRaw.provider.dynamic_cdecl.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Swashbuckle.AspNetCore.Annotations.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Swashbuckle.AspNetCore.Filters.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\System.Configuration.ConfigurationManager.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\System.Runtime.Caching.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\System.Security.Cryptography.ProtectedData.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\alpine-x64\native\libe_sqlite3.so
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\linux-arm\native\libe_sqlite3.so
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\linux-arm64\native\libe_sqlite3.so
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\linux-armel\native\libe_sqlite3.so
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\linux-mips64\native\libe_sqlite3.so
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\linux-musl-x64\native\libe_sqlite3.so
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\linux-x64\native\libe_sqlite3.so
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\linux-x86\native\libe_sqlite3.so
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\osx-x64\native\libe_sqlite3.dylib
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-arm\native\e_sqlite3.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-arm64\native\e_sqlite3.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-x64\native\e_sqlite3.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win-x86\native\e_sqlite3.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Data.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Model.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Services.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Services.pdb
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Data.pdb
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\bin\Debug\net5.0\Web.Model.pdb
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.csproj.AssemblyReference.cache
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.GeneratedMSBuildEditorConfig.editorconfig
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.AssemblyInfoInputs.cache
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.AssemblyInfo.cs
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.csproj.CoreCompileInputs.cache
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.MvcApplicationPartsAssemblyInfo.cs
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.MvcApplicationPartsAssemblyInfo.cache
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\obj\Debug\net5.0\staticwebassets\Web API.StaticWebAssets.Manifest.cache
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\obj\Debug\net5.0\staticwebassets\Web API.StaticWebAssets.xml
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\obj\Debug\net5.0\scopedcss\bundle\Web API.styles.css
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.RazorTargetAssemblyInfo.cache
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.csproj.CopyComplete
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\obj\Debug\net5.0\ref\Web API.dll
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.pdb
+D:\Project\TestingAPIForHawklogix (JWT implemented)\TestingAPIForHawklogix\obj\Debug\net5.0\Web API.genruntimeconfig.cache
