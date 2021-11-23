@@ -16,6 +16,9 @@
 /Web.DLL/.vs
 /Web.DLL/Db_Context
 /Web.Model/obj
+/Web.Model/Web.Model.csproj
+/Web.DLL/Web.DLL.csproj
+/Web.DLL/efpt.config.json
 
 *.rsuser
 *.suo
