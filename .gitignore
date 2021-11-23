@@ -4,15 +4,17 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # User-specific files
+/TestingAPIForHawklogix/appsettings.json
+/TestingAPIForHawklogix/appsettings.Development.json
 /TestingAPIForHawklogix/obj
 /TestingAPIForHawklogix/bin
-/Web.BLL/obj
-/Web.BLL/bin
-/Web.DLL/obj
-/Web.DLL/bin
-/Web.DLL/obj
+/Web.Services/obj
+/Web.Services/bin
+/Web.Data/obj
+/Web.Data/bin
 /Web.DLL/.vs
 /Web.Model/obj
+/Web.Model/bin
 
 
 *.rsuser
