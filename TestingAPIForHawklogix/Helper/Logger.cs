@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 
-namespace Web.Helper
+namespace Web.API.Helper
 {
     public class Logger
     {

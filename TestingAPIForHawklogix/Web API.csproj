@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>Web.API</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,9 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Web.BLL\Web.Services.csproj" />
-    <ProjectReference Include="..\Web.DLL\Web.Data.csproj" />
+    <ProjectReference Include="..\Web.Data\Web.Data.csproj" />
     <ProjectReference Include="..\Web.Model\Web.Model.csproj" />
+    <ProjectReference Include="..\Web.Services\Web.Services.csproj" />
   </ItemGroup>
 
 </Project>

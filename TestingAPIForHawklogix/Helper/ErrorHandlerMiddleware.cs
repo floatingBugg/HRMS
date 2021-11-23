@@ -5,7 +5,7 @@ using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Web.Helper
+namespace Web.API.Helper
 {
     public class ErrorHandlerMiddleware
     {

@@ -1,5 +1,5 @@
 ﻿using Web.Model.Common;
-namespace Web_API
+namespace Web.Services
 {
     public interface IJwtAuthService
     {

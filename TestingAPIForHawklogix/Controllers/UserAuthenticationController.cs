@@ -1,12 +1,12 @@
 ﻿using System;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Web.Helper;
+using Web.API.Helper;
 using Web.Model.Common;
+using Web.Services;
 
-namespace Web_API.Controllers
+namespace Web.API.Controllers
 {
     public class UserAuthenticationController : Controller
     {

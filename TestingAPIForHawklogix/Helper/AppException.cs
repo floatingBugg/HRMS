@@ -1,7 +1,7 @@
 using System;
 using System.Globalization;
 
-namespace Web.Helper
+namespace Web.API.Helper
 {
     // custom exception class for throwing application specific exceptions 
     // that can be caught and handled within the application

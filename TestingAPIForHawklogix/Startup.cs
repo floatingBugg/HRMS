@@ -9,16 +9,16 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Web.API.Helper;
 using Web.Data;
 using Web.Data.Concrete;
 using Web.Data.Interfaces;
 using Web.DLL;
 using Web.DLL.Db_Context;
 using Web.DLL.Generic_Repository;
-using Web.Helper;
-using Web_API;
+using Web.Services;
 
-namespace TestingAPIForHawklogix
+namespace Web.API
 {
     public class Startup
     {
