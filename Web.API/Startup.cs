@@ -107,8 +107,8 @@ namespace Web.API
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddLog4Net();
-            /*if (env.IsDevelopment())*/
-            {
+            /*if (env.IsDevelopment())
+            {*/
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TestingAPIForHawklogix v1"));
