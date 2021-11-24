@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Web.Data;
 using Web.Data.Interfaces;
 using Web.DLL.Models;
 using Web.Model.Common;
@@ -12,11 +14,12 @@ namespace Web.Services.Concrete
     {
         private readonly IHRMSEmployeeRepository _hrmsemployeeRepository;
         IConfiguration _config;
-
-        public EmployeeService(IConfiguration config, IHRMSEmployeeRepository hrmsemployeeRepository)
+        private readonly IUnitOfWork _uow;
+        public EmployeeService(IConfiguration config, IHRMSEmployeeRepository hrmsemployeeRepository, IUnitOfWork uow)
         {
             _config = config;
             _hrmsemployeeRepository = hrmsemployeeRepository;
+            _uow = uow;
         }
 
         public string CreateEmployee(EmployeeCredential employee)
@@ -65,35 +68,35 @@ namespace Web.Services.Concrete
       
         public string UpdateEmployee(EmployeeCredential employee)
         {
-            _hrmsemployeeRepository.Table.Where(p => p.Id == employee.empID)
+            _hrmsemployeeRepository.Table.Where(p => p.EtedEmployeeId == employee.empID)
                 .ToList()
                 .ForEach(x =>
             {
-                    x.EtedFirstName = employee.firstname,
-                    x.EtedLastName = employee.Lastname,
-                    x.EtedEmailAddress = employee.personalemail,
-                    x.EtedCnic = employee.cnic,
-                    x.EtedDob = DateTime.Now,
-                    x.EtedGender = employee.gender,
-                    x.EtedAddress = employee.address,
-                    x.EtedMaritalStatus = employee.martialstatus,
-                    x.EtedBloodGroup = employee.bloodgroup,
-                    x.EtedContactNumber = employee.contact,
-                    x.EtedNationality = employee.nationality,
-                    x.EtedReligion = employee.religion,
-                    x.EtedStatus = employee.empstatus,
-                    x.EtedPhotograph = new byte[2],
-                    x.EtedOfficialEmailAddress = employee.officialemail,
-                    x.EtedCreatedBy = "test",
-                    x.EtedCreatedByDate = DateTime.Now,
-                    x.EtedCreatedByName = "test",
-                    x.EtedModifiedBy = "test",
-                    x.EtedModifiedByDate = DateTime.Now,
-                    x.EtedModifiedByName = "test",
-                    x.EtedIsDelete = "no",
+                x.EtedFirstName = employee.firstname;
+                x.EtedLastName = employee.Lastname;
+                x.EtedEmailAddress = employee.personalemail;
+                x.EtedCnic = employee.cnic;
+                x.EtedDob = DateTime.Now;
+                x.EtedGender = employee.gender;
+                x.EtedAddress = employee.address;
+                x.EtedMaritalStatus = employee.martialstatus;
+                x.EtedBloodGroup = employee.bloodgroup;
+                x.EtedContactNumber = employee.contact;
+                x.EtedNationality = employee.nationality;
+                x.EtedReligion = employee.religion;
+                x.EtedStatus = employee.empstatus;
+                x.EtedPhotograph = new byte[2];
+                x.EtedOfficialEmailAddress = employee.officialemail;
+                x.EtedCreatedBy = "test";
+                x.EtedCreatedByDate = DateTime.Now;
+                x.EtedCreatedByName = "test";
+                x.EtedModifiedBy = "test";
+                x.EtedModifiedByDate = DateTime.Now;
+                x.EtedModifiedByName = "test";
+                x.EtedIsDelete = "no";
                     
                             });
-            /*_hrmsemployeeRepository.Update(employee);*/
+            _uow.Commit();
 
             return "Success";
             
