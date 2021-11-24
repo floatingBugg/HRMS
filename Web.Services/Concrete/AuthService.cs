@@ -22,20 +22,18 @@ namespace Web.Services.Concrete
         private readonly UnitOfWork unitorWork;
         public AuthService(IConfiguration config, IHRMSUserAuthRepository hrmsUserAuthRepository)
         {
-           _config = config;
+            _config = config;
             _hrmsUserAuthRepository = hrmsUserAuthRepository;
         }
 
 
         public BaseResponse Authentication(UserCredential login)
         {
-            bool isExist = false;
             BaseResponse response = new BaseResponse();
-          // first validate the username and password from the db and then generate token
-          if(!string.IsNullOrEmpty(login.email) && !string.IsNullOrEmpty(login.password))
+            if (!string.IsNullOrEmpty(login.email) && !string.IsNullOrEmpty(login.password))
             {
                 var result = _hrmsUserAuthRepository.Table.Where(x => x.EthuEmailAddress == login.email && x.EthuPassword == login.password).FirstOrDefault();
-                if(result != null)
+                if (result != null)
                 {
                     response.Data = GenerateJSONWebToken(login);
                     response.Success = true;
@@ -53,11 +51,11 @@ namespace Web.Services.Concrete
 
         private object GenerateJSONWebToken(UserCredential userInfo)
         {
-                var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Secret"]));
-                var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Secret"]));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
-                var claims = new[]
-                {
+            var claims = new[]
+            {
                     new Claim(JwtRegisteredClaimNames.Sub, userInfo.email),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
 
@@ -67,7 +65,7 @@ namespace Web.Services.Concrete
               _config["Jwt:ValidIssuer"],
               claims,
               expires: tokenExpiryTime,
-              signingCredentials: credentials) ;
+              signingCredentials: credentials);
 
             return new
             {
@@ -82,7 +80,6 @@ namespace Web.Services.Concrete
             if (!string.IsNullOrEmpty(register.username) && !string.IsNullOrEmpty(register.password)
                 && !string.IsNullOrEmpty(register.email) && !string.IsNullOrEmpty(register.phone) && !string.IsNullOrEmpty(register.gender))
             {
-
                 List<EmsTblHrmsUser> obj = new List<EmsTblHrmsUser>();
 
                 obj.Add(new EmsTblHrmsUser
@@ -95,7 +92,7 @@ namespace Web.Services.Concrete
                     EthuGender = register.gender,
                     EthuCreatedBy = "test",
                     EthuCreatedByDate = DateTime.Now,
-                    EthuCreatedByName= "test",
+                    EthuCreatedByName = "test",
                     EthuModifiedBy = "test",
                     EthuModifiedByDate = DateTime.Now,
                     EthuModifiedByName = "test",
