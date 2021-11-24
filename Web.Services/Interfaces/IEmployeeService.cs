@@ -1,20 +1,19 @@
-<<<<<<< Updated upstream
-﻿namespace Web.Services.Interfaces
-=======
-﻿using System;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Web.Model.Common;
 
-namespace Web.Services
->>>>>>> Stashed changes
+namespace Web.Services.Interfaces
+
 {
     public interface IEmployeeService
     {
-        string CreateEmployee();
+        string CreateEmployee(EmployeeCredential employee);
 
-        string UpdateEmployee();
+        string UpdateEmployee(EmployeeCredential employee);
 
         string GetAllEmployee();
     }

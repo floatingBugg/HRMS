@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace Web.Model.Common
 {
-    class EmployeeCredential
+    public class EmployeeCredential
     {
         public string firstname { get; set; }
         public string Lastname { get; set; }
         public string photograph { get; set; }
         public string personalemail { get; set; }
+
         public string officialemail { get; set; }
+        public int cnic { get; set; }
         public DateTime dob { get; set; }
         public string contact { get; set; }
         public string address { get; set; }
