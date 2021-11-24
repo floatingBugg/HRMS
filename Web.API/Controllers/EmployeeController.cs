@@ -39,24 +39,7 @@ namespace Web.API.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/<EmployeeController>/5
- /*       [HttpGet("{id}")]
-        public string Get(int id)
-        {
-
-            return "value";
-        }
-
-        // POST api/<EmployeeController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }*/
-
-        // PUT api/<EmployeeController>/5
-        
-        // DELETE api/<EmployeeController>/5
-        [HttpPost("Employee/add")]
+        [HttpPost("/Add")]
         public String Create([FromBody] EmployeeCredential employee)
         {
             String message = "Success";
@@ -70,6 +53,25 @@ namespace Web.API.Controllers
             catch(Exception ex)
             {
                 
+                return null;
+            }
+            return message;
+        }
+
+        [HttpPost("/Update")]
+        public String Update([FromBody] EmployeeCredential employee)
+        {
+            String message = "Success";
+            try
+            {
+                IActionResult response = Unauthorized();
+                string result = _employeeservice.CreateEmployee(employee);
+
+                return message;
+            }
+            catch (Exception ex)
+            {
+
                 return null;
             }
             return message;
