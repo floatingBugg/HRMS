@@ -31,9 +31,9 @@ namespace Web.Services
             bool isExist = false;
             BaseResponse response = new BaseResponse();
           // first validate the username and password from the db and then generate token
-          if(!string.IsNullOrEmpty(login.username) && !string.IsNullOrEmpty(login.password))
+          if(!string.IsNullOrEmpty(login.email) && !string.IsNullOrEmpty(login.password))
             {
-                var result = _hrmsUserAuthRepository.Table.Where(x => x.EthuUserName == login.username && x.EthuPassword == login.password).FirstOrDefault();
+                var result = _hrmsUserAuthRepository.Table.Where(x => x.EthuEmailAddress == login.email && x.EthuPassword == login.password).FirstOrDefault();
                 if(result != null)
                 {
                     response.Data = GenerateJSONWebToken(login);
@@ -57,7 +57,7 @@ namespace Web.Services
 
                 var claims = new[]
                 {
-                    new Claim(JwtRegisteredClaimNames.Sub, userInfo.username),
+                    new Claim(JwtRegisteredClaimNames.Sub, userInfo.email),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
 
             };
