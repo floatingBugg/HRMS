@@ -11,8 +11,9 @@ using Web.DLL;
 using Web.DLL.Models;
 using Web.Model;
 using Web.Model.Common;
+using Web.Services.Interfaces;
 
-namespace Web.Services
+namespace Web.Services.Concrete
 {
     public class AuthService : IJwtAuthService
     {

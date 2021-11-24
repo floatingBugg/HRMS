@@ -1,13 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Web.Services;
+using Web.Services.Interfaces;
 
-namespace Web.Services
+namespace Web.Services.Concrete
 {
     public class EmployeeService : IEmployeeService
     {
+        public string CreateEmployee()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetAllEmployee()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string UpdateEmployee()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

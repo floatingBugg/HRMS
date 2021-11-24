@@ -1,6 +1,6 @@
 ﻿using Web.Model;
 using Web.Model.Common;
-namespace Web.Services
+namespace Web.Services.Interfaces
 {
     public interface IJwtAuthService
     {
