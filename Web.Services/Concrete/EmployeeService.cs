@@ -65,14 +65,22 @@ namespace Web.Services.Concrete
       
         public string UpdateEmployee(EmployeeCredential employee)
         {
-            if (employee != null)
+            try
             {
-                List<EmsTblEmployeeDetails> obj = new List<EmsTblEmployeeDetails>();
-                
+                var DataList = _person.GetAll().Where(x => x.IsDeleted != true).ToList();
+                foreach (var item in DataList)
+                {
+                    _person.Update(item);
+                }
+                return true;
             }
-            return null;
+            catch (Exception)
+            {
+                return true;
+            }
+
         }
 
-      
+
     }
 }
