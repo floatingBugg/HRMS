@@ -50,7 +50,7 @@ namespace Web.Services
             return response;
         }
 
-        private string GenerateJSONWebToken(UserCredential userInfo)
+        private object GenerateJSONWebToken(UserCredential userInfo)
         {
                 var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Secret"]));
                 var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
@@ -59,15 +59,20 @@ namespace Web.Services
                 {
                     new Claim(JwtRegisteredClaimNames.Sub, userInfo.username),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+
             };
+            var tokenExpiryTime = DateTime.Now.AddMinutes(120);
+            var token = new JwtSecurityToken(_config["Jwt:ValidIssuer"],
+              _config["Jwt:ValidIssuer"],
+              claims,
+              expires: tokenExpiryTime,
+              signingCredentials: credentials) ;
 
-                var token = new JwtSecurityToken(_config["Jwt:ValidIssuer"],
-                  _config["Jwt:ValidIssuer"],
-                  claims,
-                  expires: DateTime.Now.AddMinutes(120),
-                  signingCredentials: credentials);
-
-                return new JwtSecurityTokenHandler().WriteToken(token);
+            return new
+            {
+                token = new JwtSecurityTokenHandler().WriteToken(token),
+                expires = tokenExpiryTime
+            };
         }
 
         public string Register(RegisterCredential register)
