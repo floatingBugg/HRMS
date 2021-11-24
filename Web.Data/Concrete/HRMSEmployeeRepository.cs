@@ -12,10 +12,13 @@ namespace Web.Data.Concrete
 {
     public class HRMSEmployeeRepository : GenericRepository<EmsTblEmployeeDetails>, IHRMSEmployeeRepository
     {
+        DbHRMSContext _dbcontext;
         public HRMSEmployeeRepository(DbHRMSContext context)
               : base(context)
         {
-
+            _dbcontext = context;
         }
+
+
     }
 }
