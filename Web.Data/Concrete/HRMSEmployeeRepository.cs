@@ -7,6 +7,7 @@ using Web.Data.Interfaces;
 using Web.DLL.Db_Context;
 using Web.DLL.Generic_Repository;
 using Web.DLL.Models;
+using Web.Model.Common;
 
 namespace Web.Data.Concrete
 {
@@ -18,7 +19,6 @@ namespace Web.Data.Concrete
         {
             _dbcontext = context;
         }
-
 
     }
 }

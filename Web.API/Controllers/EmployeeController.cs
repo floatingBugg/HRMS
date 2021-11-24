@@ -45,7 +45,7 @@ namespace Web.API.Controllers
             String message = "Success";
             try
             {
-                IActionResult response = Unauthorized();
+                
                 string result = _employeeservice.CreateEmployee(employee);
                 
                 return message;
@@ -64,8 +64,8 @@ namespace Web.API.Controllers
             String message = "Success";
             try
             {
-                IActionResult response = Unauthorized();
-                string result = _employeeservice.CreateEmployee(employee);
+               
+                string result = _employeeservice.UpdateEmployee(employee);
 
                 return message;
             }

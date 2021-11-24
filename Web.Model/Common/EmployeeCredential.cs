@@ -8,6 +8,7 @@ namespace Web.Model.Common
 {
     public class EmployeeCredential
     {
+        public int empID { get; set; }
         public string firstname { get; set; }
         public string Lastname { get; set; }
         public string photograph { get; set; }
