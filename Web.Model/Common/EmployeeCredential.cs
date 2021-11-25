@@ -34,5 +34,19 @@ namespace Web.Model.Common
 
         public DateTime modifiedDate = new DateTime();
         public string isDelete { get; set; }
+        //Emergency Contact
+        public string emergencyfirstname { get; set; }
+
+        public string emergencylastname { get; set; }
+
+        public string emergencyrelation { get; set; }
+
+        public string emergencycontact { get; set; }
+
+        public string emergencyaddress { get; set; }
+
+
+
+
     }
 }

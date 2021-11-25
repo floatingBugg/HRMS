@@ -42,7 +42,7 @@ namespace Web.API.Controllers
             return Ok(emp);
         }
 
-        [HttpPost("/Add")]
+        [HttpPost("/Employee/Add")]
         public String Create([FromBody] EmployeeCredential employee)
         {
             String message = "Success";

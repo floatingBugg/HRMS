@@ -100,6 +100,9 @@ namespace Web.API
             services.AddTransient(typeof(IHRMSUserAuthRepository), typeof(HRMSUserAuthRepository));
             services.AddTransient(typeof(IEmployeeService), typeof(EmployeeService));
             services.AddTransient(typeof(IHRMSEmployeeRepository), typeof(HRMSEmployeeRepository));
+            services.AddTransient(typeof(IHRMSEmployeeContactRepository), typeof(HRMSEmployeeContactRepository));
+
+
             //Register Services Repositories
 
         }

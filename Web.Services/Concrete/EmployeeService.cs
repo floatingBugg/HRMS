@@ -13,11 +13,13 @@ namespace Web.Services.Concrete
     public class EmployeeService : IEmployeeService
     {
         private readonly IHRMSEmployeeRepository _hrmsemployeeRepository;
+        private readonly IHRMSEmployeeContactRepository _employeeContactRepository;
         IConfiguration _config;
         private readonly IUnitOfWork _uow;
-        public EmployeeService(IConfiguration config, IHRMSEmployeeRepository hrmsemployeeRepository, IUnitOfWork uow)
+        public EmployeeService(IConfiguration config, IHRMSEmployeeRepository hrmsemployeeRepository, IHRMSEmployeeContactRepository employeeContactRepository, IUnitOfWork uow)
         {
             _config = config;
+            _employeeContactRepository = employeeContactRepository;
             _hrmsemployeeRepository = hrmsemployeeRepository;
             _uow = uow;
         }
@@ -27,24 +29,26 @@ namespace Web.Services.Concrete
             if (!string.IsNullOrEmpty(employee.firstname) && !string.IsNullOrEmpty(employee.Lastname)
                && !string.IsNullOrEmpty(employee.personalemail) && !string.IsNullOrEmpty(employee.address) && !string.IsNullOrEmpty(employee.gender))
             {
+                List<EmsTblEmergencyContact> obj2 = new List<EmsTblEmergencyContact>();
                 List<EmsTblEmployeeDetails> obj = new List<EmsTblEmployeeDetails>();
                 obj.Add(new EmsTblEmployeeDetails
                 {
+                    //EtedEmployeeId = employee.empID,
                     EtedFirstName = employee.firstname,
                     EtedLastName = employee.Lastname,
                     EtedEmailAddress = employee.personalemail,
-                    EtedCnic= employee.cnic,
+                    EtedCnic = employee.cnic,
                     EtedDob = DateTime.Now,
                     EtedGender = employee.gender,
                     EtedAddress = employee.address,
-                    EtedMaritalStatus=employee.martialstatus,
-                    EtedBloodGroup=employee.bloodgroup,
-                    EtedContactNumber=employee.contact,
-                    EtedNationality=employee.nationality,
-                    EtedReligion=employee.religion,
-                    EtedStatus=employee.empstatus,
+                    EtedMaritalStatus = employee.martialstatus,
+                    EtedBloodGroup = employee.bloodgroup,
+                    EtedContactNumber = employee.contact,
+                    EtedNationality = employee.nationality,
+                    EtedReligion = employee.religion,
+                    EtedStatus = employee.empstatus,
                     EtedPhotograph = new byte[2],
-                    EtedOfficialEmailAddress=employee.officialemail,
+                    EtedOfficialEmailAddress = employee.officialemail,
                     EtedCreatedBy = "test",
                     EtedCreatedByDate = DateTime.Now,
                     EtedCreatedByName = "test",
@@ -52,10 +56,30 @@ namespace Web.Services.Concrete
                     EtedModifiedByDate = DateTime.Now,
                     EtedModifiedByName = "test",
                     EtedIsDelete = "no",
-                    
 
                 });
                 _hrmsemployeeRepository.Insert(obj);
+
+                obj2.Add(new EmsTblEmergencyContact
+                {
+                    
+                    EtecFirstName=employee.emergencyfirstname,
+                    EtecLastName=employee.emergencylastname,
+                    EtecRelation=employee.emergencyrelation,
+                    EtecContactNumber=employee.emergencycontact,
+                    EtecAddress=employee.emergencyaddress,
+                    EtedEmployeeId=obj.FirstOrDefault().EtedEmployeeId,
+                    EtecCreatedBy= "test",
+                    EtecCreatedByName = "test",
+                    EtecCreatedByDate = DateTime.Now,
+                    EtecModifiedBy = "test",
+                    EtecModifiedByDate = DateTime.Now,
+                    EtecModifiedByName = "test",
+                    EtecIsDelete = "no",
+
+                });
+                _employeeContactRepository.Insert(obj2);
+                _uow.Commit();
             }
             return null;
         }
@@ -96,6 +120,25 @@ namespace Web.Services.Concrete
                 x.EtedIsDelete = "no";
                     
                             });
+            _employeeContactRepository.Table.Where(p => p.EtedEmployeeId == employee.empID)
+                .ToList()
+                .ForEach(x => 
+                {
+                    x.EtecFirstName = employee.emergencyfirstname;
+                    x.EtecLastName = employee.emergencylastname;
+                    x.EtecRelation = employee.emergencyrelation;
+                    x.EtecContactNumber = employee.emergencycontact;
+                    x.EtecAddress = employee.emergencyaddress;
+                    x.EtecCreatedBy = "test";
+                    x.EtecCreatedByName = "test";
+                    x.EtecCreatedByDate = DateTime.Now;
+                    x.EtecModifiedBy = "test";
+                    x.EtecModifiedByDate = DateTime.Now;
+                    x.EtecModifiedByName = "test";
+                    x.EtecIsDelete = "no";       
+
+                });
+
             _uow.Commit();
 
             return "Success";
