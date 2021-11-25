@@ -60,9 +60,9 @@ namespace Web.Services.Concrete
             return null;
         }
 
-        public string GetAllEmployee()
+        public IEnumerable<EmsTblEmployeeDetails> GetAllEmployee()
         {
-            throw new NotImplementedException();
+            return _hrmsemployeeRepository.GetList().ToList();
         }
 
       

@@ -33,10 +33,13 @@ namespace Web.API.Controllers
             _hostEnvironment = environment;
         }
         // GET: api/<EmployeeController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        [HttpGet("/DisplayAll")]
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+             
+            var emp =_employeeservice.GetAllEmployee();
+
+            return Ok(emp);
         }
 
         [HttpPost("/Add")]
