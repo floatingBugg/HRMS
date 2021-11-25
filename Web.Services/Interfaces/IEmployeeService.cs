@@ -17,5 +17,7 @@ namespace Web.Services.Interfaces
         string UpdateEmployee(EmployeeCredential employee);
 
         IEnumerable<EmsTblEmployeeDetails> GetAllEmployee();
+
+        string DeleteEmployee(int id);
     }
 }

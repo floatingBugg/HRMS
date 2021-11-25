@@ -19,5 +19,6 @@ namespace Web.DLL.Generic_Repository
         IQueryable<T> Table { get; }
         IQueryable<T> GetAllIncluding(params Expression<Func<T, object>>[] includeProperties);
         void DeleteRange(IEnumerable<T> entities);
+        
     }
 }

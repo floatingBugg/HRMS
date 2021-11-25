@@ -34,5 +34,30 @@ namespace Web.Model.Common
 
         public DateTime modifiedDate = new DateTime();
         public string isDelete { get; set; }
+
+        //Academic Qualification//
+
+        
+        public string Qualification { get; set; }
+        public string PassingYear { get; set; }
+        public string Cgpa { get; set; }
+        public string InstituteName{get;set;}
+
+        public string UploadDocuments { get; set; }
+
+        //Professional Qualification
+       
+        public string Certification { get; set; }
+
+        public DateTime StartDate = new DateTime();
+        
+        public DateTime EndDate = new DateTime();
+        
+
+        public string Documents { get; set; }
+
+       
+
+
     }
 }

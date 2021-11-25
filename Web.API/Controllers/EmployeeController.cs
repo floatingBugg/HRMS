@@ -50,6 +50,7 @@ namespace Web.API.Controllers
             {
                 
                 string result = _employeeservice.CreateEmployee(employee);
+               
                 
                 return message;
             }
@@ -78,6 +79,12 @@ namespace Web.API.Controllers
                 return null;
             }
             return message;
+        }
+
+        [HttpDelete("/Remove")]
+        public string Delete(int id)
+        {
+            return _employeeservice.DeleteEmployee(id);
         }
     }
 }
