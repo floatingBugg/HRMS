@@ -18,6 +18,10 @@ namespace Web.Services.Interfaces
 
         IEnumerable<EmsTblEmployeeDetails> GetAllEmployee();
 
+
+        IEnumerable<EmsTblEmployeeDetails> GetAllEmployeeContact();
+
+
         string DeleteEmployee(int id);
     }
 }
