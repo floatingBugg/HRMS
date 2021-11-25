@@ -86,9 +86,14 @@ namespace Web.Services.Concrete
 
         public IEnumerable<EmsTblEmployeeDetails> GetAllEmployee()
         {
-            return _hrmsemployeeRepository.GetList().ToList();
+            var employee = _hrmsemployeeRepository.GetList().ToList();
+            var empContacts = _employeeContactRepository.GetList().ToList();
+            var result = (from emp in employee
+                          join empC in empContacts on emp.EtedEmployeeId equals empC.EtedEmployeeId
+                          select emp).ToList();
+            return employee;
         }
-
+        
       
         public string UpdateEmployee(EmployeeCredential employee)
         {
@@ -148,6 +153,11 @@ namespace Web.Services.Concrete
 
         }
 
-
+        public IEnumerable<EmsTblEmployeeDetails> GetAllEmployeeContact()
+        {
+            var employee = _hrmsemployeeRepository.GetList().ToList();
+            var empContacts = _employeeContactRepository.GetList().ToList();
+            return _hrmsemployeeRepository.GetList().ToList();
+        }
     }
 }

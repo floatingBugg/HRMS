@@ -33,7 +33,7 @@ namespace Web.API.Controllers
             _hostEnvironment = environment;
         }
         // GET: api/<EmployeeController>
-        [HttpGet("/DisplayAll")]
+        [HttpGet("/DisplayAllEmployees")]
         public IActionResult Get()
         {
              
@@ -41,6 +41,15 @@ namespace Web.API.Controllers
 
             return Ok(emp);
         }
+
+        //[HttpGet("/DisplayAllEmployeesEmergencyContact")]
+        //public IActionResult GetEmergencyContact()
+        //{
+
+        //    var emp = _employeeservice.GetAllEmployee;
+
+        //    return Ok(emp);
+        //}
 
         [HttpPost("/Employee/Add")]
         public String Create([FromBody] EmployeeCredential employee)

@@ -17,5 +17,7 @@ namespace Web.Services.Interfaces
         string UpdateEmployee(EmployeeCredential employee);
 
         IEnumerable<EmsTblEmployeeDetails> GetAllEmployee();
+
+        IEnumerable<EmsTblEmployeeDetails> GetAllEmployeeContact();
     }
 }
