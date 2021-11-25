@@ -88,5 +88,11 @@ namespace Web.API.Controllers
             }
             return message;
         }
+
+        [HttpDelete("/Remove")]
+        public string Delete(int id)
+        {
+            return _employeeservice.DeleteEmployee(id);
+        }
     }
 }

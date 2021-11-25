@@ -44,7 +44,18 @@ namespace Web.Model.Common
         public string emergencycontact { get; set; }
 
         public string emergencyaddress { get; set; }
+        // Working History
+        public string companyname { get; set; }
 
+        public string designation { get; set; }
+
+        public DateTime startdate { get; set; }
+
+        public DateTime enddate { get; set; }
+
+        public string duration { get; set; }
+
+        public string expletter { get; set; }
 
 
 
