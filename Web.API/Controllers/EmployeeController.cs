@@ -71,7 +71,7 @@ namespace Web.API.Controllers
             return message;
         }
 
-        [HttpPost("/Update")]
+        [HttpPost("/Employee/Update")]
         public String Update([FromBody] EmployeeCredential employee)
         {
             String message = "Success";
@@ -90,7 +90,7 @@ namespace Web.API.Controllers
             return message;
         }
 
-        [HttpDelete("/Remove")]
+        [HttpDelete("/Employee/Remove")]
         public string Delete(int id)
         {
             return _employeeservice.DeleteEmployee(id);
