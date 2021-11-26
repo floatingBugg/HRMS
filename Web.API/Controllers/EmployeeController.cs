@@ -34,12 +34,12 @@ namespace Web.API.Controllers
             _hostEnvironment = environment;
         }
         // GET: api/<EmployeeController>
-        [HttpGet("/DisplayAllEmployees")]
+       /* [HttpGet("/DisplayAllEmployees")]
         public IEnumerable<AllTableDetails> Get()
         {
              
             return _employeeservice.GetAllEmployee();
-        }
+        }*/
 
         //[HttpGet("/DisplayAllEmployeesEmergencyContact")]
         //public IActionResult GetEmergencyContact()
