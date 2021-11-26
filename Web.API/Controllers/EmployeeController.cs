@@ -54,7 +54,7 @@ namespace Web.API.Controllers
         [HttpPost("/Employee/Add")]
         public BaseResponse Create([FromBody] EmployeeCredential employee)
         {
-            BaseResponse response = new BaseResponse(); ;
+            BaseResponse response = new BaseResponse(); 
             try
             {
                 
@@ -75,28 +75,35 @@ namespace Web.API.Controllers
         }
 
         [HttpPost("/Employee/Update")]
-        public String Update([FromBody] EmployeeCredential employee)
+        public BaseResponse Update([FromBody] EmployeeCredential employee)
         {
-            String message = "Success";
+            BaseResponse response = new BaseResponse();
+            
             try
             {
                
-                string result = _employeeservice.UpdateEmployee(employee);
-
-                return message;
+                response.Data = _employeeservice.UpdateEmployee(employee);
+                if(response.Data!= null)
+                {
+                    response.Message = "Success";
+                }
+                return response;
             }
             catch (Exception ex)
             {
-
+                response.Message = "Failed";
                 return null;
             }
-            return message;
+            return response;
         }
 
         [HttpDelete("/Employee/Remove")]
-        public string Delete(int id)
+        public BaseResponse Delete(int id)
         {
-            return _employeeservice.DeleteEmployee(id);
+            BaseResponse response = new BaseResponse();
+            response.Data= _employeeservice.DeleteEmployee(id);
+             response.Message = "False";
+            return response;
         }
     }
 }
