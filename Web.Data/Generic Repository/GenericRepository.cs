@@ -43,6 +43,12 @@ namespace Web.DLL.Generic_Repository
                 return _entities;
             }
         }
+
+        public IQueryable<T> Query()
+        {
+            return _appContext.Set<T>().AsQueryable();
+        }
+
         public IQueryable<T> Table
         {
             get

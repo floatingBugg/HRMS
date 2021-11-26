@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using log4net.Repository.Hierarchy;
 using Web.Model.Common;
+using Web.DLL.Models;
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -34,12 +35,10 @@ namespace Web.API.Controllers
         }
         // GET: api/<EmployeeController>
         [HttpGet("/DisplayAllEmployees")]
-        public IActionResult Get()
+        public IEnumerable<EmsTblEmployeeDetails> Get()
         {
              
-            var emp =_employeeservice.GetAllEmployee();
-
-            return Ok(emp);
+            return _employeeservice.GetAllEmployee(); ;
         }
 
         //[HttpGet("/DisplayAllEmployeesEmergencyContact")]

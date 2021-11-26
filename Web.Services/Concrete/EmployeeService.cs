@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,11 +40,12 @@ namespace Web.Services.Concrete
             if (!string.IsNullOrEmpty(employee.firstname) && !string.IsNullOrEmpty(employee.Lastname)
                && !string.IsNullOrEmpty(employee.personalemail) && !string.IsNullOrEmpty(employee.address) && !string.IsNullOrEmpty(employee.gender))
             {
-                List<EmsTblWorkingHistory> obj4 = new List<EmsTblWorkingHistory>();
-                List<EmsTblEmergencyContact> obj3 = new List<EmsTblEmergencyContact>();
                 List<EmsTblEmployeeDetails> obj = new List<EmsTblEmployeeDetails>();
                 List<EmsTblAcademicQualification> obj1 = new List<EmsTblAcademicQualification>();
                 List<EmsTblProfessionalQualification> obj2 = new List<EmsTblProfessionalQualification>();
+                List<EmsTblWorkingHistory> obj4 = new List<EmsTblWorkingHistory>();
+                List<EmsTblEmergencyContact> obj3 = new List<EmsTblEmergencyContact>();
+                
 
                 //Create Method Employee Details
 
@@ -121,7 +123,7 @@ namespace Web.Services.Concrete
 
                 });
                 _hrmsprofessionalrepository.Insert(obj2);
-
+                //Emergency Contact
                 obj3.Add(new EmsTblEmergencyContact
                 {
                     
@@ -141,6 +143,8 @@ namespace Web.Services.Concrete
 
                 });
                 _employeeContactRepository.Insert(obj3);
+
+                //Create Working History
                 obj4.Add(new EmsTblWorkingHistory
                 {
                     EtwhCompanyName=employee.companyname,
@@ -168,11 +172,13 @@ namespace Web.Services.Concrete
         public IEnumerable<EmsTblEmployeeDetails> GetAllEmployee()
         {
 
+
             
-            //var getAlldata= _hrmsemployeeRepository.Table.Where(EmsTblAcad
-            return _hrmsemployeeRepository.GetList().ToList();
-           
-            
+            var obj= _hrmsemployeeRepository.Query().AsNoTracking().Include(m => m.EmsTblEmergencyContact)
+                .Include(m=>m.EmsTblAcademicQualification).Include(m=>m.EmsTblWorkingHistory).Include(m=>m.EmsTblProfessionalQualification)
+                .ToList();
+            return obj.ToList();
+
         }
         
     
@@ -247,7 +253,7 @@ namespace Web.Services.Concrete
                     
 
                 });
-                  
+                  //Update Emergency Contact
             _employeeContactRepository.Table.Where(p => p.EtedEmployeeId == employee.empID)
                 .ToList()
                 .ForEach(x => 
@@ -266,7 +272,7 @@ namespace Web.Services.Concrete
                     x.EtecIsDelete = "no";       
 
                 });
-
+            // Working History
             _workinghistoryRepository.Table.Where(p => p.EtedEmployeeId == employee.empID)
                .ToList()
                .ForEach(x =>
