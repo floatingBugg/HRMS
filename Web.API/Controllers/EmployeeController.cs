@@ -35,10 +35,10 @@ namespace Web.API.Controllers
         }
         // GET: api/<EmployeeController>
         [HttpGet("/DisplayAllEmployees")]
-        public IEnumerable<EmsTblEmployeeDetails> Get()
+        public IEnumerable<AllTableDetails> Get()
         {
              
-            return _employeeservice.GetAllEmployee(); ;
+            return _employeeservice.GetAllEmployee();
         }
 
         //[HttpGet("/DisplayAllEmployeesEmergencyContact")]
