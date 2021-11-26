@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using log4net.Repository.Hierarchy;
 using Web.Model.Common;
 using Web.DLL.Models;
+using Web.Model;
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -51,23 +52,26 @@ namespace Web.API.Controllers
         //}
 
         [HttpPost("/Employee/Add")]
-        public String Create([FromBody] EmployeeCredential employee)
+        public BaseResponse Create([FromBody] EmployeeCredential employee)
         {
-            String message = "Success";
+            BaseResponse response = new BaseResponse(); ;
             try
             {
                 
-                string result = _employeeservice.CreateEmployee(employee);
-               
+                response.Data = _employeeservice.CreateEmployee(employee);
+                if (response.Data !=null) 
+                {
+                    response.Message = "Success";
+                }
                 
-                return message;
+                return response;
             }
             catch(Exception ex)
             {
                 
                 return null;
             }
-            return message;
+            return response;
         }
 
         [HttpPost("/Employee/Update")]
