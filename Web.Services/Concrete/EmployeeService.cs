@@ -168,8 +168,8 @@ namespace Web.Services.Concrete
             }
             return null;
         }
-
-        public IEnumerable<EmsTblEmployeeDetails> GetAllEmployee()
+/*
+        public IEnumerable<AllTableDetails> GetAllEmployee()
         {
 
 
@@ -177,10 +177,46 @@ namespace Web.Services.Concrete
             var obj= _hrmsemployeeRepository.Query().AsNoTracking().Include(m => m.EmsTblEmergencyContact)
                 .Include(m=>m.EmsTblAcademicQualification).Include(m=>m.EmsTblWorkingHistory).Include(m=>m.EmsTblProfessionalQualification)
                 .ToList();
-            return obj.ToList();
 
-        }
-        
+
+            AllTableDetails _list = new AllTableDetails();
+            EmployeeCredential empObj;
+            if (obj != null && obj.Count() > 0)
+            {
+                foreach (var item in obj)
+                {
+                    empObj = new EmployeeCredential();
+                    empObj.empID = item.EtedEmployeeId;
+
+                    _list._myPrEmployeeCredentialoperty.Add(empObj);
+
+                    if(item.EmsTblEmergencyContact != null && item.EmsTblEmergencyContact.Count() > 0)
+                    {
+                        foreach (var contactObj in item.EmsTblEmergencyContact)
+                        {
+                            _list.Add(empObj);
+                        }
+                    }
+
+                }
+
+                foreach (var item in obj)
+                {
+                    empObj = new EmployeeCredential();
+                    empObj.empID = item.EtedEmployeeId;
+
+                    _list._myPrEmployeeCredentialoperty.Add(empObj);
+                }
+            }
+
+
+            return _list;
+
+
+        }*/
+
+
+       
     
         public string UpdateEmployee(EmployeeCredential employee)
         {
@@ -333,6 +369,9 @@ namespace Web.Services.Concrete
             return _hrmsemployeeRepository.GetList().ToList();
         }
 
-       
+        public IEnumerable<EmsTblEmployeeDetails> GetAllEmployee()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

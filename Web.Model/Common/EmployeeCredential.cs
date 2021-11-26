@@ -84,4 +84,9 @@ namespace Web.Model.Common
 
 
     }
+
+    public class AllTableDetails
+    {
+        public List<EmployeeCredential> _myPrEmployeeCredentialoperty { get; set; }
+    }
 }
