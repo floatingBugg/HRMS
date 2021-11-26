@@ -9,6 +9,8 @@ namespace Web.DLL.Generic_Repository
     public interface IRepository<T> where T : BaseEntity
     {
         IQueryable<T> GetList();
+
+        IQueryable<T> Query();
         IQueryable<T> GetList(Expression<Func<T, bool>> predicate);
         T GetByPreducate(Expression<Func<T, bool>> predicate);
         void Insert(T entity);

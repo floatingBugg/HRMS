@@ -33,7 +33,11 @@ namespace Web.DLL.Db_Context
             {
 
                 /*optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=EMS;Integrated Security=True");*/
+
                 optionsBuilder.UseSqlServer("Data Source=DESKTOP-L6KGPJ5MSSQLSERVER01;Initial Catalog=EMS;Integrated Security=True");
+
+                //optionsBuilder.UseSqlServer("Data Source=DESKTOP-L6KGPJ5MSSQLSERVER01; Initial Catalog = EMS; Integrated Security = True");
+
 
             
 
