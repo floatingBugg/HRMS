@@ -8,8 +8,7 @@ using Web.DLL.Models;
 
 namespace Web.Data.Interfaces
 {
-    public interface IHRMSPRofessionalRepository : IRepository<EmsTblProfessionalQualification>
+    public interface IHRMSProfessionalDetailsRepository : IRepository<EmsTblEmployeeProfessionalDetails>
     {
-
     }
 }

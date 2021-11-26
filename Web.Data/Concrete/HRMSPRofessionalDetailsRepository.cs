@@ -10,14 +10,13 @@ using Web.DLL.Models;
 
 namespace Web.Data.Concrete
 {
-    public class HRMSProfessionalRepository : GenericRepository<EmsTblProfessionalQualification>, IHRMSPRofessionalRepository
+    public class HRMSPRofessionalDetailsRepository : GenericRepository<EmsTblEmployeeProfessionalDetails>, IHRMSProfessionalDetailsRepository
     {
 
-        public HRMSProfessionalRepository(DbHRMSContext context)
+        public HRMSPRofessionalDetailsRepository(DbHRMSContext context)
               : base(context)
         {
 
         }
-
     }
 }

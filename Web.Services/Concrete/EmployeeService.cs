@@ -14,13 +14,14 @@ namespace Web.Services.Concrete
     {
         private readonly IHRMSAcademicRepository _hrmsacademicrepository;
         private readonly IHRMSEmployeeRepository _hrmsemployeeRepository;
-        private readonly IHRMSProfessionalRepository _hrmsprofessionalrepository;
+        private readonly IHRMSPRofessionalRepository _hrmsprofessionalrepository;
         private readonly IHRMSEmployeeContactRepository _employeeContactRepository;
         private readonly IHRMSEmployeeWorkingHistoryRepository _workinghistoryRepository;
+        private readonly IHRMSProfessionalDetailsRepository _hrmsprofessionaldetailsrepository;
 
         IConfiguration _config;
         private readonly IUnitOfWork _uow;
-        public EmployeeService(IConfiguration config, IHRMSEmployeeRepository hrmsemployeeRepository,IHRMSEmployeeContactRepository employeeContactRepository, IHRMSEmployeeWorkingHistoryRepository workingHistoryRepository, IHRMSAcademicRepository hRMSAcademicRepository,IHRMSProfessionalRepository hRMSProfessionalRepository, IUnitOfWork uow)
+        public EmployeeService(IConfiguration config, IHRMSEmployeeRepository hrmsemployeeRepository,IHRMSAcademicRepository hRMSAcademicRepository,IHRMSEmployeeContactRepository  employeeContactRepository,IHRMSPRofessionalRepository  hRMSProfessionalRepository,IHRMSEmployeeWorkingHistoryRepository workingHistoryRepository, IHRMSProfessionalDetailsRepository hRMSProfessionalDetailsRepository, IUnitOfWork uow)
 
  
         {
@@ -30,6 +31,7 @@ namespace Web.Services.Concrete
             _hrmsacademicrepository = hRMSAcademicRepository;
             _hrmsprofessionalrepository = hRMSProfessionalRepository;
             _workinghistoryRepository = workingHistoryRepository;
+            _hrmsprofessionaldetailsrepository = hRMSProfessionalDetailsRepository;
 
             _uow = uow;
         }
@@ -39,18 +41,19 @@ namespace Web.Services.Concrete
             if (!string.IsNullOrEmpty(employee.firstname) && !string.IsNullOrEmpty(employee.Lastname)
                && !string.IsNullOrEmpty(employee.personalemail) && !string.IsNullOrEmpty(employee.address) && !string.IsNullOrEmpty(employee.gender))
             {
-                List<EmsTblWorkingHistory> obj4 = new List<EmsTblWorkingHistory>();
-                List<EmsTblEmergencyContact> obj3 = new List<EmsTblEmergencyContact>();
+               
                 List<EmsTblEmployeeDetails> obj = new List<EmsTblEmployeeDetails>();
                 List<EmsTblAcademicQualification> obj1 = new List<EmsTblAcademicQualification>();
                 List<EmsTblProfessionalQualification> obj2 = new List<EmsTblProfessionalQualification>();
+                List<EmsTblEmergencyContact> obj3 = new List<EmsTblEmergencyContact>();
+                List<EmsTblWorkingHistory> obj4 = new List<EmsTblWorkingHistory>();
+                List<EmsTblEmployeeProfessionalDetails> obj5 = new List<EmsTblEmployeeProfessionalDetails>();
 
                 //Create Method Employee Details
 
                 obj.Add(new EmsTblEmployeeDetails
                 {
 
-     
                     EtedFirstName = employee.firstname,
                     EtedLastName = employee.Lastname,
                     EtedEmailAddress = employee.personalemail,
@@ -121,6 +124,7 @@ namespace Web.Services.Concrete
 
                 });
                 _hrmsprofessionalrepository.Insert(obj2);
+                //Create Method Emergence Contact
 
                 obj3.Add(new EmsTblEmergencyContact
                 {
@@ -141,15 +145,18 @@ namespace Web.Services.Concrete
 
                 });
                 _employeeContactRepository.Insert(obj3);
+
+                //Create Method Working History
+
                 obj4.Add(new EmsTblWorkingHistory
                 {
-                    EtwhCompanyName=employee.companyname,
+                    EtedEmployeeId = obj.FirstOrDefault().EtedEmployeeId,
+                    EtwhCompanyName =employee.companyname,
                     EtwhStratDate = DateTime.Now,
                     EtwhEndDate= DateTime.Now,
                     EtwhDuration=employee.duration,
-                    EtwhDesignation=employee.designation,
+                    EtwhDesignation=employee.Olddesignation,
                     EtwhExperienceLetter=new byte[2],
-                    EtedEmployeeId = obj.FirstOrDefault().EtedEmployeeId,
                     EtwhCreatedBy = "test",
                     EtwhCreatedByName = "test",
                     EtwhCreatedByDate = DateTime.Now,
@@ -159,8 +166,28 @@ namespace Web.Services.Concrete
                     EtwhIsDelete = "no",
                 });
                 _workinghistoryRepository.Insert(obj4);
-                _uow.Commit();
 
+                //Create Method Professional details
+
+                obj5.Add(new EmsTblEmployeeProfessionalDetails
+                {
+                    EtedEmployeeId=obj.FirstOrDefault().EtedEmployeeId,
+                    EtepdDesignation=employee.NewDesignation,
+                    EtepdSalary=employee.Salary,
+                    EtepdJoiningDate=DateTime.Now,
+                    EtepdProbation= "1",
+                    EtepdCreatedBy="test",
+                    EtepdCreatedByName="test",
+                    EtepdCreatedByDate=DateTime.Now,
+                    EtepdModifiedBy="test",
+                    EtepdModifiedByName="test",
+                    EtepdModifiedByDate=DateTime.Now,
+                    EtepdIsDelete="no"
+
+                });
+                _hrmsprofessionaldetailsrepository.Insert(obj5);
+
+                _uow.Commit();
             }
             return null;
         }
@@ -275,7 +302,7 @@ namespace Web.Services.Concrete
                    x.EtwhStratDate = DateTime.Now;
                    x.EtwhEndDate = DateTime.Now;
                    x.EtwhDuration = employee.duration;
-                   x.EtwhDesignation = employee.designation;
+                   x.EtwhDesignation = employee.Olddesignation;
                    x.EtwhExperienceLetter = new byte[2];
                    x.EtwhCreatedBy = "test";
                    x.EtwhCreatedByName = "test";
@@ -287,14 +314,25 @@ namespace Web.Services.Concrete
 
                });
 
+          
+
+            _hrmsprofessionaldetailsrepository.Table.Where(p => p.EtedEmployeeId == employee.empID).ToList().ForEach(x =>
+                {
+                    x.EtepdDesignation = employee.NewDesignation;
+                    x.EtepdSalary = employee.Salary;
+                    x.EtepdJoiningDate = DateTime.Now;
+                    x.EtepdProbation = "1";
+                    x.EtepdCreatedBy = "test";
+                    x.EtepdCreatedByName = "test";
+                    x.EtepdCreatedByDate = DateTime.Now;
+                    x.EtepdModifiedBy = "test";
+                    x.EtepdModifiedByName = "test";
+                    x.EtepdModifiedByDate = DateTime.Now;
+                    x.EtepdIsDelete = "test";
+
+                });
+
             _uow.Commit();
-
-
-
-
-
-
-        _uow.Commit();
             return "Success";
             
             }
@@ -310,6 +348,8 @@ namespace Web.Services.Concrete
             _employeeContactRepository.Delete(empcontact);
             var empWork = _workinghistoryRepository.Table.Where(emp => emp.EtedEmployeeId == id).FirstOrDefault();
             _workinghistoryRepository.Delete(empWork);
+            var empprofdetail = _hrmsprofessionaldetailsrepository.Table.Where(emp => emp.EtedEmployeeId == id).FirstOrDefault();
+            _hrmsprofessionaldetailsrepository.Delete(empprofdetail);
             var Emp = _hrmsemployeeRepository.Table.Where(emp => emp.EtedEmployeeId == id).FirstOrDefault();
             _hrmsemployeeRepository.Delete(Emp);
 

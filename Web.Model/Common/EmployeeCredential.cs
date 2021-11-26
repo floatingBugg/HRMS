@@ -35,6 +35,7 @@ namespace Web.Model.Common
         public DateTime modifiedDate = new DateTime();
         public string isDelete { get; set; }
 
+        //Academic Qualification
 
         
         public string Qualification { get; set; }
@@ -70,7 +71,7 @@ namespace Web.Model.Common
         // Working History
         public string companyname { get; set; }
 
-        public string designation { get; set; }
+        public string Olddesignation { get; set; }
 
         public DateTime startdate { get; set; }
 
@@ -80,6 +81,17 @@ namespace Web.Model.Common
 
         public string expletter { get; set; }
 
+
+        //Professional Details
+
+        
+
+        public string Salary { get; set; }
+
+        public string NewDesignation { get; set; }
+        public DateTime JoiningDate { get; set; }
+
+        public string Probation { get; set; }
 
 
 
