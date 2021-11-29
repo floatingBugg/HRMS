@@ -35,21 +35,16 @@ namespace Web.API.Controllers
             _hostEnvironment = environment;
         }
         // GET: api/<EmployeeController>
-       /* [HttpGet("/DisplayAllEmployees")]
-        public IEnumerable<AllTableDetails> Get()
+        [HttpGet("/Employee/DisplayAllEmployees")]
+        public BaseResponse Get()
         {
-             
-            return _employeeservice.GetAllEmployee();
-        }*/
+            BaseResponse response = new BaseResponse();
 
-        //[HttpGet("/DisplayAllEmployeesEmergencyContact")]
-        //public IActionResult GetEmergencyContact()
-        //{
+            response.Data =  _employeeservice.GetAllEmployee();
+            return response;
+        }
 
-        //    var emp = _employeeservice.GetAllEmployee;
 
-        //    return Ok(emp);
-        //}
 
         [HttpPost("/Employee/Add")]
         public BaseResponse Create([FromBody] EmployeeCredential employee)

@@ -405,9 +405,25 @@ namespace Web.Services.Concrete
             return _hrmsemployeeRepository.GetList().ToList();
         }
 
-        public IEnumerable<EmsTblEmployeeDetails> GetAllEmployee()
+        public List<EmsTblEmployeeDetails> GetAllEmployee()
+
         {
-            throw new NotImplementedException();
+            // List<EmsTblEmployeeDetails> employee = new List<EmsTblEmployeeDetails>();
+            //employee=_hrmsemployeeRepository.GetList().ToList();
+            var employee = _hrmsemployeeRepository.Table.Include("EmsTblEmployeeProfessionalDetails").ToList();
+            //  List<EmsTblEmployeeProfessionalDetails> details = new List<EmsTblEmployeeProfessionalDetails>();
+            //details=_hrmsprofessionaldetailsrepository.GetList().ToList();
+
+            //  var displayemployee = employee.tab
+            return employee;
+                /*.Select(p => new EmployeeCredential()
+            {
+                empID = p.EtedEmployeeId,
+                firstname=p.EtedFirstName,
+                officialemail=p.EtedEmailAddress,
+                contact=p.EtedContactNumber,
+                NewDesignation=p.de
+            });*/
         }
     }
 }

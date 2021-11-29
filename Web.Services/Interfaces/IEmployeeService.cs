@@ -16,10 +16,9 @@ namespace Web.Services.Interfaces
 
         string UpdateEmployee(EmployeeCredential employee);
 
-        IEnumerable<EmsTblEmployeeDetails> GetAllEmployee();
+        List<EmsTblEmployeeDetails> GetAllEmployee();
 
 
-        IEnumerable<EmsTblEmployeeDetails> GetAllEmployeeContact();
 
 
         string DeleteEmployee(int id);
