@@ -86,6 +86,7 @@ namespace Web.API
                      IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Secret"]))
                  };
              });
+
             // register the repositories
             services.AddDbContext<DbHRMSContext>();
             services.AddScoped<DbContext>(sp => sp.GetService<DbHRMSContext>());

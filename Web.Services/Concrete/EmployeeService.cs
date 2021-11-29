@@ -390,8 +390,6 @@ namespace Web.Services.Concrete
             _hrmsprofessionaldetailsrepository.Delete(empprofdetail);
             var Emp = _hrmsemployeeRepository.Table.Where(emp => emp.EtedEmployeeId == id).FirstOrDefault();
             _hrmsemployeeRepository.Delete(Emp);
-
-            _uow.Commit();
             return "Successfully Deleted";
         }
             
@@ -405,25 +403,24 @@ namespace Web.Services.Concrete
             return _hrmsemployeeRepository.GetList().ToList();
         }
 
-        public List<EmsTblEmployeeDetails> GetAllEmployee()
-
+        public List<EmployeeCredential> GetAllEmployee()
         {
-            // List<EmsTblEmployeeDetails> employee = new List<EmsTblEmployeeDetails>();
-            //employee=_hrmsemployeeRepository.GetList().ToList();
-            var employee = _hrmsemployeeRepository.Table.Include("EmsTblEmployeeProfessionalDetails").ToList();
-            //  List<EmsTblEmployeeProfessionalDetails> details = new List<EmsTblEmployeeProfessionalDetails>();
-            //details=_hrmsprofessionaldetailsrepository.GetList().ToList();
+            List<EmployeeCredential> empCred = new List<EmployeeCredential>();
+            var employeesData = _hrmsemployeeRepository.Table.Include("EmsTblEmployeeProfessionalDetails").ToList();
 
-            //  var displayemployee = employee.tab
-            return employee;
-                /*.Select(p => new EmployeeCredential()
+            foreach (var item in employeesData)
             {
-                empID = p.EtedEmployeeId,
-                firstname=p.EtedFirstName,
-                officialemail=p.EtedEmailAddress,
-                contact=p.EtedContactNumber,
-                NewDesignation=p.de
-            });*/
+                empCred.Add(new EmployeeCredential()
+                {
+                    empID = item.EtedEmployeeId,
+                    firstname = item.EtedFirstName,
+                    officialemail = item.EtedEmailAddress,
+                    contact = item.EtedContactNumber,
+                    //NewDesignation = item.EmsTblEmployeeProfessionalDetails.
+                });
+            }
+
+            return empCred;
         }
     }
 }

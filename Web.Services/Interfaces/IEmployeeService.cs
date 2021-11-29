@@ -16,10 +16,7 @@ namespace Web.Services.Interfaces
 
         string UpdateEmployee(EmployeeCredential employee);
 
-        List<EmsTblEmployeeDetails> GetAllEmployee();
-
-
-
+        List<EmployeeCredential> GetAllEmployee();
 
         string DeleteEmployee(int id);
     }

@@ -1,25 +1,18 @@
-﻿using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Web.Services.Concrete;
-using Web.Services.Interfaces;
+﻿using System;
+using System.Text.Json;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using log4net.Repository.Hierarchy;
-using Web.Model.Common;
-using Web.DLL.Models;
+using Web.API.Helper;
 using Web.Model;
+using Web.Model.Common;
+using Web.Services.Interfaces;
 
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Web.API.Controllers
 {
-    [Route("Employee")]
-    [ApiController]
+    //[Route("Employee")]
+    //[ApiController]
     public class EmployeeController : Controller
     {
 
@@ -33,15 +26,28 @@ namespace Web.API.Controllers
             _employeeservice = employeeservice;
             _config = config;
             _hostEnvironment = environment;
+            _logger = new Logger(_hostEnvironment);
         }
-        // GET: api/<EmployeeController>
+
         [HttpGet("/Employee/DisplayAllEmployees")]
-        public BaseResponse Get()
+        public BaseResponse GetAllEmployee()
         {
             BaseResponse response = new BaseResponse();
-
-            response.Data =  _employeeservice.GetAllEmployee();
-            return response;
+            try
+            {
+                response.Data = _employeeservice.GetAllEmployee();
+                response.Success = true;
+                response.Message = "Data fetched successfully";
+                return response;
+            }
+            catch(Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
         }
 
 
@@ -63,10 +69,12 @@ namespace Web.API.Controllers
             }
             catch(Exception ex)
             {
-                
-                return null;
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
             }
-            return response;
         }
 
         [HttpPost("/Employee/Update")]
@@ -86,19 +94,33 @@ namespace Web.API.Controllers
             }
             catch (Exception ex)
             {
-                response.Message = "Failed";
-                return null;
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
             }
-            return response;
         }
 
         [HttpDelete("/Employee/Remove")]
         public BaseResponse Delete(int id)
         {
             BaseResponse response = new BaseResponse();
-            response.Data= _employeeservice.DeleteEmployee(id);
-             response.Message = "False";
-            return response;
+            try
+            {          
+                response.Data = _employeeservice.DeleteEmployee(id);
+                response.Message = "User deleted successfully";
+                response.Success = true;
+                return response;
+            }
+            catch(Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
         }
     }
 }
