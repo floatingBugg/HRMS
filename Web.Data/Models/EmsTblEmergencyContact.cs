@@ -60,7 +60,7 @@ namespace Web.DLL.Models
         [Required]
         [Column("etec_is_delete")]
         [StringLength(100)]
-        public string EtecIsDelete { get; set; }
+        public bool EtecIsDelete { get; set; }
 
         [ForeignKey(nameof(EtedEmployeeId))]
         [InverseProperty(nameof(EmsTblEmployeeDetails.EmsTblEmergencyContact))]

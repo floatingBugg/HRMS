@@ -62,6 +62,6 @@ namespace Web.DLL.Models
         [Required]
         [Column("ethu_is_delete")]
         [StringLength(100)]
-        public string EthuIsDelete { get; set; }
+        public bool EthuIsDelete { get; set; }
     }
 }

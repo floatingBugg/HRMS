@@ -51,7 +51,7 @@ namespace Web.Services.Concrete
                 List<EmsTblWorkingHistory> EmpWorking = new List<EmsTblWorkingHistory>();
                 List<EmsTblEmployeeProfessionalDetails> EmpProDetails = new List<EmsTblEmployeeProfessionalDetails>();
 
-             
+
 
                 EmpDetails.Add(new EmsTblEmployeeDetails
                 {
@@ -77,10 +77,8 @@ namespace Web.Services.Concrete
                     EtedModifiedBy = "test",
                     EtedModifiedByDate = DateTime.Now,
                     EtedModifiedByName = "test",
-                    EtedIsDelete = "no",
-
-
-                });
+                    EtedIsDelete = false,
+                });  
                 _hrmsemployeeRepository.Insert(EmpDetails);
 
 
@@ -100,7 +98,7 @@ namespace Web.Services.Concrete
                     EtaqModifiedBy = "test",
                     EtaqModifiedByDate = DateTime.Now,
                     EtaqModifiedByName = "test",
-                    EtaqIsDelete = "No",
+                    EtaqIsDelete = false,
                 });
                 _hrmsacademicrepository.Insert(Empacademic);
 
@@ -120,7 +118,7 @@ namespace Web.Services.Concrete
                     EtpqModifiedBy="test",
                     EtpqModifiedByName="test",
                     EtpqModifiedByDate=DateTime.Now,
-                    EtpqIsDelete="no"
+                    EtpqIsDelete=false,
 
 
 
@@ -143,7 +141,7 @@ namespace Web.Services.Concrete
                     EtecModifiedBy = "test",
                     EtecModifiedByDate = DateTime.Now,
                     EtecModifiedByName = "test",
-                    EtecIsDelete = "no",
+                    EtecIsDelete = false,
 
                 });
                 _employeeContactRepository.Insert(EmpEmerg);
@@ -163,7 +161,7 @@ namespace Web.Services.Concrete
                     EtwhModifiedBy = "test",
                     EtwhModifiedByDate = DateTime.Now,
                     EtwhModifiedByName = "test",
-                    EtwhIsDelete = "no",
+                    EtwhIsDelete = false,
                 });
                 _workinghistoryRepository.Insert(EmpWorking);
 
@@ -182,7 +180,7 @@ namespace Web.Services.Concrete
                     EtepdModifiedBy="test",
                     EtepdModifiedByName="test",
                     EtepdModifiedByDate=DateTime.Now,
-                    EtepdIsDelete="no"
+                    EtepdIsDelete= false,
 
                 });
                 _hrmsprofessionaldetailsrepository.Insert(EmpProDetails);
@@ -222,7 +220,7 @@ namespace Web.Services.Concrete
                 x.EtedModifiedBy = "test";
                 x.EtedModifiedByDate = DateTime.Now;
                 x.EtedModifiedByName = "test";
-                x.EtedIsDelete = "no";
+                x.EtedIsDelete = false;
 
             });
 
@@ -243,7 +241,7 @@ namespace Web.Services.Concrete
                 x.EtaqModifiedBy = "test";
                 x.EtaqModifiedByName = "test";
                 x.EtaqModifiedByDate = DateTime.Now;
-                x.EtaqIsDelete = "no";
+                x.EtaqIsDelete = false;
 
                     });
             //Update ProfessionalQualification
@@ -260,7 +258,7 @@ namespace Web.Services.Concrete
                     x.EtpqModifiedBy = employee.modified;
                     x.EtpqModifiedByDate = DateTime.Now;
                     x.EtpqModifiedByName = employee.modifiedName;
-                    x.EtpqIsDelete = "no";
+                    x.EtpqIsDelete = false;
                     x.EtpqCertification = employee.Certification;
                     
 
@@ -281,7 +279,7 @@ namespace Web.Services.Concrete
                     x.EtecModifiedBy = "test";
                     x.EtecModifiedByDate = DateTime.Now;
                     x.EtecModifiedByName = "test";
-                    x.EtecIsDelete = "no";       
+                    x.EtecIsDelete = false;       
 
                 });
             // Working History
@@ -301,7 +299,7 @@ namespace Web.Services.Concrete
                    x.EtwhModifiedBy = "test";
                    x.EtwhModifiedByDate = DateTime.Now;
                    x.EtwhModifiedByName = "test";
-                   x.EtwhIsDelete = "no";
+                   x.EtwhIsDelete = false;
 
                });
 
@@ -319,7 +317,7 @@ namespace Web.Services.Concrete
                     x.EtepdModifiedBy = "test";
                     x.EtepdModifiedByName = "test";
                     x.EtepdModifiedByDate = DateTime.Now;
-                    x.EtepdIsDelete = "test";
+                    x.EtepdIsDelete = false;
 
                 });
 
@@ -358,22 +356,22 @@ namespace Web.Services.Concrete
 
         public List<EmployeeCredential> GetAllEmployee()
         {
-            List<DisplayEmployeeTable> empCred = new List<DisplayEmployeeTable>();
+            List<EmployeeCredential> empCred = new List<EmployeeCredential>();
             var employeesData = _hrmsemployeeRepository.Table.Include("EmsTblEmployeeProfessionalDetails").ToList();
 
             foreach (var item in employeesData)
             {
-                empCred.Add(new DisplayEmployeeTable()
+                empCred.Add(new EmployeeCredential()
                 {
                     empID = item.EtedEmployeeId,
                     firstname = item.EtedFirstName,
                     officialemail = item.EtedEmailAddress,
                     contact = item.EtedContactNumber,
-                    /*NewDesignation = item.Etepd*/
+                    //NewDesignation = item.EmsTblEmployeeProfessionalDetails.
                 });
             }
 
-            return null;
+            return empCred;
         }
     }
 }

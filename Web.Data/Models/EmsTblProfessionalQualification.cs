@@ -55,7 +55,7 @@ namespace Web.DLL.Models
         [Required]
         [Column("etpq_is_delete")]
         [StringLength(100)]
-        public string EtpqIsDelete { get; set; }
+        public bool EtpqIsDelete { get; set; }
 
         [ForeignKey(nameof(EtedEmployeeId))]
         [InverseProperty(nameof(EmsTblEmployeeDetails.EmsTblProfessionalQualification))]

@@ -73,7 +73,7 @@ namespace Web.DLL.Models
         [Required]
         [Column("eted_is_delete")]
         [StringLength(100)]
-        public string EtedIsDelete { get; set; }
+        public bool EtedIsDelete { get; set; }
         [Required]
         [Column("eted_photograph")]
         public byte[] EtedPhotograph { get; set; }

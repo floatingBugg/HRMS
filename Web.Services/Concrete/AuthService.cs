@@ -96,7 +96,7 @@ namespace Web.Services.Concrete
                     EthuModifiedBy = "test",
                     EthuModifiedByDate = DateTime.Now,
                     EthuModifiedByName = "test",
-                    EthuIsDelete = "no"
+                    EthuIsDelete = false,
 
                 });
 

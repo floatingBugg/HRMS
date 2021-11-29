@@ -59,7 +59,7 @@ namespace Web.DLL.Models
         [Required]
         [Column("etwh_is_delete")]
         [StringLength(100)]
-        public string EtwhIsDelete { get; set; }
+        public bool EtwhIsDelete { get; set; }
 
         [ForeignKey(nameof(EtedEmployeeId))]
         [InverseProperty(nameof(EmsTblEmployeeDetails.EmsTblWorkingHistory))]

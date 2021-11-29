@@ -33,7 +33,7 @@ namespace Web.Model.Common
         public string modifiedName { get; set; }
 
         public DateTime modifiedDate = new DateTime();
-        public string isDelete { get; set; }
+        public bool isDelete { get; set; }
 
         //Academic Qualification
 
