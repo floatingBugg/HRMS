@@ -44,16 +44,16 @@ namespace Web.Services.Concrete
             {
 
                
-                List<EmsTblEmployeeDetails> obj = new List<EmsTblEmployeeDetails>();
-                List<EmsTblAcademicQualification> obj1 = new List<EmsTblAcademicQualification>();
-                List<EmsTblProfessionalQualification> obj2 = new List<EmsTblProfessionalQualification>();
-                List<EmsTblEmergencyContact> obj3 = new List<EmsTblEmergencyContact>();
-                List<EmsTblWorkingHistory> obj4 = new List<EmsTblWorkingHistory>();
-                List<EmsTblEmployeeProfessionalDetails> obj5 = new List<EmsTblEmployeeProfessionalDetails>();
+                List<EmsTblEmployeeDetails> EmpDetails = new List<EmsTblEmployeeDetails>();
+                List<EmsTblAcademicQualification> Empacademic = new List<EmsTblAcademicQualification>();
+                List<EmsTblProfessionalQualification> EmpPro = new List<EmsTblProfessionalQualification>();
+                List<EmsTblEmergencyContact> EmpEmerg = new List<EmsTblEmergencyContact>();
+                List<EmsTblWorkingHistory> EmpWorking = new List<EmsTblWorkingHistory>();
+                List<EmsTblEmployeeProfessionalDetails> EmpProDetails = new List<EmsTblEmployeeProfessionalDetails>();
 
              
 
-                obj.Add(new EmsTblEmployeeDetails
+                EmpDetails.Add(new EmsTblEmployeeDetails
                 {
 
                     EtedFirstName = employee.firstname,
@@ -81,14 +81,14 @@ namespace Web.Services.Concrete
 
 
                 });
-                _hrmsemployeeRepository.Insert(obj);
+                _hrmsemployeeRepository.Insert(EmpDetails);
 
 
                 //Create Method academic Qualification
 
-                obj1.Add(new EmsTblAcademicQualification
+                Empacademic.Add(new EmsTblAcademicQualification
                 {
-                    EtedEmployeeId = obj.FirstOrDefault().EtedEmployeeId,
+                    EtedEmployeeId = EmpDetails.FirstOrDefault().EtedEmployeeId,
                     EtaqQualification = employee.Qualification,
                     EtaqPassingYear = DateTime.Now,
                     EtaqCgpa = 1.2,
@@ -102,13 +102,13 @@ namespace Web.Services.Concrete
                     EtaqModifiedByName = "test",
                     EtaqIsDelete = "No",
                 });
-                _hrmsacademicrepository.Insert(obj1);
+                _hrmsacademicrepository.Insert(Empacademic);
 
                 //Create Method Professional Qualification
 
-                obj2.Add(new EmsTblProfessionalQualification
+                EmpPro.Add(new EmsTblProfessionalQualification
                 {
-                    EtedEmployeeId=obj.FirstOrDefault().EtedEmployeeId,
+                    EtedEmployeeId=EmpDetails.FirstOrDefault().EtedEmployeeId,
                     EtpqCertification=employee.Certification,
                     EtpqStratDate=DateTime.Now,
                     EtpqEndDate=DateTime.Now,
@@ -125,10 +125,10 @@ namespace Web.Services.Concrete
 
 
                 });
-                _hrmsprofessionalrepository.Insert(obj2);
+                _hrmsprofessionalrepository.Insert(EmpPro);
 
 
-                obj3.Add(new EmsTblEmergencyContact
+                EmpEmerg.Add(new EmsTblEmergencyContact
                 {
                     
                     EtecFirstName=employee.emergencyfirstname,
@@ -136,7 +136,7 @@ namespace Web.Services.Concrete
                     EtecRelation=employee.emergencyrelation,
                     EtecContactNumber=employee.emergencycontact,
                     EtecAddress=employee.emergencyaddress,
-                    EtedEmployeeId=obj.FirstOrDefault().EtedEmployeeId,
+                    EtedEmployeeId=EmpDetails.FirstOrDefault().EtedEmployeeId,
                     EtecCreatedBy= "test",
                     EtecCreatedByName = "test",
                     EtecCreatedByDate = DateTime.Now,
@@ -146,11 +146,11 @@ namespace Web.Services.Concrete
                     EtecIsDelete = "no",
 
                 });
-                _employeeContactRepository.Insert(obj3);
+                _employeeContactRepository.Insert(EmpEmerg);
 
-                obj4.Add(new EmsTblWorkingHistory
+                EmpWorking.Add(new EmsTblWorkingHistory
                 {
-                    EtedEmployeeId = obj.FirstOrDefault().EtedEmployeeId,
+                    EtedEmployeeId = EmpDetails.FirstOrDefault().EtedEmployeeId,
                     EtwhCompanyName =employee.companyname,
                     EtwhStratDate = DateTime.Now,
                     EtwhEndDate= DateTime.Now,
@@ -165,13 +165,13 @@ namespace Web.Services.Concrete
                     EtwhModifiedByName = "test",
                     EtwhIsDelete = "no",
                 });
-                _workinghistoryRepository.Insert(obj4);
+                _workinghistoryRepository.Insert(EmpWorking);
 
                 //Create Method Professional details
 
-                obj5.Add(new EmsTblEmployeeProfessionalDetails
+                EmpProDetails.Add(new EmsTblEmployeeProfessionalDetails
                 {
-                    EtedEmployeeId=obj.FirstOrDefault().EtedEmployeeId,
+                    EtedEmployeeId=EmpDetails.FirstOrDefault().EtedEmployeeId,
                     EtepdDesignation=employee.NewDesignation,
                     EtepdSalary=employee.Salary,
                     EtepdJoiningDate=DateTime.Now,
@@ -185,59 +185,12 @@ namespace Web.Services.Concrete
                     EtepdIsDelete="no"
 
                 });
-                _hrmsprofessionaldetailsrepository.Insert(obj5);
+                _hrmsprofessionaldetailsrepository.Insert(EmpProDetails);
 
                 _uow.Commit();
             }
             return null;
         }
-/*
-        public IEnumerable<AllTableDetails> GetAllEmployee()
-        {
-
-
-            
-            var obj= _hrmsemployeeRepository.Query().AsNoTracking().Include(m => m.EmsTblEmergencyContact)
-                .Include(m=>m.EmsTblAcademicQualification).Include(m=>m.EmsTblWorkingHistory).Include(m=>m.EmsTblProfessionalQualification)
-                .ToList();
-
-
-            AllTableDetails _list = new AllTableDetails();
-            EmployeeCredential empObj;
-            if (obj != null && obj.Count() > 0)
-            {
-                foreach (var item in obj)
-                {
-                    empObj = new EmployeeCredential();
-                    empObj.empID = item.EtedEmployeeId;
-
-                    _list._myPrEmployeeCredentialoperty.Add(empObj);
-
-                    if(item.EmsTblEmergencyContact != null && item.EmsTblEmergencyContact.Count() > 0)
-                    {
-                        foreach (var contactObj in item.EmsTblEmergencyContact)
-                        {
-                            _list.Add(empObj);
-                        }
-                    }
-
-                }
-
-                foreach (var item in obj)
-                {
-                    empObj = new EmployeeCredential();
-                    empObj.empID = item.EtedEmployeeId;
-
-                    _list._myPrEmployeeCredentialoperty.Add(empObj);
-                }
-            }
-
-
-            return _list;
-
-
-        }*/
-
 
        
     
@@ -393,6 +346,15 @@ namespace Web.Services.Concrete
             return "Successfully Deleted";
         }
             
+
+        
+
+        public IEnumerable<EmsTblEmployeeDetails> GetAllEmployeeContact()
+        {
+            var employee = _hrmsemployeeRepository.GetList().ToList();
+            var empContacts = _employeeContactRepository.GetList().ToList();
+            return _hrmsemployeeRepository.GetList().ToList();
+        }
 
         public List<EmployeeCredential> GetAllEmployee()
         {
