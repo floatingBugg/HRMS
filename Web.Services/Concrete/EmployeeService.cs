@@ -394,15 +394,6 @@ namespace Web.Services.Concrete
         }
             
 
-        
-
-        public IEnumerable<EmsTblEmployeeDetails> GetAllEmployeeContact()
-        {
-            var employee = _hrmsemployeeRepository.GetList().ToList();
-            var empContacts = _employeeContactRepository.GetList().ToList();
-            return _hrmsemployeeRepository.GetList().ToList();
-        }
-
         public List<EmployeeCredential> GetAllEmployee()
         {
             List<EmployeeCredential> empCred = new List<EmployeeCredential>();
