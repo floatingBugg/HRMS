@@ -396,22 +396,22 @@ namespace Web.Services.Concrete
 
         public List<EmployeeCredential> GetAllEmployee()
         {
-            List<EmployeeCredential> empCred = new List<EmployeeCredential>();
+            List<DisplayEmployeeTable> empCred = new List<DisplayEmployeeTable>();
             var employeesData = _hrmsemployeeRepository.Table.Include("EmsTblEmployeeProfessionalDetails").ToList();
 
             foreach (var item in employeesData)
             {
-                empCred.Add(new EmployeeCredential()
+                empCred.Add(new DisplayEmployeeTable()
                 {
                     empID = item.EtedEmployeeId,
                     firstname = item.EtedFirstName,
                     officialemail = item.EtedEmailAddress,
                     contact = item.EtedContactNumber,
-                    //NewDesignation = item.EmsTblEmployeeProfessionalDetails.
+                    /*NewDesignation = item.Etepd*/
                 });
             }
 
-            return empCred;
+            return null;
         }
     }
 }
