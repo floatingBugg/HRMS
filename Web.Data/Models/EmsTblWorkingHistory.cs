@@ -33,7 +33,7 @@ namespace Web.DLL.Models
         public string EtwhDuration { get; set; }
         [Required]
         [Column("etwh_experience_letter")]
-        public byte[] EtwhExperienceLetter { get; set; }
+        public string EtwhExperienceLetter { get; set; }
         [Column("eted_employee_id")]
         public int EtedEmployeeId { get; set; }
         [Required]

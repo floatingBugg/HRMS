@@ -76,7 +76,7 @@ namespace Web.DLL.Models
         public bool EtedIsDelete { get; set; }
         [Required]
         [Column("eted_photograph")]
-        public byte[] EtedPhotograph { get; set; }
+        public string EtedPhotograph { get; set; }
         [Column("eted_cnic")]
         public int EtedCnic { get; set; }
         [Required]

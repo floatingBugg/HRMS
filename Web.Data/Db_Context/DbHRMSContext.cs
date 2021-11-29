@@ -34,7 +34,7 @@ namespace Web.DLL.Db_Context
 
                 /*optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=EMS;Integrated Security=True");*/
 
-                optionsBuilder.UseSqlServer("Data Source=ASHJAM\\SQLEXPRESS;Initial Catalog=EMS;Integrated Security=True;");
+                optionsBuilder.UseSqlServer("Data Source=SQL5080.site4now.net,1433;Initial Catalog=db_a7cdcd_ems;User Id=db_a7cdcd_ems_admin;Password=123hamza;");
 
                 //optionsBuilder.UseSqlServer("Data Source=DESKTOP-L6KGPJ5MSSQLSERVER01; Initial Catalog = EMS; Integrated Security = True");
 

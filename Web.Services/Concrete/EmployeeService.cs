@@ -69,7 +69,7 @@ namespace Web.Services.Concrete
                     EtedNationality = employee.nationality,
                     EtedReligion = employee.religion,
                     EtedStatus = employee.empstatus,
-                    EtedPhotograph = new byte[2],
+                    EtedPhotograph = employee.firstname,
                     EtedOfficialEmailAddress = employee.officialemail,
                     EtedCreatedBy = "test",
                     EtedCreatedByDate = DateTime.Now,
@@ -91,7 +91,7 @@ namespace Web.Services.Concrete
                     EtaqPassingYear = DateTime.Now,
                     EtaqCgpa = 1.2,
                     EtaqInstituteName = employee.InstituteName,
-                    EtaqUploadDocuments = new byte[2],
+                    EtaqUploadDocuments = "Hello",
                     EtaqCreatedBy = "test",
                     EtaqCreatedByDate = DateTime.Now,
                     EtaqCreatedByName = "Test",
@@ -110,7 +110,7 @@ namespace Web.Services.Concrete
                     EtpqCertification=employee.Certification,
                     EtpqStratDate=DateTime.Now,
                     EtpqEndDate=DateTime.Now,
-                    EtpqDocuments=new byte[2],
+                    EtpqDocuments="Hamza here",
                     EtpqInstituteName=employee.InstituteName,
                     EtpqCreatedBy="test",
                     EtpqCreatedByName="test",
@@ -124,7 +124,7 @@ namespace Web.Services.Concrete
 
                 });
                 _hrmsprofessionalrepository.Insert(EmpPro);
-
+                
 
                 EmpEmerg.Add(new EmsTblEmergencyContact
                 {
@@ -154,7 +154,7 @@ namespace Web.Services.Concrete
                     EtwhEndDate= DateTime.Now,
                     EtwhDuration=employee.duration,
                     EtwhDesignation=employee.Olddesignation,
-                    EtwhExperienceLetter=new byte[2],
+                    EtwhExperienceLetter="Zaibi terror",
                     EtwhCreatedBy = "test",
                     EtwhCreatedByName = "test",
                     EtwhCreatedByDate = DateTime.Now,
@@ -212,7 +212,7 @@ namespace Web.Services.Concrete
                 x.EtedNationality = employee.nationality;
                 x.EtedReligion = employee.religion;
                 x.EtedStatus = employee.empstatus;
-                x.EtedPhotograph = new byte[2];
+                x.EtedPhotograph = "Hello";
                 x.EtedOfficialEmailAddress = employee.officialemail;
                 x.EtedCreatedBy = "test";
                 x.EtedCreatedByDate = DateTime.Now;
@@ -234,7 +234,7 @@ namespace Web.Services.Concrete
                 x.EtaqPassingYear = DateTime.Now;
                 x.EtaqCgpa = 1.2;
                 x.EtaqInstituteName = employee.InstituteName;
-                x.EtaqUploadDocuments = new byte[2];
+                x.EtaqUploadDocuments = "HI";
                 x.EtaqCreatedBy = "test";
                 x.EtaqCreatedByName = "test";
                 x.EtaqCreatedByDate = DateTime.Now;
@@ -251,7 +251,7 @@ namespace Web.Services.Concrete
                 .ForEach(x =>
                 {
                     x.EtpqInstituteName = employee.InstituteName;
-                    x.EtpqDocuments = new byte[2];
+                    x.EtpqDocuments = "Tarzan";
                     x.EtpqCreatedBy = employee.created;
                     x.EtpqCreatedByDate = DateTime.Now;
                     x.EtpqCreatedByName = employee.createdName;
@@ -292,7 +292,7 @@ namespace Web.Services.Concrete
                    x.EtwhEndDate = DateTime.Now;
                    x.EtwhDuration = employee.duration;
                    x.EtwhDesignation = employee.Olddesignation;
-                   x.EtwhExperienceLetter = new byte[2];
+                   x.EtwhExperienceLetter = "Twist";
                    x.EtwhCreatedBy = "test";
                    x.EtwhCreatedByName = "test";
                    x.EtwhCreatedByDate = DateTime.Now;

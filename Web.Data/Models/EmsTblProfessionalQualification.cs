@@ -29,7 +29,7 @@ namespace Web.DLL.Models
         public string EtpqInstituteName { get; set; }
         [Required]
         [Column("etpq_documents")]
-        public byte[] EtpqDocuments { get; set; }
+        public string EtpqDocuments { get; set; }
         [Column("eted_employee_id")]
         public int EtedEmployeeId { get; set; }
         [Required]

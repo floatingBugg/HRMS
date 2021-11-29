@@ -29,7 +29,7 @@ namespace Web.DLL.Models
         public string EtaqInstituteName { get; set; }
         [Required]
         [Column("etaq_upload_documents")]
-        public byte[] EtaqUploadDocuments { get; set; }
+        public string EtaqUploadDocuments { get; set; }
         [Column("eted_employee_id")]
         public int EtedEmployeeId { get; set; }
         [Required]
