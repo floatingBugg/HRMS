@@ -1,6 +1,5 @@
-﻿using Web.DLL.Generic_Repository;
-using Web.DLL.Models;
-using Web.Model.Common;
+﻿using Web.Data.Models;
+using Web.Data.Generic_Repository;
 
 namespace Web.Data.Interfaces
 {

@@ -1,10 +1,4 @@
-
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Web.DLL.Models;
 using Web.Model.Common;
 
 namespace Web.Services.Interfaces
@@ -16,7 +10,7 @@ namespace Web.Services.Interfaces
 
         string UpdateEmployee(EmployeeCredential employee);
 
-        List<EmployeeCredential> GetAllEmployee();
+        List<DisplayEmployeeGrid> GetAllEmployee();
 
         string DeleteEmployee(int id);
     }

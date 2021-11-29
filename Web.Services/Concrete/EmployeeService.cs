@@ -1,11 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Web.Data;
 using Web.Data.Interfaces;
-using Web.DLL.Models;
+using Web.Data.Models;
 using Web.Model.Common;
 using Web.Services.Interfaces;
 
@@ -345,33 +345,19 @@ namespace Web.Services.Concrete
         }
             
 
-        
-
-        public IEnumerable<EmsTblEmployeeDetails> GetAllEmployeeContact()
+        public List<DisplayEmployeeGrid> GetAllEmployee()
         {
-            var employee = _hrmsemployeeRepository.GetList().ToList();
-            var empContacts = _employeeContactRepository.GetList().ToList();
-            return _hrmsemployeeRepository.GetList().ToList();
-        }
-
-        public List<EmployeeCredential> GetAllEmployee()
-        {
-            List<EmployeeCredential> empCred = new List<EmployeeCredential>();
-            var employeesData = _hrmsemployeeRepository.Table.Include("EmsTblEmployeeProfessionalDetails").ToList();
-
-            foreach (var item in employeesData)
+            List<DisplayEmployeeGrid> empCred = new List<DisplayEmployeeGrid>();
+            var employeesData = _hrmsemployeeRepository.Table.Include(x=>x.EmsTblEmployeeProfessionalDetails).Select(x=>new DisplayEmployeeGrid()
             {
-                empCred.Add(new EmployeeCredential()
-                {
-                    empID = item.EtedEmployeeId,
-                    firstname = item.EtedFirstName,
-                    officialemail = item.EtedEmailAddress,
-                    contact = item.EtedContactNumber,
-                    //NewDesignation = item.EmsTblEmployeeProfessionalDetails.
-                });
-            }
+                empID = x.EtedEmployeeId,
+                       fullName = x.EtedFirstName,
+                       emailAddress = x.EtedEmailAddress,
+                       contactNumber = x.EtedContactNumber,
+                       empDesignation = x.EmsTblEmployeeProfessionalDetails.Count > 0 ? x.EmsTblEmployeeProfessionalDetails.Where(y=> y.EtedEmployeeId == x.EtedEmployeeId).Select(z=>z.EtepdDesignation).FirstOrDefault() : "Not assigned"
+            }).ToList();
 
-            return empCred;
+            return employeesData;
         }
     }
 }

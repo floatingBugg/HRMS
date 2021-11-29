@@ -11,10 +11,9 @@ using Microsoft.OpenApi.Models;
 using Web.API.Helper;
 using Web.Data;
 using Web.Data.Concrete;
+using Web.Data.Db_Context;
+using Web.Data.Generic_Repository;
 using Web.Data.Interfaces;
-using Web.DLL;
-using Web.DLL.Db_Context;
-using Web.DLL.Generic_Repository;
 using Web.Services.Concrete;
 using Web.Services.Interfaces;
 

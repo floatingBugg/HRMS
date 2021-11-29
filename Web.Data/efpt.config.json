@@ -8,10 +8,10 @@
    "ModelNamespace": null,
    "OutputContextPath": "Db_Context",
    "OutputPath": "Models",
-   "ProjectRootNamespace": "Web.DLL",
+   "ProjectRootNamespace": "Web.Data",
    "Schemas": null,
    "SelectedHandlebarsLanguage": 0,
-   "SelectedToBeGenerated": 1,
+   "SelectedToBeGenerated": 0,
    "Tables": [
       {
          "Name": "[dbo].[ems_tbl_academic_qualification]",
@@ -42,12 +42,12 @@
          "ObjectType": 0
       }
    ],
-   "UiHint": "BUGGY-LAPTOP.EMS",
+   "UiHint": "SQL5080.db_a7cdcd_ems",
    "UseBoolPropertiesWithoutDefaultSql": false,
    "UseDatabaseNames": false,
    "UseDbContextSplitting": false,
    "UseFluentApiOnly": false,
-   "UseHandleBars": false,
+   "UseHandleBars": true,
    "UseInflector": false,
    "UseLegacyPluralizer": false,
    "UseNoConstructor": false,

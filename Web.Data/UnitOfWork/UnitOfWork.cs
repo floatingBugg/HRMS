@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using Web.Data;
-using Web.DLL.Db_Context;
-using Web.DLL.Generic_Repository;
-using Web.Model;
+using Web.Data.Db_Context;
+using Web.Data.Generic_Repository;
 using Web.Model.Common;
 
-namespace Web.DLL
+namespace Web.Data
 {
     public class UnitOfWork : IUnitOfWork
     {
@@ -42,7 +41,7 @@ namespace Web.DLL
         #region Repositories
 
         Dictionary<Type, object> _repo = null;
-        public IRepository<T> GetRepository<T>() where T : BaseEntity
+        public IRepository<T> GetRepository<T>() where T : class
         {
             if (this._repo == null)
                 this._repo = new Dictionary<Type, object>();

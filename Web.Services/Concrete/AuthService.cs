@@ -7,8 +7,8 @@ using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Web.Data.Interfaces;
-using Web.DLL;
-using Web.DLL.Models;
+using Web.Data.Models;
+using Web.Data;
 using Web.Model;
 using Web.Model.Common;
 using Web.Services.Interfaces;
@@ -96,7 +96,7 @@ namespace Web.Services.Concrete
                     EthuModifiedBy = "test",
                     EthuModifiedByDate = DateTime.Now,
                     EthuModifiedByName = "test",
-                    EthuIsDelete = false,
+                    EthuIsDelete = false
 
                 });
 
