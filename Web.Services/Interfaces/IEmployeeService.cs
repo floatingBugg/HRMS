@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Web.Data.Models;
+using Web.Model;
 using Web.Model.Common;
 
 namespace Web.Services.Interfaces
@@ -11,7 +12,7 @@ namespace Web.Services.Interfaces
 
         string UpdateEmployee(EmsTblEmployeeDetails employee);
 
-        List<DisplayEmployeeGrid> GetAllEmployee();
+        BaseResponse GetAllEmployee();
 
         string DeleteEmployee(int id);
     }

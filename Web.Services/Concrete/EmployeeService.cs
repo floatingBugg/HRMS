@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Web.Data;
 using Web.Data.Interfaces;
 using Web.Data.Models;
+using Web.Model;
 using Web.Model.Common;
 using Web.Services.Interfaces;
 
@@ -37,8 +38,9 @@ namespace Web.Services.Concrete
         }
 
 
-        public List<DisplayEmployeeGrid> GetAllEmployee()
+        public BaseResponse GetAllEmployee()
         {
+            BaseResponse response = new BaseResponse();
             List<DisplayEmployeeGrid> empCred = new List<DisplayEmployeeGrid>();
             var employeesData = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false).Select(x => new DisplayEmployeeGrid()
             {
@@ -49,7 +51,10 @@ namespace Web.Services.Concrete
                 empDesignation = x.EmsTblEmployeeProfessionalDetails.Count > 0 ? x.EmsTblEmployeeProfessionalDetails.Where(y => y.EtepdEtedEmployeeId == x.EtedEmployeeId).Select(z => z.EtepdDesignation).FirstOrDefault() : "Not assigned"
             }).ToList();
 
-            return employeesData;
+            response.Data = employeesData;
+            response.Success = true;
+            response.Message = "Data fetched successfully";
+            return response;
         }
 
         public string CreateEmployee(EmsTblEmployeeDetails employee)

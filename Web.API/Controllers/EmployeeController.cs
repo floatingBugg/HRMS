@@ -34,9 +34,8 @@ namespace Web.API.Controllers
             BaseResponse response = new BaseResponse();
             try
             {
-                response.Data = _employeeservice.GetAllEmployee();
-                response.Success = true;
-                response.Message = "Data fetched successfully";
+                response = _employeeservice.GetAllEmployee();
+
                 return response;
             }
             catch(Exception ex)
