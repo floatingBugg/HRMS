@@ -22,9 +22,9 @@ namespace Web.Services.Concrete
 
         IConfiguration _config;
         private readonly IUnitOfWork _uow;
-        public EmployeeService(IConfiguration config, IHRMSEmployeeRepository hrmsemployeeRepository,IHRMSAcademicRepository hRMSAcademicRepository,IHRMSEmployeeContactRepository  employeeContactRepository,IHRMSPRofessionalRepository  hRMSProfessionalRepository,IHRMSEmployeeWorkingHistoryRepository workingHistoryRepository, IHRMSProfessionalDetailsRepository hRMSProfessionalDetailsRepository, IUnitOfWork uow)
+        public EmployeeService(IConfiguration config, IHRMSEmployeeRepository hrmsemployeeRepository, IHRMSAcademicRepository hRMSAcademicRepository, IHRMSEmployeeContactRepository employeeContactRepository, IHRMSPRofessionalRepository hRMSProfessionalRepository, IHRMSEmployeeWorkingHistoryRepository workingHistoryRepository, IHRMSProfessionalDetailsRepository hRMSProfessionalDetailsRepository, IUnitOfWork uow)
 
- 
+
         {
             _config = config;
             _employeeContactRepository = employeeContactRepository;
@@ -66,16 +66,16 @@ namespace Web.Services.Concrete
             }
             return null;
         }
-      
+
         public string UpdateEmployee(EmsTblEmployeeDetails employee)
         {
 
             //Update EmployeeDetails
 
-               employee.EtedModifiedBy = "admin";
-               employee.EtedModifiedByDate = DateTime.Now;
-               employee.EtedModifiedByName = "admin";
-               employee.EtedIsDelete = false;
+            employee.EtedModifiedBy = "admin";
+            employee.EtedModifiedByDate = DateTime.Now;
+            employee.EtedModifiedByName = "admin";
+            employee.EtedIsDelete = false;
 
             // Update AcademicQualification
             if (employee.EmsTblAcademicQualification.Count > 0)
@@ -136,13 +136,10 @@ namespace Web.Services.Concrete
                     item.EtwhIsDelete = false;
                 }
             }
-
             _hrmsemployeeRepository.Update(employee);
-       
             _uow.Commit();
             return "Success";
-            
-            }
+        }
 
         public string DeleteEmployee(int empId)
         {
@@ -158,6 +155,5 @@ namespace Web.Services.Concrete
             _uow.Commit();
             return "Successfully Deleted";
         }
-           
     }
 }

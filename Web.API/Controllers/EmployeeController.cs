@@ -12,8 +12,6 @@ using Web.Services.Interfaces;
 
 namespace Web.API.Controllers
 {
-    //[Route("Employee")]
-    //[ApiController]
     public class EmployeeController : Controller
     {
 
@@ -50,8 +48,6 @@ namespace Web.API.Controllers
                 return response;
             }
         }
-
-
 
         [HttpPost("/Employee/Add")]
         public BaseResponse Create([FromBody]EmsTblEmployeeDetails employee)
