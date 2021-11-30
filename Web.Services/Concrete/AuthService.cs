@@ -12,6 +12,7 @@ using Web.Data;
 using Web.Model;
 using Web.Model.Common;
 using Web.Services.Interfaces;
+using System.Security.Cryptography;
 
 namespace Web.Services.Concrete
 {
@@ -53,7 +54,7 @@ namespace Web.Services.Concrete
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Secret"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-
+            var refreshtoken = GenerateRefreshToken();
             var claims = new[]
             {
                     new Claim(JwtRegisteredClaimNames.Sub, userInfo.email),
@@ -61,6 +62,7 @@ namespace Web.Services.Concrete
 
             };
             var tokenExpiryTime = DateTime.Now.AddMinutes(120);
+            
             var token = new JwtSecurityToken(_config["Jwt:ValidIssuer"],
               _config["Jwt:ValidIssuer"],
               claims,
@@ -69,12 +71,22 @@ namespace Web.Services.Concrete
 
             return new
             {
+                refreshtoken,
                 token = new JwtSecurityTokenHandler().WriteToken(token),
                 expires = tokenExpiryTime
             };
         }
+        public string GenerateRefreshToken()
+        {
+            var randomNumber = new byte[32];
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(randomNumber);
+                return Convert.ToBase64String(randomNumber);
+            }
 
-        public string Register(RegisterCredential register)
+        }
+            public string Register(RegisterCredential register)
         {
             // first validate the username and password from the db and then generate token
             if (!string.IsNullOrEmpty(register.username) && !string.IsNullOrEmpty(register.password)

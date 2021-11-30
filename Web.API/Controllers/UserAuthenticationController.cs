@@ -30,6 +30,8 @@ namespace Web.API.Controllers
             {
                 BaseResponse response = new BaseResponse();
                 response = _jwtAuth.Authentication(login);
+                
+
                 return response;                
             }
             catch(Exception ex)
@@ -38,6 +40,7 @@ namespace Web.API.Controllers
                 return null;
             }
         }
+        
    
         [HttpPost("auth/register")]
         public IActionResult Register([FromBody] RegisterCredential register)
