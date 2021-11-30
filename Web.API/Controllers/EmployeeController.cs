@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Web.API.Helper;
+using Web.Data.Models;
 using Web.Model;
 using Web.Model.Common;
 using Web.Services.Interfaces;
@@ -53,12 +54,12 @@ namespace Web.API.Controllers
 
 
         [HttpPost("/Employee/Add")]
-        public BaseResponse Create([FromBody] EmployeeCredential employee)
+        public BaseResponse Create([FromBody]EmsTblEmployeeDetails employee)
         {
             BaseResponse response = new BaseResponse(); 
             try
             {
-                
+                var test = ModelState;
                 response.Data = _employeeservice.CreateEmployee(employee);
                 if (response.Data !=null) 
                 {
@@ -78,7 +79,7 @@ namespace Web.API.Controllers
         }
 
         [HttpPost("/Employee/Update")]
-        public BaseResponse Update([FromBody] EmployeeCredential employee)
+        public BaseResponse Update([FromBody] EmsTblEmployeeDetails employee)
         {
             BaseResponse response = new BaseResponse();
             

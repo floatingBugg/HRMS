@@ -42,12 +42,12 @@
          "ObjectType": 0
       }
    ],
-   "UiHint": "SQL5080.db_a7cdcd_ems",
+   "UiHint": "BUGGY-LAPTOP.HRMS_1",
    "UseBoolPropertiesWithoutDefaultSql": false,
    "UseDatabaseNames": false,
    "UseDbContextSplitting": false,
-   "UseFluentApiOnly": false,
-   "UseHandleBars": true,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
    "UseInflector": false,
    "UseLegacyPluralizer": false,
    "UseNoConstructor": false,
