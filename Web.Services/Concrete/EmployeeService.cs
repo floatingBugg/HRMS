@@ -14,26 +14,13 @@ namespace Web.Services.Concrete
 {
     public class EmployeeService : IEmployeeService
     {
-        private readonly IHRMSAcademicRepository _hrmsacademicrepository;
         private readonly IHRMSEmployeeRepository _hrmsemployeeRepository;
-        private readonly IHRMSPRofessionalRepository _hrmsprofessionalrepository;
-        private readonly IHRMSEmployeeContactRepository _employeeContactRepository;
-        private readonly IHRMSEmployeeWorkingHistoryRepository _workinghistoryRepository;
-        private readonly IHRMSProfessionalDetailsRepository _hrmsprofessionaldetailsrepository;
-
         IConfiguration _config;
         private readonly IUnitOfWork _uow;
-        public EmployeeService(IConfiguration config, IHRMSEmployeeRepository hrmsemployeeRepository, IHRMSAcademicRepository hRMSAcademicRepository, IHRMSEmployeeContactRepository employeeContactRepository, IHRMSPRofessionalRepository hRMSProfessionalRepository, IHRMSEmployeeWorkingHistoryRepository workingHistoryRepository, IHRMSProfessionalDetailsRepository hRMSProfessionalDetailsRepository, IUnitOfWork uow)
-
-
+        public EmployeeService(IConfiguration config, IHRMSEmployeeRepository hrmsemployeeRepository, IUnitOfWork uow)
         {
             _config = config;
-            _employeeContactRepository = employeeContactRepository;
             _hrmsemployeeRepository = hrmsemployeeRepository;
-            _hrmsacademicrepository = hRMSAcademicRepository;
-            _hrmsprofessionalrepository = hRMSProfessionalRepository;
-            _workinghistoryRepository = workingHistoryRepository;
-            _hrmsprofessionaldetailsrepository = hRMSProfessionalDetailsRepository;
             _uow = uow;
         }
 
