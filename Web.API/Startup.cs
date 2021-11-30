@@ -86,7 +86,7 @@ namespace Web.API
                  };
              });
 
-            // register the repositories
+            //Register Services
             services.AddDbContext<DbHRMSContext>();
             services.AddScoped<DbContext>(sp => sp.GetService<DbHRMSContext>());
 
@@ -95,21 +95,13 @@ namespace Web.API
             services.AddHttpContextAccessor();
             services.AddTransient(typeof(IRepository<>), typeof(GenericRepository<>));
 
-            //Register Services
-            services.AddTransient(typeof(IJwtAuthService), typeof(AuthService));
-            services.AddTransient(typeof(IHRMSUserAuthRepository), typeof(HRMSUserAuthRepository));
+            services.AddTransient(typeof(IJwtAuthService), typeof(AuthService));        
             services.AddTransient(typeof(IEmployeeService), typeof(EmployeeService));
-            services.AddTransient(typeof(IHRMSEmployeeRepository), typeof(HRMSEmployeeRepository));
-            services.AddTransient(typeof(IHRMSAcademicRepository), typeof(HRMSAcademicRepository));
-            services.AddTransient(typeof(IHRMSPRofessionalRepository), typeof(HRMSProfessionalRepository));
-            services.AddTransient(typeof(IHRMSEmployeeContactRepository), typeof(HRMSEmployeeContactRepository));
-            services.AddTransient(typeof(IHRMSEmployeeWorkingHistoryRepository), typeof(HRMSEmployeeWorkingHistoryRepository));
-            services.AddTransient(typeof(IHRMSProfessionalDetailsRepository), typeof(HRMSPRofessionalDetailsRepository));
-
-
+        
 
             //Register Services Repositories
-
+            services.AddTransient(typeof(IHRMSUserAuthRepository), typeof(HRMSUserAuthRepository));
+            services.AddTransient(typeof(IHRMSEmployeeRepository), typeof(HRMSEmployeeRepository));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
