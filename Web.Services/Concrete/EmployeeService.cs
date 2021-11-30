@@ -50,10 +50,18 @@ namespace Web.Services.Concrete
                 contactNumber = x.EtedContactNumber,
                 empDesignation = x.EmsTblEmployeeProfessionalDetails.Count > 0 ? x.EmsTblEmployeeProfessionalDetails.Where(y => y.EtepdEtedEmployeeId == x.EtedEmployeeId).Select(z => z.EtepdDesignation).FirstOrDefault() : "Not assigned"
             }).ToList();
-
-            response.Data = employeesData;
-            response.Success = true;
-            response.Message = "Data fetched successfully";
+            if (employeesData.Count > 0)
+            {
+                response.Data = employeesData;
+                response.Success = true;
+                response.Message = "Data fetched successfully.";
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = "No data found.";
+            }
             return response;
         }
 
