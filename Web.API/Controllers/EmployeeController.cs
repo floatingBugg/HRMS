@@ -64,6 +64,8 @@ namespace Web.API.Controllers
                 if (response.Data !=null) 
                 {
                     response.Message = "Success";
+                    response.Success = true;
+                    response.Data = null;
                 }
                 
                 return response;
@@ -90,6 +92,8 @@ namespace Web.API.Controllers
                 if(response.Data!= null)
                 {
                     response.Message = "Success";
+                    response.Success = true;
+                    response.Data = null;
                 }
                 return response;
             }

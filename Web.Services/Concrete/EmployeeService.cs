@@ -33,8 +33,23 @@ namespace Web.Services.Concrete
             _hrmsprofessionalrepository = hRMSProfessionalRepository;
             _workinghistoryRepository = workingHistoryRepository;
             _hrmsprofessionaldetailsrepository = hRMSProfessionalDetailsRepository;
-
             _uow = uow;
+        }
+
+
+        public List<DisplayEmployeeGrid> GetAllEmployee()
+        {
+            List<DisplayEmployeeGrid> empCred = new List<DisplayEmployeeGrid>();
+            var employeesData = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false).Select(x => new DisplayEmployeeGrid()
+            {
+                empID = x.EtedEmployeeId,
+                fullName = x.EtedFirstName,
+                emailAddress = x.EtedEmailAddress,
+                contactNumber = x.EtedContactNumber,
+                empDesignation = x.EmsTblEmployeeProfessionalDetails.Count > 0 ? x.EmsTblEmployeeProfessionalDetails.Where(y => y.EtepdEtedEmployeeId == x.EtedEmployeeId).Select(z => z.EtepdDesignation).FirstOrDefault() : "Not assigned"
+            }).ToList();
+
+            return employeesData;
         }
 
         public string CreateEmployee(EmsTblEmployeeDetails employee)
@@ -42,188 +57,107 @@ namespace Web.Services.Concrete
             if (!string.IsNullOrEmpty(employee.EtedFirstName) && !string.IsNullOrEmpty(employee.EtedLastName)
                && !string.IsNullOrEmpty(employee.EtedEmailAddress) && !string.IsNullOrEmpty(employee.EtedAddress) && !string.IsNullOrEmpty(employee.EtedGender))
             {
-                employee.EtedCreatedBy = "test";
+                employee.EtedCreatedBy = "admin";
                 employee.EtedCreatedByDate = DateTime.Now;
-                employee.EtedCreatedByName = "test";
-                employee.EtedModifiedBy = "test";
-                employee.EtedModifiedByDate = DateTime.Now;
-                employee.EtedModifiedByName = "test";
+                employee.EtedCreatedByName = "admin";
                 employee.EtedIsDelete = false;
                 _hrmsemployeeRepository.Insert(employee);
                 return "success";
             }
             return null;
         }
-
-       
-    
+      
         public string UpdateEmployee(EmsTblEmployeeDetails employee)
         {
 
             //Update EmployeeDetails
-            _hrmsemployeeRepository.Table.Where(p => p.EtedEmployeeId == employee.EtedEmployeeId)
-                .ToList()
-                .ForEach(x =>
+
+               employee.EtedModifiedBy = "admin";
+               employee.EtedModifiedByDate = DateTime.Now;
+               employee.EtedModifiedByName = "admin";
+               employee.EtedIsDelete = false;
+
+            // Update AcademicQualification
+            if (employee.EmsTblAcademicQualification.Count > 0)
             {
-                x.EtedFirstName = employee.EtedFirstName;
-                x.EtedLastName = employee.EtedLastName;
-                x.EtedEmailAddress = employee.EtedEmailAddress;
-                x.EtedCnic = employee.EtedCnic;
-                x.EtedDob = employee.EtedDob;
-                x.EtedGender = employee.EtedGender;
-                x.EtedAddress = employee.EtedEmailAddress;
-                x.EtedMaritalStatus = employee.EtedMaritalStatus;
-                x.EtedBloodGroup = employee.EtedBloodGroup;
-                x.EtedContactNumber = employee.EtedContactNumber;
-                x.EtedNationality = employee.EtedNationality;
-                x.EtedReligion = employee.EtedReligion;
-                x.EtedStatus = employee.EtedStatus;
-                x.EtedPhotograph = "Hello";
-                x.EtedOfficialEmailAddress = employee.EtedOfficialEmailAddress;
-                x.EtedCreatedBy = "test";
-                x.EtedCreatedByDate = DateTime.Now;
-                x.EtedCreatedByName = "test";
-                x.EtedModifiedBy = "test";
-                x.EtedModifiedByDate = DateTime.Now;
-                x.EtedModifiedByName = "test";
-                x.EtedIsDelete = false;
+                foreach (var item in employee.EmsTblAcademicQualification)
+                {
+                    item.EtaqModifiedBy = "admin";
+                    item.EtaqModifiedByDate = DateTime.Now;
+                    item.EtaqModifiedByName = "admin";
+                    item.EtaqIsDelete = false;
+                }
+            }
 
-            });
+            //Update ProfessionalQualification
+            if (employee.EmsTblProfessionalQualification.Count > 0)
+            {
+                foreach (var item in employee.EmsTblProfessionalQualification)
+                {
+                    item.EtpqModifiedBy = "admin";
+                    item.EtpqModifiedByDate = DateTime.Now;
+                    item.EtpqModifiedByName = "admin";
+                    item.EtpqIsDelete = false;
+                }
+            }
 
-            //Update AcademicQualification
-            //var academicQualification = employee.EmsTblAcademicQualification.Where(x => x.EtaqEtedEmployeeId == employee.EtedEmployeeId).FirstOrDefault();
-            //_hrmsacademicrepository.Table.Where(p => p.EtaqEtedEmployeeId == employee.EtedEmployeeId)
-            //    .ToList()
-            //    .ForEach(x =>
-            //    {
-            //        x.EtaqQualification = academicQualification.EtaqQualification;
-            //        x.EtaqPassingYear = academicQualification.EtaqPassingYear;
-            //        x.EtaqCgpa = 1.2;
-            //        x.EtaqInstituteName = employee.EmsTblAcademicQualification[0;
-            //        x.EtaqUploadDocuments = "HI";
-            //        x.EtaqCreatedBy = "test";
-            //        x.EtaqCreatedByName = "test";
-            //        x.EtaqCreatedByDate = DateTime.Now;
-            //        x.EtaqModifiedBy = "test";
-            //        x.EtaqModifiedByName = "test";
-            //        x.EtaqModifiedByDate = DateTime.Now;
-            //        x.EtaqIsDelete = false;
+            //Update ProfessionalDetails
+            if (employee.EmsTblEmployeeProfessionalDetails.Count > 0)
+            {
+                foreach (var item in employee.EmsTblEmployeeProfessionalDetails)
+                {
+                    item.EtepdModifiedBy = "admin";
+                    item.EtepdModifiedByDate = DateTime.Now;
+                    item.EtepdModifiedByName = "admin";
+                    item.EtepdIsDelete = false;
+                }
+            }
 
-            //    });
-            ////Update ProfessionalQualification
+            //Update Emergency Contact
+            if (employee.EmsTblEmergencyContact.Count > 0)
+            {
+                foreach (var item in employee.EmsTblEmergencyContact)
+                {
+                    item.EtecModifiedBy = "admin";
+                    item.EtecModifiedByDate = DateTime.Now;
+                    item.EtecModifiedByName = "admin";
+                    item.EtecIsDelete = false;
+                }
+            }
 
-            //_hrmsprofessionalrepository.Table.Where(p => p.EtedEmployeeId == employee.empID)
-            //    .ToList()
-            //    .ForEach(x =>
-            //    {
-            //        x.EtpqInstituteName = employee.InstituteName;
-            //        x.EtpqDocuments = "Tarzan";
-            //        x.EtpqCreatedBy = employee.created;
-            //        x.EtpqCreatedByDate = DateTime.Now;
-            //        x.EtpqCreatedByName = employee.createdName;
-            //        x.EtpqModifiedBy = employee.modified;
-            //        x.EtpqModifiedByDate = DateTime.Now;
-            //        x.EtpqModifiedByName = employee.modifiedName;
-            //        x.EtpqIsDelete = false;
-            //        x.EtpqCertification = employee.Certification;
+            // Working History
+            if (employee.EmsTblWorkingHistory.Count > 0)
+            {
+                foreach (var item in employee.EmsTblWorkingHistory)
+                {
+                    item.EtwhModifiedBy = "admin";
+                    item.EtwhModifiedByDate = DateTime.Now;
+                    item.EtwhModifiedByName = "admin";
+                    item.EtwhIsDelete = false;
+                }
+            }
 
-
-            //    });
-            ////Update Emergency Contact
-            //_employeeContactRepository.Table.Where(p => p.EtedEmployeeId == employee.empID)
-            //    .ToList()
-            //    .ForEach(x =>
-            //    {
-            //        x.EtecFirstName = employee.emergencyfirstname;
-            //        x.EtecLastName = employee.emergencylastname;
-            //        x.EtecRelation = employee.emergencyrelation;
-            //        x.EtecContactNumber = employee.emergencycontact;
-            //        x.EtecAddress = employee.emergencyaddress;
-            //        x.EtecCreatedBy = "test";
-            //        x.EtecCreatedByName = "test";
-            //        x.EtecCreatedByDate = DateTime.Now;
-            //        x.EtecModifiedBy = "test";
-            //        x.EtecModifiedByDate = DateTime.Now;
-            //        x.EtecModifiedByName = "test";
-            //        x.EtecIsDelete = false;
-
-            //    });
-            //// Working History
-            //_workinghistoryRepository.Table.Where(p => p.EtedEmployeeId == employee.empID)
-            //   .ToList()
-            //   .ForEach(x =>
-            //   {
-            //       x.EtwhCompanyName = employee.companyname;
-            //       x.EtwhStratDate = DateTime.Now;
-            //       x.EtwhEndDate = DateTime.Now;
-            //       x.EtwhDuration = employee.duration;
-            //       x.EtwhDesignation = employee.Olddesignation;
-            //       x.EtwhExperienceLetter = "Twist";
-            //       x.EtwhCreatedBy = "test";
-            //       x.EtwhCreatedByName = "test";
-            //       x.EtwhCreatedByDate = DateTime.Now;
-            //       x.EtwhModifiedBy = "test";
-            //       x.EtwhModifiedByDate = DateTime.Now;
-            //       x.EtwhModifiedByName = "test";
-            //       x.EtwhIsDelete = false;
-
-            //   });
-
-
-
-            //_hrmsprofessionaldetailsrepository.Table.Where(p => p.EtedEmployeeId == employee.empID).ToList().ForEach(x =>
-            //    {
-            //        x.EtepdDesignation = employee.NewDesignation;
-            //        x.EtepdSalary = employee.Salary;
-            //        x.EtepdJoiningDate = DateTime.Now;
-            //        x.EtepdProbation = "1";
-            //        x.EtepdCreatedBy = "test";
-            //        x.EtepdCreatedByName = "test";
-            //        x.EtepdCreatedByDate = DateTime.Now;
-            //        x.EtepdModifiedBy = "test";
-            //        x.EtepdModifiedByName = "test";
-            //        x.EtepdModifiedByDate = DateTime.Now;
-            //        x.EtepdIsDelete = false;
-
-            //    });
-
+            _hrmsemployeeRepository.Update(employee);
+       
             _uow.Commit();
             return "Success";
             
             }
 
-        public string DeleteEmployee(int id)
+        public string DeleteEmployee(int empId)
         {
-
-            //var Empacad = _hrmsacademicrepository.Table.Where(emp => emp.EtedEmployeeId == id).FirstOrDefault();
-            //_hrmsacademicrepository.Delete(Empacad);
-            //var Empprof = _hrmsprofessionalrepository.Table.Where(emp => emp.EtedEmployeeId == id).FirstOrDefault();
-            //_hrmsprofessionalrepository.Delete(Empprof);
-            //var empcontact = _employeeContactRepository.Table.Where(emp => emp.EtedEmployeeId == id).FirstOrDefault();
-            //_employeeContactRepository.Delete(empcontact);
-            //var empWork = _workinghistoryRepository.Table.Where(emp => emp.EtedEmployeeId == id).FirstOrDefault();
-            //_workinghistoryRepository.Delete(empWork);
-            //var empprofdetail = _hrmsprofessionaldetailsrepository.Table.Where(emp => emp.EtedEmployeeId == id).FirstOrDefault();
-            //_hrmsprofessionaldetailsrepository.Delete(empprofdetail);
-            //var Emp = _hrmsemployeeRepository.Table.Where(emp => emp.EtedEmployeeId == id).FirstOrDefault();
-            //_hrmsemployeeRepository.Delete(Emp);
+            _hrmsemployeeRepository.Table.Where(p => p.EtedEmployeeId == empId)
+           .ToList()
+           .ForEach(x =>
+           {
+               x.EtedIsDelete = true;
+               x.EtedModifiedBy = "admin";
+               x.EtedModifiedByDate = DateTime.Now;
+               x.EtedModifiedByName = "admin";
+           });
+            _uow.Commit();
             return "Successfully Deleted";
         }
-            
-
-        public List<DisplayEmployeeGrid> GetAllEmployee()
-        {
-            List<DisplayEmployeeGrid> empCred = new List<DisplayEmployeeGrid>();
-            //var employeesData = _hrmsemployeeRepository.Table.Include(x=>x.EmsTblEmployeeProfessionalDetail).Select(x=>new DisplayEmployeeGrid()
-            //{
-            //    empID = x.EtedEmployeeId,
-            //           fullName = x.EtedFirstName,
-            //           emailAddress = x.EtedEmailAddress,
-            //           contactNumber = x.EtedContactNumber,
-            //           empDesignation = x.EmsTblEmployeeProfessionalDetails.Count > 0 ? x.EmsTblEmployeeProfessionalDetails.Where(y=> y.EtedEmployeeId == x.EtedEmployeeId).Select(z=>z.EtepdDesignation).FirstOrDefault() : "Not assigned"
-            //}).ToList();
-
-            return empCred;
-        }
+           
     }
 }
