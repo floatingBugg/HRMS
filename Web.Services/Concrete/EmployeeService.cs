@@ -59,9 +59,10 @@ namespace Web.Services.Concrete
         {
             
             BaseResponse response = new BaseResponse();
+            bool doesExistAlready = _hrmsemployeeRepository.Table.Count(p => p.EtedEmailAddress == employee.EtedEmailAddress) > 0;
             if (!string.IsNullOrEmpty(employee.EtedFirstName) && !string.IsNullOrEmpty(employee.EtedLastName)
                && !string.IsNullOrEmpty(employee.EtedEmailAddress) && !string.IsNullOrEmpty(employee.EtedAddress) && !string.IsNullOrEmpty(employee.EtedGender) && !string.IsNullOrEmpty(employee.EtedReligion)
-               && (employee.EtedCnic!=null) )
+               && (employee.EtedCnic!=null) && doesExistAlready ==false )
             {
                 employee.EtedCreatedBy = "admin";
                 employee.EtedCreatedByDate = DateTime.Now;
@@ -81,7 +82,7 @@ namespace Web.Services.Concrete
             {
                 response.Data = null;
                 response.Success = false;
-                response.Message = "No Data inserted";
+                response.Message = "No Data inserted As ";
             }
            
             return response;
