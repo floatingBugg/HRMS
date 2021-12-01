@@ -82,7 +82,6 @@ namespace Web.Services.Concrete
                 response.Message = UserMessages.strAlrexist;
             }
 
-
             else
             {
                 response.Data = null;
