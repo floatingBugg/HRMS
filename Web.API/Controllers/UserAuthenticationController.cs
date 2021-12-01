@@ -64,7 +64,7 @@ namespace Web.API.Controllers
             }
         }
 
-        [HttpPost("auth/Refresh")]
+        [HttpPost("auth/refresh")]
         public BaseResponse Refresh()
         {
             try
