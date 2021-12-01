@@ -75,8 +75,6 @@ namespace Web.Services.Concrete
                 response.Success = true;
                 response.Message = UserMessages.strAdded;
 
-
-
             }
 
          else if (doesExistAlready == true)
