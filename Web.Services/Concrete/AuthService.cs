@@ -113,6 +113,42 @@ namespace Web.Services.Concrete
         }
 
 
+        public BaseResponse RefreshAuthentication()
+        {
+            BaseResponse refreshresponse = new BaseResponse();
+            {
+
+
+                refreshresponse.Data = GenerateJSONWebToken();
+                refreshresponse.Success = true;
+                refreshresponse.Message = "Refresh Token Generated";
+
+            }
+            return refreshresponse;
+        }
+
+        public object GenerateRefreshToken()
+        {
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Secret"]));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+            var refreshtokenExpiryTime = DateTime.Now.AddHours(5);
+
+            var token = new JwtSecurityToken(_config["Jwt:ValidIssuer"],
+             _config["Jwt:ValidIssuer"],
+
+             expires: refreshtokenExpiryTime,
+
+              signingCredentials: credentials);
+
+            return new
+            {
+                token = new JwtSecurityTokenHandler().WriteToken(token),
+                expires = refreshtokenExpiryTime
+            };
+        }
+
+
 
 
 

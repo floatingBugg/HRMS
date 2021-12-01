@@ -64,5 +64,23 @@ namespace Web.API.Controllers
             }
         }
 
+        [HttpPost("auth/Refresh")]
+        public BaseResponse Refresh()
+        {
+            try
+            {
+                BaseResponse refreshresponse = new BaseResponse();
+                refreshresponse = _jwtAuth.RefreshAuthentication();
+
+
+                return refreshresponse;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                return null;
+            }
+        }
+
     }
 }
