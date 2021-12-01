@@ -10,7 +10,9 @@ namespace Web.Model.Common
     public static class UserMessages
     {
 
-        
+        public static string strUserfound = "User Found";
+        public static string strUsernotfound = "User Not found";
+        public static string strRefreshtoken = "Refresh Token Generated";
 
         public static string strSuccess = "Success";
         public static string strError = "Error";

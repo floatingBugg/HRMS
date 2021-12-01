@@ -38,13 +38,13 @@ namespace Web.Services.Concrete
                 {
                     response.Data = GenerateJSONWebToken();
                     response.Success = true;
-                    response.Message = "User found";
+                    response.Message = UserMessages.strUserfound;
                 }
                 else
                 {
                     response.Data = null;
                     response.Success = false;
-                    response.Message = "User not found";
+                    response.Message = UserMessages.strUsernotfound;
                 }
             }
             return response;
@@ -85,9 +85,9 @@ namespace Web.Services.Concrete
             if (!string.IsNullOrEmpty(register.username) && !string.IsNullOrEmpty(register.password)
                 && !string.IsNullOrEmpty(register.email) && !string.IsNullOrEmpty(register.phone) && !string.IsNullOrEmpty(register.gender))
             {
-                List<EmsTblHrmsUser> obj = new List<EmsTblHrmsUser>();
+                List<EmsTblHrmsUser> user = new List<EmsTblHrmsUser>();
 
-                obj.Add(new EmsTblHrmsUser
+                user.Add(new EmsTblHrmsUser
                 {
                     EthuFullName = "test",
                     EthuUserName = register.username,
@@ -105,7 +105,7 @@ namespace Web.Services.Concrete
 
                 });
 
-                _hrmsUserAuthRepository.Insert(obj);
+                _hrmsUserAuthRepository.Insert(user);
                 //unitorWork.Commit();
 
             }
@@ -121,7 +121,7 @@ namespace Web.Services.Concrete
 
                 refreshresponse.Data = GenerateJSONWebToken();
                 refreshresponse.Success = true;
-                refreshresponse.Message = "Refresh Token Generated";
+                refreshresponse.Message = UserMessages.strRefreshtoken;
 
             }
             return refreshresponse;
