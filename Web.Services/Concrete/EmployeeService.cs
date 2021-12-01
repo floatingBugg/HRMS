@@ -180,7 +180,7 @@ namespace Web.Services.Concrete
         {
             BaseResponse response = new BaseResponse();
             bool doesExistAlready = _hrmsemployeeRepository.Table.Count(p => p.EtedEmployeeId == empId) > 0;
-            bool isDeletedAlready = _hrmsemployeeRepository.Table.Count(p => p.EtedIsDelete == true ) > 0;
+            bool isDeletedAlready = _hrmsemployeeRepository.Table.Count(p => p.EtedIsDelete == true && p.EtedEmployeeId== empId) > 0;
             _hrmsemployeeRepository.Table.Where(p => p.EtedEmployeeId == empId)
            .ToList()
            .ForEach(x =>
@@ -191,7 +191,7 @@ namespace Web.Services.Concrete
                x.EtedModifiedByName = "admin";
 
            });
-            if (empId != 0 && doesExistAlready == true && isDeletedAlready == false)
+            if (doesExistAlready == true && isDeletedAlready == false)
             {
                 response.Message = UserMessages.strDeleted;
                 response.Success = true;
