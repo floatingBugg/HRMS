@@ -40,9 +40,17 @@
       {
          "Name": "[dbo].[ems_tbl_working_history]",
          "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ims_tbl_assests]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ims_tbl_assets_category]",
+         "ObjectType": 0
       }
    ],
-   "UiHint": "BUGGY-LAPTOP.HRMS_1",
+   "UiHint": "DESKTOP-UPBHV19\\SQLEXPRESS.HRMS",
    "UseBoolPropertiesWithoutDefaultSql": false,
    "UseDatabaseNames": false,
    "UseDbContextSplitting": false,
