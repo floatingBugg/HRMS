@@ -27,6 +27,7 @@ namespace Web.Services.Concrete
 
         public BaseResponse GetAllEmployee()
         {
+            
             BaseResponse response = new BaseResponse();
             List<DisplayEmployeeGrid> empCred = new List<DisplayEmployeeGrid>();
             var employeesData = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false).Select(x => new DisplayEmployeeGrid()
@@ -41,7 +42,9 @@ namespace Web.Services.Concrete
             {
                 response.Data = employeesData;
                 response.Success = true;
-                response.Message = "Data fetched successfully.";
+                response.Message = UserMessages.strSuccess;
+                
+               
             }
             else
             {
@@ -52,8 +55,10 @@ namespace Web.Services.Concrete
             return response;
         }
 
-        public string CreateEmployee(EmsTblEmployeeDetails employee)
+        public BaseResponse CreateEmployee(EmsTblEmployeeDetails employee)
         {
+            
+            BaseResponse response = new BaseResponse();
             if (!string.IsNullOrEmpty(employee.EtedFirstName) && !string.IsNullOrEmpty(employee.EtedLastName)
                && !string.IsNullOrEmpty(employee.EtedEmailAddress) && !string.IsNullOrEmpty(employee.EtedAddress) && !string.IsNullOrEmpty(employee.EtedGender))
             {
@@ -62,16 +67,30 @@ namespace Web.Services.Concrete
                 employee.EtedCreatedByName = "admin";
                 employee.EtedIsDelete = false;
                 _hrmsemployeeRepository.Insert(employee);
-                return "success";
+                //response.Message = "Success";
+                response.Success = true;
+                response.Message = UserMessages.strAdded;
+
+
+
             }
-            return null;
+
+         
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = "No Data inserted";
+            }
+           
+            return response;
         }
 
-        public string UpdateEmployee(EmsTblEmployeeDetails employee)
+        public BaseResponse  UpdateEmployee(EmsTblEmployeeDetails employee)
         {
 
             //Update EmployeeDetails
-
+            BaseResponse response = new BaseResponse();
             employee.EtedModifiedBy = "admin";
             employee.EtedModifiedByDate = DateTime.Now;
             employee.EtedModifiedByName = "admin";
@@ -86,6 +105,7 @@ namespace Web.Services.Concrete
                     item.EtaqModifiedByDate = DateTime.Now;
                     item.EtaqModifiedByName = "admin";
                     item.EtaqIsDelete = false;
+                 
                 }
             }
 
@@ -134,16 +154,30 @@ namespace Web.Services.Concrete
                     item.EtwhModifiedByDate = DateTime.Now;
                     item.EtwhModifiedByName = "admin";
                     item.EtwhIsDelete = false;
+                    response.Message = UserMessages.strUpdated;
+                    response.Success = true;
+                   
+                    
                 }
+               
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = "Not Updated";
             }
             _hrmsemployeeRepository.Update(employee);
             _uow.Commit();
-            return "Success";
+            return response;
         }
 
-        public string DeleteEmployee(int empId)
+        public BaseResponse DeleteEmployee(int empId)
         {
-            _hrmsemployeeRepository.Table.Where(p => p.EtedEmployeeId == empId)
+
+            BaseResponse response = new BaseResponse();
+            
+             _hrmsemployeeRepository.Table.Where(p => p.EtedEmployeeId == empId)
            .ToList()
            .ForEach(x =>
            {
@@ -151,9 +185,26 @@ namespace Web.Services.Concrete
                x.EtedModifiedBy = "admin";
                x.EtedModifiedByDate = DateTime.Now;
                x.EtedModifiedByName = "admin";
+
            });
+            if (empId != 0)
+            {
+                response.Message = UserMessages.strDeleted;
+                response.Success = true;
+                response.Data = empId;
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = "Not Deleted";
+            }
+            
+
             _uow.Commit();
-            return "Successfully Deleted";
+            return response;
+
+
         }
     }
 }

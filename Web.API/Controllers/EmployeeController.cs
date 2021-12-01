@@ -35,8 +35,7 @@ namespace Web.API.Controllers
             try
             {
                 response = _employeeservice.GetAllEmployee();
-
-                return response;
+                 return response;
             }
             catch(Exception ex)
             {
@@ -55,13 +54,9 @@ namespace Web.API.Controllers
             try
             {
                 var test = ModelState;
-                response.Data = _employeeservice.CreateEmployee(employee);
-                if (response.Data !=null) 
-                {
-                    response.Message = "Success";
-                    response.Success = true;
-                    response.Data = null;
-                }
+                response = _employeeservice.CreateEmployee(employee);
+               
+                    
                 
                 return response;
             }
@@ -84,20 +79,13 @@ namespace Web.API.Controllers
             {
                
                 response.Data = _employeeservice.UpdateEmployee(employee);
-                if(response.Data!= null)
-                {
-                    response.Message = "Success";
-                    response.Success = true;
-                    response.Data = null;
-                }
+               
+       
                 return response;
             }
             catch (Exception ex)
             {
-                _logger.LogExceptions(ex);
-                response.Data = null;
-                response.Message = ex.Message;
-                response.Success = false;
+                _logger.LogExceptions(ex);           
                 return response;
             }
         }
@@ -109,8 +97,7 @@ namespace Web.API.Controllers
             try
             {          
                 response.Data = _employeeservice.DeleteEmployee(id);
-                response.Message = "User deleted successfully";
-                response.Success = true;
+              
                 return response;
             }
             catch(Exception ex)

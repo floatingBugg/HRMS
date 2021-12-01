@@ -8,12 +8,12 @@ namespace Web.Services.Interfaces
 {
     public interface IEmployeeService
     {
-        string CreateEmployee(EmsTblEmployeeDetails employee);
+        BaseResponse CreateEmployee(EmsTblEmployeeDetails employee);
 
-        string UpdateEmployee(EmsTblEmployeeDetails employee);
+        BaseResponse UpdateEmployee(EmsTblEmployeeDetails employee);
 
         BaseResponse GetAllEmployee();
 
-        string DeleteEmployee(int id);
+        BaseResponse DeleteEmployee(int id);
     }
 }
