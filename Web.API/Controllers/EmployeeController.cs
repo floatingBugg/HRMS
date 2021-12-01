@@ -78,7 +78,7 @@ namespace Web.API.Controllers
             try
             {
                
-                response.Data = _employeeservice.UpdateEmployee(employee);
+                response = _employeeservice.UpdateEmployee(employee);
                
        
                 return response;
@@ -96,7 +96,7 @@ namespace Web.API.Controllers
             BaseResponse response = new BaseResponse();
             try
             {          
-                response.Data = _employeeservice.DeleteEmployee(id);
+                response  = _employeeservice.DeleteEmployee(id);
               
                 return response;
             }

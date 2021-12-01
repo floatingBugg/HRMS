@@ -60,7 +60,8 @@ namespace Web.Services.Concrete
             
             BaseResponse response = new BaseResponse();
             if (!string.IsNullOrEmpty(employee.EtedFirstName) && !string.IsNullOrEmpty(employee.EtedLastName)
-               && !string.IsNullOrEmpty(employee.EtedEmailAddress) && !string.IsNullOrEmpty(employee.EtedAddress) && !string.IsNullOrEmpty(employee.EtedGender))
+               && !string.IsNullOrEmpty(employee.EtedEmailAddress) && !string.IsNullOrEmpty(employee.EtedAddress) && !string.IsNullOrEmpty(employee.EtedGender) && !string.IsNullOrEmpty(employee.EtedReligion)
+               && (employee.EtedCnic!=null) )
             {
                 employee.EtedCreatedBy = "admin";
                 employee.EtedCreatedByDate = DateTime.Now;
@@ -174,10 +175,10 @@ namespace Web.Services.Concrete
 
         public BaseResponse DeleteEmployee(int empId)
         {
-
             BaseResponse response = new BaseResponse();
-            
-             _hrmsemployeeRepository.Table.Where(p => p.EtedEmployeeId == empId)
+            bool doesExistAlready = _hrmsemployeeRepository.Table.Count(p => p.EtedEmployeeId == empId) > 0;
+            bool isDeletedAlready = _hrmsemployeeRepository.Table.Count(p => p.EtedIsDelete == true ) > 0;
+            _hrmsemployeeRepository.Table.Where(p => p.EtedEmployeeId == empId)
            .ToList()
            .ForEach(x =>
            {
@@ -187,7 +188,7 @@ namespace Web.Services.Concrete
                x.EtedModifiedByName = "admin";
 
            });
-            if (empId != 0)
+            if (empId != 0 && doesExistAlready == true && isDeletedAlready == false)
             {
                 response.Message = UserMessages.strDeleted;
                 response.Success = true;
