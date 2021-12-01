@@ -52,7 +52,7 @@ namespace Web.Services.Concrete
             {
                 response.Data = null;
                 response.Success = false;
-                response.Message = "No data found.";
+                response.Message = UserMessages.strNotfound;
             }
             return response;
         }
@@ -79,12 +79,17 @@ namespace Web.Services.Concrete
 
             }
 
-         
+         else if (doesExistAlready == true)
+            {
+                response.Message = UserMessages.strAlrexist;
+            }
+
+
             else
             {
                 response.Data = null;
                 response.Success = false;
-                response.Message = "No Data inserted As ";
+                response.Message = UserMessages.strNotinsert;
             }
            
             return response;
@@ -95,6 +100,7 @@ namespace Web.Services.Concrete
 
             //Update EmployeeDetails
             BaseResponse response = new BaseResponse();
+            
             employee.EtedModifiedBy = "admin";
             employee.EtedModifiedByDate = DateTime.Now;
             employee.EtedModifiedByName = "admin";
@@ -165,11 +171,13 @@ namespace Web.Services.Concrete
                 }
                
             }
+          
+
             else
             {
                 response.Data = null;
                 response.Success = false;
-                response.Message = "Not Updated";
+                response.Message = UserMessages.strNotupdated;
             }
             _hrmsemployeeRepository.Update(employee);
             _uow.Commit();
@@ -201,13 +209,13 @@ namespace Web.Services.Concrete
             {
                 response.Data = null;
                 response.Success = false;
-                response.Message = "Already Deleted";
+                response.Message = UserMessages.strAlrdeleted;
             }
             else if(doesExistAlready == false)
             {
                 response.Data = null;
                 response.Success = false;
-                response.Message = "No Data Found";
+                response.Message = UserMessages.strNotfound;
             }
             
 
