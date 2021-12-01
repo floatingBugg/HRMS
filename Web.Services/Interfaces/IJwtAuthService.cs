@@ -7,5 +7,7 @@ namespace Web.Services.Interfaces
         BaseResponse Authentication(UserCredential login);
 
         string Register(RegisterCredential register);
+
+
     }
 }

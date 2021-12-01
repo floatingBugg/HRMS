@@ -36,7 +36,7 @@ namespace Web.Services.Concrete
                 var result = _hrmsUserAuthRepository.Table.Where(x => x.EthuEmailAddress == login.email && x.EthuPassword == login.password).FirstOrDefault();
                 if (result != null)
                 {
-                    response.Data = GenerateJSONWebToken(login);
+                    response.Data = GenerateJSONWebToken();
                     response.Success = true;
                     response.Message = "User found";
                 }
@@ -50,42 +50,35 @@ namespace Web.Services.Concrete
             return response;
         }
 
-        private object GenerateJSONWebToken(UserCredential userInfo)
+        public object GenerateJSONWebToken()
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Secret"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-            var refreshtoken = GenerateRefreshToken();
+           /* var refreshtoken = GenerateRefreshToken();
             var claims = new[]
             {
                     new Claim(JwtRegisteredClaimNames.Sub, userInfo.email),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
 
-            };
+            };*/
             var tokenExpiryTime = DateTime.Now.AddMinutes(120);
+            /*var refreshtokenExpiryTime = DateTime.Now.AddDays(7);*/
             
             var token = new JwtSecurityToken(_config["Jwt:ValidIssuer"],
               _config["Jwt:ValidIssuer"],
-              claims,
+              /*claims,*/
               expires: tokenExpiryTime,
+         
               signingCredentials: credentials);
 
             return new
             {
-                refreshtoken,
+                /*refreshtoken,*/
                 token = new JwtSecurityTokenHandler().WriteToken(token),
                 expires = tokenExpiryTime
             };
         }
-        public string GenerateRefreshToken()
-        {
-            var randomNumber = new byte[32];
-            using (var rng = RandomNumberGenerator.Create())
-            {
-                rng.GetBytes(randomNumber);
-                return Convert.ToBase64String(randomNumber);
-            }
-
-        }
+      
             public string Register(RegisterCredential register)
         {
             // first validate the username and password from the db and then generate token
@@ -118,5 +111,15 @@ namespace Web.Services.Concrete
             }
             return null;
         }
+
+
+
+
+
+
+
+
+
+
     }
 }
