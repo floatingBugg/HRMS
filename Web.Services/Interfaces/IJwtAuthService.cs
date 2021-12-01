@@ -8,6 +8,6 @@ namespace Web.Services.Interfaces
 
         string Register(RegisterCredential register);
 
-
+        BaseResponse RefreshAuthentication();
     }
 }
