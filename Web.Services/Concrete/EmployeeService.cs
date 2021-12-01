@@ -30,6 +30,7 @@ namespace Web.Services.Concrete
             
             BaseResponse response = new BaseResponse();
             List<DisplayEmployeeGrid> empCred = new List<DisplayEmployeeGrid>();
+            bool count = _hrmsemployeeRepository.Table.Count() > 0;
             var employeesData = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false).Select(x => new DisplayEmployeeGrid()
             {
                 empID = x.EtedEmployeeId,
@@ -37,8 +38,9 @@ namespace Web.Services.Concrete
                 emailAddress = x.EtedEmailAddress,
                 contactNumber = x.EtedContactNumber,
                 empDesignation = x.EmsTblEmployeeProfessionalDetails.Count > 0 ? x.EmsTblEmployeeProfessionalDetails.Where(y => y.EtepdEtedEmployeeId == x.EtedEmployeeId).Select(z => z.EtepdDesignation).FirstOrDefault() : "Not assigned"
-            }).ToList();
-            if (employeesData.Count > 0)
+            }).ToList().Take(10);
+
+            if (count == true)
             {
                 response.Data = employeesData;
                 response.Success = true;
@@ -195,11 +197,17 @@ namespace Web.Services.Concrete
                 response.Success = true;
                 response.Data = empId;
             }
-            else
+            else if(isDeletedAlready == true && doesExistAlready == true)
             {
                 response.Data = null;
                 response.Success = false;
-                response.Message = "Not Deleted";
+                response.Message = "Already Deleted";
+            }
+            else if(doesExistAlready == false)
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = "No Data Found";
             }
             
 
