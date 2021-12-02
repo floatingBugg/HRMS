@@ -61,7 +61,7 @@ namespace Web.API.Controllers
             BaseResponse response = new BaseResponse();
             try
             {
-                response = _inventoryservice.GetAllEmployee();
+                response = _inventoryservice.GetAllAssets();
                 return response;
             }
             catch (Exception ex)
