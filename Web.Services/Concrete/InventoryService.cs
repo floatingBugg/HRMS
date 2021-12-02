@@ -16,15 +16,20 @@ namespace Web.Services.Concrete
     public class InventoryService : IInventoryService
     {
         private readonly IHRMSIMSAssetsCategoryRepository _hrmsassetscategoryRepository;
+        private readonly IHRMSIMSAssetsRepository _hrmsassetsRepository;
         IConfiguration _config;
         private readonly IUnitOfWork _uow;
 
-        public InventoryService(IConfiguration config, IHRMSIMSAssetsCategoryRepository hrmsassetscategoryRepository, IUnitOfWork uow)
+        public InventoryService(IConfiguration config, IHRMSIMSAssetsRepository hrmsassetsRepository,IHRMSIMSAssetsCategoryRepository hrmsassetscategoryRepository, IUnitOfWork uow)
         {
-            _config = config;
             _hrmsassetscategoryRepository = hrmsassetscategoryRepository;
+            _config = config;
+            _hrmsassetsRepository = hrmsassetsRepository;
             _uow = uow;
         }
+
+
+
 
         public BaseResponse CreateAssests(ImsTblAssetsCategory assests)
         {
@@ -95,8 +100,8 @@ namespace Web.Services.Concrete
         {
 
             BaseResponse response = new BaseResponse();
-            bool count = _hrmsassetscategoryRepository.Table.Count() > 0;
-            var inventoryData = _hrmsassetscategoryRepository.Table.Where(z => z.ItacIsDelete == false).ToList().Take(10);
+            bool count = true; /*_hrmsassetsRepository.Table.Count() > 0;*/
+            var inventoryData = _hrmsassetsRepository.Table.Where(z => z.ItaIsDelete == false).ToList();
 
             if (count == true)
             {
