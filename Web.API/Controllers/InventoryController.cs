@@ -38,7 +38,7 @@ namespace Web.API.Controllers
             try
             {
                 var test = ModelState;
-                response = _inventoryservice.CreateAssets(assests);
+                response = _inventoryservice.CreateAssests(assests);
 
                 return response;
             }
@@ -51,7 +51,7 @@ namespace Web.API.Controllers
                 return response;
             }
 
-         
+
         }
 
         // GET: Inventory/Details/5
@@ -74,67 +74,36 @@ namespace Web.API.Controllers
             }
         }
 
-        // GET: Inventory/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+            [HttpDelete("/Assests/Remove")]
 
-        // POST: Inventory/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
+            public BaseResponse Delete(int id)
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+                BaseResponse responce = new BaseResponse();
+                try
+                {
+                    responce = _inventoryservice.DeleteAssests(id);
+                    return responce;
+                }
 
-        // GET: Inventory/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
+                catch (Exception ex)
+                {
+                    _logger.LogExceptions(ex);
+                    responce.Data = null;
+                    responce.Message = ex.Message;
+                    responce.Success = false;
+                    return responce;
+                }
 
-        // POST: Inventory/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
-        // GET: Inventory/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Inventory/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
             }
         }
     }
-}
+
+
+        
+
+       
+
+        
+    
+
