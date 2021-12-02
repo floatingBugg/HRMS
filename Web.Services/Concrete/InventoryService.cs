@@ -91,7 +91,7 @@ namespace Web.Services.Concrete
             return response;
         }
 
-        public BaseResponse GetAllEmployee()
+        public BaseResponse GetAllAssets()
         {
 
             BaseResponse response = new BaseResponse();

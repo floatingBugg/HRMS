@@ -15,7 +15,7 @@ namespace Web.Services.Interfaces
 
         BaseResponse UpdateEmployee(ImsTblAssests assests);
 
-        BaseResponse GetAllEmployee();
+        BaseResponse GetAllAssets();
 
         BaseResponse DeleteAssests(int id);
     }
