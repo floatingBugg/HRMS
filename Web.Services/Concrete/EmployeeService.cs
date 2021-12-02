@@ -228,7 +228,7 @@ namespace Web.Services.Concrete
             
             bool count = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false && z.EtedEmployeeId == id).Count() > 0;
             List<EmployeeCredential> empCred = new List<EmployeeCredential>();
-            var employeesData = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false && z.EtedEmployeeId == id).Include(z=>z.EmsTblAcademicQualification.Where(y=>y.EtaqEtedEmployeeId==id)).ToList();/*.Select(x => new EmployeeCredential()
+            var employeesData = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false && z.EtedEmployeeId == id).Include(z=>z.EmsTblAcademicQualification).ToList();/*.Select(x => new EmployeeCredential()
             {
                 empID= x.EtedEmployeeId,
                 firstname = x.EtedFirstName,
