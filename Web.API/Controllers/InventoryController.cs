@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Web.API.Helper;
+using Web.Data.Models;
+using Web.Model;
 using Web.Services.Interfaces;
 
 namespace Web.API.Controllers
@@ -28,10 +30,28 @@ namespace Web.API.Controllers
             _logger = new Logger(_hostEnvironment);
         }
 
-        // GET: Inventory
-        public ActionResult Index()
+        [HttpPost("/Assests/Add")]
+        public BaseResponse Create([FromBody] ImsTblAssests assests)
         {
-            return View();
+
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                var test = ModelState;
+                response = _inventoryservice.CreateAssets(assests);
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+
+         
         }
 
         // GET: Inventory/Details/5
