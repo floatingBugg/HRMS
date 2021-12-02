@@ -56,7 +56,7 @@ namespace Web.API.Controllers
 
         // GET: Inventory/Details/5
         [HttpGet("/Assets/Display")]
-        public BaseResponse GetAllEmployee()
+        public BaseResponse GetAllAssets()
         {
             BaseResponse response = new BaseResponse();
             try
