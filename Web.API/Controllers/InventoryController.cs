@@ -31,7 +31,7 @@ namespace Web.API.Controllers
         }
 
         [HttpPost("/Assests/Add")]
-        public BaseResponse Create([FromBody] ImsTblAssests assests)
+        public BaseResponse Create([FromBody] ImsTblAssetsCategory assests)
         {
 
             BaseResponse response = new BaseResponse();
