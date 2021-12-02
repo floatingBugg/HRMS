@@ -102,7 +102,7 @@ namespace Web.API
             //Register Services Repositories
             services.AddTransient(typeof(IHRMSUserAuthRepository), typeof(HRMSUserAuthRepository));
             services.AddTransient(typeof(IHRMSEmployeeRepository), typeof(HRMSEmployeeRepository));
-            services.AddTransient(typeof(IHRMSIMSAssetsRepository), typeof(HRMSIMSAssetsRepository));
+            services.AddTransient(typeof(IHRMSIMSAssetsCategoryRepository), typeof(HRMSIMSAssetsCategoryRepository));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

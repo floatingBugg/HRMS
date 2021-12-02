@@ -31,7 +31,7 @@ namespace Web.API.Controllers
         }
 
         [HttpPost("/Assests/Add")]
-        public BaseResponse Create([FromBody] ImsTblAssests assests)
+        public BaseResponse Create([FromBody] ImsTblAssetsCategory assests)
         {
 
             BaseResponse response = new BaseResponse();
@@ -55,9 +55,23 @@ namespace Web.API.Controllers
         }
 
         // GET: Inventory/Details/5
-        public ActionResult Details(int id)
+        [HttpGet("/Assets/Display")]
+        public BaseResponse GetAllEmployee()
         {
-            return View();
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                response = _inventoryservice.GetAllEmployee();
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
         }
 
         // GET: Inventory/Create

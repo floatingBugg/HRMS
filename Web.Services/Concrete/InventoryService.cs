@@ -8,33 +8,34 @@ using Web.Data;
 using Web.Data.Interfaces;
 using Web.Data.Models;
 using Web.Model;
+using Web.Model.Common;
 using Web.Services.Interfaces;
 
 namespace Web.Services.Concrete
 {
     public class InventoryService : IInventoryService
     {
-        private readonly IHRMSIMSAssetsRepository _hrmsassetsRepository;
+        private readonly IHRMSIMSAssetsCategoryRepository _hrmsassetscategoryRepository;
         IConfiguration _config;
         private readonly IUnitOfWork _uow;
 
-        public InventoryService(IConfiguration config, IHRMSIMSAssetsRepository hrmsassetsRepository, IUnitOfWork uow)
+        public InventoryService(IConfiguration config, IHRMSIMSAssetsCategoryRepository hrmsassetscategoryRepository, IUnitOfWork uow)
         {
             _config = config;
-            _hrmsassetsRepository = hrmsassetsRepository;
+            _hrmsassetscategoryRepository = hrmsassetscategoryRepository;
             _uow = uow;
         }
 
-        public BaseResponse CreateAssets(ImsTblAssests assests)
+        public BaseResponse CreateAssets(ImsTblAssetsCategory assests)
         {
             BaseResponse responce = new BaseResponse();
-            if (!string.IsNullOrEmpty(assests.ItaAssetsName) && (assests.ItaAssetsSrNo!=null) && !string.IsNullOrEmpty(assests.ItaAssetDetails))
+            if (!string.IsNullOrEmpty(assests.ItacCategory))
             {
-                assests.ItaCreatedBy = "admin";
-                assests.ItaCreatedByDate = DateTime.Now;
-                assests.ItaCreatedByName = "admin";
-                assests.ItaIsDelete = false;
-                _hrmsassetsRepository.Insert(assests);
+                assests.ItacCreatedBy = "admin";
+                assests.ItacCreatedByDate= DateTime.Now;
+                assests.ItacCreatedByName = "admin";
+                assests.ItacIsDelete = false;
+                _hrmsassetscategoryRepository.Insert(assests);
                 responce.Success = true;
                 responce.Message = "Added";
 
@@ -60,7 +61,26 @@ namespace Web.Services.Concrete
 
         public BaseResponse GetAllEmployee()
         {
-            throw new NotImplementedException();
+
+            BaseResponse response = new BaseResponse();
+            bool count = _hrmsassetscategoryRepository.Table.Count() > 0;
+            var inventoryData = _hrmsassetscategoryRepository.Table.Where(z => z.ItacIsDelete == false).ToList().Take(10);
+
+            if (count == true)
+            {
+                response.Data = inventoryData;
+                response.Success = true;
+                response.Message = UserMessages.strSuccess;
+
+
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotfound;
+            }
+            return response;
         }
 
         public BaseResponse UpdateEmployee(ImsTblAssests assests)
