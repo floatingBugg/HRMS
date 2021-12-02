@@ -15,5 +15,7 @@ namespace Web.Services.Interfaces
         BaseResponse GetAllEmployee();
 
         BaseResponse DeleteEmployee(int id);
+
+        BaseResponse EditEmployeeByid(int id);
     }
 }

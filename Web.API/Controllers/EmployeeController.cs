@@ -48,6 +48,25 @@ namespace Web.API.Controllers
             }
         }
 
+        [HttpGet("/Employee/Edit")]
+        public BaseResponse EditEmployee(int id)
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                response = _employeeservice.EditEmployeeByid(id);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+        }
+
         [HttpPost("/Employee/Add")]
         public BaseResponse Create([FromBody]EmsTblEmployeeDetails employee)
         {
