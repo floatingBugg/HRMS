@@ -221,5 +221,29 @@ namespace Web.Services.Concrete
 
 
         }
+
+        public BaseResponse EditEmployeeByid(int id)
+        {
+            BaseResponse response = new BaseResponse();
+            
+            bool count = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false && z.EtedEmployeeId == id).Count() > 0;
+            var employeesData = _hrmsemployeeRepository.Table.Where(z=>z.EtedIsDelete == false && z.EtedEmployeeId==id );
+
+            if (count == true)
+            {
+                response.Data = employeesData;
+                response.Success = true;
+                response.Message = UserMessages.strSuccess;
+
+
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotfound;
+            }
+            return response;
+        }
     }
 }

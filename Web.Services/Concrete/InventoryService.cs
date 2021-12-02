@@ -53,7 +53,7 @@ namespace Web.Services.Concrete
 
         }
 
-        public BaseResponse DeleteEmployee(int id)
+        public BaseResponse DeleteEmployee()
         {
             throw new NotImplementedException();
         }
