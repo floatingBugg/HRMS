@@ -34,7 +34,7 @@ namespace Web.Data.Db_Context
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=192.168.0.11;Initial Catalog=HRMS;Persist Security Info=True;User ID=sa;Password=4292");
+                optionsBuilder.UseSqlServer("Data Source=SQL5108.site4now.net;Initial Catalog=db_a7d47e_hrms;Persist Security Info=True;User ID=db_a7d47e_hrms_admin;Password=123hamza");
             }
         }
 
@@ -45,7 +45,7 @@ namespace Web.Data.Db_Context
             modelBuilder.Entity<EmsTblAcademicQualification>(entity =>
             {
                 entity.HasKey(e => e.EtaqAqId)
-                    .HasName("PK__ems_tbl___128BDF78196157E2");
+                    .HasName("PK__ems_tbl___128BDF78CEC97EA1");
 
                 entity.ToTable("ems_tbl_academic_qualification");
 
@@ -66,7 +66,6 @@ namespace Web.Data.Db_Context
                 entity.Property(e => e.EtaqInstituteName).HasColumnName("etaq_institute_name");
 
                 entity.Property(e => e.EtaqIsDelete)
-                    .IsRequired()
                     .HasColumnName("etaq_is_delete")
                     .HasDefaultValueSql("('false')");
 
@@ -78,9 +77,7 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.EtaqModifiedByName).HasColumnName("etaq_modified_by_name");
 
-                entity.Property(e => e.EtaqPassingYear)
-                    .HasColumnType("datetime")
-                    .HasColumnName("etaq_passing_year");
+                entity.Property(e => e.EtaqPassingYear).HasColumnName("etaq_passing_year");
 
                 entity.Property(e => e.EtaqQualification).HasColumnName("etaq_qualification");
 
@@ -89,13 +86,13 @@ namespace Web.Data.Db_Context
                 entity.HasOne(d => d.EtaqEtedEmployee)
                     .WithMany(p => p.EmsTblAcademicQualification)
                     .HasForeignKey(d => d.EtaqEtedEmployeeId)
-                    .HasConstraintName("FK__ems_tbl_a__etaq___36B12243");
+                    .HasConstraintName("FK__ems_tbl_a__etaq___02084FDA");
             });
 
             modelBuilder.Entity<EmsTblEmergencyContact>(entity =>
             {
                 entity.HasKey(e => e.EtecEcId)
-                    .HasName("PK__ems_tbl___BBD724E987E0AA2B");
+                    .HasName("PK__ems_tbl___BBD724E909447FD3");
 
                 entity.ToTable("ems_tbl_emergency_contact");
 
@@ -118,7 +115,6 @@ namespace Web.Data.Db_Context
                 entity.Property(e => e.EtecFirstName).HasColumnName("etec_first_name");
 
                 entity.Property(e => e.EtecIsDelete)
-                    .IsRequired()
                     .HasColumnName("etec_is_delete")
                     .HasDefaultValueSql("('false')");
 
@@ -137,13 +133,13 @@ namespace Web.Data.Db_Context
                 entity.HasOne(d => d.EtecEtedEmployee)
                     .WithMany(p => p.EmsTblEmergencyContact)
                     .HasForeignKey(d => d.EtecEtedEmployeeId)
-                    .HasConstraintName("FK__ems_tbl_e__etec___37A5467C");
+                    .HasConstraintName("FK__ems_tbl_e__etec___02FC7413");
             });
 
             modelBuilder.Entity<EmsTblEmployeeDetails>(entity =>
             {
                 entity.HasKey(e => e.EtedEmployeeId)
-                    .HasName("PK__ems_tbl___516C46CD545AAD21");
+                    .HasName("PK__ems_tbl___516C46CD1D4E82A3");
 
                 entity.ToTable("ems_tbl_employee_details");
 
@@ -191,7 +187,6 @@ namespace Web.Data.Db_Context
                     .HasColumnName("eted_gender");
 
                 entity.Property(e => e.EtedIsDelete)
-                    .IsRequired()
                     .HasColumnName("eted_is_delete")
                     .HasDefaultValueSql("('false')");
 
@@ -220,15 +215,13 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.EtedReligion).HasColumnName("eted_religion");
 
-                entity.Property(e => e.EtedStatus)
-                    .IsRequired()
-                    .HasColumnName("eted_status");
+                entity.Property(e => e.EtedStatus).HasColumnName("eted_status");
             });
 
             modelBuilder.Entity<EmsTblEmployeeProfessionalDetails>(entity =>
             {
                 entity.HasKey(e => e.EtepdPdId)
-                    .HasName("PK__ems_tbl___DBCDA8146DE53160");
+                    .HasName("PK__ems_tbl___DBCDA8148D5B6C47");
 
                 entity.ToTable("ems_tbl_employee_professional_details");
 
@@ -247,7 +240,6 @@ namespace Web.Data.Db_Context
                 entity.Property(e => e.EtepdEtedEmployeeId).HasColumnName("etepd_eted_employee_id");
 
                 entity.Property(e => e.EtepdIsDelete)
-                    .IsRequired()
                     .HasColumnName("etepd_is_delete")
                     .HasDefaultValueSql("('false')");
 
@@ -270,13 +262,13 @@ namespace Web.Data.Db_Context
                 entity.HasOne(d => d.EtepdEtedEmployee)
                     .WithMany(p => p.EmsTblEmployeeProfessionalDetails)
                     .HasForeignKey(d => d.EtepdEtedEmployeeId)
-                    .HasConstraintName("FK__ems_tbl_e__etepd__38996AB5");
+                    .HasConstraintName("FK__ems_tbl_e__etepd__03F0984C");
             });
 
             modelBuilder.Entity<EmsTblHrmsUser>(entity =>
             {
                 entity.HasKey(e => e.EthuUserId)
-                    .HasName("PK__ems_tbl___7F2D16AC0720CEA1");
+                    .HasName("PK__ems_tbl___7F2D16AC1EDCBB03");
 
                 entity.ToTable("ems_tbl_hrms_user");
 
@@ -297,7 +289,6 @@ namespace Web.Data.Db_Context
                 entity.Property(e => e.EthuGender).HasColumnName("ethu_gender");
 
                 entity.Property(e => e.EthuIsDelete)
-                    .IsRequired()
                     .HasColumnName("ethu_is_delete")
                     .HasDefaultValueSql("('false')");
 
@@ -319,7 +310,7 @@ namespace Web.Data.Db_Context
             modelBuilder.Entity<EmsTblProfessionalQualification>(entity =>
             {
                 entity.HasKey(e => e.EtpqPqId)
-                    .HasName("PK__ems_tbl___E07F4F72B26AC31A");
+                    .HasName("PK__ems_tbl___E07F4F72AB0EA74A");
 
                 entity.ToTable("ems_tbl_professional_qualification");
 
@@ -346,7 +337,6 @@ namespace Web.Data.Db_Context
                 entity.Property(e => e.EtpqInstituteName).HasColumnName("etpq_institute_name");
 
                 entity.Property(e => e.EtpqIsDelete)
-                    .IsRequired()
                     .HasColumnName("etpq_is_delete")
                     .HasDefaultValueSql("('false')");
 
@@ -365,13 +355,13 @@ namespace Web.Data.Db_Context
                 entity.HasOne(d => d.EtpqEtedEmployee)
                     .WithMany(p => p.EmsTblProfessionalQualification)
                     .HasForeignKey(d => d.EtpqEtedEmployeeId)
-                    .HasConstraintName("FK__ems_tbl_p__etpq___398D8EEE");
+                    .HasConstraintName("FK__ems_tbl_p__etpq___04E4BC85");
             });
 
             modelBuilder.Entity<EmsTblWorkingHistory>(entity =>
             {
                 entity.HasKey(e => e.EtwhWhId)
-                    .HasName("PK__ems_tbl___EE14BDFFB7C5DE1D");
+                    .HasName("PK__ems_tbl___EE14BDFFF5B58079");
 
                 entity.ToTable("ems_tbl_working_history");
 
@@ -400,7 +390,6 @@ namespace Web.Data.Db_Context
                 entity.Property(e => e.EtwhExperienceLetter).HasColumnName("etwh_experience_letter");
 
                 entity.Property(e => e.EtwhIsDelete)
-                    .IsRequired()
                     .HasColumnName("etwh_is_delete")
                     .HasDefaultValueSql("('false')");
 
@@ -419,13 +408,13 @@ namespace Web.Data.Db_Context
                 entity.HasOne(d => d.EtwhEtedEmployee)
                     .WithMany(p => p.EmsTblWorkingHistory)
                     .HasForeignKey(d => d.EtwhEtedEmployeeId)
-                    .HasConstraintName("FK__ems_tbl_w__etwh___3A81B327");
+                    .HasConstraintName("FK__ems_tbl_w__etwh___05D8E0BE");
             });
 
             modelBuilder.Entity<ImsTblAssests>(entity =>
             {
                 entity.HasKey(e => e.ItaAssetId)
-                    .HasName("PK__ims_tbl___B51DD0C3FC3DC3F1");
+                    .HasName("PK__ims_tbl___B51DD0C3C3DD0EA5");
 
                 entity.ToTable("ims_tbl_assests");
 
@@ -470,13 +459,13 @@ namespace Web.Data.Db_Context
                 entity.HasOne(d => d.ItaCategory)
                     .WithMany(p => p.ImsTblAssests)
                     .HasForeignKey(d => d.ItaCategoryId)
-                    .HasConstraintName("FK__ims_tbl_a__ita_c__4BAC3F29");
+                    .HasConstraintName("FK__ims_tbl_a__ita_c__1DB06A4F");
             });
 
             modelBuilder.Entity<ImsTblAssetsCategory>(entity =>
             {
                 entity.HasKey(e => e.ItacAcId)
-                    .HasName("PK__ims_tbl___27D6367E1EC7EC50");
+                    .HasName("PK__ims_tbl___27D6367EFD0CAA12");
 
                 entity.ToTable("ims_tbl_assets_category");
 

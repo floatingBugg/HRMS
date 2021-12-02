@@ -12,8 +12,8 @@ namespace Web.Model.Common
         public string personalemail { get; set; }
 
         public string officialemail { get; set; }
-        public int cnic { get; set; }
-        public DateTime dob { get; set; }
+        public int? cnic { get; set; }
+        public DateTime? dob { get; set; }
         public string contact { get; set; }
         public string address { get; set; }
         public string gender { get; set; }
@@ -89,7 +89,6 @@ namespace Web.Model.Common
         public DateTime JoiningDate { get; set; }
 
         public string Probation { get; set; }
-
 
 
     }

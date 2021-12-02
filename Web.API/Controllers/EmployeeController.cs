@@ -12,7 +12,7 @@ using Web.Services.Interfaces;
 
 
 namespace Web.API.Controllers
-{   [Authorize]
+{   /*[Authorize]*/
     public class EmployeeController : Controller
     {
 

@@ -227,7 +227,28 @@ namespace Web.Services.Concrete
             BaseResponse response = new BaseResponse();
             
             bool count = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false && z.EtedEmployeeId == id).Count() > 0;
-            var employeesData = _hrmsemployeeRepository.Table.Where(z=>z.EtedIsDelete == false && z.EtedEmployeeId==id );
+            List<EmployeeCredential> empCred = new List<EmployeeCredential>();
+            var employeesData = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false && z.EtedEmployeeId == id).Include(z=>z.EmsTblAcademicQualification.Where(y=>y.EtaqEtedEmployeeId==id)).ToList();/*.Select(x => new EmployeeCredential()
+            {
+                empID= x.EtedEmployeeId,
+                firstname = x.EtedFirstName,
+                officialemail = x.EtedEmailAddress,
+                contact = x.EtedContactNumber,
+                personalemail = x.EtedEmailAddress,
+                cnic=x.EtedCnic,
+                dob=x.EtedDob,
+                address=x.EtedAddress,
+                gender=x.EtedGender,
+                martialstatus=x.EtedMaritalStatus,
+                bloodgroup=x.EtedBloodGroup,
+                religion=x.EtedReligion,
+                nationality=x.EtedNationality,
+                empstatus=x.EtedStatus,
+                //Qualification
+                *//*Qualification=x.EmsTblAcademicQualification.Select(y=>y.EtaqQualification),*//*
+
+            })*/
+
 
             if (count == true)
             {
