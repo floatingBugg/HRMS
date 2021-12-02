@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Text.Json;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Web.API.Helper;
 using Web.Data.Models;
 using Web.Model;
-using Web.Model.Common;
 using Web.Services.Interfaces;
 
 
@@ -98,9 +95,7 @@ namespace Web.API.Controllers
             try
             {
                
-                response = _employeeservice.UpdateEmployee(employee);
-               
-       
+                response = _employeeservice.UpdateEmployee(employee);                  
                 return response;
             }
             catch (Exception ex)

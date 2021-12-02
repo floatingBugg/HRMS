@@ -64,17 +64,83 @@ namespace Web.Services.Concrete
             bool doesExistAlready = _hrmsemployeeRepository.Table.Count(p => p.EtedEmailAddress == employee.EtedEmailAddress) > 0;
             if (!string.IsNullOrEmpty(employee.EtedFirstName) && !string.IsNullOrEmpty(employee.EtedLastName)
                && !string.IsNullOrEmpty(employee.EtedEmailAddress) && !string.IsNullOrEmpty(employee.EtedAddress) && !string.IsNullOrEmpty(employee.EtedGender) && !string.IsNullOrEmpty(employee.EtedReligion)
-               && (employee.EtedCnic!=null) && doesExistAlready ==false )
+               && (employee.EtedCnic!=null) && doesExistAlready == false )
             {
                 employee.EtedCreatedBy = "admin";
                 employee.EtedCreatedByDate = DateTime.Now;
                 employee.EtedCreatedByName = "admin";
                 employee.EtedIsDelete = false;
+
+                // Update AcademicQualification
+                if (employee.EmsTblAcademicQualification.Count > 0)
+                {
+                    foreach (var item in employee.EmsTblAcademicQualification)
+                    {
+                        item.EtaqCreatedBy = "admin";
+                        item.EtaqCreatedByDate = DateTime.Now;
+                        item.EtaqCreatedByName = "admin";
+                        item.EtaqIsDelete = false;
+
+                    }
+                }
+
+                //Update ProfessionalQualification
+                if (employee.EmsTblProfessionalQualification.Count > 0)
+                {
+                    foreach (var item in employee.EmsTblProfessionalQualification)
+                    {
+                        item.EtpqCreatedBy = "admin";
+                        item.EtpqCreatedByDate = DateTime.Now;
+                        item.EtpqCreatedByName = "admin";
+                        item.EtpqIsDelete = false;
+                    }
+                }
+
+                //Update ProfessionalDetails
+                if (employee.EmsTblEmployeeProfessionalDetails.Count > 0)
+                {
+                    foreach (var item in employee.EmsTblEmployeeProfessionalDetails)
+                    {
+                        item.EtepdCreatedBy = "admin";
+                        item.EtepdCreatedByDate = DateTime.Now;
+                        item.EtepdCreatedByName = "admin";
+                        item.EtepdIsDelete = false;
+                    }
+                }
+
+                //Update Emergency Contact
+                if (employee.EmsTblEmergencyContact.Count > 0)
+                {
+                    foreach (var item in employee.EmsTblEmergencyContact)
+                    {
+                        item.EtecCreatedBy = "admin";
+                        item.EtecCreatedByDate = DateTime.Now;
+                        item.EtecCreatedByName = "admin";
+                        item.EtecIsDelete = false;
+                    }
+                }
+
+                // Working History
+                if (employee.EmsTblWorkingHistory.Count > 0)
+                {
+                    foreach (var item in employee.EmsTblWorkingHistory)
+                    {
+                        item.EtwhCreatedBy = "admin";
+                        item.EtwhCreatedByDate = DateTime.Now;
+                        item.EtwhCreatedByName = "admin";
+                        item.EtwhIsDelete = false;
+                        response.Message = UserMessages.strUpdated;
+                        response.Success = true;
+
+
+                    }
+
+                }
+
                 _hrmsemployeeRepository.Insert(employee);
-                //response.Message = "Success";
                 response.Success = true;
                 response.Message = UserMessages.strAdded;
-
+                response.Data = null;
             }
 
          else if (doesExistAlready == true)
@@ -226,9 +292,10 @@ namespace Web.Services.Concrete
         {
             BaseResponse response = new BaseResponse();
             
-            bool count = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false && z.EtedEmployeeId == id).Count() > 0;
-            List<EmployeeCredential> empCred = new List<EmployeeCredential>();
-            var employeesData = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false && z.EtedEmployeeId == id).Include(z=>z.EmsTblAcademicQualification).ToList();/*.Select(x => new EmployeeCredential()
+           bool count = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false && z.EtedEmployeeId == id).Count() > 0;
+           //List<EmployeeCredential> empCred = new List<EmployeeCredential>();
+            //var employeesData = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false && z.EtedEmployeeId == id).Include(z=>z.EmsTblAcademicQualification).ToList();
+            /*.Select(x => new EmployeeCredential()
             {
                 empID= x.EtedEmployeeId,
                 firstname = x.EtedFirstName,
@@ -249,6 +316,8 @@ namespace Web.Services.Concrete
 
             })*/
 
+
+            var employeesData = _hrmsemployeeRepository.Table.Include(x => x.EmsTblAcademicQualification).Where(x=>x.EtedEmployeeId == id).ToList();
 
             if (count == true)
             {
