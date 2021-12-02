@@ -26,7 +26,7 @@ namespace Web.Services.Concrete
             _uow = uow;
         }
 
-        public BaseResponse CreateAssets(ImsTblAssetsCategory assests)
+        public BaseResponse CreateAssests(ImsTblAssetsCategory assests)
         {
             BaseResponse responce = new BaseResponse();
             if (!string.IsNullOrEmpty(assests.ItacCategory))
@@ -37,16 +37,14 @@ namespace Web.Services.Concrete
                 assests.ItacIsDelete = false;
                 _hrmsassetscategoryRepository.Insert(assests);
                 responce.Success = true;
-                responce.Message = "Added";
-
-
+                responce.Message = UserMessages.strSuccess;
             }
 
             else
             {
                 responce.Data = null;
                 responce.Success = false;
-                responce.Message = "failed";
+                responce.Message = UserMessages.strAdded;
             }
 
             return responce;
@@ -54,9 +52,43 @@ namespace Web.Services.Concrete
 
         }
 
-        public BaseResponse DeleteEmployee()
+        public BaseResponse DeleteAssests(int id)
         {
-            throw new NotImplementedException();
+            BaseResponse response = new BaseResponse();
+            bool doesExistAlready = _hrmsassetscategoryRepository.Table.Count(p => p.ItacAcId == id) > 0;
+            bool alreadyDelete = _hrmsassetscategoryRepository.Table.Count(p => p.ItacIsDelete == true && p.ItacAcId == id) > 0;
+            _hrmsassetscategoryRepository.Table.Where(p => p.ItacAcId == id).ToList().ForEach(x =>
+            {
+                x.ItacIsDelete = true;
+                x.ItacModifiedByDate = DateTime.Now;
+                x.ItacModifiedBy = "admin";
+                x.ItacModifiedByName = "admin";
+               
+                
+            });
+
+            if(doesExistAlready==true && alreadyDelete == false)
+            {
+                response.Success = true;
+                response.Message = UserMessages.strDeleted;
+            }
+            
+            else if(doesExistAlready==true && alreadyDelete==true)
+            {
+                response.Success = false;
+                response.Message = UserMessages.strAlrdeleted;
+
+            }
+            
+            else if(doesExistAlready==false)
+            {
+                response.Success = false;
+                response.Message = UserMessages.strNotfound;
+            }
+          
+          
+            _uow.Commit();
+            return response;
         }
 
         public BaseResponse GetAllEmployee()
