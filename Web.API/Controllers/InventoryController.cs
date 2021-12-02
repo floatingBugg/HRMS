@@ -96,7 +96,24 @@ namespace Web.API.Controllers
 
 
             }
+        [HttpPost("/Assests/Update")]
+        public BaseResponse Update([FromBody] ImsTblAssetsCategory assests)
+        {
+            BaseResponse response = new BaseResponse();
+
+            try
+            {
+
+                response = _inventoryservice.UpdateAssests(assests);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                return response;
+            }
         }
+    }
     }
 
 

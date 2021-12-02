@@ -13,7 +13,7 @@ namespace Web.Services.Interfaces
 
         BaseResponse CreateAssests(ImsTblAssetsCategory assests);
 
-        BaseResponse UpdateEmployee(ImsTblAssests assests);
+        BaseResponse UpdateAssests(ImsTblAssetsCategory assests);
 
         BaseResponse GetAllAssets();
 

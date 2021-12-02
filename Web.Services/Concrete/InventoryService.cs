@@ -63,7 +63,7 @@ namespace Web.Services.Concrete
                 x.ItacModifiedByDate = DateTime.Now;
                 x.ItacModifiedBy = "admin";
                 x.ItacModifiedByName = "admin";
-               
+                x.ImsTblAssests.Select(z => z.ItaIsDelete = true);
                 
             });
 
@@ -115,9 +115,40 @@ namespace Web.Services.Concrete
             return response;
         }
 
-        public BaseResponse UpdateEmployee(ImsTblAssests assests)
+        public BaseResponse UpdateAssests(ImsTblAssetsCategory assests)
         {
-            throw new NotImplementedException();
+            BaseResponse response = new BaseResponse();
+
+            assests.ItacModifiedBy = "admin";
+            assests.ItacModifiedByDate = DateTime.Now;
+            assests.ItacModifiedByName = "admin";
+            assests.ItacIsDelete = false;
+
+            // Update AcademicQualification
+            if (assests.ImsTblAssests.Count > 0)
+            {
+                foreach (var item in assests.ImsTblAssests)
+                {
+                    item.ItaModifiedBy = "admin";
+                    item.ItaModifiedByDate = DateTime.Now;
+                    item.ItaModifiedByName = "admin";
+                    item.ItaIsDelete = false;
+                    response.Success = true;
+                    response.Message = UserMessages.strUpdated;
+                }
+
+                
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotupdated;
+
+            }
+            _hrmsassetscategoryRepository.Update(assests);
+            _uow.Commit();
+            return response;
         }
     }
 }
