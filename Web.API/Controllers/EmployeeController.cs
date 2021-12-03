@@ -11,7 +11,7 @@ using Web.Services.Interfaces;
 
 namespace Web.API.Controllers
 {
-    [Authorize]
+   // [Authorize]
     public class EmployeeController : Controller
     {
 
@@ -67,13 +67,13 @@ namespace Web.API.Controllers
         }
 
         [HttpPost("/Employee/Add")]
-        public BaseResponse Create([FromBody]EmsTblEmployeeDetails employee)
+        public BaseResponse Create([FromBody]EmsTblEmployeeDetails employee, string userName=null, string userId=null)
         {
             BaseResponse response = new BaseResponse(); 
             try
             {
                 var test = ModelState;
-                response = _employeeservice.CreateEmployee(employee);
+                response = _employeeservice.CreateEmployee(employee, userName, userId);
                
                     
                 

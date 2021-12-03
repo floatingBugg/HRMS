@@ -57,7 +57,7 @@ namespace Web.Services.Concrete
             return response;
         }
 
-        public BaseResponse CreateEmployee(EmsTblEmployeeDetails employee)
+        public BaseResponse CreateEmployee(EmsTblEmployeeDetails employee, string userName, string userId)
         {
             
             BaseResponse response = new BaseResponse();
@@ -67,9 +67,9 @@ namespace Web.Services.Concrete
                && !string.IsNullOrEmpty(employee.EtedReligion)
                && (employee.EtedCnic!=null) && doesExistAlready == false )
             {
-                employee.EtedCreatedBy = "admin";
+                employee.EtedCreatedBy = userId;
                 employee.EtedCreatedByDate = DateTime.Now;
-                employee.EtedCreatedByName = "admin";
+                employee.EtedCreatedByName = userName;
                 employee.EtedIsDelete = false;
 
                 // Update AcademicQualification

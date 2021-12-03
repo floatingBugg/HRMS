@@ -8,7 +8,7 @@ namespace Web.Services.Interfaces
 {
     public interface IEmployeeService
     {
-        BaseResponse CreateEmployee(EmsTblEmployeeDetails employee);
+        BaseResponse CreateEmployee(EmsTblEmployeeDetails employee, string userName, string userId);
 
         BaseResponse UpdateEmployee(EmsTblEmployeeDetails employee);
 
