@@ -10,12 +10,12 @@ namespace Web.Services.Interfaces
     {
         BaseResponse CreateEmployee(EmsTblEmployeeDetails employee, string userName, string userId);
 
-        BaseResponse UpdateEmployee(EmsTblEmployeeDetails employee);
+        BaseResponse UpdateEmployee(EmsTblEmployeeDetails employee ,string userName, string userId);
 
         BaseResponse GetAllEmployee();
 
-        BaseResponse DeleteEmployee(int id);
+        BaseResponse DeleteEmployee(int id ,string userName, string userId);
 
-        BaseResponse EditEmployeeByid(int id);
+        BaseResponse EditEmployeeByid(int id );
     }
 }

@@ -289,7 +289,7 @@ namespace Web.Services.Concrete
 
         }
 
-        public BaseResponse EditEmployeeByid(int id, string userName, string userId)
+        public BaseResponse EditEmployeeByid(int id)
         {
             BaseResponse response = new BaseResponse();
             
