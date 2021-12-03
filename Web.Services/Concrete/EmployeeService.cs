@@ -38,7 +38,7 @@ namespace Web.Services.Concrete
                 emailAddress = x.EtedEmailAddress,
                 contactNumber = x.EtedContactNumber,
                 empDesignation = x.EmsTblEmployeeProfessionalDetails.Count > 0 ? x.EmsTblEmployeeProfessionalDetails.Where(y => y.EtepdEtedEmployeeId == x.EtedEmployeeId).Select(z => z.EtepdDesignation).FirstOrDefault() : "Not assigned"
-            }).ToList().Take(10);
+            }).ToList().OrderByDescending(x=>x.empID);
 
             if (count == true)
             {
