@@ -111,7 +111,7 @@ namespace Web.Services.Concrete
 
            
             bool count = _hrmsassetsRepository.Table.Count() > 0;     
-            var inventoryData = _hrmsassetsRepository.Table.Where(z => z.ItaIsDelete == false).ToList().Take(10);
+            var inventoryData = _hrmsassetsRepository.Table.Where(z => z.ItaIsDelete == false).OrderByDescending(x=>x.ItaAssetId).ToList().Take(10);
 
 
             if (count == true)
