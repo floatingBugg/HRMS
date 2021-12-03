@@ -77,9 +77,9 @@ namespace Web.Services.Concrete
                 {
                     foreach (var item in employee.EmsTblAcademicQualification)
                     {
-                        item.EtaqCreatedBy = "admin";
+                        item.EtaqCreatedBy = userId;
                         item.EtaqCreatedByDate = DateTime.Now;
-                        item.EtaqCreatedByName = "admin";
+                        item.EtaqCreatedByName = userName;
                         item.EtaqIsDelete = false;
 
                     }
@@ -90,9 +90,9 @@ namespace Web.Services.Concrete
                 {
                     foreach (var item in employee.EmsTblProfessionalQualification)
                     {
-                        item.EtpqCreatedBy = "admin";
+                        item.EtpqCreatedBy = userId;
                         item.EtpqCreatedByDate = DateTime.Now;
-                        item.EtpqCreatedByName = "admin";
+                        item.EtpqCreatedByName = userName;
                         item.EtpqIsDelete = false;
                     }
                 }
@@ -102,9 +102,9 @@ namespace Web.Services.Concrete
                 {
                     foreach (var item in employee.EmsTblEmployeeProfessionalDetails)
                     {
-                        item.EtepdCreatedBy = "admin";
+                        item.EtepdCreatedBy = userId;
                         item.EtepdCreatedByDate = DateTime.Now;
-                        item.EtepdCreatedByName = "admin";
+                        item.EtepdCreatedByName = userName;
                         item.EtepdIsDelete = false;
                     }
                 }
@@ -114,9 +114,9 @@ namespace Web.Services.Concrete
                 {
                     foreach (var item in employee.EmsTblEmergencyContact)
                     {
-                        item.EtecCreatedBy = "admin";
+                        item.EtecCreatedBy = userId;
                         item.EtecCreatedByDate = DateTime.Now;
-                        item.EtecCreatedByName = "admin";
+                        item.EtecCreatedByName = userName;
                         item.EtecIsDelete = false;
                     }
                 }
@@ -126,9 +126,9 @@ namespace Web.Services.Concrete
                 {
                     foreach (var item in employee.EmsTblWorkingHistory)
                     {
-                        item.EtwhCreatedBy = "admin";
+                        item.EtwhCreatedBy = userId;
                         item.EtwhCreatedByDate = DateTime.Now;
-                        item.EtwhCreatedByName = "admin";
+                        item.EtwhCreatedByName = userName;
                         item.EtwhIsDelete = false;
                         response.Message = UserMessages.strUpdated;
                         response.Success = true;
@@ -159,15 +159,15 @@ namespace Web.Services.Concrete
             return response;
         }
 
-        public BaseResponse  UpdateEmployee(EmsTblEmployeeDetails employee)
+        public BaseResponse UpdateEmployee(EmsTblEmployeeDetails employee, string userName,string userId)
         {
 
             //Update EmployeeDetails
             BaseResponse response = new BaseResponse();
             
-            employee.EtedModifiedBy = "admin";
+            employee.EtedModifiedBy = userId;
             employee.EtedModifiedByDate = DateTime.Now;
-            employee.EtedModifiedByName = "admin";
+            employee.EtedModifiedByName = userName;
             employee.EtedIsDelete = false;
 
             // Update AcademicQualification
@@ -175,9 +175,9 @@ namespace Web.Services.Concrete
             {
                 foreach (var item in employee.EmsTblAcademicQualification)
                 {
-                    item.EtaqModifiedBy = "admin";
+                    item.EtaqModifiedBy = userId;
                     item.EtaqModifiedByDate = DateTime.Now;
-                    item.EtaqModifiedByName = "admin";
+                    item.EtaqModifiedByName = userName;
                     item.EtaqIsDelete = false;
                  
                 }
@@ -188,9 +188,9 @@ namespace Web.Services.Concrete
             {
                 foreach (var item in employee.EmsTblProfessionalQualification)
                 {
-                    item.EtpqModifiedBy = "admin";
+                    item.EtpqModifiedBy = userId;
                     item.EtpqModifiedByDate = DateTime.Now;
-                    item.EtpqModifiedByName = "admin";
+                    item.EtpqModifiedByName = userName;
                     item.EtpqIsDelete = false;
                 }
             }
@@ -200,9 +200,9 @@ namespace Web.Services.Concrete
             {
                 foreach (var item in employee.EmsTblEmployeeProfessionalDetails)
                 {
-                    item.EtepdModifiedBy = "admin";
+                    item.EtepdModifiedBy = userId;
                     item.EtepdModifiedByDate = DateTime.Now;
-                    item.EtepdModifiedByName = "admin";
+                    item.EtepdModifiedByName = userName;
                     item.EtepdIsDelete = false;
                 }
             }
@@ -212,9 +212,9 @@ namespace Web.Services.Concrete
             {
                 foreach (var item in employee.EmsTblEmergencyContact)
                 {
-                    item.EtecModifiedBy = "admin";
+                    item.EtecModifiedBy = userId;
                     item.EtecModifiedByDate = DateTime.Now;
-                    item.EtecModifiedByName = "admin";
+                    item.EtecModifiedByName = userName;
                     item.EtecIsDelete = false;
                 }
             }
@@ -224,9 +224,9 @@ namespace Web.Services.Concrete
             {
                 foreach (var item in employee.EmsTblWorkingHistory)
                 {
-                    item.EtwhModifiedBy = "admin";
+                    item.EtwhModifiedBy = userId;
                     item.EtwhModifiedByDate = DateTime.Now;
-                    item.EtwhModifiedByName = "admin";
+                    item.EtwhModifiedByName = userName;
                     item.EtwhIsDelete = false;
                     response.Message = UserMessages.strUpdated;
                     response.Success = true;
@@ -248,7 +248,7 @@ namespace Web.Services.Concrete
             return response;
         }
 
-        public BaseResponse DeleteEmployee(int empId)
+        public BaseResponse DeleteEmployee(int empId, string userName, string userId)
         {
             BaseResponse response = new BaseResponse();
             bool doesExistAlready = _hrmsemployeeRepository.Table.Count(p => p.EtedEmployeeId == empId) > 0;
@@ -258,9 +258,9 @@ namespace Web.Services.Concrete
            .ForEach(x =>
            {
                x.EtedIsDelete = true;
-               x.EtedModifiedBy = "admin";
+               x.EtedModifiedBy = userId;
                x.EtedModifiedByDate = DateTime.Now;
-               x.EtedModifiedByName = "admin";
+               x.EtedModifiedByName = userName;
 
            });
             if (doesExistAlready == true && isDeletedAlready == false)
@@ -289,7 +289,7 @@ namespace Web.Services.Concrete
 
         }
 
-        public BaseResponse EditEmployeeByid(int id)
+        public BaseResponse EditEmployeeByid(int id, string userName, string userId)
         {
             BaseResponse response = new BaseResponse();
             
