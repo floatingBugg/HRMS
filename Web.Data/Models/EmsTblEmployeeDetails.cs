@@ -28,7 +28,7 @@ namespace Web.Data.Models
         public string EtedMaritalStatus { get; set; }
         public string EtedBloodGroup { get; set; }
         public string EtedPhotograph { get; set; }
-        public int? EtedCnic { get; set; }
+        public long? EtedCnic { get; set; }
         public string EtedOfficialEmailAddress { get; set; }
         public string EtedReligion { get; set; }
         public string EtedNationality { get; set; }

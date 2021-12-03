@@ -50,7 +50,7 @@
          "ObjectType": 0
       }
    ],
-   "UiHint": "DESKTOP-2IEVGUR.EMS",
+   "UiHint": "SQL5105.db_a7d47e_hrms",
    "UseBoolPropertiesWithoutDefaultSql": false,
    "UseDatabaseNames": false,
    "UseDbContextSplitting": false,

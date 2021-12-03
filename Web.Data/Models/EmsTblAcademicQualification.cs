@@ -11,7 +11,7 @@ namespace Web.Data.Models
         public int EtaqAqId { get; set; }
         public int? EtaqEtedEmployeeId { get; set; }
         public string EtaqQualification { get; set; }
-        public int? EtaqPassingYear { get; set; }
+        public long EtaqPassingYear { get; set; }
         public double? EtaqCgpa { get; set; }
         public string EtaqInstituteName { get; set; }
         public string EtaqUploadDocuments { get; set; }

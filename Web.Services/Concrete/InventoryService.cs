@@ -28,11 +28,8 @@ namespace Web.Services.Concrete
 
         {
             _hrmsassetscategoryRepository = hrmsassetscategoryRepository;
-
             _config = config;
             _hrmsassetsRepository = hrmsassetsRepository;
-
-
             _uow = uow;
         }
 
@@ -52,7 +49,6 @@ namespace Web.Services.Concrete
                 responce.Message = UserMessages.strSuccess;
             }
 
-            
 
             else
             {
