@@ -74,7 +74,26 @@ namespace Web.API.Controllers
             }
         }
 
-            [HttpDelete("/Assests/Remove")]
+        [HttpGet("/Assets/Edit")]
+        public BaseResponse EditAssets(int id)
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                response = _inventoryservice.EditAssetById(id);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+        }
+
+        [HttpDelete("/Assests/Remove")]
 
             public BaseResponse Delete(int id)
             {

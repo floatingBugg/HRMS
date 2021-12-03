@@ -18,5 +18,7 @@ namespace Web.Services.Interfaces
         BaseResponse GetAllAssets();
 
         BaseResponse DeleteAssests(int id);
+
+        BaseResponse EditAssetById(int id);
     }
 }

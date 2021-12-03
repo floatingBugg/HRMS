@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,8 +69,8 @@ namespace Web.Services.Concrete
         public BaseResponse DeleteAssests(int id)
         {
             BaseResponse response = new BaseResponse();
-            bool doesExistAlready = _hrmsassetscategoryRepository.Table.Count(p => p.ItacAcId == id) > 0;
-            bool alreadyDelete = _hrmsassetscategoryRepository.Table.Count(p => p.ItacIsDelete == true && p.ItacAcId == id) > 0;
+            bool doesExistAlready = _hrmsassetsRepository.Table.Count(p => p.ItaAssetId == id) > 0;
+            bool alreadyDelete = _hrmsassetsRepository.Table.Count(p => p.ItaIsDelete == true && p.ItaAssetId == id) > 0;
             _hrmsassetsRepository.Table.Where(p => p.ItaAssetId == id).ToList().ForEach(x =>
             {
                 x.ItaIsDelete = true;
@@ -111,7 +112,7 @@ namespace Web.Services.Concrete
 
            
             bool count = _hrmsassetsRepository.Table.Count() > 0;     
-            var inventoryData = _hrmsassetsRepository.Table.Where(z => z.ItaIsDelete == false).ToList().Take(10);
+            var inventoryData = _hrmsassetsRepository.Table.Where(z => z.ItaIsDelete == false).OrderByDescending(x=>x.ItaAssetId).ToList().Take(10);
 
 
             if (count == true)
@@ -164,6 +165,30 @@ namespace Web.Services.Concrete
             }
             _hrmsassetscategoryRepository.Update(assests);
             _uow.Commit();
+            return response;
+        }
+
+        public BaseResponse EditAssetById(int id)
+        {
+            BaseResponse response = new BaseResponse();
+
+            bool count = _hrmsassetsRepository.Table.Where(z => z.ItaIsDelete == false && z.ItaAssetId == id).Count() > 0;
+            var assetsData = _hrmsassetsRepository.Table.Include(x => x.ItaCategory).Where(x => x.ItaAssetId == id).ToList();
+
+            if (count == true)
+            {
+                response.Data = assetsData;
+                response.Success = true;
+                response.Message = UserMessages.strSuccess;
+
+
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotfound;
+            }
             return response;
         }
     }
