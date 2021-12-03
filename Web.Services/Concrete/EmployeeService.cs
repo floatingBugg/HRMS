@@ -294,9 +294,30 @@ namespace Web.Services.Concrete
             
            bool count = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false && z.EtedEmployeeId == id).Count() > 0;
          
+            //var employeesData = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false && z.EtedEmployeeId == id).Include(z=>z.EmsTblAcademicQualification).ToList();
+            /*.Select(x => new EmployeeCredential()
+            {
+                empID= x.EtedEmployeeId,
+                firstname = x.EtedFirstName,
+                officialemail = x.EtedEmailAddress,
+                contact = x.EtedContactNumber,
+                personalemail = x.EtedEmailAddress,
+                cnic=x.EtedCnic,
+                dob=x.EtedDob,
+                address=x.EtedAddress,
+                gender=x.EtedGender,
+                martialstatus=x.EtedMaritalStatus,
+                bloodgroup=x.EtedBloodGroup,
+                religion=x.EtedReligion,
+                nationality=x.EtedNationality,
+                empstatus=x.EtedStatus,
+                //Qualification
+                *//*Qualification=x.EmsTblAcademicQualification.Select(y=>y.EtaqQualification),*//*
+
+            })*/
 
 
-            var employeesData = _hrmsemployeeRepository.Table.Include(x => x.EmsTblAcademicQualification).Include(x => x.EmsTblEmergencyContact).Include(x => x.EmsTblEmployeeProfessionalDetails).Include(x => x.EmsTblProfessionalQualification).Include(x => x.EmsTblWorkingHistory).Where(x=>x.EtedEmployeeId == id).ToList();
+            var employeesData = _hrmsemployeeRepository.Table.Include(x => x.EmsTblAcademicQualification).Where(x=>x.EtedEmployeeId == id).ToList();
 
             if (count == true)
             {

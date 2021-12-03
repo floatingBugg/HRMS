@@ -20,20 +20,26 @@ namespace Web.Services.Concrete
         IConfiguration _config;
         private readonly IUnitOfWork _uow;
 
+
         public InventoryService(IConfiguration config, IHRMSIMSAssetsRepository hrmsassetsRepository,IHRMSIMSAssetsCategoryRepository hrmsassetscategoryRepository, IUnitOfWork uow)
+
+       
+
         {
             _hrmsassetscategoryRepository = hrmsassetscategoryRepository;
+
             _config = config;
             _hrmsassetsRepository = hrmsassetsRepository;
+
+
             _uow = uow;
         }
-
-
-
 
         public BaseResponse CreateAssests(ImsTblAssetsCategory assests)
         {
             BaseResponse responce = new BaseResponse();
+          
+
             if (!string.IsNullOrEmpty(assests.ItacCategory))
             {
                 assests.ItacCreatedBy = "admin";
@@ -44,6 +50,8 @@ namespace Web.Services.Concrete
                 responce.Success = true;
                 responce.Message = UserMessages.strSuccess;
             }
+
+            
 
             else
             {
@@ -60,15 +68,19 @@ namespace Web.Services.Concrete
         public BaseResponse DeleteAssests(int id)
         {
             BaseResponse response = new BaseResponse();
-            bool doesExistAlready = _hrmsassetscategoryRepository.Table.Count(p => p.ItacAcId == id) > 0;
-            bool alreadyDelete = _hrmsassetscategoryRepository.Table.Count(p => p.ItacIsDelete == true && p.ItacAcId == id) > 0;
-            _hrmsassetscategoryRepository.Table.Where(p => p.ItacAcId == id).ToList().ForEach(x =>
+            bool doesExistAlready = _hrmsassetsRepository.Table.Count(p => p.ItaAssetId == id) > 0;
+            bool alreadyDelete = _hrmsassetsRepository.Table.Count(p => p.ItaIsDelete == true && p.ItaAssetId == id) > 0;
+            _hrmsassetsRepository.Table.Where(p => p.ItaAssetId == id)
+                .ToList()
+                .ForEach(x =>
             {
-                x.ItacIsDelete = true;
-                x.ItacModifiedByDate = DateTime.Now;
-                x.ItacModifiedBy = "admin";
-                x.ItacModifiedByName = "admin";
-                x.ImsTblAssests.Select(z => z.ItaIsDelete = true);
+
+                x.ItaIsDelete = true;
+                x.ItaModifiedByDate = DateTime.Now;
+                x.ItaModifiedBy = "admin";
+                x.ItaModifiedByName = "admin";
+           
+
                 
             });
 
@@ -100,8 +112,11 @@ namespace Web.Services.Concrete
         {
 
             BaseResponse response = new BaseResponse();
-            bool count = true; /*_hrmsassetsRepository.Table.Count() > 0;*/
-            var inventoryData = _hrmsassetsRepository.Table.Where(z => z.ItaIsDelete == false).ToList();
+
+           
+            bool count = _hrmsassetsRepository.Table.Count() > 0;     
+            var inventoryData = _hrmsassetsRepository.Table.Where(z => z.ItaIsDelete == false).ToList().Take(10);
+
 
             if (count == true)
             {
