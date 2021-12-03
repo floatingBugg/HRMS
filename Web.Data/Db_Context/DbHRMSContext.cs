@@ -34,7 +34,7 @@ namespace Web.Data.Db_Context
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=SQL5108.site4now.net;Initial Catalog=db_a7d47e_hrms;Persist Security Info=True;User ID=db_a7d47e_hrms_admin;Password=123hamza");
+                optionsBuilder.UseSqlServer("Data Source=SQL5108.site4now.net,1433;Initial Catalog=db_a7d47e_hrms;User Id=db_a7d47e_hrms_admin;Password=123hamza; ");
             }
         }
 
@@ -45,13 +45,15 @@ namespace Web.Data.Db_Context
             modelBuilder.Entity<EmsTblAcademicQualification>(entity =>
             {
                 entity.HasKey(e => e.EtaqAqId)
-                    .HasName("PK__ems_tbl___128BDF78CEC97EA1");
+                    .HasName("PK__ems_tbl___128BDF78B3FC2AD0");
 
                 entity.ToTable("ems_tbl_academic_qualification");
 
                 entity.Property(e => e.EtaqAqId).HasColumnName("etaq_aq_id");
 
-                entity.Property(e => e.EtaqCgpa).HasColumnName("etaq_cgpa");
+                entity.Property(e => e.EtaqCgpa)
+                    .HasColumnName("etaq_cgpa")
+                    .HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.EtaqCreatedBy).HasColumnName("etaq_created_by");
 
@@ -73,11 +75,14 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.EtaqModifiedByDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("etaq_modified_by_date");
+                    .HasColumnName("etaq_modified_by_date")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.EtaqModifiedByName).HasColumnName("etaq_modified_by_name");
 
-                entity.Property(e => e.EtaqPassingYear).HasColumnName("etaq_passing_year");
+                entity.Property(e => e.EtaqPassingYear)
+                    .HasColumnName("etaq_passing_year")
+                    .HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.EtaqQualification).HasColumnName("etaq_qualification");
 
@@ -86,13 +91,13 @@ namespace Web.Data.Db_Context
                 entity.HasOne(d => d.EtaqEtedEmployee)
                     .WithMany(p => p.EmsTblAcademicQualification)
                     .HasForeignKey(d => d.EtaqEtedEmployeeId)
-                    .HasConstraintName("FK__ems_tbl_a__etaq___02084FDA");
+                    .HasConstraintName("FK__ems_tbl_a__etaq___1F2E9E6D");
             });
 
             modelBuilder.Entity<EmsTblEmergencyContact>(entity =>
             {
                 entity.HasKey(e => e.EtecEcId)
-                    .HasName("PK__ems_tbl___BBD724E909447FD3");
+                    .HasName("PK__ems_tbl___BBD724E9E41EA396");
 
                 entity.ToTable("ems_tbl_emergency_contact");
 
@@ -124,7 +129,8 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.EtecModifiedByDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("etec_modified_by_date");
+                    .HasColumnName("etec_modified_by_date")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.EtecModifiedByName).HasColumnName("etec_modified_by_name");
 
@@ -133,13 +139,13 @@ namespace Web.Data.Db_Context
                 entity.HasOne(d => d.EtecEtedEmployee)
                     .WithMany(p => p.EmsTblEmergencyContact)
                     .HasForeignKey(d => d.EtecEtedEmployeeId)
-                    .HasConstraintName("FK__ems_tbl_e__etec___02FC7413");
+                    .HasConstraintName("FK__ems_tbl_e__etec___2022C2A6");
             });
 
             modelBuilder.Entity<EmsTblEmployeeDetails>(entity =>
             {
                 entity.HasKey(e => e.EtedEmployeeId)
-                    .HasName("PK__ems_tbl___516C46CD1D4E82A3");
+                    .HasName("PK__ems_tbl___516C46CD27AE0F46");
 
                 entity.ToTable("ems_tbl_employee_details");
 
@@ -154,7 +160,9 @@ namespace Web.Data.Db_Context
                     .IsUnicode(false)
                     .HasColumnName("eted_blood_group");
 
-                entity.Property(e => e.EtedCnic).HasColumnName("eted_cnic");
+                entity.Property(e => e.EtedCnic)
+                    .HasColumnName("eted_cnic")
+                    .HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.EtedContactNumber)
                     .HasMaxLength(50)
@@ -171,7 +179,8 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.EtedDob)
                     .HasColumnType("date")
-                    .HasColumnName("eted_dob");
+                    .HasColumnName("eted_dob")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.EtedEmailAddress)
                     .HasMaxLength(50)
@@ -203,7 +212,8 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.EtedModifiedByDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("eted_modified_by_date");
+                    .HasColumnName("eted_modified_by_date")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.EtedModifiedByName).HasColumnName("eted_modified_by_name");
 
@@ -221,7 +231,7 @@ namespace Web.Data.Db_Context
             modelBuilder.Entity<EmsTblEmployeeProfessionalDetails>(entity =>
             {
                 entity.HasKey(e => e.EtepdPdId)
-                    .HasName("PK__ems_tbl___DBCDA8148D5B6C47");
+                    .HasName("PK__ems_tbl___DBCDA814F70CBE11");
 
                 entity.ToTable("ems_tbl_employee_professional_details");
 
@@ -245,13 +255,15 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.EtepdJoiningDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("etepd_joining_date");
+                    .HasColumnName("etepd_joining_date")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.EtepdModifiedBy).HasColumnName("etepd_modified_by");
 
                 entity.Property(e => e.EtepdModifiedByDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("etepd_modified_by_date");
+                    .HasColumnName("etepd_modified_by_date")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.EtepdModifiedByName).HasColumnName("etepd_modified_by_name");
 
@@ -262,13 +274,13 @@ namespace Web.Data.Db_Context
                 entity.HasOne(d => d.EtepdEtedEmployee)
                     .WithMany(p => p.EmsTblEmployeeProfessionalDetails)
                     .HasForeignKey(d => d.EtepdEtedEmployeeId)
-                    .HasConstraintName("FK__ems_tbl_e__etepd__03F0984C");
+                    .HasConstraintName("FK__ems_tbl_e__etepd__2116E6DF");
             });
 
             modelBuilder.Entity<EmsTblHrmsUser>(entity =>
             {
                 entity.HasKey(e => e.EthuUserId)
-                    .HasName("PK__ems_tbl___7F2D16AC1EDCBB03");
+                    .HasName("PK__ems_tbl___7F2D16AC2C11A570");
 
                 entity.ToTable("ems_tbl_hrms_user");
 
@@ -296,7 +308,8 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.EthuModifiedByDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("ethu_modified_by_date");
+                    .HasColumnName("ethu_modified_by_date")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.EthuModifiedByName).HasColumnName("ethu_modified_by_name");
 
@@ -310,7 +323,7 @@ namespace Web.Data.Db_Context
             modelBuilder.Entity<EmsTblProfessionalQualification>(entity =>
             {
                 entity.HasKey(e => e.EtpqPqId)
-                    .HasName("PK__ems_tbl___E07F4F72AB0EA74A");
+                    .HasName("PK__ems_tbl___E07F4F72C36296BA");
 
                 entity.ToTable("ems_tbl_professional_qualification");
 
@@ -344,7 +357,8 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.EtpqModifiedByDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("etpq_modified_by_date");
+                    .HasColumnName("etpq_modified_by_date")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.EtpqModifiedByName).HasColumnName("etpq_modified_by_name");
 
@@ -355,13 +369,13 @@ namespace Web.Data.Db_Context
                 entity.HasOne(d => d.EtpqEtedEmployee)
                     .WithMany(p => p.EmsTblProfessionalQualification)
                     .HasForeignKey(d => d.EtpqEtedEmployeeId)
-                    .HasConstraintName("FK__ems_tbl_p__etpq___04E4BC85");
+                    .HasConstraintName("FK__ems_tbl_p__etpq___220B0B18");
             });
 
             modelBuilder.Entity<EmsTblWorkingHistory>(entity =>
             {
                 entity.HasKey(e => e.EtwhWhId)
-                    .HasName("PK__ems_tbl___EE14BDFFF5B58079");
+                    .HasName("PK__ems_tbl___EE14BDFF4B814FDE");
 
                 entity.ToTable("ems_tbl_working_history");
 
@@ -397,7 +411,8 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.EtwhModifiedByDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("etwh_modified_by_date");
+                    .HasColumnName("etwh_modified_by_date")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.EtwhModifiedByName).HasColumnName("etwh_modified_by_name");
 
@@ -408,13 +423,13 @@ namespace Web.Data.Db_Context
                 entity.HasOne(d => d.EtwhEtedEmployee)
                     .WithMany(p => p.EmsTblWorkingHistory)
                     .HasForeignKey(d => d.EtwhEtedEmployeeId)
-                    .HasConstraintName("FK__ems_tbl_w__etwh___05D8E0BE");
+                    .HasConstraintName("FK__ems_tbl_w__etwh___22FF2F51");
             });
 
             modelBuilder.Entity<ImsTblAssests>(entity =>
             {
                 entity.HasKey(e => e.ItaAssetId)
-                    .HasName("PK__ims_tbl___B51DD0C3C3DD0EA5");
+                    .HasName("PK__ims_tbl___B51DD0C3EE63B7A9");
 
                 entity.ToTable("ims_tbl_assests");
 
@@ -446,7 +461,8 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.ItaModifiedByDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("ita_modified_by_date");
+                    .HasColumnName("ita_modified_by_date")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.ItaModifiedByName).HasColumnName("ita_modified_by_name");
 
@@ -459,13 +475,13 @@ namespace Web.Data.Db_Context
                 entity.HasOne(d => d.ItaCategory)
                     .WithMany(p => p.ImsTblAssests)
                     .HasForeignKey(d => d.ItaCategoryId)
-                    .HasConstraintName("FK__ims_tbl_a__ita_c__1DB06A4F");
+                    .HasConstraintName("FK__ims_tbl_a__ita_c__2D7CBDC4");
             });
 
             modelBuilder.Entity<ImsTblAssetsCategory>(entity =>
             {
                 entity.HasKey(e => e.ItacAcId)
-                    .HasName("PK__ims_tbl___27D6367EFD0CAA12");
+                    .HasName("PK__ims_tbl___27D6367EAD840A63");
 
                 entity.ToTable("ims_tbl_assets_category");
 
@@ -487,7 +503,8 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.ItacModifiedByDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("itac_modified_by_date");
+                    .HasColumnName("itac_modified_by_date")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.ItacModifiedByName).HasColumnName("itac_modified_by_name");
             });
