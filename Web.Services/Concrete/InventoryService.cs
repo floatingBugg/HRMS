@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -164,6 +165,30 @@ namespace Web.Services.Concrete
             }
             _hrmsassetscategoryRepository.Update(assests);
             _uow.Commit();
+            return response;
+        }
+
+        public BaseResponse EditAssetById(int id)
+        {
+            BaseResponse response = new BaseResponse();
+
+            bool count = _hrmsassetsRepository.Table.Where(z => z.ItaIsDelete == false && z.ItaAssetId == id).Count() > 0;
+            var assetsData = _hrmsassetsRepository.Table.Include(x => x.ItaCategory).Where(x => x.ItaAssetId == id).ToList();
+
+            if (count == true)
+            {
+                response.Data = assetsData;
+                response.Success = true;
+                response.Message = UserMessages.strSuccess;
+
+
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotfound;
+            }
             return response;
         }
     }
