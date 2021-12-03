@@ -36,7 +36,7 @@ namespace Web.Services.Concrete
                 var result = _hrmsUserAuthRepository.Table.Where(x => x.EthuEmailAddress == login.email && x.EthuPassword == login.password).FirstOrDefault();
                 if (result != null)
                 {
-                    response.Data = GenerateJSONWebToken();
+                    response.Data = GenerateJSONWebToken(result.EthuFullName,result.EthuUserId);
                     response.Success = true;
                     response.Message = UserMessages.strUserfound;
                 }
@@ -50,7 +50,7 @@ namespace Web.Services.Concrete
             return response;
         }
 
-        public object GenerateJSONWebToken()
+        public object GenerateJSONWebToken(string Username,int Userid)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Secret"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
@@ -63,7 +63,8 @@ namespace Web.Services.Concrete
             };*/
             var tokenExpiryTime = DateTime.Now.AddMinutes(120);
             /*var refreshtokenExpiryTime = DateTime.Now.AddDays(7);*/
-            
+            var userid = Userid;
+            var username = Username;
             var token = new JwtSecurityToken(_config["Jwt:ValidIssuer"],
               _config["Jwt:ValidIssuer"],
               /*claims,*/
@@ -75,11 +76,13 @@ namespace Web.Services.Concrete
             {
                 /*refreshtoken,*/
                 token = new JwtSecurityTokenHandler().WriteToken(token),
-                expires = tokenExpiryTime
+                expires = tokenExpiryTime,
+                userid,
+                username
             };
         }
       
-            public string Register(RegisterCredential register)
+        public string Register(RegisterCredential register)
         {
             // first validate the username and password from the db and then generate token
             if (!string.IsNullOrEmpty(register.username) && !string.IsNullOrEmpty(register.password)
@@ -119,7 +122,7 @@ namespace Web.Services.Concrete
             {
 
 
-                refreshresponse.Data = GenerateJSONWebToken();
+                refreshresponse.Data = GenerateRefreshToken();
                 refreshresponse.Success = true;
                 refreshresponse.Message = UserMessages.strRefreshtoken;
 
