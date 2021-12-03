@@ -69,8 +69,8 @@ namespace Web.Services.Concrete
         public BaseResponse DeleteAssests(int id)
         {
             BaseResponse response = new BaseResponse();
-            bool doesExistAlready = _hrmsassetscategoryRepository.Table.Count(p => p.ItacAcId == id) > 0;
-            bool alreadyDelete = _hrmsassetscategoryRepository.Table.Count(p => p.ItacIsDelete == true && p.ItacAcId == id) > 0;
+            bool doesExistAlready = _hrmsassetsRepository.Table.Count(p => p.ItaAssetId == id) > 0;
+            bool alreadyDelete = _hrmsassetsRepository.Table.Count(p => p.ItaIsDelete == true && p.ItaAssetId == id) > 0;
             _hrmsassetsRepository.Table.Where(p => p.ItaAssetId == id).ToList().ForEach(x =>
             {
                 x.ItaIsDelete = true;
