@@ -44,9 +44,7 @@ namespace Web.Services.Concrete
                 assests.ItacCreatedByDate= DateTime.Now;
                 assests.ItacCreatedByName = "admin";
                 assests.ItacIsDelete = false;
-                _hrmsassetscategoryRepository.Insert(assests);
-                responce.Success = true;
-                responce.Message = UserMessages.strSuccess;
+               
 
                 if (assests.ImsTblAssests.Count > 0)
                 {
@@ -59,6 +57,9 @@ namespace Web.Services.Concrete
 
                     }
                 }
+                _hrmsassetscategoryRepository.Insert(assests);
+                responce.Success = true;
+                responce.Message = UserMessages.strSuccess;
             }
 
 
