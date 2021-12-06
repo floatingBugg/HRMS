@@ -31,14 +31,14 @@ namespace Web.API.Controllers
         }
 
         [HttpPost("/Assests/Add")]
-        public BaseResponse Create([FromBody] ImsTblAssetsCategory assests)
+        public BaseResponse Create([FromBody] ImsTblAssetsCategory assests,string userName=null, string userId=null)
         {
 
             BaseResponse response = new BaseResponse();
             try
             {
                 var test = ModelState;
-                response = _inventoryservice.CreateAssests(assests);
+                response = _inventoryservice.CreateAssests(assests,userName,userId);
 
                 return response;
             }
@@ -74,13 +74,13 @@ namespace Web.API.Controllers
             }
         }
 
-        [HttpGet("/Assets/Edit")]
-        public BaseResponse EditAssets(int id)
+        [HttpGet("/Assets/GetAssestById")]
+        public BaseResponse ViewAssetsById(int id)
         {
             BaseResponse response = new BaseResponse();
             try
             {
-                response = _inventoryservice.EditAssetById(id);
+                response = _inventoryservice.ViewAssetById(id);
                 return response;
             }
             catch (Exception ex)
@@ -93,37 +93,17 @@ namespace Web.API.Controllers
             }
         }
 
-        [HttpDelete("/Assests/Remove")]
+      
 
-            public BaseResponse Delete(int id)
-            {
-                BaseResponse responce = new BaseResponse();
-                try
-                {
-                    responce = _inventoryservice.DeleteAssests(id);
-                    return responce;
-                }
-
-                catch (Exception ex)
-                {
-                    _logger.LogExceptions(ex);
-                    responce.Data = null;
-                    responce.Message = ex.Message;
-                    responce.Success = false;
-                    return responce;
-                }
-
-
-            }
         [HttpPost("/Assests/Update")]
-        public BaseResponse Update([FromBody] ImsTblAssetsCategory assests)
+        public BaseResponse Update([FromBody] ImsTblAssetsCategory assests,string userName,string userId)
         {
             BaseResponse response = new BaseResponse();
 
             try
             {
 
-                response = _inventoryservice.UpdateAssests(assests);
+                response = _inventoryservice.UpdateAssests(assests,userName,userId);
                 return response;
             }
             catch (Exception ex)
@@ -131,6 +111,29 @@ namespace Web.API.Controllers
                 _logger.LogExceptions(ex);
                 return response;
             }
+        }
+
+        [HttpDelete("/Assests/Remove")]
+
+        public BaseResponse Delete(int Delid, string userName = null, string userId = null)
+        {
+            BaseResponse responce = new BaseResponse();
+            try
+            {
+                responce = _inventoryservice.DeleteAssests(Delid, userName, userId);
+                return responce;
+            }
+
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                responce.Data = null;
+                responce.Message = ex.Message;
+                responce.Success = false;
+                return responce;
+            }
+
+
         }
     }
     }

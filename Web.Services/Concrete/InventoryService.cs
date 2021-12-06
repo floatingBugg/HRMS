@@ -33,16 +33,16 @@ namespace Web.Services.Concrete
             _uow = uow;
         }
 
-        public BaseResponse CreateAssests(ImsTblAssetsCategory assests)
+        public BaseResponse CreateAssests(ImsTblAssetsCategory assests, string userName,string userId)
         {
             BaseResponse responce = new BaseResponse();
           
 
             if (!string.IsNullOrEmpty(assests.ItacCategory))
             {
-                assests.ItacCreatedBy = "admin";
+                assests.ItacCreatedBy = userId;
                 assests.ItacCreatedByDate= DateTime.Now;
-                assests.ItacCreatedByName = "admin";
+                assests.ItacCreatedByName = userName;
                 assests.ItacIsDelete = false;
                
 
@@ -59,7 +59,7 @@ namespace Web.Services.Concrete
                 }
                 _hrmsassetscategoryRepository.Insert(assests);
                 responce.Success = true;
-                responce.Message = UserMessages.strSuccess;
+                responce.Message = UserMessages.strAdded;
             }
 
 
@@ -67,7 +67,7 @@ namespace Web.Services.Concrete
             {
                 responce.Data = null;
                 responce.Success = false;
-                responce.Message = UserMessages.strAdded;
+                responce.Message = UserMessages.strNotinsert;
             }
 
             return responce;
@@ -75,17 +75,17 @@ namespace Web.Services.Concrete
 
         }
 
-        public BaseResponse DeleteAssests(int id)
+        public BaseResponse DeleteAssests(int Delid,string userName,string userId)
         {
             BaseResponse response = new BaseResponse();
-            bool doesExistAlready = _hrmsassetsRepository.Table.Count(p => p.ItaAssetId == id) > 0;
-            bool alreadyDelete = _hrmsassetsRepository.Table.Count(p => p.ItaIsDelete == true && p.ItaAssetId == id) > 0;
-            _hrmsassetsRepository.Table.Where(p => p.ItaAssetId == id).ToList().ForEach(x =>
+            bool doesExistAlready = _hrmsassetsRepository.Table.Count(p => p.ItaAssetId == Delid) > 0;
+            bool alreadyDelete = _hrmsassetsRepository.Table.Count(p => p.ItaIsDelete == true && p.ItaAssetId == Delid) > 0;
+            _hrmsassetsRepository.Table.Where(p => p.ItaAssetId == Delid).ToList().ForEach(x =>
             {
                 x.ItaIsDelete = true;
                 x.ItaModifiedByDate = DateTime.Now;
-                x.ItaModifiedBy = "admin";
-                x.ItaModifiedByName = "admin";
+                x.ItaModifiedBy = userId;
+                x.ItaModifiedByName = userName;
                 
                 
             });
@@ -141,13 +141,13 @@ namespace Web.Services.Concrete
             return response;
         }
 
-        public BaseResponse UpdateAssests(ImsTblAssetsCategory assests)
+        public BaseResponse UpdateAssests(ImsTblAssetsCategory assests,string userName,string userId)
         {
             BaseResponse response = new BaseResponse();
 
-            assests.ItacModifiedBy = "admin";
+            assests.ItacModifiedBy = userId;
             assests.ItacModifiedByDate = DateTime.Now;
-            assests.ItacModifiedByName = "admin";
+            assests.ItacModifiedByName = userName;
             assests.ItacIsDelete = false;
 
             // Update AcademicQualification
@@ -177,7 +177,7 @@ namespace Web.Services.Concrete
             return response;
         }
 
-        public BaseResponse EditAssetById(int id)
+        public BaseResponse ViewAssetById(int id)
         {
             BaseResponse response = new BaseResponse();
 

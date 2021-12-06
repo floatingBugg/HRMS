@@ -11,14 +11,14 @@ namespace Web.Services.Interfaces
     public interface IInventoryService
     {
 
-        BaseResponse CreateAssests(ImsTblAssetsCategory assests);
+        BaseResponse CreateAssests(ImsTblAssetsCategory assests,string userName,string userId);
 
-        BaseResponse UpdateAssests(ImsTblAssetsCategory assests);
+        BaseResponse UpdateAssests(ImsTblAssetsCategory assests,string userName,string userId);
 
         BaseResponse GetAllAssets();
 
-        BaseResponse DeleteAssests(int id);
+        BaseResponse DeleteAssests(int id,string userName,string userId);
 
-        BaseResponse EditAssetById(int id);
+        BaseResponse ViewAssetById(int id);
     }
 }
