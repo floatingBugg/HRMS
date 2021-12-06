@@ -23,9 +23,6 @@ namespace Web.Services.Concrete
 
 
         public InventoryService(IConfiguration config, IHRMSIMSAssetsRepository hrmsassetsRepository,IHRMSIMSAssetsCategoryRepository hrmsassetscategoryRepository, IUnitOfWork uow)
-
-       
-
         {
             _hrmsassetscategoryRepository = hrmsassetscategoryRepository;
             _config = config;

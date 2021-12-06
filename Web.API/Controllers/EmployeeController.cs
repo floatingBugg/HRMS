@@ -66,7 +66,7 @@ namespace Web.API.Controllers
             }
         }
 
-        [HttpPost("/Employee/Add")]
+        [HttpPost("/Employee/AddEmployee")]
         public BaseResponse Create([FromBody]EmsTblEmployeeDetails employee, string userName=null, string userId=null)
         {
             BaseResponse response = new BaseResponse(); 
@@ -89,7 +89,7 @@ namespace Web.API.Controllers
             }
         }
 
-        [HttpPost("/Employee/Update")]
+        [HttpPost("/Employee/UpdateEmployee")]
         public BaseResponse Update([FromBody] EmsTblEmployeeDetails employee, string userName = null, string userId = null)
         {
             BaseResponse response = new BaseResponse();
@@ -107,7 +107,7 @@ namespace Web.API.Controllers
             }
         }
 
-        [HttpDelete("/Employee/Remove")]
+        [HttpDelete("/Employee/DeleteEmployee")]
         public BaseResponse Delete(int id, string userName = null, string userId = null)
         {
             BaseResponse response = new BaseResponse();

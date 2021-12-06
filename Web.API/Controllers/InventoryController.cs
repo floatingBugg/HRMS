@@ -30,7 +30,7 @@ namespace Web.API.Controllers
             _logger = new Logger(_hostEnvironment);
         }
 
-        [HttpPost("/Assests/Add")]
+        [HttpPost("/Assests/AddAssests")]
         public BaseResponse Create([FromBody] ImsTblAssetsCategory assests,string userName=null, string userId=null)
         {
 
@@ -55,7 +55,7 @@ namespace Web.API.Controllers
         }
 
         // GET: Inventory/Details/5
-        [HttpGet("/Assets/Display")]
+        [HttpGet("/Assets/DisplayAssests")]
         public BaseResponse GetAllAssets()
         {
             BaseResponse response = new BaseResponse();
@@ -95,7 +95,7 @@ namespace Web.API.Controllers
 
       
 
-        [HttpPost("/Assests/Update")]
+        [HttpPost("/Assests/UpdateAssests")]
         public BaseResponse Update([FromBody] ImsTblAssetsCategory assests,string userName,string userId)
         {
             BaseResponse response = new BaseResponse();
@@ -113,7 +113,7 @@ namespace Web.API.Controllers
             }
         }
 
-        [HttpDelete("/Assests/Remove")]
+        [HttpDelete("/Assests/DeleteAssests")]
 
         public BaseResponse Delete(int Delid, string userName = null, string userId = null)
         {
