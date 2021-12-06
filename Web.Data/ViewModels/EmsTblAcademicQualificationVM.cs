@@ -24,6 +24,6 @@ namespace Web.Data.ViewModels
         public DateTime? EtaqModifiedByDate { get; set; }
         public bool? EtaqIsDelete { get; set; }
         [JsonIgnore]
-        public virtual EmsTblEmployeeDetailsVM EtaqEtedEmployee { get; set; }
+        public virtual EmsTblEmployeeDetailsVM EtaqEtedEmployeeVM { get; set; }
     }
 }

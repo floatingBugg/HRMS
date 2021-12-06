@@ -23,7 +23,7 @@ namespace Web.Data.Db_Context
         public virtual DbSet<EmsTblEmergencyContact> EmsTblEmergencyContact { get; set; }
         public virtual DbSet<EmsTblEmployeeDetails> EmsTblEmployeeDetails { get; set; }
         public virtual DbSet<EmsTblEmployeeProfessionalDetails> EmsTblEmployeeProfessionalDetails { get; set; }
-        public virtual DbSet<EmsTblHrmsUserVM> EmsTblHrmsUser { get; set; }
+        public virtual DbSet<EmsTblHrmsUser> EmsTblHrmsUser { get; set; }
         public virtual DbSet<EmsTblProfessionalQualification> EmsTblProfessionalQualification { get; set; }
         public virtual DbSet<EmsTblWorkingHistory> EmsTblWorkingHistory { get; set; }
         public virtual DbSet<ImsTblAssests> ImsTblAssests { get; set; }

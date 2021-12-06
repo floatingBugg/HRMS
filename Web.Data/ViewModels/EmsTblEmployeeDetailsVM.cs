@@ -41,10 +41,10 @@ namespace Web.Data.ViewModels
         public DateTime? EtedModifiedByDate { get; set; }
         public bool? EtedIsDelete { get; set; }
 
-        public virtual ICollection<EmsTblAcademicQualificationVM> EmsTblAcademicQualification { get; set; }
-        public virtual ICollection<EmsTblEmergencyContactVM> EmsTblEmergencyContact { get; set; }
-        public virtual ICollection<EmsTblEmployeeProfessionalDetailsVM> EmsTblEmployeeProfessionalDetails { get; set; }
-        public virtual ICollection<EmsTblProfessionalQualificationVM> EmsTblProfessionalQualification { get; set; }
-        public virtual ICollection<EmsTblWorkingHistoryVM> EmsTblWorkingHistory { get; set; }
+        public virtual ICollection<EmsTblAcademicQualificationVM> EmsTblAcademicQualificationVM { get; set; }
+        public virtual ICollection<EmsTblEmergencyContactVM> EmsTblEmergencyContactVM { get; set; }
+        public virtual ICollection<EmsTblEmployeeProfessionalDetailsVM> EmsTblEmployeeProfessionalDetailsVM { get; set; }
+        public virtual ICollection<EmsTblProfessionalQualificationVM> EmsTblProfessionalQualificationVM { get; set; }
+        public virtual ICollection<EmsTblWorkingHistoryVM> EmsTblWorkingHistoryVM { get; set; }
     }
 }

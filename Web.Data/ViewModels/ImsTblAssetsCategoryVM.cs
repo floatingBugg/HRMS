@@ -10,7 +10,7 @@ namespace Web.Data.ViewModels
     {
         public ImsTblAssetsCategoryVM()
         {
-            ImsTblAssests = new HashSet<ImsTblAssestsVM>();
+            ImsTblAssestsVM = new HashSet<ImsTblAssestsVM>();
         }
 
         public int ItacAcId { get; set; }
@@ -23,6 +23,6 @@ namespace Web.Data.ViewModels
         public DateTime? ItacModifiedByDate { get; set; }
         public bool? ItacIsDelete { get; set; }
 
-        public virtual ICollection<ImsTblAssestsVM> ImsTblAssests { get; set; }
+        public virtual ICollection<ImsTblAssestsVM> ImsTblAssestsVM { get; set; }
     }
 }
