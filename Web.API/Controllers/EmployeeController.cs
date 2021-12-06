@@ -67,7 +67,7 @@ namespace Web.API.Controllers
         }
 
         [HttpPost("/Employee/Add")]
-        public BaseResponse Create([FromBody]EmsTblEmployeeDetailsVM employee, string userName=null, string userId=null)
+        public BaseResponse Create([FromBody]EmsTblEmployeeDetails employee, string userName=null, string userId=null)
         {
             BaseResponse response = new BaseResponse(); 
             try
@@ -90,7 +90,7 @@ namespace Web.API.Controllers
         }
 
         [HttpPost("/Employee/Update")]
-        public BaseResponse Update([FromBody] EmsTblEmployeeDetailsVM employee, string userName = null, string userId = null)
+        public BaseResponse Update([FromBody] EmsTblEmployeeDetails employee, string userName = null, string userId = null)
         {
             BaseResponse response = new BaseResponse();
             

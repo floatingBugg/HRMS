@@ -3,7 +3,7 @@ using Web.Data.Generic_Repository;
 
 namespace Web.Data.Interfaces
 {
-    public interface IHRMSEmployeeContactRepository : IRepository<EmsTblEmergencyContactVM>
+    public interface IHRMSEmployeeContactRepository : IRepository<EmsTblEmergencyContact>
     {
 
     }

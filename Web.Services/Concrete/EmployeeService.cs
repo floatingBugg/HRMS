@@ -57,7 +57,7 @@ namespace Web.Services.Concrete
             return response;
         }
 
-        public BaseResponse CreateEmployee(EmsTblEmployeeDetailsVM employee, string userName, string userId)
+        public BaseResponse CreateEmployee(EmsTblEmployeeDetails employee, string userName, string userId)
         {
             
             BaseResponse response = new BaseResponse();
@@ -159,7 +159,7 @@ namespace Web.Services.Concrete
             return response;
         }
 
-        public BaseResponse UpdateEmployee(EmsTblEmployeeDetailsVM employee, string userName,string userId)
+        public BaseResponse UpdateEmployee(EmsTblEmployeeDetails employee, string userName,string userId)
         {
 
             //Update EmployeeDetails

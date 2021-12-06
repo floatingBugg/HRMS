@@ -8,7 +8,7 @@ using Web.Data.Models;
 
 namespace Web.Data.Interfaces
 {
-    public interface IHRMSIMSAssetsRepository: IRepository<ImsTblAssestsVM>
+    public interface IHRMSIMSAssetsRepository: IRepository<ImsTblAssests>
     {
 
     }

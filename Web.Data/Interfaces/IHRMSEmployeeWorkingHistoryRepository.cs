@@ -3,7 +3,7 @@ using Web.Data.Generic_Repository;
 
 namespace Web.Data.Interfaces
 {
-    public interface IHRMSEmployeeWorkingHistoryRepository : IRepository<EmsTblWorkingHistoryVM>
+    public interface IHRMSEmployeeWorkingHistoryRepository : IRepository<EmsTblWorkingHistory>
     {
 
     }

@@ -3,7 +3,7 @@ using Web.Data.Generic_Repository;
 
 namespace Web.Data.Interfaces
 {
-    public interface IHRMSAcademicRepository : IRepository<EmsTblAcademicQualificationVM>
+    public interface IHRMSAcademicRepository : IRepository<EmsTblAcademicQualification>
     {
 
     }
