@@ -40,6 +40,7 @@ namespace Web.API
                  Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.IgnoreNullValues = true);
+         
             /*services.AddControllersWithViews().AddJsonOptions(options =>
             {
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;

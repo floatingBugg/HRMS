@@ -88,9 +88,9 @@ namespace Web.Services.Concrete
             if (!string.IsNullOrEmpty(register.username) && !string.IsNullOrEmpty(register.password)
                 && !string.IsNullOrEmpty(register.email) && !string.IsNullOrEmpty(register.phone) && !string.IsNullOrEmpty(register.gender))
             {
-                List<EmsTblHrmsUser> user = new List<EmsTblHrmsUser>();
+                List<EmsTblHrmsUserVM> user = new List<EmsTblHrmsUserVM>();
 
-                user.Add(new EmsTblHrmsUser
+                user.Add(new EmsTblHrmsUserVM
                 {
                     EthuFullName = "test",
                     EthuUserName = register.username,

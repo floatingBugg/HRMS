@@ -19,14 +19,14 @@ namespace Web.Data.Db_Context
         {
         }
 
-        public virtual DbSet<EmsTblAcademicQualification> EmsTblAcademicQualification { get; set; }
-        public virtual DbSet<EmsTblEmergencyContact> EmsTblEmergencyContact { get; set; }
-        public virtual DbSet<EmsTblEmployeeDetails> EmsTblEmployeeDetails { get; set; }
-        public virtual DbSet<EmsTblEmployeeProfessionalDetails> EmsTblEmployeeProfessionalDetails { get; set; }
-        public virtual DbSet<EmsTblHrmsUser> EmsTblHrmsUser { get; set; }
-        public virtual DbSet<EmsTblProfessionalQualification> EmsTblProfessionalQualification { get; set; }
-        public virtual DbSet<EmsTblWorkingHistory> EmsTblWorkingHistory { get; set; }
-        public virtual DbSet<ImsTblAssests> ImsTblAssests { get; set; }
+        public virtual DbSet<EmsTblAcademicQualificationVM> EmsTblAcademicQualification { get; set; }
+        public virtual DbSet<EmsTblEmergencyContactVM> EmsTblEmergencyContact { get; set; }
+        public virtual DbSet<EmsTblEmployeeDetailsVM> EmsTblEmployeeDetails { get; set; }
+        public virtual DbSet<EmsTblEmployeeProfessionalDetailsVM> EmsTblEmployeeProfessionalDetails { get; set; }
+        public virtual DbSet<EmsTblHrmsUserVM> EmsTblHrmsUser { get; set; }
+        public virtual DbSet<EmsTblProfessionalQualificationVM> EmsTblProfessionalQualification { get; set; }
+        public virtual DbSet<EmsTblWorkingHistoryVM> EmsTblWorkingHistory { get; set; }
+        public virtual DbSet<ImsTblAssestsVM> ImsTblAssests { get; set; }
         public virtual DbSet<ImsTblAssetsCategory> ImsTblAssetsCategory { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -42,7 +42,7 @@ namespace Web.Data.Db_Context
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
 
-            modelBuilder.Entity<EmsTblAcademicQualification>(entity =>
+            modelBuilder.Entity<EmsTblAcademicQualificationVM>(entity =>
             {
                 entity.HasKey(e => e.EtaqAqId)
                     .HasName("PK__ems_tbl___128BDF78D5779BCF");
@@ -89,7 +89,7 @@ namespace Web.Data.Db_Context
                     .HasConstraintName("FK__ems_tbl_a__etaq___2DE6D218");
             });
 
-            modelBuilder.Entity<EmsTblEmergencyContact>(entity =>
+            modelBuilder.Entity<EmsTblEmergencyContactVM>(entity =>
             {
                 entity.HasKey(e => e.EtecEcId)
                     .HasName("PK__ems_tbl___BBD724E953E48F71");
@@ -136,7 +136,7 @@ namespace Web.Data.Db_Context
                     .HasConstraintName("FK__ems_tbl_e__etec___2EDAF651");
             });
 
-            modelBuilder.Entity<EmsTblEmployeeDetails>(entity =>
+            modelBuilder.Entity<EmsTblEmployeeDetailsVM>(entity =>
             {
                 entity.HasKey(e => e.EtedEmployeeId)
                     .HasName("PK__ems_tbl___516C46CDF5E224DC");
@@ -218,7 +218,7 @@ namespace Web.Data.Db_Context
                 entity.Property(e => e.EtedStatus).HasColumnName("eted_status");
             });
 
-            modelBuilder.Entity<EmsTblEmployeeProfessionalDetails>(entity =>
+            modelBuilder.Entity<EmsTblEmployeeProfessionalDetailsVM>(entity =>
             {
                 entity.HasKey(e => e.EtepdPdId)
                     .HasName("PK__ems_tbl___DBCDA814B7C6BA80");
@@ -265,7 +265,7 @@ namespace Web.Data.Db_Context
                     .HasConstraintName("FK__ems_tbl_e__etepd__2FCF1A8A");
             });
 
-            modelBuilder.Entity<EmsTblHrmsUser>(entity =>
+            modelBuilder.Entity<EmsTblHrmsUserVM>(entity =>
             {
                 entity.HasKey(e => e.EthuUserId)
                     .HasName("PK__ems_tbl___7F2D16AC75DE39F2");
@@ -307,7 +307,7 @@ namespace Web.Data.Db_Context
                 entity.Property(e => e.EthuUserName).HasColumnName("ethu_user_name");
             });
 
-            modelBuilder.Entity<EmsTblProfessionalQualification>(entity =>
+            modelBuilder.Entity<EmsTblProfessionalQualificationVM>(entity =>
             {
                 entity.HasKey(e => e.EtpqPqId)
                     .HasName("PK__ems_tbl___E07F4F72941A86C1");
@@ -358,7 +358,7 @@ namespace Web.Data.Db_Context
                     .HasConstraintName("FK__ems_tbl_p__etpq___30C33EC3");
             });
 
-            modelBuilder.Entity<EmsTblWorkingHistory>(entity =>
+            modelBuilder.Entity<EmsTblWorkingHistoryVM>(entity =>
             {
                 entity.HasKey(e => e.EtwhWhId)
                     .HasName("PK__ems_tbl___EE14BDFF5C21C3CE");
@@ -411,7 +411,7 @@ namespace Web.Data.Db_Context
                     .HasConstraintName("FK__ems_tbl_w__etwh___31B762FC");
             });
 
-            modelBuilder.Entity<ImsTblAssests>(entity =>
+            modelBuilder.Entity<ImsTblAssestsVM>(entity =>
             {
                 entity.HasKey(e => e.ItaAssetId)
                     .HasName("PK__ims_tbl___B51DD0C3537C0DC2");

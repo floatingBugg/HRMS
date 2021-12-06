@@ -8,9 +8,9 @@ namespace Web.Services.Interfaces
 {
     public interface IEmployeeService
     {
-        BaseResponse CreateEmployee(EmsTblEmployeeDetails employee, string userName, string userId);
+        BaseResponse CreateEmployee(EmsTblEmployeeDetailsVM employee, string userName, string userId);
 
-        BaseResponse UpdateEmployee(EmsTblEmployeeDetails employee ,string userName, string userId);
+        BaseResponse UpdateEmployee(EmsTblEmployeeDetailsVM employee ,string userName, string userId);
 
         BaseResponse GetAllEmployee();
 

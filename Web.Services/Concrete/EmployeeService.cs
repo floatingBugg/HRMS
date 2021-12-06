@@ -57,7 +57,7 @@ namespace Web.Services.Concrete
             return response;
         }
 
-        public BaseResponse CreateEmployee(EmsTblEmployeeDetails employee, string userName, string userId)
+        public BaseResponse CreateEmployee(EmsTblEmployeeDetailsVM employee, string userName, string userId)
         {
             
             BaseResponse response = new BaseResponse();
@@ -159,7 +159,7 @@ namespace Web.Services.Concrete
             return response;
         }
 
-        public BaseResponse UpdateEmployee(EmsTblEmployeeDetails employee, string userName,string userId)
+        public BaseResponse UpdateEmployee(EmsTblEmployeeDetailsVM employee, string userName,string userId)
         {
 
             //Update EmployeeDetails
@@ -294,7 +294,7 @@ namespace Web.Services.Concrete
             BaseResponse response = new BaseResponse();
             
            bool count = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false && z.EtedEmployeeId == id).Count() > 0;
-            var employeesData = _hrmsemployeeRepository.Table.Include(x => x.EmsTblAcademicQualification).Include(x => x.EmsTblEmergencyContact).Include(x => x.EmsTblEmployeeProfessionalDetails).Include(x => x.EmsTblProfessionalQualification).Include(x => x.EmsTblWorkingHistory).Where(x=>x.EtedEmployeeId == id).ToList();
+            var employeesData = _hrmsemployeeRepository.Table.Include(x => x.EmsTblAcademicQualification)/*.Include(x => x.EmsTblEmergencyContact).Include(x => x.EmsTblEmployeeProfessionalDetails).Include(x => x.EmsTblProfessionalQualification).Include(x => x.EmsTblWorkingHistory)*/.Where(x=>x.EtedEmployeeId == id).ToList();
         
 
             if (count == true)
