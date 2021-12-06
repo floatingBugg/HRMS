@@ -47,6 +47,18 @@ namespace Web.Services.Concrete
                 _hrmsassetscategoryRepository.Insert(assests);
                 responce.Success = true;
                 responce.Message = UserMessages.strSuccess;
+
+                if (assests.ImsTblAssests.Count > 0)
+                {
+                    foreach (var item in assests.ImsTblAssests)
+                    {
+                        item.ItaCreatedBy = "Admin";
+                        item.ItaCreatedByDate = DateTime.Now;
+                        item.ItaCreatedByName = "Admin";
+                        item.ItaIsDelete = false;
+
+                    }
+                }
             }
 
 
