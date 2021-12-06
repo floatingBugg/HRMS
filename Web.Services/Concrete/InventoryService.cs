@@ -50,9 +50,9 @@ namespace Web.Services.Concrete
                 {
                     foreach (var item in assests.ImsTblAssests)
                     {
-                        item.ItaCreatedBy = "Admin";
+                        item.ItaCreatedBy = userId;
                         item.ItaCreatedByDate = DateTime.Now;
-                        item.ItaCreatedByName = "Admin";
+                        item.ItaCreatedByName = userName;
                         item.ItaIsDelete = false;
 
                     }
@@ -155,9 +155,9 @@ namespace Web.Services.Concrete
             {
                 foreach (var item in assests.ImsTblAssests)
                 {
-                    item.ItaModifiedBy = "admin";
+                    item.ItaModifiedBy = userId;
                     item.ItaModifiedByDate = DateTime.Now;
-                    item.ItaModifiedByName = "admin";
+                    item.ItaModifiedByName = userName;
                     item.ItaIsDelete = false;
                     response.Success = true;
                     response.Message = UserMessages.strUpdated;
