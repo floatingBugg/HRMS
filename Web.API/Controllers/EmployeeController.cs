@@ -11,7 +11,7 @@ using Web.Services.Interfaces;
 
 namespace Web.API.Controllers
 {
-   // [Authorize]
+    [Authorize]
     public class EmployeeController : Controller
     {
 
@@ -47,13 +47,13 @@ namespace Web.API.Controllers
             }
         }
 
-        [HttpGet("/Employee/Edit")]
-        public BaseResponse EditEmployee(int id)
+        [HttpGet("/Employee/GetEmployeebyID")]
+        public BaseResponse ViewEmployeeDataByid(int id)
         {
             BaseResponse response = new BaseResponse();
             try
             {
-                response = _employeeservice.EditEmployeeByid(id);
+                response = _employeeservice.ViewDataEmployeeByid(id);
                 return response;
             }
             catch (Exception ex)
