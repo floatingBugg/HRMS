@@ -50,5 +50,28 @@ namespace Web.API.Controllers
             }
         }
 
+        [HttpPost("/Assest/Ac/AddAc")]
+        public BaseResponse CreateAssetAc([FromBody] AssetAcCredential Ac)
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                var test = ModelState;
+                response = _assetservice.CreateAssetAc(Ac);
+
+
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+        }
+
     }
 }

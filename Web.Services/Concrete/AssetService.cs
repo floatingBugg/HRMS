@@ -17,13 +17,16 @@ namespace Web.Services.Concrete
     {
         private readonly IHRMSIMSAssetRepository _hrmsassetRepository;
         private readonly IHRMSIMSAssetLaptopRepository _hrmsassetlaptopRepository;
+        private readonly IHRMSIMSAssetACRepository _hrmsassetacRepository;
+
         IConfiguration _config;
         private readonly UnitOfWork unitorWork;
-        public AssetService(IConfiguration config, IHRMSIMSAssetRepository hrmsassetRepository, IHRMSIMSAssetLaptopRepository hrmsassetlaptopRepository)
+        public AssetService(IConfiguration config, IHRMSIMSAssetRepository hrmsassetRepository, IHRMSIMSAssetLaptopRepository hrmsassetlaptopRepository, IHRMSIMSAssetACRepository hrmsassetacRepository)
         {
             _config = config;
             _hrmsassetRepository = hrmsassetRepository;
             _hrmsassetlaptopRepository = hrmsassetlaptopRepository;
+            _hrmsassetacRepository = hrmsassetacRepository;
         }
 
         public BaseResponse CreateAssestLaptop(AssestLaptopCredential laptop)
@@ -75,8 +78,53 @@ namespace Web.Services.Concrete
                 return response;
             }
 
+       
+
+        public BaseResponse CreateAssetAc(AssetAcCredential Ac)
+        {
+            BaseResponse response = new BaseResponse();
+            List<ImsAssets> asset = new List<ImsAssets>();
+            List<ImsAc> assetac = new List<ImsAc>();
+            if (!string.IsNullOrEmpty(Ac.assestName))
+            {
+                asset.Add(new ImsAssets
+                {
+                    ItaAssetName = Ac.assestName,
+                    ItaQuantity = Ac.quantity,
+                    ItaCost = Ac.cost,
+                    ItaPurchaseDate = Ac.purchaseDate.Date,
+                    ItaCreatedBy = "Admin",
+                    ItaCreatedByName = "Admin",
+                    ItaCreatedByDate = DateTime.Now.Date,
+                    ItaIsDelete = false
+
+                });
+                _hrmsassetRepository.Insert(asset);
+                assetac.Add(new ImsAc
+                {
+                    ItaAssetId = asset.FirstOrDefault().ItaAssetId,
+                    ItaCompanyName = Ac.companyname,
+                    ItaSize = Ac.size,
+                    ItaCreatedBy = "Admin",
+                    ItaCreatedByName = "Admin",
+                    ItaIsDelete = false
+
+                });
+                _hrmsassetacRepository.Insert(assetac);
 
 
+                response.Success = true;
+                response.Message = UserMessages.strAdded;
+                response.Data = null;
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotinsert;
+            }
+            return response;
         }
+    }
     }
 
