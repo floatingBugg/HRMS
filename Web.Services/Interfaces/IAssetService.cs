@@ -11,7 +11,7 @@ namespace Web.Services.Interfaces
 {
     public interface IAssetService
     {
-        public BaseResponse CreateAssestLaptop(AssestLaptopCredential laptop);
+        public BaseResponse CreateAssetLaptop(AssetLaptopCredential laptop);
         public BaseResponse CreateAssestFurniture(AssetFurnitureCredential furniture);
     }
 }

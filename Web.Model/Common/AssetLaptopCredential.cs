@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Web.Model.Common
 {
-    public class AssestLaptopCredential
+    public class AssetLaptopCredential
     {
         public int assestID { get; set; }
-        public string assestName { get; set; }
+        public string assetName { get; set; }
 
         public int quantity { get; set; }
 

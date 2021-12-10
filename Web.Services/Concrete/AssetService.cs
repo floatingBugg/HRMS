@@ -28,15 +28,15 @@ namespace Web.Services.Concrete
             _hrmsassetfurnitureRepository = hrmsassetfurnitureRepository;
         }
 
-        public BaseResponse CreateAssestLaptop(AssestLaptopCredential laptop)
+        public BaseResponse CreateAssetLaptop(AssetLaptopCredential laptop)
         {
             BaseResponse response = new BaseResponse();
             List<ImsAssets> asset = new List<ImsAssets>();
             List<ImsLaptop> assetlaptop = new List<ImsLaptop>();
-            if (!string.IsNullOrEmpty(laptop.assestName)) {
+            if (!string.IsNullOrEmpty(laptop.assetName)) {
                 asset.Add(new ImsAssets
                 {
-                    ItaAssetName = laptop.assestName,
+                    ItaAssetName = laptop.assetName,
                     ItaQuantity = laptop.quantity,
                     ItaCost = laptop.cost,
                     ItaPurchaseDate = laptop.purchaseDate.Date,
