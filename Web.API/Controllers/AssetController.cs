@@ -28,7 +28,7 @@ namespace Web.API.Controllers
 
         //Assest Laptop CRUD 
         [HttpPost("/Assest/Laptop/AddLaptop")]
-        public BaseResponse CreateAssestLaptop([FromBody] AssestLaptopCredential laptop)
+        public BaseResponse CreateLaptop([FromBody] AssestLaptopCredential laptop)
         {
             BaseResponse response = new BaseResponse();
             try
@@ -46,6 +46,24 @@ namespace Web.API.Controllers
                 response.Data = null;
                 response.Message = ex.Message;
                 response.Success = false;
+                return response;
+            }
+        }
+        
+        [HttpPost("/Assest/Laptop/UpdateLaptop")]
+        public BaseResponse UpdateLaptop([FromBody] AssestLaptopCredential laptop)
+        {
+            BaseResponse response = new BaseResponse();
+
+            try
+            {
+
+                response = _assetservice.UpdateAssestLaptop(laptop);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
                 return response;
             }
         }

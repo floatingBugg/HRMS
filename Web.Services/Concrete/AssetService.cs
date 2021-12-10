@@ -18,12 +18,14 @@ namespace Web.Services.Concrete
         private readonly IHRMSIMSAssetRepository _hrmsassetRepository;
         private readonly IHRMSIMSAssetLaptopRepository _hrmsassetlaptopRepository;
         IConfiguration _config;
-        private readonly UnitOfWork unitorWork;
-        public AssetService(IConfiguration config, IHRMSIMSAssetRepository hrmsassetRepository, IHRMSIMSAssetLaptopRepository hrmsassetlaptopRepository)
+        private readonly IUnitOfWork _uow;
+        private readonly UnitOfWork unitofWork;
+        public AssetService(IConfiguration config, IHRMSIMSAssetRepository hrmsassetRepository, IHRMSIMSAssetLaptopRepository hrmsassetlaptopRepository, IUnitOfWork uow)
         {
             _config = config;
             _hrmsassetRepository = hrmsassetRepository;
             _hrmsassetlaptopRepository = hrmsassetlaptopRepository;
+            _uow = uow;
         }
 
         public BaseResponse CreateAssestLaptop(AssestLaptopCredential laptop)
@@ -62,9 +64,9 @@ namespace Web.Services.Concrete
                 _hrmsassetlaptopRepository.Insert(assetlaptop);
 
 
-                    response.Success = true;
-                    response.Message = UserMessages.strAdded;
-                    response.Data = null;
+                response.Success = true;
+                response.Message = UserMessages.strAdded;
+                response.Data = null;
             }
             else
             {
@@ -72,10 +74,59 @@ namespace Web.Services.Concrete
                 response.Success = false;
                 response.Message = UserMessages.strNotinsert;
             }
-                return response;
+            return response;
+        }
+
+        public BaseResponse UpdateAssestLaptop(AssestLaptopCredential laptop)
+        {
+            BaseResponse response = new BaseResponse();
+            bool count = _hrmsassetRepository.Table.Where(p => p.ItaAssetId == laptop.assestID).Count()> 0;
+            if (count == true) { 
+            _hrmsassetRepository.Table.Where(p => p.ItaAssetId == laptop.assestID)
+                .ToList()
+                .ForEach(x =>
+                {
+                    x.ItaAssetName = laptop.assestName;
+                    x.ItaQuantity = laptop.quantity;
+                    x.ItaCost = laptop.cost;
+                    x.ItaPurchaseDate = laptop.purchaseDate.Date;
+                    x.ItaCreatedBy = "Admin";
+                    x.ItaCreatedByName = "Admin";
+                    x.ItaCreatedByDate = DateTime.Now.Date;
+                    x.ItaIsDelete = false;
+
+                });
+            _hrmsassetlaptopRepository.Table.Where(p => p.ItaAssetId == laptop.assestID)
+              .ToList()
+              .ForEach(x =>
+              {
+
+                  x.ItlCompanyName = laptop.companyName;
+                  x.ItlGeneration = laptop.generation;
+                  x.ItlSerialNo = laptop.serialno;
+                  x.ItlRam = laptop.ram;
+                  x.ItlHdd = laptop.hdd;
+                  x.ItlProcessor = laptop.processor;
+                  x.ItlCreatedBy = "Admin";
+                  x.ItlCreatedByName = "Admin";
+                  x.ItlIsDelete = false;
+
+              });
+                _uow.Commit();
+                
+                response.Success = true;
+                response.Message = UserMessages.strAdded;
+                response.Data = null;
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotupdated;
             }
 
-
+            return response;
+        }
 
         }
     }
