@@ -77,7 +77,7 @@ namespace Web.Services.Concrete
                 return response;
             }
 
-        public BaseResponse CreateAssestFurniture(AssetFurnitureCredential furniture)
+        public BaseResponse CreateAssetFurniture(AssetFurnitureCredential furniture)
         {
             BaseResponse response = new BaseResponse();
             List<ImsAssets> asset = new List<ImsAssets>();
