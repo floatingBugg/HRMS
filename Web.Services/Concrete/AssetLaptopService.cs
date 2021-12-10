@@ -26,8 +26,7 @@ namespace Web.Services.Concrete
             _config = config;
             _hrmsassetRepository = hrmsassetRepository;
             _hrmsassetlaptopRepository = hrmsassetlaptopRepository;
-             _hrmsassetacRepository = hrmsassetacRepository;
-            _hrmsassetfurnitureRepository = hrmsassetfurnitureRepository;
+            _uow = uow;
 
         }
         //ASSET Laptop
@@ -82,7 +81,7 @@ namespace Web.Services.Concrete
         }
 
 
-        public BaseResponse CreateAssetFurniture(AssetFurnitureCredential furniture)
+        public BaseResponse UpdateAssestLaptop(AssetLaptopCredential laptop)
         {
             BaseResponse response = new BaseResponse();
             bool count = _hrmsassetRepository.Table.Where(p => p.ItaAssetId == laptop.assestID).Count() > 0;
