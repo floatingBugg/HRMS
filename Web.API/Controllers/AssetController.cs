@@ -1,7 +1,8 @@
-﻿using log4net.Repository.Hierarchy;
+﻿
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Web.API.Helper;
 using Web.Services.Interfaces;
 
 namespace Web.API.Controllers
