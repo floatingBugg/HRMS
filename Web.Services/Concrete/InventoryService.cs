@@ -16,13 +16,13 @@ namespace Web.Services.Concrete
 {
     public class InventoryService : IInventoryService
     {
-        private readonly IHRMSIMSAssetsCategoryRepository _hrmsassetscategoryRepository;
-        private readonly IHRMSIMSAssetsRepository _hrmsassetsRepository;
+        /*private readonly IHRMSIMSAssetsCategoryRepository _hrmsassetscategoryRepository;
+        private readonly IHRMSIMSAssetsRepository _hrmsassetsRepository;*/
         IConfiguration _config;
         private readonly IUnitOfWork _uow;
 
 
-        public InventoryService(IConfiguration config, IHRMSIMSAssetsRepository hrmsassetsRepository,IHRMSIMSAssetsCategoryRepository hrmsassetscategoryRepository, IUnitOfWork uow)
+        public InventoryService(IConfiguration config,/* IHRMSIMSAssetsRepository hrmsassetsRepository,IHRMSIMSAssetsCategoryRepository hrmsassetscategoryRepository,*/ IUnitOfWork uow)
         {
             _hrmsassetscategoryRepository = hrmsassetscategoryRepository;
             _config = config;
@@ -30,12 +30,12 @@ namespace Web.Services.Concrete
             _uow = uow;
         }
 
-        public BaseResponse CreateAssests(ImsTblAssetsCategory assests, string userName,string userId)
+        /*public BaseResponse CreateAssests(*//*ImsTblAssetsCategory assests*//*, string userName,string userId)
         {
-            BaseResponse responce = new BaseResponse();
+            BaseResponse responce = new BaseResponse();*/
           
 
-            if (!string.IsNullOrEmpty(assests.ItacCategory))
+           /* if (!string.IsNullOrEmpty(assests.ItacCategory))
             {
                 assests.ItacCreatedBy = userId;
                 assests.ItacCreatedByDate= DateTime.Now;
@@ -70,7 +70,7 @@ namespace Web.Services.Concrete
             return responce;
 
 
-        }
+        }*/
 
         public BaseResponse DeleteAssests(int Delid,string userName,string userId)
         {
@@ -138,7 +138,7 @@ namespace Web.Services.Concrete
             return response;
         }
 
-        public BaseResponse UpdateAssests(ImsTblAssetsCategory assests,string userName,string userId)
+       /* public BaseResponse UpdateAssests(*//*ImsTblAssetsCategory assests*//*,string userName,string userId)
         {
             BaseResponse response = new BaseResponse();
 
@@ -172,7 +172,7 @@ namespace Web.Services.Concrete
             _hrmsassetscategoryRepository.Update(assests);
             _uow.Commit();
             return response;
-        }
+        }*/
 
         public BaseResponse ViewAssetById(int id)
         {

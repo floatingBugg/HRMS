@@ -11,9 +11,9 @@ namespace Web.Services.Interfaces
     public interface IInventoryService
     {
 
-        BaseResponse CreateAssests(ImsTblAssetsCategory assests,string userName,string userId);
+       /* BaseResponse CreateAssests(ImsTblAssetsCategory assests,string userName,string userId);
 
-        BaseResponse UpdateAssests(ImsTblAssetsCategory assests,string userName,string userId);
+        BaseResponse UpdateAssests(ImsTblAssetsCategory assests,string userName,string userId);*/
 
         BaseResponse GetAllAssets();
 
