@@ -15,10 +15,10 @@ namespace Web.Data.Models
         public string ItaSize { get; set; }
         public string ItaCreatedBy { get; set; }
         public string ItaCreatedByName { get; set; }
-        public DateTime? ItaCreatedBy1 { get; set; }
+        public DateTime? ItaCreatedByDate { get; set; }
         public string ItaModifiedBy { get; set; }
         public string ItaModifiedByName { get; set; }
-        public DateTime? ItaModifiedBy1 { get; set; }
+        public DateTime? ItaModifiedByDate { get; set; }
         public bool? ItaIsDelete { get; set; }
         [JsonIgnore]
         public virtual ImsAssets ItaAsset { get; set; }

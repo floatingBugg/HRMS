@@ -15,10 +15,10 @@ namespace Web.Data.Models
         public string ItkCompanyName { get; set; }
         public string ItkCreatedBy { get; set; }
         public string ItkCreatedByName { get; set; }
-        public DateTime? ItkCreatedBy1 { get; set; }
+        public DateTime? ItkCreatedByDate { get; set; }
         public string ItkModifiedBy { get; set; }
         public string ItkModifiedByName { get; set; }
-        public DateTime? ItkModifiedBy1 { get; set; }
+        public DateTime? ItkModifiedByDate { get; set; }
         public bool? ItkIsDelete { get; set; }
         [JsonIgnore]
         public virtual ImsAssets ItaAsset { get; set; }

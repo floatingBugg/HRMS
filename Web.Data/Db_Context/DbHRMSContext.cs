@@ -425,7 +425,7 @@ namespace Web.Data.Db_Context
             modelBuilder.Entity<ImsAc>(entity =>
             {
                 entity.HasKey(e => e.ItaAcId)
-                    .HasName("PK__ims_ac__FB0A9A7D32105E5F");
+                    .HasName("PK__ims_ac__FB0A9A7DFE4001B1");
 
                 entity.ToTable("ims_ac");
 
@@ -437,9 +437,9 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.ItaCreatedBy).HasColumnName("ita_created_by");
 
-                entity.Property(e => e.ItaCreatedBy1)
+                entity.Property(e => e.ItaCreatedByDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("ita_created_by_")
+                    .HasColumnName("ita_created_by_date")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.ItaCreatedByName).HasColumnName("ita_created_by_name");
@@ -448,9 +448,9 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.ItaModifiedBy).HasColumnName("ita_modified_by");
 
-                entity.Property(e => e.ItaModifiedBy1)
+                entity.Property(e => e.ItaModifiedByDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("ita_modified_by_")
+                    .HasColumnName("ita_modified_by_date")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.ItaModifiedByName).HasColumnName("ita_modified_by_name");
@@ -460,13 +460,13 @@ namespace Web.Data.Db_Context
                 entity.HasOne(d => d.ItaAsset)
                     .WithMany(p => p.ImsAc)
                     .HasForeignKey(d => d.ItaAssetId)
-                    .HasConstraintName("FK__ims_ac__ita_asse__503BEA1C");
+                    .HasConstraintName("FK__ims_ac__ita_asse__0D44F85C");
             });
 
             modelBuilder.Entity<ImsAssets>(entity =>
             {
                 entity.HasKey(e => e.ItaAssetId)
-                    .HasName("PK__ims_asse__B51DD0C34AB39FC3");
+                    .HasName("PK__ims_asse__B51DD0C3A38A65C3");
 
                 entity.ToTable("ims_assets");
 
@@ -510,7 +510,7 @@ namespace Web.Data.Db_Context
             modelBuilder.Entity<ImsCctvCameras>(entity =>
             {
                 entity.HasKey(e => e.ItccCctvId)
-                    .HasName("PK__ims_cctv__C48F7A6F72EB0F7D");
+                    .HasName("PK__ims_cctv__C48F7A6FAD4870EF");
 
                 entity.ToTable("ims_cctv_cameras");
 
@@ -520,9 +520,9 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.ItccCreatedBy).HasColumnName("itcc_created_by");
 
-                entity.Property(e => e.ItccCreatedBy1)
+                entity.Property(e => e.ItccCreatedByDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("itcc_created_by_")
+                    .HasColumnName("itcc_created_by_date")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.ItccCreatedByName).HasColumnName("itcc_created_by_name");
@@ -533,9 +533,9 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.ItccModifiedBy).HasColumnName("itcc_modified_by");
 
-                entity.Property(e => e.ItccModifiedBy1)
+                entity.Property(e => e.ItccModifiedByDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("itcc_modified_by_")
+                    .HasColumnName("itcc_modified_by_date")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.ItccModifiedByName).HasColumnName("itcc_modified_by_name");
@@ -547,13 +547,13 @@ namespace Web.Data.Db_Context
                 entity.HasOne(d => d.ItaAsset)
                     .WithMany(p => p.ImsCctvCameras)
                     .HasForeignKey(d => d.ItaAssetId)
-                    .HasConstraintName("FK__ims_cctv___ita_a__55009F39");
+                    .HasConstraintName("FK__ims_cctv___ita_a__1209AD79");
             });
 
             modelBuilder.Entity<ImsDrives>(entity =>
             {
                 entity.HasKey(e => e.ItdDriveId)
-                    .HasName("PK__ims_driv__FA3037AFF4D6A83A");
+                    .HasName("PK__ims_driv__FA3037AFA62BF0B6");
 
                 entity.ToTable("ims_drives");
 
@@ -565,9 +565,9 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.ItdCreatedBy).HasColumnName("itd_created_by");
 
-                entity.Property(e => e.ItdCreatedBy1)
+                entity.Property(e => e.ItdCreatedByDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("itd_created_by_")
+                    .HasColumnName("itd_created_by_date")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.ItdCreatedByName).HasColumnName("itd_created_by_name");
@@ -576,9 +576,9 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.ItdModifiedBy).HasColumnName("itd_modified_by");
 
-                entity.Property(e => e.ItdModifiedBy1)
+                entity.Property(e => e.ItdModifiedByDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("itd_modified_by_")
+                    .HasColumnName("itd_modified_by_date")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.ItdModifiedByName).HasColumnName("itd_modified_by_name");
@@ -588,13 +588,13 @@ namespace Web.Data.Db_Context
                 entity.HasOne(d => d.ItaAsset)
                     .WithMany(p => p.ImsDrives)
                     .HasForeignKey(d => d.ItaAssetId)
-                    .HasConstraintName("FK__ims_drive__ita_a__47A6A41B");
+                    .HasConstraintName("FK__ims_drive__ita_a__03BB8E22");
             });
 
             modelBuilder.Entity<ImsFans>(entity =>
             {
                 entity.HasKey(e => e.ItfaFanId)
-                    .HasName("PK__ims_fans__0140B3EFE16FE9AD");
+                    .HasName("PK__ims_fans__0140B3EF1F859770");
 
                 entity.ToTable("ims_fans");
 
@@ -604,9 +604,9 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.ItfaCreatedBy).HasColumnName("itfa_created_by");
 
-                entity.Property(e => e.ItfaCreatedBy1)
+                entity.Property(e => e.ItfaCreatedByDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("itfa_created_by_")
+                    .HasColumnName("itfa_created_by_date")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.ItfaCreatedByName).HasColumnName("itfa_created_by_name");
@@ -617,9 +617,9 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.ItfaModifiedBy).HasColumnName("itfa_modified_by");
 
-                entity.Property(e => e.ItfaModifiedBy1)
+                entity.Property(e => e.ItfaModifiedByDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("itfa_modified_by_")
+                    .HasColumnName("itfa_modified_by_date")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.ItfaModifiedByName).HasColumnName("itfa_modified_by_name");
@@ -631,13 +631,13 @@ namespace Web.Data.Db_Context
                 entity.HasOne(d => d.ItaAsset)
                     .WithMany(p => p.ImsFans)
                     .HasForeignKey(d => d.ItaAssetId)
-                    .HasConstraintName("FK__ims_fans__ita_as__59C55456");
+                    .HasConstraintName("FK__ims_fans__ita_as__16CE6296");
             });
 
             modelBuilder.Entity<ImsFurniture>(entity =>
             {
                 entity.HasKey(e => e.ItfFurnitureId)
-                    .HasName("PK__ims_furn__E68EEF883C1F7318");
+                    .HasName("PK__ims_furn__E68EEF8881656E01");
 
                 entity.ToTable("ims_furniture");
 
@@ -647,9 +647,9 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.ItfCreatedBy).HasColumnName("itf_created_by");
 
-                entity.Property(e => e.ItfCreatedBy1)
+                entity.Property(e => e.ItfCreatedByDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("itf_created_by_")
+                    .HasColumnName("itf_created_by_date")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.ItfCreatedByName).HasColumnName("itf_created_by_name");
@@ -658,7 +658,10 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.ItfModifiedBy).HasColumnName("itf_modified_by");
 
-                entity.Property(e => e.ItfModifiedByDate).HasColumnName("itf_modified_by_date");
+                entity.Property(e => e.ItfModifiedByDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("itf_modified_by_date")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.ItfModifiedByName).HasColumnName("itf_modified_by_name");
 
@@ -667,13 +670,13 @@ namespace Web.Data.Db_Context
                 entity.HasOne(d => d.ItaAsset)
                     .WithMany(p => p.ImsFurniture)
                     .HasForeignKey(d => d.ItaAssetId)
-                    .HasConstraintName("FK__ims_furni__ita_a__4C6B5938");
+                    .HasConstraintName("FK__ims_furni__ita_a__0880433F");
             });
 
             modelBuilder.Entity<ImsKeyboard>(entity =>
             {
                 entity.HasKey(e => e.ItkKeyboardId)
-                    .HasName("PK__ims_keyb__016604ED4269D74F");
+                    .HasName("PK__ims_keyb__016604ED26AE090B");
 
                 entity.ToTable("ims_keyboard");
 
@@ -685,9 +688,9 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.ItkCreatedBy).HasColumnName("itk_created_by");
 
-                entity.Property(e => e.ItkCreatedBy1)
+                entity.Property(e => e.ItkCreatedByDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("itk_created_by_")
+                    .HasColumnName("itk_created_by_date")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.ItkCreatedByName).HasColumnName("itk_created_by_name");
@@ -698,9 +701,9 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.ItkModifiedBy).HasColumnName("itk_modified_by");
 
-                entity.Property(e => e.ItkModifiedBy1)
+                entity.Property(e => e.ItkModifiedByDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("itk_modified_by_")
+                    .HasColumnName("itk_modified_by_date")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.ItkModifiedByName).HasColumnName("itk_modified_by_name");
@@ -708,21 +711,21 @@ namespace Web.Data.Db_Context
                 entity.HasOne(d => d.ItaAsset)
                     .WithMany(p => p.ImsKeyboard)
                     .HasForeignKey(d => d.ItaAssetId)
-                    .HasConstraintName("FK__ims_keybo__ita_a__6CD828CA");
+                    .HasConstraintName("FK__ims_keybo__ita_a__29E1370A");
             });
 
             modelBuilder.Entity<ImsLaptop>(entity =>
             {
                 entity.HasKey(e => e.ItlLaptopId)
-                    .HasName("PK__ims_lapt__D9F5296D76170FFF");
+                    .HasName("PK__ims_lapt__D9F5296D6DE70C18");
 
                 entity.ToTable("ims_laptop");
 
                 entity.Property(e => e.ItlLaptopId).HasColumnName("itl_laptop_id");
 
-                entity.Property(e => e.IltCreatedBy)
+                entity.Property(e => e.IltCreatedByDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("ilt_created_by_")
+                    .HasColumnName("ilt_created_by_date")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.ItaAssetId).HasColumnName("ita_asset_id");
@@ -741,9 +744,9 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.ItlModifiedBy).HasColumnName("itl_modified_by");
 
-                entity.Property(e => e.ItlModifiedBy1)
+                entity.Property(e => e.ItlModifiedByDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("itl_modified_by_")
+                    .HasColumnName("itl_modified_by_date")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.ItlModifiedByName).HasColumnName("itl_modified_by_name");
@@ -757,13 +760,13 @@ namespace Web.Data.Db_Context
                 entity.HasOne(d => d.ItaAsset)
                     .WithMany(p => p.ImsLaptop)
                     .HasForeignKey(d => d.ItaAssetId)
-                    .HasConstraintName("FK__ims_lapto__ita_a__681373AD");
+                    .HasConstraintName("FK__ims_lapto__ita_a__251C81ED");
             });
 
             modelBuilder.Entity<ImsMouse>(entity =>
             {
                 entity.HasKey(e => e.ItmMouseId)
-                    .HasName("PK__ims_mous__41F587BB9CE1C20B");
+                    .HasName("PK__ims_mous__41F587BBDFE18F0A");
 
                 entity.ToTable("ims_mouse");
 
@@ -775,9 +778,9 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.ItmCreatedBy).HasColumnName("itm_created_by");
 
-                entity.Property(e => e.ItmCreatedBy1)
+                entity.Property(e => e.ItmCreatedByDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("itm_created_by_")
+                    .HasColumnName("itm_created_by_date")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.ItmCreatedByName).HasColumnName("itm_created_by_name");
@@ -788,9 +791,9 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.ItmModifiedBy).HasColumnName("itm_modified_by");
 
-                entity.Property(e => e.ItmModifiedBy1)
+                entity.Property(e => e.ItmModifiedByDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("itm_modified_by_")
+                    .HasColumnName("itm_modified_by_date")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.ItmModifiedByName).HasColumnName("itm_modified_by_name");
@@ -798,13 +801,13 @@ namespace Web.Data.Db_Context
                 entity.HasOne(d => d.ItaAsset)
                     .WithMany(p => p.ImsMouse)
                     .HasForeignKey(d => d.ItaAssetId)
-                    .HasConstraintName("FK__ims_mouse__ita_a__719CDDE7");
+                    .HasConstraintName("FK__ims_mouse__ita_a__2EA5EC27");
             });
 
             modelBuilder.Entity<ImsPowerCable>(entity =>
             {
                 entity.HasKey(e => e.ItpcPowerId)
-                    .HasName("PK__ims_powe__C3CAEFF80E989B9C");
+                    .HasName("PK__ims_powe__C3CAEFF8EC465202");
 
                 entity.ToTable("ims_power_cable");
 
@@ -814,9 +817,9 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.ItpcCreatedBy).HasColumnName("itpc_created_by");
 
-                entity.Property(e => e.ItpcCreatedBy1)
+                entity.Property(e => e.ItpcCreatedByDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("itpc_created_by_")
+                    .HasColumnName("itpc_created_by_date")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.ItpcCreatedByName).HasColumnName("itpc_created_by_name");
@@ -825,9 +828,9 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.ItpcModifiedBy).HasColumnName("itpc_modified_by");
 
-                entity.Property(e => e.ItpcModifiedBy1)
+                entity.Property(e => e.ItpcModifiedByDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("itpc_modified_by_")
+                    .HasColumnName("itpc_modified_by_date")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.ItpcModifiedByName).HasColumnName("itpc_modified_by_name");
@@ -835,13 +838,13 @@ namespace Web.Data.Db_Context
                 entity.HasOne(d => d.ItaAsset)
                     .WithMany(p => p.ImsPowerCable)
                     .HasForeignKey(d => d.ItaAssetId)
-                    .HasConstraintName("FK__ims_power__ita_a__634EBE90");
+                    .HasConstraintName("FK__ims_power__ita_a__2057CCD0");
             });
 
             modelBuilder.Entity<ImsPrinters>(entity =>
             {
                 entity.HasKey(e => e.ItpPrinterId)
-                    .HasName("PK__ims_prin__11FC8727BFFFFD90");
+                    .HasName("PK__ims_prin__11FC8727DB70AF7A");
 
                 entity.ToTable("ims_printers");
 
@@ -878,13 +881,13 @@ namespace Web.Data.Db_Context
                 entity.HasOne(d => d.ItaAsset)
                     .WithMany(p => p.ImsPrinters)
                     .HasForeignKey(d => d.ItaAssetId)
-                    .HasConstraintName("FK__ims_print__ita_a__42E1EEFE");
+                    .HasConstraintName("FK__ims_print__ita_a__7EF6D905");
             });
 
             modelBuilder.Entity<ImsScreens>(entity =>
             {
                 entity.HasKey(e => e.ItscScreenId)
-                    .HasName("PK__ims_scre__E2BC1118D7530313");
+                    .HasName("PK__ims_scre__E2BC1118370FC0BB");
 
                 entity.ToTable("ims_screens");
 
@@ -896,9 +899,9 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.ItscCreatedBy).HasColumnName("itsc_created_by");
 
-                entity.Property(e => e.ItscCreatedBy1)
+                entity.Property(e => e.ItscCreatedByDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("itsc_created_by_")
+                    .HasColumnName("itsc_created_by_date")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.ItscCreatedByName).HasColumnName("itsc_created_by_name");
@@ -909,9 +912,9 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.ItscModifiedBy).HasColumnName("itsc_modified_by");
 
-                entity.Property(e => e.ItscModifiedBy1)
+                entity.Property(e => e.ItscModifiedByDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("itsc_modified_by_")
+                    .HasColumnName("itsc_modified_by_date")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.ItscModifiedByName).HasColumnName("itsc_modified_by_name");
@@ -921,13 +924,13 @@ namespace Web.Data.Db_Context
                 entity.HasOne(d => d.ItaAsset)
                     .WithMany(p => p.ImsScreens)
                     .HasForeignKey(d => d.ItaAssetId)
-                    .HasConstraintName("FK__ims_scree__ita_a__76619304");
+                    .HasConstraintName("FK__ims_scree__ita_a__336AA144");
             });
 
             modelBuilder.Entity<ImsStationery>(entity =>
             {
                 entity.HasKey(e => e.ItsStationeryId)
-                    .HasName("PK__ims_stat__D96C26B134F2652D");
+                    .HasName("PK__ims_stat__D96C26B1B4884F75");
 
                 entity.ToTable("ims_stationery");
 
@@ -937,9 +940,9 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.ItsCreatedBy).HasColumnName("its_created_by");
 
-                entity.Property(e => e.ItsCreatedBy1)
+                entity.Property(e => e.ItsCreatedByDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("its_created_by_")
+                    .HasColumnName("its_created_by_date")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.ItsCreatedByName).HasColumnName("its_created_by_name");
@@ -948,9 +951,9 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.ItsModifiedBy).HasColumnName("its_modified_by");
 
-                entity.Property(e => e.ItsModifiedBy1)
+                entity.Property(e => e.ItsModifiedByDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("its_modified_by_")
+                    .HasColumnName("its_modified_by_date")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.ItsModifiedByName).HasColumnName("its_modified_by_name");
@@ -960,7 +963,7 @@ namespace Web.Data.Db_Context
                 entity.HasOne(d => d.ItaAsset)
                     .WithMany(p => p.ImsStationery)
                     .HasForeignKey(d => d.ItaAssetId)
-                    .HasConstraintName("FK__ims_stati__ita_a__5E8A0973");
+                    .HasConstraintName("FK__ims_stati__ita_a__1B9317B3");
             });
 
             OnModelCreatingPartial(modelBuilder);

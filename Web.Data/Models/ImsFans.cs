@@ -16,10 +16,10 @@ namespace Web.Data.Models
         public string ItfaType { get; set; }
         public string ItfaCreatedBy { get; set; }
         public string ItfaCreatedByName { get; set; }
-        public DateTime? ItfaCreatedBy1 { get; set; }
+        public DateTime? ItfaCreatedByDate { get; set; }
         public string ItfaModifiedBy { get; set; }
         public string ItfaModifiedByName { get; set; }
-        public DateTime? ItfaModifiedBy1 { get; set; }
+        public DateTime? ItfaModifiedByDate { get; set; }
         public bool? ItfaIsDelete { get; set; }
         [JsonIgnore]
         public virtual ImsAssets ItaAsset { get; set; }

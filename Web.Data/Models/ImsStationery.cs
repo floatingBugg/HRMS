@@ -14,10 +14,10 @@ namespace Web.Data.Models
         public string ItsType { get; set; }
         public string ItsCreatedBy { get; set; }
         public string ItsCreatedByName { get; set; }
-        public DateTime? ItsCreatedBy1 { get; set; }
+        public DateTime? ItsCreatedByDate { get; set; }
         public string ItsModifiedBy { get; set; }
         public string ItsModifiedByName { get; set; }
-        public DateTime? ItsModifiedBy1 { get; set; }
+        public DateTime? ItsModifiedByDate { get; set; }
         public bool? ItsIsDelete { get; set; }
         [JsonIgnore]
         public virtual ImsAssets ItaAsset { get; set; }

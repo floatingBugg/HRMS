@@ -16,10 +16,10 @@ namespace Web.Data.Models
         public string ItscSize { get; set; }
         public string ItscCreatedBy { get; set; }
         public string ItscCreatedByName { get; set; }
-        public DateTime? ItscCreatedBy1 { get; set; }
+        public DateTime? ItscCreatedByDate { get; set; }
         public string ItscModifiedBy { get; set; }
         public string ItscModifiedByName { get; set; }
-        public DateTime? ItscModifiedBy1 { get; set; }
+        public DateTime? ItscModifiedByDate { get; set; }
         public bool? ItscIsDelete { get; set; }
         [JsonIgnore]
         public virtual ImsAssets ItaAsset { get; set; }

@@ -13,10 +13,10 @@ namespace Web.Data.Models
         public int? ItaAssetId { get; set; }
         public string ItpcCreatedBy { get; set; }
         public string ItpcCreatedByName { get; set; }
-        public DateTime? ItpcCreatedBy1 { get; set; }
+        public DateTime? ItpcCreatedByDate { get; set; }
         public string ItpcModifiedBy { get; set; }
         public string ItpcModifiedByName { get; set; }
-        public DateTime? ItpcModifiedBy1 { get; set; }
+        public DateTime? ItpcModifiedByDate { get; set; }
         public bool? ItpcIsDelete { get; set; }
         [JsonIgnore]
         public virtual ImsAssets ItaAsset { get; set; }

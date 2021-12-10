@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System;
 using Web.API.Helper;
+using Web.Data.Models;
 using Web.Model;
 using Web.Model.Common;
 using Web.Services.Interfaces;
@@ -26,8 +27,8 @@ namespace Web.API.Controllers
         }
 
         //Assest Laptop CRUD 
-        [HttpPost("/Employee/AddEmployee")]
-        public BaseResponse CreateAssestLaptop([FromBody] AssestLaptopCredential laptop)
+        [HttpPost("/Assest/Laptop/AddLaptop")]
+        public BaseResponse CreateAssestLaptop([FromBody] ImsAssets laptop)
         {
             BaseResponse response = new BaseResponse();
             try

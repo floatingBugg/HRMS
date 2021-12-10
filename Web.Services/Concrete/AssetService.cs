@@ -25,38 +25,27 @@ namespace Web.Services.Concrete
             _hrmsassetlaptopRepository = hrmsassetlaptopRepository;
         }
 
-        public string CreateAssestLaptop(AssestLaptopCredential laptop)
+        public string CreateAssestLaptop(ImsAssets laptop)
         {
-            List<ImsAssets> asset = new List<ImsAssets>();
-            List<ImsLaptop> assetlaptop = new List<ImsLaptop>();
-            asset.Add(new ImsAssets
+            laptop.ItaCreatedBy = "1";
+            laptop.ItaCreatedByDate= DateTime.Now;
+            laptop.ItaCreatedByName= "Admin";
+            laptop.ItaIsDelete= false;
+
+            // Update AcademicQualification
+            if (laptop.ImsLaptop.Count > 0)
             {
-               ItaAssetName=laptop.assestName,
-               ItaQuantity=laptop.quantity,
-               ItaCost=laptop.cost,
-               ItaPurchaseDate=laptop.purchaseDate.Date,
-               ItaCreatedBy="Admin",
-               ItaCreatedByName="Admin",
-               ItaCreatedByDate=DateTime.Now.Date,
-               ItaIsDelete=false
+                foreach (var item in laptop.ImsLaptop)
+                {
+                    item.EtaqCreatedBy = userId;
+                    item.EtaqCreatedByDate = DateTime.Now;
+                    item.EtaqCreatedByName = userName;
+                    item.EtaqIsDelete = false;
 
-            });
-            _hrmsassetRepository.Insert(asset);
-            assetlaptop.Add(new ImsLaptop
-            {
-                ItaAssetId=asset.FirstOrDefault().ItaAssetId,
-                ItlCompanyName=laptop.companyName,
-                ItlGeneration=laptop.generation,
-                ItlSerialNo=laptop.serialno,
-                ItlRam=laptop.ram,
-                ItlHdd=laptop.hdd,
-                ItlProcessor=laptop.processor,
-
-            });
-            _hrmsassetRepository.Insert(asset);
+                }
 
 
-            return null;
+                return null;
         }
 
 
