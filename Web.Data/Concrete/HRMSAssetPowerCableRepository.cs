@@ -10,10 +10,10 @@ using Web.Data.Models;
 
 namespace Web.Data.Concrete
 {
-    public class HRMSAssetKeyboardRepository : GenericRepository<ImsKeyboard>, IHRMSIMSAssetKeyboardRepository
+    public class HRMSAssetPowerCableRepository : GenericRepository<ImsPowerCable>, IHRMSIMSAssetPowerCableRepository
     {
 
-        public HRMSAssetKeyboardRepository(DbHRMSContext context)
+        public HRMSAssetPowerCableRepository(DbHRMSContext context)
               : base(context)
         {
 
@@ -21,5 +21,4 @@ namespace Web.Data.Concrete
 
 
     }
-  
 }
