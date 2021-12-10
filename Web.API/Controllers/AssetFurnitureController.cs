@@ -47,5 +47,44 @@ namespace Web.API.Controllers
                 return response;
             }
         }
+
+        [HttpPost("/Assest/Furniture/UpdateFurniture")]
+        public BaseResponse UpdateAssestFurniture([FromBody] AssetFurnitureCredential furniture)
+        {
+            BaseResponse response = new BaseResponse();
+
+            try
+            {
+
+                response = _assetfurnitureservice.UpdateAssestFurniture(furniture);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                return response;
+            }
+        }
+
+        [HttpDelete("/Asset/Futniture/DeleteFurniture")]
+
+        public BaseResponse DeleteAssestFurniture(int id)
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                response = _assetfurnitureservice.DeleteAssestFurniture(id);
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+        }
     }
 }

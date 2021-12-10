@@ -78,12 +78,85 @@ namespace Web.Services.Concrete
 
         public BaseResponse UpdateAssestFurniture(AssetFurnitureCredential furniture)
         {
-            throw new NotImplementedException();
+            BaseResponse response = new BaseResponse();
+            bool count = _hrmsassetRepository.Table.Where(p => p.ItaAssetId == furniture.assetID).Count() > 0;
+            if (count == true)
+            {
+                _hrmsassetRepository.Table.Where(p => p.ItaAssetId == furniture.assetID)
+                    .ToList()
+                    .ForEach(x =>
+                    {
+                        x.ItaAssetName = furniture.assetName;
+                        x.ItaQuantity = furniture.quantity;
+                        x.ItaCost = furniture.cost;
+                        x.ItaPurchaseDate = furniture.purchaseDate.Date;
+                        x.ItaCreatedBy = "Admin";
+                        x.ItaCreatedByName = "Admin";
+                        x.ItaCreatedByDate = DateTime.Now.Date;
+                        x.ItaIsDelete = false;
+
+                    });
+                _hrmsassetfurnitureRepository.Table.Where(p => p.ItaAssetId == furniture.assetID)
+                  .ToList()
+                  .ForEach(x =>
+                  {
+
+                      x.ItfType = furniture.type;
+                      x.ItfCreatedBy = "Admin";
+                      x.ItfCreatedByName = "Admin";
+                      x.ItfIsDelete = false;
+
+                  });
+                _uow.Commit();
+
+                response.Success = true;
+                response.Message = UserMessages.strUpdated;
+                response.Data = null;
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotupdated;
+            }
+
+            return response;
         }
 
         public BaseResponse DeleteAssestFurniture(int id)
         {
-            throw new NotImplementedException();
+            BaseResponse response = new BaseResponse();
+            bool count = _hrmsassetRepository.Table.Where(p => p.ItaAssetId == id).Count() > 0;
+            if (count == true)
+            {
+                _hrmsassetRepository.Table.Where(p => p.ItaAssetId == id)
+                    .ToList()
+                    .ForEach(x =>
+                    {
+                        x.ItaIsDelete = true;
+
+                    });
+                _hrmsassetfurnitureRepository.Table.Where(p => p.ItaAssetId == id)
+                  .ToList()
+                  .ForEach(x =>
+                  {
+                      x.ItfIsDelete = true;
+
+                  });
+                _uow.Commit();
+
+                response.Success = true;
+                response.Message = UserMessages.strDeleted;
+                response.Data = null;
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strAlrdeleted;
+            }
+
+            return response;
         }
     }
 }
