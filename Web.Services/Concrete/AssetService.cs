@@ -17,13 +17,15 @@ namespace Web.Services.Concrete
     {
         private readonly IHRMSIMSAssetRepository _hrmsassetRepository;
         private readonly IHRMSIMSAssetLaptopRepository _hrmsassetlaptopRepository;
+        private readonly IHRMSIMSAssetFurnitureRepository _hrmsassetfurnitureRepository;
         IConfiguration _config;
         private readonly UnitOfWork unitorWork;
-        public AssetService(IConfiguration config, IHRMSIMSAssetRepository hrmsassetRepository, IHRMSIMSAssetLaptopRepository hrmsassetlaptopRepository)
+        public AssetService(IConfiguration config, IHRMSIMSAssetRepository hrmsassetRepository, IHRMSIMSAssetLaptopRepository hrmsassetlaptopRepository, IHRMSIMSAssetFurnitureRepository hrmsassetfurnitureRepository)
         {
             _config = config;
             _hrmsassetRepository = hrmsassetRepository;
             _hrmsassetlaptopRepository = hrmsassetlaptopRepository;
+            _hrmsassetfurnitureRepository = hrmsassetfurnitureRepository;
         }
 
         public BaseResponse CreateAssestLaptop(AssestLaptopCredential laptop)
@@ -75,8 +77,50 @@ namespace Web.Services.Concrete
                 return response;
             }
 
+        public BaseResponse CreateAssestFurniture(AssetFurnitureCredential furniture)
+        {
+            BaseResponse response = new BaseResponse();
+            List<ImsAssets> asset = new List<ImsAssets>();
+            List<ImsFurniture> assetfurniture = new List<ImsFurniture>();
+            if (!string.IsNullOrEmpty(furniture.assetName))
+            {
+                asset.Add(new ImsAssets
+                {
+                    ItaAssetName = furniture.assetName,
+                    ItaQuantity = furniture.quantity,
+                    ItaCost = furniture.cost,
+                    ItaPurchaseDate = furniture.purchaseDate.Date,
+                    ItaCreatedBy = "Admin",
+                    ItaCreatedByName = "Admin",
+                    ItaCreatedByDate = DateTime.Now.Date,
+                    ItaIsDelete = false
+
+                });
+                _hrmsassetRepository.Insert(asset);
+                assetfurniture.Add(new ImsFurniture
+                {
+                    ItaAssetId = asset.FirstOrDefault().ItaAssetId,
+                    ItfType = furniture.type,
+                    ItfCreatedBy = "Admin",
+                    ItfCreatedByName = "Admin",
+                    ItfIsDelete = false
+
+                });
+                _hrmsassetfurnitureRepository.Insert(assetfurniture);
 
 
+                response.Success = true;
+                response.Message = UserMessages.strAdded;
+                response.Data = null;
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotinsert;
+            }
+            return response;
         }
+    }
     }
 
