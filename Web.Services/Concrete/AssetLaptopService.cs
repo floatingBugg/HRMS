@@ -13,28 +13,28 @@ using Web.Services.Interfaces;
 
 namespace Web.Services.Concrete
 {
-    public class AssetService : IAssetService
+    public class AssetLaptopService : IAssetLaptopService
     {
         private readonly IHRMSIMSAssetRepository _hrmsassetRepository;
         private readonly IHRMSIMSAssetLaptopRepository _hrmsassetlaptopRepository;
-        private readonly IHRMSIMSAssetFurnitureRepository _hrmsassetfurnitureRepository;
         IConfiguration _config;
         private readonly IUnitOfWork _uow;
         private readonly UnitOfWork unitofWork;
-        public AssetService(IConfiguration config, IHRMSIMSAssetRepository hrmsassetRepository, IHRMSIMSAssetLaptopRepository hrmsassetlaptopRepository, IUnitOfWork uow)
+        public AssetLaptopService(IConfiguration config, IHRMSIMSAssetRepository hrmsassetRepository, IHRMSIMSAssetLaptopRepository hrmsassetlaptopRepository, IUnitOfWork uow)
         {
             _config = config;
             _hrmsassetRepository = hrmsassetRepository;
             _hrmsassetlaptopRepository = hrmsassetlaptopRepository;
             _uow = uow;
         }
-
+        //ASSET Laptop
         public BaseResponse CreateAssetLaptop(AssetLaptopCredential laptop)
         {
             BaseResponse response = new BaseResponse();
             List<ImsAssets> asset = new List<ImsAssets>();
             List<ImsLaptop> assetlaptop = new List<ImsLaptop>();
-            if (!string.IsNullOrEmpty(laptop.assetName)) {
+            if (!string.IsNullOrEmpty(laptop.assetName))
+            {
                 asset.Add(new ImsAssets
                 {
                     ItaAssetName = laptop.assetName,
@@ -81,42 +81,43 @@ namespace Web.Services.Concrete
         public BaseResponse UpdateAssestLaptop(AssetLaptopCredential laptop)
         {
             BaseResponse response = new BaseResponse();
-            bool count = _hrmsassetRepository.Table.Where(p => p.ItaAssetId == laptop.assestID).Count()> 0;
-            if (count == true) { 
-            _hrmsassetRepository.Table.Where(p => p.ItaAssetId == laptop.assestID)
-                .ToList()
-                .ForEach(x =>
-                {
-                    x.ItaAssetName = laptop.assetName;
-                    x.ItaQuantity = laptop.quantity;
-                    x.ItaCost = laptop.cost;
-                    x.ItaPurchaseDate = laptop.purchaseDate.Date;
-                    x.ItaCreatedBy = "Admin";
-                    x.ItaCreatedByName = "Admin";
-                    x.ItaCreatedByDate = DateTime.Now.Date;
-                    x.ItaIsDelete = false;
+            bool count = _hrmsassetRepository.Table.Where(p => p.ItaAssetId == laptop.assestID).Count() > 0;
+            if (count == true)
+            {
+                _hrmsassetRepository.Table.Where(p => p.ItaAssetId == laptop.assestID)
+                    .ToList()
+                    .ForEach(x =>
+                    {
+                        x.ItaAssetName = laptop.assetName;
+                        x.ItaQuantity = laptop.quantity;
+                        x.ItaCost = laptop.cost;
+                        x.ItaPurchaseDate = laptop.purchaseDate.Date;
+                        x.ItaCreatedBy = "Admin";
+                        x.ItaCreatedByName = "Admin";
+                        x.ItaCreatedByDate = DateTime.Now.Date;
+                        x.ItaIsDelete = false;
 
-                });
-            _hrmsassetlaptopRepository.Table.Where(p => p.ItaAssetId == laptop.assestID)
-              .ToList()
-              .ForEach(x =>
-              {
+                    });
+                _hrmsassetlaptopRepository.Table.Where(p => p.ItaAssetId == laptop.assestID)
+                  .ToList()
+                  .ForEach(x =>
+                  {
 
-                  x.ItlCompanyName = laptop.companyName;
-                  x.ItlGeneration = laptop.generation;
-                  x.ItlSerialNo = laptop.serialno;
-                  x.ItlRam = laptop.ram;
-                  x.ItlHdd = laptop.hdd;
-                  x.ItlProcessor = laptop.processor;
-                  x.ItlCreatedBy = "Admin";
-                  x.ItlCreatedByName = "Admin";
-                  x.ItlIsDelete = false;
+                      x.ItlCompanyName = laptop.companyName;
+                      x.ItlGeneration = laptop.generation;
+                      x.ItlSerialNo = laptop.serialno;
+                      x.ItlRam = laptop.ram;
+                      x.ItlHdd = laptop.hdd;
+                      x.ItlProcessor = laptop.processor;
+                      x.ItlCreatedBy = "Admin";
+                      x.ItlCreatedByName = "Admin";
+                      x.ItlIsDelete = false;
 
-              });
+                  });
                 _uow.Commit();
-                
+
                 response.Success = true;
-                response.Message = UserMessages.strAdded;
+                response.Message = UserMessages.strUpdated;
                 response.Data = null;
             }
             else
@@ -128,7 +129,43 @@ namespace Web.Services.Concrete
 
             return response;
         }
-    
-    }
-    }
 
+        public BaseResponse DeleteAssestLaptop(int id)
+        {
+            BaseResponse response = new BaseResponse();
+            bool count = _hrmsassetRepository.Table.Where(p => p.ItaAssetId == id).Count() > 0;
+            if (count == true)
+            {
+                _hrmsassetRepository.Table.Where(p => p.ItaAssetId == id)
+                    .ToList()
+                    .ForEach(x =>
+                    {
+                        x.ItaIsDelete = true;
+
+                    });
+                _hrmsassetlaptopRepository.Table.Where(p => p.ItaAssetId == id)
+                  .ToList()
+                  .ForEach(x =>
+                  {
+                      x.ItlIsDelete = true;
+
+                  });
+                _uow.Commit();
+
+                response.Success = true;
+                response.Message = UserMessages.strDeleted;
+                response.Data = null;
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strAlrdeleted;
+            }
+
+            return response;
+        }
+
+        
+    }
+}

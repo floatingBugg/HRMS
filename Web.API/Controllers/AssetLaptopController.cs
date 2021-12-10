@@ -8,22 +8,21 @@ using Web.Data.Models;
 using Web.Model;
 using Web.Model.Common;
 using Web.Services.Interfaces;
-
 namespace Web.API.Controllers
 {
-    public class AssetController : Controller
+    public class AssetLaptopController : Controller
     {
-        private readonly IAssetService _assetservice;
+        private readonly IAssetLaptopService _assetlaptopservice;
         private IConfiguration _config;
         Logger _logger;
         private IWebHostEnvironment _hostEnvironment;
 
-        public AssetController(IAssetService assetservice, IConfiguration config, IWebHostEnvironment environment)
+        public AssetLaptopController(IAssetLaptopService assetlaptopservice, IConfiguration config, IWebHostEnvironment environment)
         {
-            _assetservice = assetservice;
+            _assetlaptopservice = assetlaptopservice;
             _config = config;
             _hostEnvironment = environment;
-            _logger = new Logger (_hostEnvironment);
+            _logger = new Logger(_hostEnvironment);
         }
 
         //Assest Laptop CRUD 
@@ -34,7 +33,7 @@ namespace Web.API.Controllers
             try
             {
                 var test = ModelState;
-                response = _assetservice.CreateAssetFurniture(furniture);
+                response = _assetlaptopservice.CreateAssetLaptop(laptop);
 
 
 
@@ -49,7 +48,7 @@ namespace Web.API.Controllers
                 return response;
             }
         }
-        
+
         [HttpPost("/Assest/Laptop/UpdateLaptop")]
         public BaseResponse UpdateLaptop([FromBody] AssetLaptopCredential laptop)
         {
@@ -58,7 +57,7 @@ namespace Web.API.Controllers
             try
             {
 
-                response = _assetservice.UpdateAssestLaptop(laptop);
+                response = _assetlaptopservice.UpdateAssestLaptop(laptop);
                 return response;
             }
             catch (Exception ex)
@@ -67,6 +66,5 @@ namespace Web.API.Controllers
                 return response;
             }
         }
-
     }
 }
