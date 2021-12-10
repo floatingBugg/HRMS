@@ -66,5 +66,25 @@ namespace Web.API.Controllers
                 return response;
             }
         }
+
+        [HttpDelete("/Assest/Laptop/RemoveLaptop")]
+        public BaseResponse Delete(int id)
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                response = _assetlaptopservice.DeleteAssestLaptop(id);
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+        }
     }
 }
