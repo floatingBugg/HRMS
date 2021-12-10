@@ -28,7 +28,7 @@ namespace Web.API.Controllers
 
         //Assest Laptop CRUD 
         [HttpPost("/Assest/Laptop/AddLaptop")]
-        public BaseResponse CreateAssestLaptop([FromBody] ImsAssets laptop)
+        public BaseResponse CreateAssestLaptop([FromBody] AssestLaptopCredential laptop)
         {
             BaseResponse response = new BaseResponse();
             try

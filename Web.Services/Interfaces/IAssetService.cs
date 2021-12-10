@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Web.Data.Models;
 using Web.Model;
+using Web.Model.Common;
 
 namespace Web.Services.Interfaces
 {
     public interface IAssetService
     {
-        public BaseResponse CreateAssestLaptop(ImsAssets laptop);
+        public BaseResponse CreateAssestLaptop(AssestLaptopCredential laptop);
     }
 }

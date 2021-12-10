@@ -26,33 +26,45 @@ namespace Web.Services.Concrete
             _hrmsassetlaptopRepository = hrmsassetlaptopRepository;
         }
 
-        public BaseResponse CreateAssestLaptop(ImsAssets laptop)
+        public BaseResponse CreateAssestLaptop(AssestLaptopCredential laptop)
         {
             BaseResponse response = new BaseResponse();
-            if (!string.IsNullOrEmpty(laptop.ItaAssetName))
-            {
-                laptop.ItaCreatedBy = "1";
-                laptop.ItaCreatedByDate = DateTime.Now;
-                laptop.ItaCreatedByName = "Admin";
-                laptop.ItaIsDelete = false;
-
-                // Update AcademicQualification
-                if (laptop.ImsLaptop.Count > 0)
+            List<ImsAssets> asset = new List<ImsAssets>();
+            List<ImsLaptop> assetlaptop = new List<ImsLaptop>();
+            if (!string.IsNullOrEmpty(laptop.assestName)) {
+                asset.Add(new ImsAssets
                 {
-                    foreach (var item in laptop.ImsLaptop)
-                    {
-                        item.ItlCreatedBy = "1";
-                        item.IltCreatedByDate = DateTime.Now;
-                        item.ItlCreatedByName = "admin";
-                        item.ItlIsDelete = false;
+                    ItaAssetName = laptop.assestName,
+                    ItaQuantity = laptop.quantity,
+                    ItaCost = laptop.cost,
+                    ItaPurchaseDate = laptop.purchaseDate.Date,
+                    ItaCreatedBy = "Admin",
+                    ItaCreatedByName = "Admin",
+                    ItaCreatedByDate = DateTime.Now.Date,
+                    ItaIsDelete = false
 
-                    }
+                });
+                _hrmsassetRepository.Insert(asset);
+                assetlaptop.Add(new ImsLaptop
+                {
+                    ItaAssetId = asset.FirstOrDefault().ItaAssetId,
+                    ItlCompanyName = laptop.companyName,
+                    ItlGeneration = laptop.generation,
+                    ItlSerialNo = laptop.serialno,
+                    ItlRam = laptop.ram,
+                    ItlHdd = laptop.hdd,
+                    ItlProcessor = laptop.processor,
+                    ItlCreatedBy = "Admin",
+                    ItlCreatedByName = "Admin",
+                    ItlIsDelete = false
 
-                    _hrmsassetRepository.Insert(laptop);
+                });
+                _hrmsassetlaptopRepository.Insert(assetlaptop);
+
+
                     response.Success = true;
                     response.Message = UserMessages.strAdded;
                     response.Data = null;
-                }
             }
             else
             {
