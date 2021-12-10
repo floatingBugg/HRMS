@@ -28,7 +28,7 @@ namespace Web.API.Controllers
 
         //Assest Laptop CRUD 
         [HttpPost("/Assest/Laptop/AddLaptop")]
-        public BaseResponse CreateLaptop([FromBody] AssestLaptopCredential laptop)
+        public BaseResponse CreateLaptop([FromBody] AssetLaptopCredential laptop)
         {
             BaseResponse response = new BaseResponse();
             try
@@ -51,7 +51,7 @@ namespace Web.API.Controllers
         }
         
         [HttpPost("/Assest/Laptop/UpdateLaptop")]
-        public BaseResponse UpdateLaptop([FromBody] AssestLaptopCredential laptop)
+        public BaseResponse UpdateLaptop([FromBody] AssetLaptopCredential laptop)
         {
             BaseResponse response = new BaseResponse();
 

@@ -78,7 +78,7 @@ namespace Web.Services.Concrete
             return response;
         }
 
-        public BaseResponse UpdateAssestLaptop(AssestLaptopCredential laptop)
+        public BaseResponse UpdateAssestLaptop(AssetLaptopCredential laptop)
         {
             BaseResponse response = new BaseResponse();
             bool count = _hrmsassetRepository.Table.Where(p => p.ItaAssetId == laptop.assestID).Count()> 0;
@@ -87,7 +87,7 @@ namespace Web.Services.Concrete
                 .ToList()
                 .ForEach(x =>
                 {
-                    x.ItaAssetName = laptop.assestName;
+                    x.ItaAssetName = laptop.assetName;
                     x.ItaQuantity = laptop.quantity;
                     x.ItaCost = laptop.cost;
                     x.ItaPurchaseDate = laptop.purchaseDate.Date;
@@ -128,19 +128,7 @@ namespace Web.Services.Concrete
 
             return response;
         }
-
-                response.Success = true;
-                response.Message = UserMessages.strAdded;
-                response.Data = null;
-            }
-            else
-            {
-                response.Data = null;
-                response.Success = false;
-                response.Message = UserMessages.strNotinsert;
-            }
-            return response;
-        }
+    
     }
     }
 

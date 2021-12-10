@@ -13,8 +13,8 @@ namespace Web.Services.Interfaces
     {
         public BaseResponse CreateAssetLaptop(AssetLaptopCredential laptop);
         public BaseResponse CreateAssetFurniture(AssetFurnitureCredential furniture);
-        public BaseResponse CreateAssestLaptop(AssestLaptopCredential laptop);
+        public BaseResponse CreateAssestLaptop(AssetLaptopCredential laptop);
 
-        public BaseResponse UpdateAssestLaptop(AssestLaptopCredential laptop);
+        public BaseResponse UpdateAssestLaptop(AssetLaptopCredential laptop);
     }
 }
