@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Web.Data;
 using Web.Data.Interfaces;
 using Web.Data.Models;
+using Web.Model;
 using Web.Model.Common;
 using Web.Services.Interfaces;
 
@@ -25,30 +26,45 @@ namespace Web.Services.Concrete
             _hrmsassetlaptopRepository = hrmsassetlaptopRepository;
         }
 
-        public string CreateAssestLaptop(ImsAssets laptop)
+        public BaseResponse CreateAssestLaptop(ImsAssets laptop)
         {
-            laptop.ItaCreatedBy = "1";
-            laptop.ItaCreatedByDate= DateTime.Now;
-            laptop.ItaCreatedByName= "Admin";
-            laptop.ItaIsDelete= false;
-
-            // Update AcademicQualification
-            if (laptop.ImsLaptop.Count > 0)
+            BaseResponse response = new BaseResponse();
+            if (!string.IsNullOrEmpty(laptop.ItaAssetName))
             {
-                foreach (var item in laptop.ImsLaptop)
+                laptop.ItaCreatedBy = "1";
+                laptop.ItaCreatedByDate = DateTime.Now;
+                laptop.ItaCreatedByName = "Admin";
+                laptop.ItaIsDelete = false;
+
+                // Update AcademicQualification
+                if (laptop.ImsLaptop.Count > 0)
                 {
-                    item.EtaqCreatedBy = userId;
-                    item.EtaqCreatedByDate = DateTime.Now;
-                    item.EtaqCreatedByName = userName;
-                    item.EtaqIsDelete = false;
+                    foreach (var item in laptop.ImsLaptop)
+                    {
+                        item.ItlCreatedBy = "1";
+                        item.IltCreatedByDate = DateTime.Now;
+                        item.ItlCreatedByName = "admin";
+                        item.ItlIsDelete = false;
 
+                    }
+
+                    _hrmsassetRepository.Insert(laptop);
+                    response.Success = true;
+                    response.Message = UserMessages.strAdded;
+                    response.Data = null;
                 }
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotinsert;
+            }
+                return response;
+            }
 
 
-                return null;
+
         }
-
-
-
     }
-}
+
