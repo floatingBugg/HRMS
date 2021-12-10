@@ -2,7 +2,10 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using System;
 using Web.API.Helper;
+using Web.Model;
+using Web.Model.Common;
 using Web.Services.Interfaces;
 
 namespace Web.API.Controllers
@@ -22,10 +25,29 @@ namespace Web.API.Controllers
             _logger = new Logger (_hostEnvironment);
         }
 
-
-        public IActionResult Index()
+        //Assest Laptop CRUD 
+        [HttpPost("/Employee/AddEmployee")]
+        public BaseResponse CreateAssestLaptop([FromBody] AssestLaptopCredential laptop)
         {
-            return View();
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                var test = ModelState;
+                /*response = _assetservice.CreateEmployee(laptop);*/
+
+
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
         }
+
     }
 }
