@@ -17,6 +17,7 @@ namespace Web.Services.Concrete
     {
         private readonly IHRMSIMSAssetRepository _hrmsassetRepository;
         private readonly IHRMSIMSAssetLaptopRepository _hrmsassetlaptopRepository;
+
         IConfiguration _config;
         private readonly IUnitOfWork _uow;
         private readonly UnitOfWork unitofWork;
@@ -25,7 +26,9 @@ namespace Web.Services.Concrete
             _config = config;
             _hrmsassetRepository = hrmsassetRepository;
             _hrmsassetlaptopRepository = hrmsassetlaptopRepository;
-            _uow = uow;
+             _hrmsassetacRepository = hrmsassetacRepository;
+            _hrmsassetfurnitureRepository = hrmsassetfurnitureRepository;
+
         }
         //ASSET Laptop
         public BaseResponse CreateAssetLaptop(AssetLaptopCredential laptop)
@@ -78,7 +81,8 @@ namespace Web.Services.Concrete
             return response;
         }
 
-        public BaseResponse UpdateAssestLaptop(AssetLaptopCredential laptop)
+
+        public BaseResponse CreateAssetFurniture(AssetFurnitureCredential furniture)
         {
             BaseResponse response = new BaseResponse();
             bool count = _hrmsassetRepository.Table.Where(p => p.ItaAssetId == laptop.assestID).Count() > 0;
