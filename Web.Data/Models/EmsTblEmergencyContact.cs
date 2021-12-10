@@ -23,7 +23,6 @@ namespace Web.Data.Models
         public string EtecModifiedByName { get; set; }
         public DateTime? EtecModifiedByDate { get; set; }
         public bool? EtecIsDelete { get; set; }
-       
         [JsonIgnore]
         public virtual EmsTblEmployeeDetails EtecEtedEmployee { get; set; }
     }

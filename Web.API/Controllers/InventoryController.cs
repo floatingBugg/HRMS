@@ -29,7 +29,7 @@ namespace Web.API.Controllers
             _hostEnvironment = environment;
             _logger = new Logger(_hostEnvironment);
         }
-
+        //create
         [HttpPost("/Assests/AddAssests")]
         public BaseResponse Create([FromBody] ImsTblAssetsCategory assests,string userName=null, string userId=null)
         {

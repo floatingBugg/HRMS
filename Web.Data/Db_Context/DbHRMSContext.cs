@@ -26,15 +26,26 @@ namespace Web.Data.Db_Context
         public virtual DbSet<EmsTblHrmsUser> EmsTblHrmsUser { get; set; }
         public virtual DbSet<EmsTblProfessionalQualification> EmsTblProfessionalQualification { get; set; }
         public virtual DbSet<EmsTblWorkingHistory> EmsTblWorkingHistory { get; set; }
-        public virtual DbSet<ImsTblAssests> ImsTblAssests { get; set; }
-        public virtual DbSet<ImsTblAssetsCategory> ImsTblAssetsCategory { get; set; }
+        public virtual DbSet<ImsAc> ImsAc { get; set; }
+        public virtual DbSet<ImsAssets> ImsAssets { get; set; }
+        public virtual DbSet<ImsCctvCameras> ImsCctvCameras { get; set; }
+        public virtual DbSet<ImsDrives> ImsDrives { get; set; }
+        public virtual DbSet<ImsFans> ImsFans { get; set; }
+        public virtual DbSet<ImsFurniture> ImsFurniture { get; set; }
+        public virtual DbSet<ImsKeyboard> ImsKeyboard { get; set; }
+        public virtual DbSet<ImsLaptop> ImsLaptop { get; set; }
+        public virtual DbSet<ImsMouse> ImsMouse { get; set; }
+        public virtual DbSet<ImsPowerCable> ImsPowerCable { get; set; }
+        public virtual DbSet<ImsPrinters> ImsPrinters { get; set; }
+        public virtual DbSet<ImsScreens> ImsScreens { get; set; }
+        public virtual DbSet<ImsStationery> ImsStationery { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=SQL5105.site4now.net,1433;Initial Catalog=db_a7d47e_hrms;User Id=db_a7d47e_hrms_admin;Password=123hamza;");
+                optionsBuilder.UseSqlServer("Data Source=SQL5105.site4now.net;Initial Catalog=db_a7d47e_hrms;Persist Security Info=True;User ID=db_a7d47e_hrms_admin;Password=123hamza");
             }
         }
 
@@ -411,24 +422,61 @@ namespace Web.Data.Db_Context
                     .HasConstraintName("FK__ems_tbl_w__etwh___31B762FC");
             });
 
-            modelBuilder.Entity<ImsTblAssests>(entity =>
+            modelBuilder.Entity<ImsAc>(entity =>
             {
-                entity.HasKey(e => e.ItaAssetId)
-                    .HasName("PK__ims_tbl___B51DD0C3537C0DC2");
+                entity.HasKey(e => e.ItaAcId)
+                    .HasName("PK__ims_ac__FB0A9A7D32105E5F");
 
-                entity.ToTable("ims_tbl_assests");
+                entity.ToTable("ims_ac");
+
+                entity.Property(e => e.ItaAcId).HasColumnName("ita_ac_id");
 
                 entity.Property(e => e.ItaAssetId).HasColumnName("ita_asset_id");
 
-                entity.Property(e => e.ItaAssetDetails).HasColumnName("ita_asset_details");
+                entity.Property(e => e.ItaCompanyName).HasColumnName("ita_company_name");
 
-                entity.Property(e => e.ItaAssetsName).HasColumnName("ita_assets_name");
+                entity.Property(e => e.ItaCreatedBy).HasColumnName("ita_created_by");
 
-                entity.Property(e => e.ItaAssetsSrNo).HasColumnName("ita_assets_sr_no");
+                entity.Property(e => e.ItaCreatedBy1)
+                    .HasColumnType("datetime")
+                    .HasColumnName("ita_created_by_")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.ItaCreatedByName).HasColumnName("ita_created_by_name");
+
+                entity.Property(e => e.ItaIsDelete).HasColumnName("ita_is_delete");
+
+                entity.Property(e => e.ItaModifiedBy).HasColumnName("ita_modified_by");
+
+                entity.Property(e => e.ItaModifiedBy1)
+                    .HasColumnType("datetime")
+                    .HasColumnName("ita_modified_by_")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.ItaModifiedByName).HasColumnName("ita_modified_by_name");
+
+                entity.Property(e => e.ItaSize).HasColumnName("ita_size");
+
+                entity.HasOne(d => d.ItaAsset)
+                    .WithMany(p => p.ImsAc)
+                    .HasForeignKey(d => d.ItaAssetId)
+                    .HasConstraintName("FK__ims_ac__ita_asse__503BEA1C");
+            });
+
+            modelBuilder.Entity<ImsAssets>(entity =>
+            {
+                entity.HasKey(e => e.ItaAssetId)
+                    .HasName("PK__ims_asse__B51DD0C34AB39FC3");
+
+                entity.ToTable("ims_assets");
+
+                entity.Property(e => e.ItaAssetId).HasColumnName("ita_asset_id");
+
+                entity.Property(e => e.ItaAssetName)
+                    .IsRequired()
+                    .HasColumnName("ita_asset_name");
 
                 entity.Property(e => e.ItaAssignedTo).HasColumnName("ita_assigned_to");
-
-                entity.Property(e => e.ItaCategoryId).HasColumnName("ita_category_id");
 
                 entity.Property(e => e.ItaCost).HasColumnName("ita_cost");
 
@@ -436,7 +484,8 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.ItaCreatedByDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("ita_created_by_date");
+                    .HasColumnName("ita_created_by_date")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.ItaCreatedByName).HasColumnName("ita_created_by_name");
 
@@ -451,47 +500,467 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.ItaModifiedByName).HasColumnName("ita_modified_by_name");
 
-                entity.Property(e => e.ItaPurchasingDate)
-                    .HasColumnType("datetime")
-                    .HasColumnName("ita_purchasing_date");
+                entity.Property(e => e.ItaPurchaseDate)
+                    .HasColumnType("date")
+                    .HasColumnName("ita_purchase_date");
 
                 entity.Property(e => e.ItaQuantity).HasColumnName("ita_quantity");
-
-                entity.HasOne(d => d.ItaCategory)
-                    .WithMany(p => p.ImsTblAssests)
-                    .HasForeignKey(d => d.ItaCategoryId)
-                    .HasConstraintName("FK__ims_tbl_a__ita_c__3C34F16F");
             });
 
-            modelBuilder.Entity<ImsTblAssetsCategory>(entity =>
+            modelBuilder.Entity<ImsCctvCameras>(entity =>
             {
-                entity.HasKey(e => e.ItacAcId)
-                    .HasName("PK__ims_tbl___27D6367E2AEEF2AD");
+                entity.HasKey(e => e.ItccCctvId)
+                    .HasName("PK__ims_cctv__C48F7A6F72EB0F7D");
 
-                entity.ToTable("ims_tbl_assets_category");
+                entity.ToTable("ims_cctv_cameras");
 
-                entity.Property(e => e.ItacAcId).HasColumnName("itac_ac_id");
+                entity.Property(e => e.ItccCctvId).HasColumnName("itcc_cctv_id");
 
-                entity.Property(e => e.ItacCategory).HasColumnName("itac_category");
+                entity.Property(e => e.ItaAssetId).HasColumnName("ita_asset_id");
 
-                entity.Property(e => e.ItacCreatedBy).HasColumnName("itac_created_by");
+                entity.Property(e => e.ItccCreatedBy).HasColumnName("itcc_created_by");
 
-                entity.Property(e => e.ItacCreatedByDate)
+                entity.Property(e => e.ItccCreatedBy1)
                     .HasColumnType("datetime")
-                    .HasColumnName("itac_created_by_date");
-
-                entity.Property(e => e.ItacCreatedByName).HasColumnName("itac_created_by_name");
-
-                entity.Property(e => e.ItacIsDelete).HasColumnName("itac_is_delete");
-
-                entity.Property(e => e.ItacModifiedBy).HasColumnName("itac_modified_by");
-
-                entity.Property(e => e.ItacModifiedByDate)
-                    .HasColumnType("datetime")
-                    .HasColumnName("itac_modified_by_date")
+                    .HasColumnName("itcc_created_by_")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.Property(e => e.ItacModifiedByName).HasColumnName("itac_modified_by_name");
+                entity.Property(e => e.ItccCreatedByName).HasColumnName("itcc_created_by_name");
+
+                entity.Property(e => e.ItccIsDelete).HasColumnName("itcc_is_delete");
+
+                entity.Property(e => e.ItccModelNo).HasColumnName("itcc_model_no");
+
+                entity.Property(e => e.ItccModifiedBy).HasColumnName("itcc_modified_by");
+
+                entity.Property(e => e.ItccModifiedBy1)
+                    .HasColumnType("datetime")
+                    .HasColumnName("itcc_modified_by_")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.ItccModifiedByName).HasColumnName("itcc_modified_by_name");
+
+                entity.Property(e => e.ItccPixels).HasColumnName("itcc_pixels");
+
+                entity.Property(e => e.ItccSerialNo).HasColumnName("itcc_serial_no");
+
+                entity.HasOne(d => d.ItaAsset)
+                    .WithMany(p => p.ImsCctvCameras)
+                    .HasForeignKey(d => d.ItaAssetId)
+                    .HasConstraintName("FK__ims_cctv___ita_a__55009F39");
+            });
+
+            modelBuilder.Entity<ImsDrives>(entity =>
+            {
+                entity.HasKey(e => e.ItdDriveId)
+                    .HasName("PK__ims_driv__FA3037AFF4D6A83A");
+
+                entity.ToTable("ims_drives");
+
+                entity.Property(e => e.ItdDriveId).HasColumnName("itd_drive_id");
+
+                entity.Property(e => e.ItaAssetId).HasColumnName("ita_asset_id");
+
+                entity.Property(e => e.ItdCapacity).HasColumnName("itd_capacity");
+
+                entity.Property(e => e.ItdCreatedBy).HasColumnName("itd_created_by");
+
+                entity.Property(e => e.ItdCreatedBy1)
+                    .HasColumnType("datetime")
+                    .HasColumnName("itd_created_by_")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.ItdCreatedByName).HasColumnName("itd_created_by_name");
+
+                entity.Property(e => e.ItdIsDelete).HasColumnName("itd_is_delete");
+
+                entity.Property(e => e.ItdModifiedBy).HasColumnName("itd_modified_by");
+
+                entity.Property(e => e.ItdModifiedBy1)
+                    .HasColumnType("datetime")
+                    .HasColumnName("itd_modified_by_")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.ItdModifiedByName).HasColumnName("itd_modified_by_name");
+
+                entity.Property(e => e.ItdType).HasColumnName("itd_type");
+
+                entity.HasOne(d => d.ItaAsset)
+                    .WithMany(p => p.ImsDrives)
+                    .HasForeignKey(d => d.ItaAssetId)
+                    .HasConstraintName("FK__ims_drive__ita_a__47A6A41B");
+            });
+
+            modelBuilder.Entity<ImsFans>(entity =>
+            {
+                entity.HasKey(e => e.ItfaFanId)
+                    .HasName("PK__ims_fans__0140B3EFE16FE9AD");
+
+                entity.ToTable("ims_fans");
+
+                entity.Property(e => e.ItfaFanId).HasColumnName("itfa_fan_id");
+
+                entity.Property(e => e.ItaAssetId).HasColumnName("ita_asset_id");
+
+                entity.Property(e => e.ItfaCreatedBy).HasColumnName("itfa_created_by");
+
+                entity.Property(e => e.ItfaCreatedBy1)
+                    .HasColumnType("datetime")
+                    .HasColumnName("itfa_created_by_")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.ItfaCreatedByName).HasColumnName("itfa_created_by_name");
+
+                entity.Property(e => e.ItfaIsDelete).HasColumnName("itfa_is_delete");
+
+                entity.Property(e => e.ItfaModelNo).HasColumnName("itfa_model_no");
+
+                entity.Property(e => e.ItfaModifiedBy).HasColumnName("itfa_modified_by");
+
+                entity.Property(e => e.ItfaModifiedBy1)
+                    .HasColumnType("datetime")
+                    .HasColumnName("itfa_modified_by_")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.ItfaModifiedByName).HasColumnName("itfa_modified_by_name");
+
+                entity.Property(e => e.ItfaSerialNo).HasColumnName("itfa_serial_no");
+
+                entity.Property(e => e.ItfaType).HasColumnName("itfa_type");
+
+                entity.HasOne(d => d.ItaAsset)
+                    .WithMany(p => p.ImsFans)
+                    .HasForeignKey(d => d.ItaAssetId)
+                    .HasConstraintName("FK__ims_fans__ita_as__59C55456");
+            });
+
+            modelBuilder.Entity<ImsFurniture>(entity =>
+            {
+                entity.HasKey(e => e.ItfFurnitureId)
+                    .HasName("PK__ims_furn__E68EEF883C1F7318");
+
+                entity.ToTable("ims_furniture");
+
+                entity.Property(e => e.ItfFurnitureId).HasColumnName("itf_furniture_id");
+
+                entity.Property(e => e.ItaAssetId).HasColumnName("ita_asset_id");
+
+                entity.Property(e => e.ItfCreatedBy).HasColumnName("itf_created_by");
+
+                entity.Property(e => e.ItfCreatedBy1)
+                    .HasColumnType("datetime")
+                    .HasColumnName("itf_created_by_")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.ItfCreatedByName).HasColumnName("itf_created_by_name");
+
+                entity.Property(e => e.ItfIsDelete).HasColumnName("itf_is_delete");
+
+                entity.Property(e => e.ItfModifiedBy).HasColumnName("itf_modified_by");
+
+                entity.Property(e => e.ItfModifiedByDate).HasColumnName("itf_modified_by_date");
+
+                entity.Property(e => e.ItfModifiedByName).HasColumnName("itf_modified_by_name");
+
+                entity.Property(e => e.ItfType).HasColumnName("itf_type");
+
+                entity.HasOne(d => d.ItaAsset)
+                    .WithMany(p => p.ImsFurniture)
+                    .HasForeignKey(d => d.ItaAssetId)
+                    .HasConstraintName("FK__ims_furni__ita_a__4C6B5938");
+            });
+
+            modelBuilder.Entity<ImsKeyboard>(entity =>
+            {
+                entity.HasKey(e => e.ItkKeyboardId)
+                    .HasName("PK__ims_keyb__016604ED4269D74F");
+
+                entity.ToTable("ims_keyboard");
+
+                entity.Property(e => e.ItkKeyboardId).HasColumnName("itk_keyboard_id");
+
+                entity.Property(e => e.ItaAssetId).HasColumnName("ita_asset_id");
+
+                entity.Property(e => e.ItkCompanyName).HasColumnName("itk_company_name");
+
+                entity.Property(e => e.ItkCreatedBy).HasColumnName("itk_created_by");
+
+                entity.Property(e => e.ItkCreatedBy1)
+                    .HasColumnType("datetime")
+                    .HasColumnName("itk_created_by_")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.ItkCreatedByName).HasColumnName("itk_created_by_name");
+
+                entity.Property(e => e.ItkIsDelete).HasColumnName("itk_is_delete");
+
+                entity.Property(e => e.ItkModelNo).HasColumnName("itk_model_no");
+
+                entity.Property(e => e.ItkModifiedBy).HasColumnName("itk_modified_by");
+
+                entity.Property(e => e.ItkModifiedBy1)
+                    .HasColumnType("datetime")
+                    .HasColumnName("itk_modified_by_")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.ItkModifiedByName).HasColumnName("itk_modified_by_name");
+
+                entity.HasOne(d => d.ItaAsset)
+                    .WithMany(p => p.ImsKeyboard)
+                    .HasForeignKey(d => d.ItaAssetId)
+                    .HasConstraintName("FK__ims_keybo__ita_a__6CD828CA");
+            });
+
+            modelBuilder.Entity<ImsLaptop>(entity =>
+            {
+                entity.HasKey(e => e.ItlLaptopId)
+                    .HasName("PK__ims_lapt__D9F5296D76170FFF");
+
+                entity.ToTable("ims_laptop");
+
+                entity.Property(e => e.ItlLaptopId).HasColumnName("itl_laptop_id");
+
+                entity.Property(e => e.IltCreatedBy)
+                    .HasColumnType("datetime")
+                    .HasColumnName("ilt_created_by_")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.ItaAssetId).HasColumnName("ita_asset_id");
+
+                entity.Property(e => e.ItlCompanyName).HasColumnName("itl_company_name");
+
+                entity.Property(e => e.ItlCreatedBy).HasColumnName("itl_created_by");
+
+                entity.Property(e => e.ItlCreatedByName).HasColumnName("itl_created_by_name");
+
+                entity.Property(e => e.ItlGeneration).HasColumnName("itl_generation");
+
+                entity.Property(e => e.ItlHdd).HasColumnName("itl_hdd");
+
+                entity.Property(e => e.ItlIsDelete).HasColumnName("itl_is_delete");
+
+                entity.Property(e => e.ItlModifiedBy).HasColumnName("itl_modified_by");
+
+                entity.Property(e => e.ItlModifiedBy1)
+                    .HasColumnType("datetime")
+                    .HasColumnName("itl_modified_by_")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.ItlModifiedByName).HasColumnName("itl_modified_by_name");
+
+                entity.Property(e => e.ItlProcessor).HasColumnName("itl_processor");
+
+                entity.Property(e => e.ItlRam).HasColumnName("itl_ram");
+
+                entity.Property(e => e.ItlSerialNo).HasColumnName("itl_serial_no");
+
+                entity.HasOne(d => d.ItaAsset)
+                    .WithMany(p => p.ImsLaptop)
+                    .HasForeignKey(d => d.ItaAssetId)
+                    .HasConstraintName("FK__ims_lapto__ita_a__681373AD");
+            });
+
+            modelBuilder.Entity<ImsMouse>(entity =>
+            {
+                entity.HasKey(e => e.ItmMouseId)
+                    .HasName("PK__ims_mous__41F587BB9CE1C20B");
+
+                entity.ToTable("ims_mouse");
+
+                entity.Property(e => e.ItmMouseId).HasColumnName("itm_mouse_id");
+
+                entity.Property(e => e.ItaAssetId).HasColumnName("ita_asset_id");
+
+                entity.Property(e => e.ItmCompanyName).HasColumnName("itm_company_name");
+
+                entity.Property(e => e.ItmCreatedBy).HasColumnName("itm_created_by");
+
+                entity.Property(e => e.ItmCreatedBy1)
+                    .HasColumnType("datetime")
+                    .HasColumnName("itm_created_by_")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.ItmCreatedByName).HasColumnName("itm_created_by_name");
+
+                entity.Property(e => e.ItmIsDelete).HasColumnName("itm_is_delete");
+
+                entity.Property(e => e.ItmModelNo).HasColumnName("itm_model_no");
+
+                entity.Property(e => e.ItmModifiedBy).HasColumnName("itm_modified_by");
+
+                entity.Property(e => e.ItmModifiedBy1)
+                    .HasColumnType("datetime")
+                    .HasColumnName("itm_modified_by_")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.ItmModifiedByName).HasColumnName("itm_modified_by_name");
+
+                entity.HasOne(d => d.ItaAsset)
+                    .WithMany(p => p.ImsMouse)
+                    .HasForeignKey(d => d.ItaAssetId)
+                    .HasConstraintName("FK__ims_mouse__ita_a__719CDDE7");
+            });
+
+            modelBuilder.Entity<ImsPowerCable>(entity =>
+            {
+                entity.HasKey(e => e.ItpcPowerId)
+                    .HasName("PK__ims_powe__C3CAEFF80E989B9C");
+
+                entity.ToTable("ims_power_cable");
+
+                entity.Property(e => e.ItpcPowerId).HasColumnName("itpc_power_id");
+
+                entity.Property(e => e.ItaAssetId).HasColumnName("ita_asset_id");
+
+                entity.Property(e => e.ItpcCreatedBy).HasColumnName("itpc_created_by");
+
+                entity.Property(e => e.ItpcCreatedBy1)
+                    .HasColumnType("datetime")
+                    .HasColumnName("itpc_created_by_")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.ItpcCreatedByName).HasColumnName("itpc_created_by_name");
+
+                entity.Property(e => e.ItpcIsDelete).HasColumnName("itpc_is_delete");
+
+                entity.Property(e => e.ItpcModifiedBy).HasColumnName("itpc_modified_by");
+
+                entity.Property(e => e.ItpcModifiedBy1)
+                    .HasColumnType("datetime")
+                    .HasColumnName("itpc_modified_by_")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.ItpcModifiedByName).HasColumnName("itpc_modified_by_name");
+
+                entity.HasOne(d => d.ItaAsset)
+                    .WithMany(p => p.ImsPowerCable)
+                    .HasForeignKey(d => d.ItaAssetId)
+                    .HasConstraintName("FK__ims_power__ita_a__634EBE90");
+            });
+
+            modelBuilder.Entity<ImsPrinters>(entity =>
+            {
+                entity.HasKey(e => e.ItpPrinterId)
+                    .HasName("PK__ims_prin__11FC8727BFFFFD90");
+
+                entity.ToTable("ims_printers");
+
+                entity.Property(e => e.ItpPrinterId).HasColumnName("itp_printer_id");
+
+                entity.Property(e => e.ItaAssetId).HasColumnName("ita_asset_id");
+
+                entity.Property(e => e.ItpCompanyName).HasColumnName("itp_company_name");
+
+                entity.Property(e => e.ItpCreatedBy).HasColumnName("itp_created_by");
+
+                entity.Property(e => e.ItpCreatedByDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("itp_created_by_date")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.ItpCreatedByName).HasColumnName("itp_created_by_name");
+
+                entity.Property(e => e.ItpIsDelete).HasColumnName("itp_is_delete");
+
+                entity.Property(e => e.ItpModelNo).HasColumnName("itp_model_no");
+
+                entity.Property(e => e.ItpModifiedBy).HasColumnName("itp_modified_by");
+
+                entity.Property(e => e.ItpModifiedByDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("itp_modified_by_date")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.ItpModifiedByName).HasColumnName("itp_modified_by_name");
+
+                entity.Property(e => e.ItpType).HasColumnName("itp_type");
+
+                entity.HasOne(d => d.ItaAsset)
+                    .WithMany(p => p.ImsPrinters)
+                    .HasForeignKey(d => d.ItaAssetId)
+                    .HasConstraintName("FK__ims_print__ita_a__42E1EEFE");
+            });
+
+            modelBuilder.Entity<ImsScreens>(entity =>
+            {
+                entity.HasKey(e => e.ItscScreenId)
+                    .HasName("PK__ims_scre__E2BC1118D7530313");
+
+                entity.ToTable("ims_screens");
+
+                entity.Property(e => e.ItscScreenId).HasColumnName("itsc_screen_id");
+
+                entity.Property(e => e.ItaAssetId).HasColumnName("ita_asset_id");
+
+                entity.Property(e => e.ItscCompanyName).HasColumnName("itsc_company_name");
+
+                entity.Property(e => e.ItscCreatedBy).HasColumnName("itsc_created_by");
+
+                entity.Property(e => e.ItscCreatedBy1)
+                    .HasColumnType("datetime")
+                    .HasColumnName("itsc_created_by_")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.ItscCreatedByName).HasColumnName("itsc_created_by_name");
+
+                entity.Property(e => e.ItscIsDelete).HasColumnName("itsc_is_delete");
+
+                entity.Property(e => e.ItscModelNo).HasColumnName("itsc_model_no");
+
+                entity.Property(e => e.ItscModifiedBy).HasColumnName("itsc_modified_by");
+
+                entity.Property(e => e.ItscModifiedBy1)
+                    .HasColumnType("datetime")
+                    .HasColumnName("itsc_modified_by_")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.ItscModifiedByName).HasColumnName("itsc_modified_by_name");
+
+                entity.Property(e => e.ItscSize).HasColumnName("itsc_size");
+
+                entity.HasOne(d => d.ItaAsset)
+                    .WithMany(p => p.ImsScreens)
+                    .HasForeignKey(d => d.ItaAssetId)
+                    .HasConstraintName("FK__ims_scree__ita_a__76619304");
+            });
+
+            modelBuilder.Entity<ImsStationery>(entity =>
+            {
+                entity.HasKey(e => e.ItsStationeryId)
+                    .HasName("PK__ims_stat__D96C26B134F2652D");
+
+                entity.ToTable("ims_stationery");
+
+                entity.Property(e => e.ItsStationeryId).HasColumnName("its_stationery_id");
+
+                entity.Property(e => e.ItaAssetId).HasColumnName("ita_asset_id");
+
+                entity.Property(e => e.ItsCreatedBy).HasColumnName("its_created_by");
+
+                entity.Property(e => e.ItsCreatedBy1)
+                    .HasColumnType("datetime")
+                    .HasColumnName("its_created_by_")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.ItsCreatedByName).HasColumnName("its_created_by_name");
+
+                entity.Property(e => e.ItsIsDelete).HasColumnName("its_is_delete");
+
+                entity.Property(e => e.ItsModifiedBy).HasColumnName("its_modified_by");
+
+                entity.Property(e => e.ItsModifiedBy1)
+                    .HasColumnType("datetime")
+                    .HasColumnName("its_modified_by_")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.ItsModifiedByName).HasColumnName("its_modified_by_name");
+
+                entity.Property(e => e.ItsType).HasColumnName("its_type");
+
+                entity.HasOne(d => d.ItaAsset)
+                    .WithMany(p => p.ImsStationery)
+                    .HasForeignKey(d => d.ItaAssetId)
+                    .HasConstraintName("FK__ims_stati__ita_a__5E8A0973");
             });
 
             OnModelCreatingPartial(modelBuilder);
