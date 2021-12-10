@@ -27,14 +27,38 @@ namespace Web.API.Controllers
         }
 
         //Assest Laptop CRUD 
-        [HttpPost("/Assest/Laptop/AddLaptop")]
-        public BaseResponse CreateAssestLaptop([FromBody] AssestLaptopCredential laptop)
+        [HttpPost("/Asset/Laptop/AddLaptop")]
+        public BaseResponse CreateAssetLaptop([FromBody] AssetLaptopCredential laptop)
         {
             BaseResponse response = new BaseResponse();
             try
             {
                 var test = ModelState;
-                response = _assetservice.CreateAssestLaptop(laptop);
+                response = _assetservice.CreateAssetLaptop(laptop);
+
+
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+        }
+
+        //Asset Furniture CRUD
+        [HttpPost("/Asset/Furniture/AddFurniture")]
+        public BaseResponse CreateAssetFurniture([FromBody] AssetFurnitureCredential furniture)
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                var test = ModelState;
+                response = _assetservice.CreateAssetFurniture(furniture);
 
 
 

@@ -18,26 +18,30 @@ namespace Web.Services.Concrete
         private readonly IHRMSIMSAssetRepository _hrmsassetRepository;
         private readonly IHRMSIMSAssetLaptopRepository _hrmsassetlaptopRepository;
         private readonly IHRMSIMSAssetACRepository _hrmsassetacRepository;
+        private readonly IHRMSIMSAssetFurnitureRepository _hrmsassetfurnitureRepository;
 
         IConfiguration _config;
         private readonly UnitOfWork unitorWork;
-        public AssetService(IConfiguration config, IHRMSIMSAssetRepository hrmsassetRepository, IHRMSIMSAssetLaptopRepository hrmsassetlaptopRepository, IHRMSIMSAssetACRepository hrmsassetacRepository)
+        public AssetService(IConfiguration config, IHRMSIMSAssetRepository hrmsassetRepository, IHRMSIMSAssetLaptopRepository hrmsassetlaptopRepository, IHRMSIMSAssetACRepository hrmsassetacRepository, IHRMSIMSAssetFurnitureRepository  hrmsassetfurnitureRepository )
+
         {
             _config = config;
             _hrmsassetRepository = hrmsassetRepository;
             _hrmsassetlaptopRepository = hrmsassetlaptopRepository;
-            _hrmsassetacRepository = hrmsassetacRepository;
+             _hrmsassetacRepository = hrmsassetacRepository;
+            _hrmsassetfurnitureRepository = hrmsassetfurnitureRepository;
+
         }
 
-        public BaseResponse CreateAssestLaptop(AssestLaptopCredential laptop)
+        public BaseResponse CreateAssetLaptop(AssetLaptopCredential laptop)
         {
             BaseResponse response = new BaseResponse();
             List<ImsAssets> asset = new List<ImsAssets>();
             List<ImsLaptop> assetlaptop = new List<ImsLaptop>();
-            if (!string.IsNullOrEmpty(laptop.assestName)) {
+            if (!string.IsNullOrEmpty(laptop.assetName)) {
                 asset.Add(new ImsAssets
                 {
-                    ItaAssetName = laptop.assestName,
+                    ItaAssetName = laptop.assetName,
                     ItaQuantity = laptop.quantity,
                     ItaCost = laptop.cost,
                     ItaPurchaseDate = laptop.purchaseDate.Date,
@@ -78,8 +82,51 @@ namespace Web.Services.Concrete
                 return response;
             }
 
-       
 
+        public BaseResponse CreateAssetFurniture(AssetFurnitureCredential furniture)
+        {
+            BaseResponse response = new BaseResponse();
+            List<ImsAssets> asset = new List<ImsAssets>();
+            List<ImsFurniture> assetfurniture = new List<ImsFurniture>();
+            if (!string.IsNullOrEmpty(furniture.assetName))
+            {
+                asset.Add(new ImsAssets
+                {
+                    ItaAssetName = furniture.assetName,
+                    ItaQuantity = furniture.quantity,
+                    ItaCost = furniture.cost,
+                    ItaPurchaseDate = furniture.purchaseDate.Date,
+                    ItaCreatedBy = "Admin",
+                    ItaCreatedByName = "Admin",
+                    ItaCreatedByDate = DateTime.Now.Date,
+                    ItaIsDelete = false
+
+                });
+                _hrmsassetRepository.Insert(asset);
+                assetfurniture.Add(new ImsFurniture
+                {
+                    ItaAssetId = asset.FirstOrDefault().ItaAssetId,
+                    ItfType = furniture.type,
+                    ItfCreatedBy = "Admin",
+                    ItfCreatedByName = "Admin",
+                    ItfIsDelete = false
+
+                });
+                response.Success = true;
+                response.Message = UserMessages.strAdded;
+                response.Data = null;
+                _hrmsassetfurnitureRepository.Insert(assetfurniture);
+               
+
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotinsert;
+            }
+            return response;
+        }
         public BaseResponse CreateAssetAc(AssetAcCredential Ac)
         {
             BaseResponse response = new BaseResponse();
@@ -98,6 +145,7 @@ namespace Web.Services.Concrete
                     ItaCreatedByDate = DateTime.Now.Date,
                     ItaIsDelete = false
 
+
                 });
                 _hrmsassetRepository.Insert(asset);
                 assetac.Add(new ImsAc
@@ -111,6 +159,7 @@ namespace Web.Services.Concrete
 
                 });
                 _hrmsassetacRepository.Insert(assetac);
+
 
 
                 response.Success = true;
