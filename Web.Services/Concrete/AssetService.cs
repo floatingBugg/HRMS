@@ -69,9 +69,9 @@ namespace Web.Services.Concrete
                 _hrmsassetlaptopRepository.Insert(assetlaptop);
 
 
-                    response.Success = true;
-                    response.Message = UserMessages.strAdded;
-                    response.Data = null;
+                response.Success = true;
+                response.Message = UserMessages.strAdded;
+                response.Data = null;
             }
             else
             {
@@ -79,37 +79,43 @@ namespace Web.Services.Concrete
                 response.Success = false;
                 response.Message = UserMessages.strNotinsert;
             }
-                return response;
-            }
+            return response;
+        }
 
 
         public BaseResponse CreateAssetFurniture(AssetFurnitureCredential furniture)
         {
             BaseResponse response = new BaseResponse();
-            List<ImsAssets> asset = new List<ImsAssets>();
-            List<ImsFurniture> assetfurniture = new List<ImsFurniture>();
-            if (!string.IsNullOrEmpty(furniture.assetName))
-            {
-                asset.Add(new ImsAssets
+            bool count = _hrmsassetRepository.Table.Where(p => p.ItaAssetId == laptop.assestID).Count()> 0;
+            if (count == true) { 
+            _hrmsassetRepository.Table.Where(p => p.ItaAssetId == laptop.assestID)
+                .ToList()
+                .ForEach(x =>
                 {
-                    ItaAssetName = furniture.assetName,
-                    ItaQuantity = furniture.quantity,
-                    ItaCost = furniture.cost,
-                    ItaPurchaseDate = furniture.purchaseDate.Date,
-                    ItaCreatedBy = "Admin",
-                    ItaCreatedByName = "Admin",
-                    ItaCreatedByDate = DateTime.Now.Date,
-                    ItaIsDelete = false
+                    x.ItaAssetName = laptop.assetName;
+                    x.ItaQuantity = laptop.quantity;
+                    x.ItaCost = laptop.cost;
+                    x.ItaPurchaseDate = laptop.purchaseDate.Date;
+                    x.ItaCreatedBy = "Admin";
+                    x.ItaCreatedByName = "Admin";
+                    x.ItaCreatedByDate = DateTime.Now.Date;
+                    x.ItaIsDelete = false;
 
                 });
-                _hrmsassetRepository.Insert(asset);
-                assetfurniture.Add(new ImsFurniture
-                {
-                    ItaAssetId = asset.FirstOrDefault().ItaAssetId,
-                    ItfType = furniture.type,
-                    ItfCreatedBy = "Admin",
-                    ItfCreatedByName = "Admin",
-                    ItfIsDelete = false
+            _hrmsassetlaptopRepository.Table.Where(p => p.ItaAssetId == laptop.assestID)
+              .ToList()
+              .ForEach(x =>
+              {
+
+                  x.ItlCompanyName = laptop.companyName;
+                  x.ItlGeneration = laptop.generation;
+                  x.ItlSerialNo = laptop.serialno;
+                  x.ItlRam = laptop.ram;
+                  x.ItlHdd = laptop.hdd;
+                  x.ItlProcessor = laptop.processor;
+                  x.ItlCreatedBy = "Admin";
+                  x.ItlCreatedByName = "Admin";
+                  x.ItlIsDelete = false;
 
                 });
                 response.Success = true;
@@ -170,10 +176,12 @@ namespace Web.Services.Concrete
             {
                 response.Data = null;
                 response.Success = false;
-                response.Message = UserMessages.strNotinsert;
+                response.Message = UserMessages.strNotupdated;
             }
+
             return response;
         }
+    
     }
     }
 

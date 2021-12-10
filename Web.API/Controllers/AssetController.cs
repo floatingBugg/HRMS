@@ -27,32 +27,8 @@ namespace Web.API.Controllers
         }
 
         //Assest Laptop CRUD 
-        [HttpPost("/Asset/Laptop/AddLaptop")]
-        public BaseResponse CreateAssetLaptop([FromBody] AssetLaptopCredential laptop)
-        {
-            BaseResponse response = new BaseResponse();
-            try
-            {
-                var test = ModelState;
-                response = _assetservice.CreateAssetLaptop(laptop);
-
-
-
-                return response;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogExceptions(ex);
-                response.Data = null;
-                response.Message = ex.Message;
-                response.Success = false;
-                return response;
-            }
-        }
-
-        //Asset Furniture CRUD
-        [HttpPost("/Asset/Furniture/AddFurniture")]
-        public BaseResponse CreateAssetFurniture([FromBody] AssetFurnitureCredential furniture)
+        [HttpPost("/Assest/Laptop/AddLaptop")]
+        public BaseResponse CreateLaptop([FromBody] AssetLaptopCredential laptop)
         {
             BaseResponse response = new BaseResponse();
             try
@@ -70,6 +46,24 @@ namespace Web.API.Controllers
                 response.Data = null;
                 response.Message = ex.Message;
                 response.Success = false;
+                return response;
+            }
+        }
+        
+        [HttpPost("/Assest/Laptop/UpdateLaptop")]
+        public BaseResponse UpdateLaptop([FromBody] AssetLaptopCredential laptop)
+        {
+            BaseResponse response = new BaseResponse();
+
+            try
+            {
+
+                response = _assetservice.UpdateAssestLaptop(laptop);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
                 return response;
             }
         }
