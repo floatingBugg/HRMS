@@ -114,7 +114,7 @@ namespace Web.API
             //Register Assest Service 
             services.AddTransient(typeof(IHRMSIMSAssetRepository), typeof(HRMSAssetRepository));
             services.AddTransient(typeof(IHRMSIMSAssetLaptopRepository), typeof(HRMSAssetLaptopRepository));
-            
+            services.AddTransient(typeof(IHRMSIMSAssetFurnitureRepository), typeof(HRMSAssetFurnitureRepository));
 
         }
 

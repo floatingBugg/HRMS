@@ -34,7 +34,7 @@ namespace Web.API.Controllers
             try
             {
                 var test = ModelState;
-                response = _assetservice.CreateAssestLaptop(laptop);
+                response = _assetservice.CreateAssetFurniture(furniture);
 
 
 

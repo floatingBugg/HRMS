@@ -17,6 +17,7 @@ namespace Web.Services.Concrete
     {
         private readonly IHRMSIMSAssetRepository _hrmsassetRepository;
         private readonly IHRMSIMSAssetLaptopRepository _hrmsassetlaptopRepository;
+        private readonly IHRMSIMSAssetFurnitureRepository _hrmsassetfurnitureRepository;
         IConfiguration _config;
         private readonly IUnitOfWork _uow;
         private readonly UnitOfWork unitofWork;
@@ -28,15 +29,15 @@ namespace Web.Services.Concrete
             _uow = uow;
         }
 
-        public BaseResponse CreateAssestLaptop(AssestLaptopCredential laptop)
+        public BaseResponse CreateAssetLaptop(AssetLaptopCredential laptop)
         {
             BaseResponse response = new BaseResponse();
             List<ImsAssets> asset = new List<ImsAssets>();
             List<ImsLaptop> assetlaptop = new List<ImsLaptop>();
-            if (!string.IsNullOrEmpty(laptop.assestName)) {
+            if (!string.IsNullOrEmpty(laptop.assetName)) {
                 asset.Add(new ImsAssets
                 {
-                    ItaAssetName = laptop.assestName,
+                    ItaAssetName = laptop.assetName,
                     ItaQuantity = laptop.quantity,
                     ItaCost = laptop.cost,
                     ItaPurchaseDate = laptop.purchaseDate.Date,
@@ -128,6 +129,18 @@ namespace Web.Services.Concrete
             return response;
         }
 
+                response.Success = true;
+                response.Message = UserMessages.strAdded;
+                response.Data = null;
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotinsert;
+            }
+            return response;
         }
+    }
     }
 
