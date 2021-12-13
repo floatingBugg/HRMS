@@ -1,4 +1,4 @@
-﻿
+﻿/*
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -59,17 +59,10 @@ namespace Web.API.Controllers
                 response = _assetservice.CreateAsset(asset);
 
 
-
-                return response;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogExceptions(ex);
-                response.Data = null;
-                response.Message = ex.Message;
-                response.Success = false;
-                return response;
-            }
+        public IActionResult Index()*//**//*
+        {
+            return View();
         }
     }
 }
+*/

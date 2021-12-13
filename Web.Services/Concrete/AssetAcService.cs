@@ -15,17 +15,17 @@ namespace Web.Services.Concrete
 {
     public class AssetAcService: IAssetAcService
     {
-        private readonly IHRMSIMSAssetRepository _hrmsassetRepository;
-        private readonly IHRMSIMSAssetACRepository _hrmsassetacRepository;
+        private readonly IHRMSAssetRepository _hrmsassetRepository;
+        private readonly IHRMSAssetRepository _hrmsassetacRepository;
 
         IConfiguration _config;
         private readonly IUnitOfWork _uow;
         private readonly UnitOfWork unitofWork;
-        public AssetAcService(IConfiguration config, IHRMSIMSAssetRepository hrmsassetRepository, IHRMSIMSAssetACRepository hrmsassetacRepository, IUnitOfWork uow)
+        public AssetAcService(IConfiguration config, IHRMSAssetRepository hrmsassetRepository, IUnitOfWork uow)
         {
             _config = config;
             _hrmsassetRepository = hrmsassetRepository;
-            _hrmsassetacRepository = hrmsassetacRepository;
+            
             _uow = uow;
 
         }

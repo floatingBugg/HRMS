@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Db_Context\" />
     <Folder Include="Models\" />
   </ItemGroup>
 
