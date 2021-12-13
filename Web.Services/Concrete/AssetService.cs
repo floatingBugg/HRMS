@@ -41,7 +41,7 @@ namespace Web.Services.Concrete
                     ItaAssetName = assets.assetname,
                     ItaQuantity = assets.quantity,
                     ItaCost = assets.cost,
-                    ItacCategoryIdFk = assets.categoryid,
+                    ItacCategoryIdFk = 2,
                     ItaDescription = assets.description,
                     ItaSerialNo = assets.serialno,
                     ItaModel = assets.model,
@@ -49,7 +49,6 @@ namespace Web.Services.Concrete
                     ItaType = assets.type,
                     ItaAssignedToName = assets.assingedname,
                     ItaAssignedToId = 1,
-
                     ItaPurchaseDate = assets.purchaseddate.Date,
                     ItaCreatedBy = assets.createdby,
                     ItaCreatedByName = assets.createdbyname,
@@ -166,11 +165,11 @@ namespace Web.Services.Concrete
                 response.Success = false;
                 response.Message = UserMessages.strAlrdeleted;
             }
-
+            _uow.Commit();
             return response;
 
 
         }
-        }
-    }
 
+    }
+}

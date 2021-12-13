@@ -1,4 +1,4 @@
-﻿/*using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,13 +15,13 @@ namespace Web.Services.Concrete
 {
     public class AssetLaptopService : IAssetLaptopService
     {
-        private readonly IHRMSIMSAssetRepository _hrmsassetRepository;
-        private readonly IHRMSIMSAssetLaptopRepository _hrmsassetlaptopRepository;
+        private readonly IHRMSAssetRepository _hrmsassetRepository;
+        private readonly IHRMSLaptopRepository _hrmsassetlaptopRepository;
 
         IConfiguration _config;
         private readonly IUnitOfWork _uow;
         private readonly UnitOfWork unitofWork;
-        public AssetLaptopService(IConfiguration config, IHRMSIMSAssetRepository hrmsassetRepository, IHRMSIMSAssetLaptopRepository hrmsassetlaptopRepository, IUnitOfWork uow)
+        public AssetLaptopService(IConfiguration config, IHRMSAssetRepository hrmsassetRepository, IHRMSLaptopRepository hrmsassetlaptopRepository, IUnitOfWork uow)
         {
             _config = config;
             _hrmsassetRepository = hrmsassetRepository;
@@ -33,15 +33,23 @@ namespace Web.Services.Concrete
         public BaseResponse CreateAssetLaptop(AssetLaptopCredential laptop)
         {
             BaseResponse response = new BaseResponse();
-            List<ImsAssets> asset = new List<ImsAssets>();
-            List<ImsLaptop> assetlaptop = new List<ImsLaptop>();
+            List<ImsTblAssets> asset = new List<ImsTblAssets>();
+            List<ImsTblLaptop> assetlaptop = new List<ImsTblLaptop>();
             if (!string.IsNullOrEmpty(laptop.assetName))
             {
-                asset.Add(new ImsAssets
+                asset.Add(new ImsTblAssets
                 {
                     ItaAssetName = laptop.assetName,
                     ItaQuantity = laptop.quantity,
                     ItaCost = laptop.cost,
+                    ItaSerialNo=laptop.serialno,
+                    ItaModel=laptop.model,
+                    ItaType=laptop.type,
+                    ItaCompanyName=laptop.companyName,
+                    ItaDescription=laptop.description,
+                    ItacCategoryIdFk=2,
+                    ItaAssignedToId=1,
+                    ItaAssignedToName=laptop.assignedname,
                     ItaPurchaseDate = laptop.purchaseDate.Date,
                     ItaCreatedBy = "Admin",
                     ItaCreatedByName = "Admin",
@@ -50,12 +58,10 @@ namespace Web.Services.Concrete
 
                 });
                 _hrmsassetRepository.Insert(asset);
-                assetlaptop.Add(new ImsLaptop
+                assetlaptop.Add(new ImsTblLaptop
                 {
-                    ItaAssetId = asset.FirstOrDefault().ItaAssetId,
-                    ItlCompanyName = laptop.companyName,
-                    ItlGeneration = laptop.generation,
-                    ItlSerialNo = laptop.serialno,
+                    ItaAssetIdFk = asset.FirstOrDefault().ItaAssetId,
+                    ItlGeneration=laptop.generation,
                     ItlRam = laptop.ram,
                     ItlHdd = laptop.hdd,
                     ItlProcessor = laptop.processor,
@@ -101,14 +107,13 @@ namespace Web.Services.Concrete
                         x.ItaIsDelete = false;
 
                     });
-                _hrmsassetlaptopRepository.Table.Where(p => p.ItaAssetId == laptop.assestID)
+                _hrmsassetlaptopRepository.Table.Where(p => p.ItaAssetIdFk == laptop.assestID)
                   .ToList()
                   .ForEach(x =>
                   {
 
-                      x.ItlCompanyName = laptop.companyName;
+                      
                       x.ItlGeneration = laptop.generation;
-                      x.ItlSerialNo = laptop.serialno;
                       x.ItlRam = laptop.ram;
                       x.ItlHdd = laptop.hdd;
                       x.ItlProcessor = laptop.processor;
@@ -146,7 +151,7 @@ namespace Web.Services.Concrete
                         x.ItaIsDelete = true;
 
                     });
-                _hrmsassetlaptopRepository.Table.Where(p => p.ItaAssetId == id)
+                _hrmsassetlaptopRepository.Table.Where(p => p.ItaAssetIdFk == id)
                   .ToList()
                   .ForEach(x =>
                   {
@@ -169,7 +174,6 @@ namespace Web.Services.Concrete
             return response;
         }
 
-        
+
     }
 }
-*/

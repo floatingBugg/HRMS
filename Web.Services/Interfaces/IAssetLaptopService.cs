@@ -1,4 +1,4 @@
-﻿/*using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,10 +12,9 @@ namespace Web.Services.Interfaces
     {
 
         public BaseResponse CreateAssetLaptop(AssetLaptopCredential laptop);
-       
+
         public BaseResponse UpdateAssestLaptop(AssetLaptopCredential laptop);
 
         public BaseResponse DeleteAssestLaptop(int id);
     }
 }
-*/
