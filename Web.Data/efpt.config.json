@@ -42,15 +42,15 @@
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[ims_asset_Category]",
+         "Name": "[dbo].[ims_tbl_asset_Category]",
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[ims_assets]",
+         "Name": "[dbo].[ims_tbl_assets]",
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[ims_laptop]",
+         "Name": "[dbo].[ims_tbl_laptop]",
          "ObjectType": 0
       }
    ],

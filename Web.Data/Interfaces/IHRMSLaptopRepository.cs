@@ -8,7 +8,7 @@ using Web.Data.Models;
 
 namespace Web.Data.Interfaces
 {
-    interface IHRMSLaptopRepository : IRepository<ImsLaptop>
+    interface IHRMSLaptopRepository : IRepository<ImsTblLaptop>
     {
     }
 }

@@ -26,9 +26,9 @@ namespace Web.Data.Db_Context
         public virtual DbSet<EmsTblHrmsUser> EmsTblHrmsUser { get; set; }
         public virtual DbSet<EmsTblProfessionalQualification> EmsTblProfessionalQualification { get; set; }
         public virtual DbSet<EmsTblWorkingHistory> EmsTblWorkingHistory { get; set; }
-        public virtual DbSet<ImsAssetCategory> ImsAssetCategory { get; set; }
-        public virtual DbSet<ImsAssets> ImsAssets { get; set; }
-        public virtual DbSet<ImsLaptop> ImsLaptop { get; set; }
+        public virtual DbSet<ImsTblAssetCategory> ImsTblAssetCategory { get; set; }
+        public virtual DbSet<ImsTblAssets> ImsTblAssets { get; set; }
+        public virtual DbSet<ImsTblLaptop> ImsTblLaptop { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -412,46 +412,46 @@ namespace Web.Data.Db_Context
                     .HasConstraintName("FK__ems_tbl_w__etwh___31B762FC");
             });
 
-            modelBuilder.Entity<ImsAssetCategory>(entity =>
+            modelBuilder.Entity<ImsTblAssetCategory>(entity =>
             {
-                entity.HasKey(e => e.ItcCategoryId)
-                    .HasName("PK__ims_asse__2E43B6386A952267");
+                entity.HasKey(e => e.ItacCategoryId)
+                    .HasName("PK__ims_tbl___30819A43316DE319");
 
-                entity.ToTable("ims_asset_Category");
+                entity.ToTable("ims_tbl_asset_Category");
 
-                entity.Property(e => e.ItcCategoryId).HasColumnName("itc_category_id");
+                entity.Property(e => e.ItacCategoryId).HasColumnName("itac_category_id");
 
-                entity.Property(e => e.ItcCategoryName)
+                entity.Property(e => e.ItacCategoryName)
                     .IsRequired()
-                    .HasColumnName("itc_category_name");
+                    .HasColumnName("itac_category_name");
 
-                entity.Property(e => e.ItcCreatedBy).HasColumnName("itc_created_by");
+                entity.Property(e => e.ItacCreatedBy).HasColumnName("itac_created_by");
 
-                entity.Property(e => e.ItcCreatedByDate)
+                entity.Property(e => e.ItacCreatedByDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("itc_created_by_date")
+                    .HasColumnName("itac_created_by_date")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.Property(e => e.ItcCreatedByName).HasColumnName("itc_created_by_name");
+                entity.Property(e => e.ItacCreatedByName).HasColumnName("itac_created_by_name");
 
-                entity.Property(e => e.ItcIsDelete).HasColumnName("itc_is_delete");
+                entity.Property(e => e.ItacIsDelete).HasColumnName("itac_is_delete");
 
-                entity.Property(e => e.ItcModifiedBy).HasColumnName("itc_modified_by");
+                entity.Property(e => e.ItacModifiedBy).HasColumnName("itac_modified_by");
 
-                entity.Property(e => e.ItcModifiedByDate)
+                entity.Property(e => e.ItacModifiedByDate)
                     .HasColumnType("datetime")
-                    .HasColumnName("itc_modified_by_date")
+                    .HasColumnName("itac_modified_by_date")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.Property(e => e.ItcModifiedByName).HasColumnName("itc_modified_by_name");
+                entity.Property(e => e.ItacModifiedByName).HasColumnName("itac_modified_by_name");
             });
 
-            modelBuilder.Entity<ImsAssets>(entity =>
+            modelBuilder.Entity<ImsTblAssets>(entity =>
             {
                 entity.HasKey(e => e.ItaAssetId)
-                    .HasName("PK__ims_asse__B51DD0C3D2FC6A20");
+                    .HasName("PK__ims_tbl___B51DD0C3EDE67C8B");
 
-                entity.ToTable("ims_assets");
+                entity.ToTable("ims_tbl_assets");
 
                 entity.Property(e => e.ItaAssetId).HasColumnName("ita_asset_id");
 
@@ -500,26 +500,26 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.ItaType).HasColumnName("ita_type");
 
-                entity.Property(e => e.ItcCategoryIdFk).HasColumnName("itc_category_id_FK");
+                entity.Property(e => e.ItacCategoryIdFk).HasColumnName("itac_category_id_FK");
 
                 entity.HasOne(d => d.ItaAssignedTo)
-                    .WithMany(p => p.ImsAssets)
+                    .WithMany(p => p.ImsTblAssets)
                     .HasForeignKey(d => d.ItaAssignedToId)
-                    .HasConstraintName("FK__ims_asset__ita_a__589C25F3");
+                    .HasConstraintName("FK__ims_tbl_a__ita_a__7167D3BD");
 
-                entity.HasOne(d => d.ItcCategoryIdFkNavigation)
-                    .WithMany(p => p.ImsAssets)
-                    .HasForeignKey(d => d.ItcCategoryIdFk)
+                entity.HasOne(d => d.ItacCategoryIdFkNavigation)
+                    .WithMany(p => p.ImsTblAssets)
+                    .HasForeignKey(d => d.ItacCategoryIdFk)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__ims_asset__itc_c__56B3DD81");
+                    .HasConstraintName("FK__ims_tbl_a__itac___6F7F8B4B");
             });
 
-            modelBuilder.Entity<ImsLaptop>(entity =>
+            modelBuilder.Entity<ImsTblLaptop>(entity =>
             {
                 entity.HasKey(e => e.ItlLaptopId)
-                    .HasName("PK__ims_lapt__D9F5296D7825E4C0");
+                    .HasName("PK__ims_tbl___D9F5296D570F6A45");
 
-                entity.ToTable("ims_laptop");
+                entity.ToTable("ims_tbl_laptop");
 
                 entity.Property(e => e.ItlLaptopId).HasColumnName("itl_laptop_id");
 
@@ -554,9 +554,9 @@ namespace Web.Data.Db_Context
                 entity.Property(e => e.ItlRam).HasColumnName("itl_ram");
 
                 entity.HasOne(d => d.ItaAssetIdFkNavigation)
-                    .WithMany(p => p.ImsLaptop)
+                    .WithMany(p => p.ImsTblLaptop)
                     .HasForeignKey(d => d.ItaAssetIdFk)
-                    .HasConstraintName("FK__ims_lapto__ita_a__5D60DB10");
+                    .HasConstraintName("FK__ims_tbl_l__ita_a__762C88DA");
             });
 
             OnModelCreatingPartial(modelBuilder);
