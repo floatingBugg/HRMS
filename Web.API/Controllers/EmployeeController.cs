@@ -67,13 +67,13 @@ namespace Web.API.Controllers
         }
 
         [HttpPost("/Employee/AddEmployee")]
-        public BaseResponse Create([FromBody]EmsTblEmployeeDetails employee, string userName=null, string userId=null)
+        public BaseResponse Create([FromBody]EmsTblEmployeeDetails employee)
         {
             BaseResponse response = new BaseResponse(); 
             try
             {
                 var test = ModelState;
-                response = _employeeservice.CreateEmployee(employee, userName, userId);
+                response = _employeeservice.CreateEmployee(employee);
                
                     
                 
@@ -97,7 +97,7 @@ namespace Web.API.Controllers
             try
             {
                
-                response = _employeeservice.UpdateEmployee(employee,userName,userId);                  
+                response = _employeeservice.UpdateEmployee(employee);                  
                 return response;
             }
             catch (Exception ex)
@@ -113,7 +113,7 @@ namespace Web.API.Controllers
             BaseResponse response = new BaseResponse();
             try
             {          
-                response  = _employeeservice.DeleteEmployee(id,userName,userId);
+                response  = _employeeservice.DeleteEmployee(id);
               
                 return response;
             }
