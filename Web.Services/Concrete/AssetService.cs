@@ -172,6 +172,7 @@ namespace Web.Services.Concrete
         }
 
 
+
         public BaseResponse UpdateAsset(AssetCredential assets)
         {
             BaseResponse response = new BaseResponse();
@@ -241,7 +242,6 @@ namespace Web.Services.Concrete
         public BaseResponse GetAllAsset(int id)
         {
             BaseResponse response = new BaseResponse();
-            List<DisplayEmployeeGrid> empCred = new List<DisplayEmployeeGrid>();
             bool count = _hrmsassetRepository.Table.Count() > 0;
             var assetdata = _hrmsassetRepository.Table.Where(z => z.ItaIsDelete == false && z.ItacCategoryIdFk == id ).Select(x => new assetDisplayGrid
             {

@@ -42,14 +42,14 @@ namespace Web.Services.Concrete
                     ItaAssetName = laptop.assetName,
                     ItaQuantity = laptop.quantity,
                     ItaCost = laptop.cost,
-                    ItaSerialNo=laptop.serialno,
-                    ItaModel=laptop.model,
-                    ItaType=laptop.type,
-                    ItaCompanyName=laptop.companyName,
-                    ItaDescription=laptop.description,
-                    ItacCategoryIdFk=2,
-                    ItaAssignedToId=1,
-                    ItaAssignedToName=laptop.assignedname,
+                    ItaSerialNo = laptop.serialno,
+                    ItaModel = laptop.model,
+                    ItaType = laptop.type,
+                    ItaCompanyName = laptop.companyName,
+                    ItaDescription = laptop.description,
+                    ItacCategoryIdFk = 2,
+                    ItaAssignedToId = 1,
+                    ItaAssignedToName = laptop.assignedname,
                     ItaPurchaseDate = laptop.purchaseDate.Date,
                     ItaCreatedBy = "Admin",
                     ItaCreatedByName = "Admin",
@@ -61,7 +61,7 @@ namespace Web.Services.Concrete
                 assetlaptop.Add(new ImsTblLaptop
                 {
                     ItaAssetIdFk = asset.FirstOrDefault().ItaAssetId,
-                    ItlGeneration=laptop.generation,
+                    ItlGeneration = laptop.generation,
                     ItlRam = laptop.ram,
                     ItlHdd = laptop.hdd,
                     ItlProcessor = laptop.processor,
@@ -112,7 +112,7 @@ namespace Web.Services.Concrete
                   .ForEach(x =>
                   {
 
-                      
+
                       x.ItlGeneration = laptop.generation;
                       x.ItlRam = laptop.ram;
                       x.ItlHdd = laptop.hdd;
@@ -174,6 +174,60 @@ namespace Web.Services.Concrete
             return response;
         }
 
+        public BaseResponse GetAllAssestLaptop(int id)
+        {
+            BaseResponse response = new BaseResponse();
+            List<DisplayEmployeeGrid> empCred = new List<DisplayEmployeeGrid>();
+            bool count = _hrmsassetRepository.Table.Count() > 0;
+            var assetdata = _hrmsassetRepository.Table.Where(z => z.ItaIsDelete == false && z.ItacCategoryIdFk == id).Select(x => new assetDisplayGrid
+            {
+                assetid = x.ItaAssetId,
+                assetname = x.ItaAssetName,
+                categoryid = x.ItacCategoryIdFk,
+                assingedname = x.ItaAssignedToName,
+            }).ToList().OrderByDescending(x => x.assetid);
 
+            if (count == true)
+            {
+                response.Data = assetdata;
+                response.Success = true;
+                response.Message = UserMessages.strSuccess;
+
+
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotfound;
+            }
+            return response;
+        }
+
+
+        public BaseResponse GetLaptopbyID(int id)
+        {
+            BaseResponse response = new BaseResponse();
+
+            bool count = _hrmsassetRepository.Table.Where(z => z.ItaIsDelete == false && z.ItaAssetId == id).Count() > 0;
+            var assetData = _hrmsassetRepository.Table.Where(x => x.ItaAssetId == id).ToList();
+
+
+            if (count == true)
+            {
+                response.Data = assetData;
+                response.Success = true;
+                response.Message = UserMessages.strSuccess;
+
+
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotfound;
+            }
+            return response;
+        }
     }
 }

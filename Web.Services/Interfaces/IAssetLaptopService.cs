@@ -16,5 +16,11 @@ namespace Web.Services.Interfaces
         public BaseResponse UpdateAssestLaptop(AssetLaptopCredential laptop);
 
         public BaseResponse DeleteAssestLaptop(int id);
+
+        public BaseResponse GetAllAssestLaptop(int id);
+
+        public BaseResponse GetLaptopbyID(int id);
+
+
     }
 }

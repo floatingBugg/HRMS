@@ -86,5 +86,45 @@ namespace Web.API.Controllers
                 return response;
             }
         }
+
+        [HttpGet("/Assest/DisplayLaptop")]
+        public BaseResponse GetAllAsset(int id)
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                response = _assetlaptopservice.GetAllAssestLaptop(id);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+        }
+
+        [HttpGet("/Assest/GetLaptopbyID")]
+        public BaseResponse GetLaptopbyID(int id)
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                response = _assetlaptopservice.GetLaptopbyID(id);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+        }
+
+
     }
 }
