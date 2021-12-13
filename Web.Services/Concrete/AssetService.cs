@@ -147,11 +147,11 @@ namespace Web.Services.Concrete
             bool count = _hrmsassetcategoryRepository.Table.Where(p => p.ItacCategoryId == id).Count() > 0;
             if (count == true)
             {
-                _hrmsassetRepository.Table.Where(p => p.ItaAssetId == id)
+                _hrmsassetcategoryRepository.Table.Where(p => p.ItacCategoryId == id)
                     .ToList()
                     .ForEach(x =>
                     {
-                        x.ItaIsDelete = true;
+                        x.ItacIsDelete = true;
 
                     });
 
