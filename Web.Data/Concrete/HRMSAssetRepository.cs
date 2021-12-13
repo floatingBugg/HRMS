@@ -10,11 +10,10 @@ using Web.Data.Models;
 
 namespace Web.Data.Concrete
 {
-    public class HRMSAssetRepository : GenericRepository<ImsAssets>, IHRMSIMSAssetRepository
+    public class HRMSAssetRepository : GenericRepository<ImsAssets>, IHRMSAssetRepository
     {
-
         public HRMSAssetRepository(DbHRMSContext context)
-              : base(context)
+             : base(context)
         {
 
         }

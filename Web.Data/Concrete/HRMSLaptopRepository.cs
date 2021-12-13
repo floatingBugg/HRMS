@@ -10,15 +10,13 @@ using Web.Data.Models;
 
 namespace Web.Data.Concrete
 {
-    public class HRMSAssetLaptopRepository : GenericRepository<ImsLaptop>, IHRMSIMSAssetLaptopRepository
+    public class HRMSLaptopRepository : GenericRepository<ImsLaptop>, IHRMSLaptopRepository
     {
-
-        public HRMSAssetLaptopRepository(DbHRMSContext context)
-              : base(context)
+        public HRMSLaptopRepository(DbHRMSContext context)
+             : base(context)
         {
 
         }
-
 
     }
 }

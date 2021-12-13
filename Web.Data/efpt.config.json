@@ -42,7 +42,7 @@
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[ims_ac]",
+         "Name": "[dbo].[ims_asset_Category]",
          "ObjectType": 0
       },
       {
@@ -50,47 +50,7 @@
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[ims_cctv_cameras]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[ims_drives]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[ims_fans]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[ims_furniture]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[ims_keyboard]",
-         "ObjectType": 0
-      },
-      {
          "Name": "[dbo].[ims_laptop]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[ims_mouse]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[ims_power_cable]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[ims_printers]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[ims_screens]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[ims_stationery]",
          "ObjectType": 0
       }
    ],

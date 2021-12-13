@@ -10,26 +10,22 @@ namespace Web.Data.Models
     {
         public ImsAssets()
         {
-            ImsAc = new HashSet<ImsAc>();
-            ImsCctvCameras = new HashSet<ImsCctvCameras>();
-            ImsDrives = new HashSet<ImsDrives>();
-            ImsFans = new HashSet<ImsFans>();
-            ImsFurniture = new HashSet<ImsFurniture>();
-            ImsKeyboard = new HashSet<ImsKeyboard>();
             ImsLaptop = new HashSet<ImsLaptop>();
-            ImsMouse = new HashSet<ImsMouse>();
-            ImsPowerCable = new HashSet<ImsPowerCable>();
-            ImsPrinters = new HashSet<ImsPrinters>();
-            ImsScreens = new HashSet<ImsScreens>();
-            ImsStationery = new HashSet<ImsStationery>();
         }
 
         public int ItaAssetId { get; set; }
         public string ItaAssetName { get; set; }
-        public int ItaQuantity { get; set; }
-        public long ItaCost { get; set; }
-        public DateTime ItaPurchaseDate { get; set; }
-        public int ItaAssignedTo { get; set; }
+        public int ItcCategoryIdFk { get; set; }
+        public int? ItaQuantity { get; set; }
+        public long? ItaCost { get; set; }
+        public string ItaSerialNo { get; set; }
+        public string ItaModel { get; set; }
+        public string ItaType { get; set; }
+        public string ItaCompanyName { get; set; }
+        public string ItaDescription { get; set; }
+        public DateTime? ItaPurchaseDate { get; set; }
+        public int? ItaAssignedToId { get; set; }
+        public string ItaAssignedToName { get; set; }
         public string ItaCreatedBy { get; set; }
         public string ItaCreatedByName { get; set; }
         public DateTime? ItaCreatedByDate { get; set; }
@@ -38,17 +34,8 @@ namespace Web.Data.Models
         public DateTime? ItaModifiedByDate { get; set; }
         public bool? ItaIsDelete { get; set; }
 
-        public virtual ICollection<ImsAc> ImsAc { get; set; }
-        public virtual ICollection<ImsCctvCameras> ImsCctvCameras { get; set; }
-        public virtual ICollection<ImsDrives> ImsDrives { get; set; }
-        public virtual ICollection<ImsFans> ImsFans { get; set; }
-        public virtual ICollection<ImsFurniture> ImsFurniture { get; set; }
-        public virtual ICollection<ImsKeyboard> ImsKeyboard { get; set; }
+        public virtual EmsTblEmployeeDetails ItaAssignedTo { get; set; }
+        public virtual ImsAssetCategory ItcCategoryIdFkNavigation { get; set; }
         public virtual ICollection<ImsLaptop> ImsLaptop { get; set; }
-        public virtual ICollection<ImsMouse> ImsMouse { get; set; }
-        public virtual ICollection<ImsPowerCable> ImsPowerCable { get; set; }
-        public virtual ICollection<ImsPrinters> ImsPrinters { get; set; }
-        public virtual ICollection<ImsScreens> ImsScreens { get; set; }
-        public virtual ICollection<ImsStationery> ImsStationery { get; set; }
     }
 }
