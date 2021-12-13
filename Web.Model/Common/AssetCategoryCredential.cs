@@ -11,5 +11,14 @@ namespace Web.Model.Common
         public int categoryId { get; set; }
         public string categoryname { get; set; }
 
+        public string createdby { get; set; }
+        
+        public string createdbyname { get; set; }
+        public DateTime createdbydate = new DateTime();
+
+        
+
+
+
     }
 }
