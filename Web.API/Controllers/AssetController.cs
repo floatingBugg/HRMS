@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -49,18 +48,15 @@ namespace Web.API.Controllers
             }
         }
 
+
         [HttpPost("/Assest/AddAsset")]
-        public BaseResponse CreateAsset([FromBody] AssetCredential asset)
+        public BaseResponse CreateAsset([FromBody] AssetCredential assets)
         {
             BaseResponse response = new BaseResponse();
             try
             {
                 var test = ModelState;
-                response = _assetservice.CreateAsset(asset);
-
-
-
-
+                response = _assetservice.CreateAsset(assets);
 
                 return response;
             }
@@ -73,5 +69,7 @@ namespace Web.API.Controllers
                 return response;
             }
         }
+
     }
 }
+       

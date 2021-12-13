@@ -12,7 +12,8 @@ namespace Web.Model.Common
 
         public int assetid { get; set; }
         public string assetname { get; set; }
-
+        public int categoryid { get; set; }
+        public int assignid { get; set; }
         public int quantity { get; set; }
         public int cost { get; set; }
         public string serialno { get; set; }
@@ -28,5 +29,8 @@ namespace Web.Model.Common
 
         public DateTime purchaseddate = new DateTime();
 
+        public string createdby { get; set; }
+
+        public string createdbyname { get; set; }
     }
 }

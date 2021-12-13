@@ -41,17 +41,18 @@ namespace Web.Services.Concrete
                     ItaAssetName = assets.assetname,
                     ItaQuantity = assets.quantity,
                     ItaCost = assets.cost,
-                    ItaSerialNo = assets.serialno,
-                    ItaModel = assets.model,
-                    ItaType = assets.type,
-                    ItaCompanyName = assets.companyname,
+                    ItacCategoryIdFk = assets.categoryid,
                     ItaDescription = assets.description,
+                    ItaSerialNo=assets.serialno,
+                    ItaModel=assets.model,
+                    ItaCompanyName=assets.companyname,
+                    ItaType=assets.type,
+                    ItaAssignedToId=assets.assignid,
                     ItaAssignedToName = assets.assingedname,
-                    ItaAssignedToId = 1,
                     ItaPurchaseDate = assets.purchaseddate.Date,
-                    ItaCreatedBy = "Admin",
-                    ItaCreatedByName = "Admin",
-                    ItaCreatedByDate = DateTime.Now.Date,
+                    ItaCreatedBy = assets.createdby,
+                    ItaCreatedByName = assets.createdbyname,
+                    ItaCreatedByDate = DateTime.Now,
                     ItaIsDelete = false
 
                 });
@@ -103,10 +104,5 @@ namespace Web.Services.Concrete
             }
             return response;
         }
-
-
-
-
-
     }
 }
