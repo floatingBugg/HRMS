@@ -41,18 +41,20 @@ namespace Web.Services.Concrete
                     ItaAssetName = assets.assetname,
                     ItaQuantity = assets.quantity,
                     ItaCost = assets.cost,
-                    ItaSerialNo = assets.serialno,
-                    ItaModel = assets.model,
-                    ItaType = assets.type,
-                    ItaCompanyName = assets.companyname,
+                    ItacCategoryIdFk = assets.categoryid,
                     ItaDescription = assets.description,
+                    ItaSerialNo=assets.serialno,
+                    ItaModel=assets.model,
+                    ItaCompanyName=assets.companyname,
+                    ItaType=assets.type,
+                    ItaAssignedToId=assets.assignid,
                     ItaAssignedToName = assets.assingedname,
                     ItaAssignedToId = 1,
                     ItacCategoryIdFk=2,
                     ItaPurchaseDate = assets.purchaseddate.Date,
-                    ItaCreatedBy = "Admin",
-                    ItaCreatedByName = "Admin",
-                    ItaCreatedByDate = DateTime.Now.Date,
+                    ItaCreatedBy = assets.createdby,
+                    ItaCreatedByName = assets.createdbyname,
+                    ItaCreatedByDate = DateTime.Now,
                     ItaIsDelete = false
 
                 });
@@ -140,35 +142,7 @@ namespace Web.Services.Concrete
             return response;
         }
 
-        public BaseResponse DeleteAssestCategory(int id)
-        {
-            BaseResponse response = new BaseResponse();
-            bool count = _hrmsassetcategoryRepository.Table.Where(p => p.ItacCategoryId == id).Count() > 0;
-            if (count == true)
-            {
-                _hrmsassetcategoryRepository.Table.Where(p => p.ItacCategoryId == id)
-                    .ToList()
-                    .ForEach(x =>
-                    {
-                        x.ItacIsDelete = true;
 
-                    });
-                
-                _uow.Commit();
-
-                response.Success = true;
-                response.Message = UserMessages.strDeleted;
-                response.Data = null;
-            }
-            else
-            {
-                response.Data = null;
-                response.Success = false;
-                response.Message = UserMessages.strAlrdeleted;
-            }
-
-            return response;
-        }
 
 
 
