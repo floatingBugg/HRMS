@@ -43,14 +43,13 @@ namespace Web.Services.Concrete
                     ItaCost = assets.cost,
                     ItacCategoryIdFk = assets.categoryid,
                     ItaDescription = assets.description,
-                    ItaSerialNo=assets.serialno,
-                    ItaModel=assets.model,
-                    ItaCompanyName=assets.companyname,
-                    ItaType=assets.type,
-                    ItaAssignedToId=assets.assignid,
+                    ItaSerialNo = assets.serialno,
+                    ItaModel = assets.model,
+                    ItaCompanyName = assets.companyname,
+                    ItaType = assets.type,
                     ItaAssignedToName = assets.assingedname,
                     ItaAssignedToId = 1,
-                    ItacCategoryIdFk=2,
+
                     ItaPurchaseDate = assets.purchaseddate.Date,
                     ItaCreatedBy = assets.createdby,
                     ItaCreatedByName = assets.createdbyname,
@@ -125,7 +124,7 @@ namespace Web.Services.Concrete
                         x.ItacIsDelete = false;
 
                     });
-                
+
                 _uow.Commit();
 
                 response.Success = true;
@@ -142,9 +141,36 @@ namespace Web.Services.Concrete
             return response;
         }
 
+        public BaseResponse DeleteAssestCategory(int id)
+        {
+            BaseResponse response = new BaseResponse();
+            bool count = _hrmsassetcategoryRepository.Table.Where(p => p.ItacCategoryId == id).Count() > 0;
+            if (count == true)
+            {
+                _hrmsassetRepository.Table.Where(p => p.ItaAssetId == id)
+                    .ToList()
+                    .ForEach(x =>
+                    {
+                        x.ItaIsDelete = true;
+
+                    });
+
+                _uow.Commit();
+                response.Success = true;
+                response.Message = UserMessages.strDeleted;
+                response.Data = null;
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strAlrdeleted;
+            }
+
+            return response;
 
 
-
-
+        }
+        }
     }
-}
+
