@@ -2,7 +2,10 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using System;
 using Web.API.Helper;
+using Web.Model;
+using Web.Model.Common;
 using Web.Services.Interfaces;
 
 namespace Web.API.Controllers
@@ -23,9 +26,50 @@ namespace Web.API.Controllers
             _logger = new Logger(_hostEnvironment);
         }
 
-        public IActionResult Index()
+        [HttpPost("/Asset/CreateAssetCategory")]
+        public BaseResponse CreateCategory([FromBody] AssetCategoryCredential category)
         {
-            return View();
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                var test = ModelState;
+                response = _assetservice.CreateAssetCategory(category);
+
+
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+        }
+
+        [HttpPost("/Assest/AddAsset")]
+        public BaseResponse CreateAsset([FromBody] AssetCredential asset)
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                var test = ModelState;
+                response = _assetservice.CreateAsset(asset);
+
+
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
         }
     }
 }

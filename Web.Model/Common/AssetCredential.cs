@@ -8,8 +8,7 @@ namespace Web.Model.Common
 {
     public class AssetCredential
     {
-        public int categoryid { get; set; }
-        public string categoryname { get; set; }
+    
 
         public int assetid { get; set; }
         public string assetname { get; set; }
@@ -20,6 +19,11 @@ namespace Web.Model.Common
 
         public string model { get; set; }
         public string type { get; set; }
+
+        public string companyname { get; set; }
+
+        public string assingedname { get; set; }
+        public int assingedid { get; set; }
         public string description { get; set; }
 
         public DateTime purchaseddate = new DateTime();
