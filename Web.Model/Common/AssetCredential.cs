@@ -24,7 +24,6 @@ namespace Web.Model.Common
         public string companyname { get; set; }
 
         public string assingedname { get; set; }
-        public int assingedid { get; set; }
         public string description { get; set; }
 
         public DateTime purchaseddate = new DateTime();
@@ -32,5 +31,10 @@ namespace Web.Model.Common
         public string createdby { get; set; }
 
         public string createdbyname { get; set; }
+
+        public string modifiedby { get; set; }
+
+        public string modifiedbyname { get; set; }
+
     }
 }

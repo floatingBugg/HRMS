@@ -104,5 +104,126 @@ namespace Web.Services.Concrete
             }
             return response;
         }
+
+        public BaseResponse UpdateAsset(AssetCredential assets)
+        {
+            BaseResponse response = new BaseResponse();
+            bool count = _hrmsassetRepository.Table.Where(p => p.ItaAssetId == assets.assetid).Count() > 0;
+            if (count == true)
+            {
+                _hrmsassetRepository.Table.Where(p => p.ItaAssetId == assets.assetid)
+                    .ToList()
+                    .ForEach(x =>
+                    {
+                        x.ItaAssetName = assets.assetname;
+                        x.ItaQuantity = assets.quantity;
+                        x.ItaCost = assets.cost;
+                        x.ItaPurchaseDate = assets.purchaseddate;
+                        x.ItaModifiedBy = assets.modifiedby;
+                        x.ItaModifiedByName = assets.modifiedbyname;
+                        x.ItaModifiedByDate = DateTime.Now.Date;
+                        x.ItaIsDelete = false;
+
+                    });
+                    _uow.Commit();
+
+                    response.Success = true;
+                    response.Message = UserMessages.strUpdated;
+                    response.Data = null;
+                }
+                else
+                {
+                    response.Data = null;
+                    response.Success = false;
+                    response.Message = UserMessages.strNotupdated;
+                }
+
+                return response;
+        }
+
+        public BaseResponse DeleteAsset(int id)
+        {
+            BaseResponse response = new BaseResponse();
+            bool count = _hrmsassetRepository.Table.Where(p => p.ItaAssetId == id).Count() > 0;
+            if (count == true)
+            {
+                _hrmsassetRepository.Table.Where(p => p.ItaAssetId == id)
+                    .ToList()
+                    .ForEach(x =>
+                    {
+                        x.ItaIsDelete = true;
+
+                    });
+                
+                _uow.Commit();
+
+                response.Success = true;
+                response.Message = UserMessages.strDeleted;
+                response.Data = null;
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strAlrdeleted;
+            }
+
+            return response;
+        }
+
+        public BaseResponse GetAllAsset(int id)
+        {
+            BaseResponse response = new BaseResponse();
+            List<DisplayEmployeeGrid> empCred = new List<DisplayEmployeeGrid>();
+            bool count = _hrmsassetRepository.Table.Count() > 0;
+            var assetdata = _hrmsassetRepository.Table.Where(z => z.ItaIsDelete == false && z.ItacCategoryIdFk == id ).Select(x => new assetDisplayGrid
+            {
+                assetid = x.ItaAssetId,
+                assetname = x.ItaAssetName,
+                categoryid = x.ItacCategoryIdFk,
+                assingedname = x.ItaAssignedToName,
+            }).ToList().OrderByDescending(x => x.assetid);
+
+            if (count == true)
+            {
+                response.Data = assetdata;
+                response.Success = true;
+                response.Message = UserMessages.strSuccess;
+
+
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotfound;
+            }
+            return response;
+        }
+
+        public BaseResponse GetAssetbyID(int id)
+        {
+            BaseResponse response = new BaseResponse();
+
+            bool count = _hrmsassetRepository.Table.Where(z => z.ItaIsDelete == false && z.ItaAssetId == id).Count() > 0;
+            var assetData = _hrmsassetRepository.Table.Where(x => x.ItaAssetId == id).ToList();
+
+
+            if (count == true)
+            {
+                response.Data = assetData;
+                response.Success = true;
+                response.Message = UserMessages.strSuccess;
+
+
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotfound;
+            }
+            return response;
+        }
     }
 }

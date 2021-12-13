@@ -90,7 +90,7 @@ namespace Web.API.Controllers
         }
 
         [HttpPost("/Employee/UpdateEmployee")]
-        public BaseResponse Update([FromBody] EmsTblEmployeeDetails employee, string userName = null, string userId = null)
+        public BaseResponse Update([FromBody] EmsTblEmployeeDetails employee)
         {
             BaseResponse response = new BaseResponse();
             
@@ -108,7 +108,7 @@ namespace Web.API.Controllers
         }
 
         [HttpDelete("/Employee/DeleteEmployee")]
-        public BaseResponse Delete(int id, string userName = null, string userId = null)
+        public BaseResponse Delete(int id)
         {
             BaseResponse response = new BaseResponse();
             try

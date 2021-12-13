@@ -70,6 +70,83 @@ namespace Web.API.Controllers
             }
         }
 
+        [HttpPost("/Assest/UpdateAsset")]
+        public BaseResponse UpdateLaptop([FromBody] AssetCredential assets)
+        {
+            BaseResponse response = new BaseResponse();
+
+            try
+            {
+
+                response = _assetservice.UpdateAsset(assets);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                return response;
+            }
+        }
+
+        [HttpDelete("/Assest/RemoveAsset")]
+        public BaseResponse Delete(int id)
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                response = _assetservice.DeleteAsset(id);
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+
+        }
+
+        [HttpGet("/Assest/DisplayAsset")]
+        public BaseResponse GetAllEmployee(int id)
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                response = _assetservice.GetAllAsset(id);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+        }
+
+
+        [HttpGet("/Assest/GetAssetbyID")]
+        public BaseResponse GetAssetbyID(int id)
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                response = _assetservice.GetAssetbyID(id);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+        }
     }
 }
        
