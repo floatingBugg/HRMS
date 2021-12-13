@@ -1,4 +1,4 @@
-﻿/*using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +21,7 @@ namespace Web.Services.Concrete
         IConfiguration _config;
         private readonly IUnitOfWork _uow;
         private readonly UnitOfWork unitofWork;
-        public AssetService(IConfiguration config,  IUnitOfWork uow, IHRMSAssetCategoryRepository hrmsassetcategoryRepository, IHRMSAssetRepository hrmsassetrepository)
+        public AssetService(IConfiguration config, IUnitOfWork uow, IHRMSAssetCategoryRepository hrmsassetcategoryRepository, IHRMSAssetRepository hrmsassetrepository)
         {
             _config = config;
             _uow = uow;
@@ -33,7 +33,7 @@ namespace Web.Services.Concrete
         {
             BaseResponse response = new BaseResponse();
             List<ImsTblAssets> asset = new List<ImsTblAssets>();
-            
+
             if (!string.IsNullOrEmpty(assets.assetname))
             {
                 asset.Add(new ImsTblAssets
@@ -41,8 +41,13 @@ namespace Web.Services.Concrete
                     ItaAssetName = assets.assetname,
                     ItaQuantity = assets.quantity,
                     ItaCost = assets.cost,
-                    ItaDescription=assets.description,
-                    ItaAssignedToName=assets.assingedname,
+                    ItaSerialNo = assets.serialno,
+                    ItaModel = assets.model,
+                    ItaType = assets.type,
+                    ItaCompanyName = assets.companyname,
+                    ItaDescription = assets.description,
+                    ItaAssignedToName = assets.assingedname,
+                    ItaAssignedToId = 1,
                     ItaPurchaseDate = assets.purchaseddate.Date,
                     ItaCreatedBy = "Admin",
                     ItaCreatedByName = "Admin",
@@ -51,7 +56,6 @@ namespace Web.Services.Concrete
 
                 });
                 _hrmsassetRepository.Insert(asset);
-               
 
 
                 response.Success = true;
@@ -104,24 +108,5 @@ namespace Web.Services.Concrete
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }
-*/

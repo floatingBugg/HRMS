@@ -112,8 +112,11 @@ namespace Web.API
             //Register Services Repositories
             services.AddTransient(typeof(IHRMSUserAuthRepository), typeof(HRMSUserAuthRepository));
             services.AddTransient(typeof(IHRMSEmployeeRepository), typeof(HRMSEmployeeRepository));
+            services.AddTransient(typeof(IAssetService), typeof(AssetService));
             //Register Assest Service 
-            
+            services.AddTransient(typeof(IHRMSAssetCategoryRepository), typeof(HRMSAssetCategoryRepository));
+            services.AddTransient(typeof(IHRMSAssetRepository), typeof(HRMSAssetRepository));
+            services.AddTransient(typeof(IHRMSLaptopRepository), typeof(HRMSLaptopRepository));
 
 
         }

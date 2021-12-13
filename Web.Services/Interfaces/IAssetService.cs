@@ -12,6 +12,6 @@ namespace Web.Services.Interfaces
     {
         public BaseResponse CreateAssetCategory(AssetCategoryCredential category);
 
-        public BaseResponse CreateAsset(AssetCredential asset);
+        public BaseResponse CreateAsset(AssetCredential assets);
     }
 }
