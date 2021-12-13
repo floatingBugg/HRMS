@@ -17,7 +17,16 @@ namespace Web.Model.Common
 
         public DateTime purchaseDate = new DateTime();
 
+        public string model { get; set; }
+
+        public string type { get; set; }
+
+        public string description { get; set; }
         public int assignedTo { get; set; }
+
+        public string assignedname { get; set; }
+
+        public int categoryId { get; set; }
 
         public string serialno { get; set; }
 

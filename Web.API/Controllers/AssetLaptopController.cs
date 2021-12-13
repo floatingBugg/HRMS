@@ -1,4 +1,4 @@
-﻿/*
+﻿
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -88,4 +88,3 @@ namespace Web.API.Controllers
         }
     }
 }
-*/

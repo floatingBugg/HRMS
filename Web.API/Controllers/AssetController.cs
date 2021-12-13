@@ -49,6 +49,44 @@ namespace Web.API.Controllers
         }
 
 
+        [HttpPost("/Assest/UpdateAssetCategory")]
+        public BaseResponse UpdateAssetCategory([FromBody] AssetCategoryCredential category)
+        {
+            BaseResponse response = new BaseResponse();
+
+            try
+            {
+
+                response = _assetservice.UpdateAssestCategory(category);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                return response;
+            }
+        }
+
+        [HttpDelete("/Asset/DeleteAssetCategory")]
+        public BaseResponse DeleteAssestCategory(int id)
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                response = _assetservice.DeleteAssestCategory(id);
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+        }
+
         [HttpPost("/Assest/AddAsset")]
         public BaseResponse CreateAsset([FromBody] AssetCredential assets)
         {
@@ -57,6 +95,8 @@ namespace Web.API.Controllers
             {
                 var test = ModelState;
                 response = _assetservice.CreateAsset(assets);
+
+
 
                 return response;
             }

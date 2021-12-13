@@ -41,14 +41,14 @@ namespace Web.Services.Concrete
                     ItaAssetName = assets.assetname,
                     ItaQuantity = assets.quantity,
                     ItaCost = assets.cost,
-                    ItacCategoryIdFk = assets.categoryid,
+                    ItacCategoryIdFk = 2,
                     ItaDescription = assets.description,
-                    ItaSerialNo=assets.serialno,
-                    ItaModel=assets.model,
-                    ItaCompanyName=assets.companyname,
-                    ItaType=assets.type,
-                    ItaAssignedToId=assets.assignid,
+                    ItaSerialNo = assets.serialno,
+                    ItaModel = assets.model,
+                    ItaCompanyName = assets.companyname,
+                    ItaType = assets.type,
                     ItaAssignedToName = assets.assingedname,
+                    ItaAssignedToId = 1,
                     ItaPurchaseDate = assets.purchaseddate.Date,
                     ItaCreatedBy = assets.createdby,
                     ItaCreatedByName = assets.createdbyname,
@@ -104,6 +104,73 @@ namespace Web.Services.Concrete
             }
             return response;
         }
+
+
+        public BaseResponse UpdateAssestCategory(AssetCategoryCredential category)
+        {
+            BaseResponse response = new BaseResponse();
+            bool count = _hrmsassetcategoryRepository.Table.Where(p => p.ItacCategoryId == category.categoryId).Count() > 0;
+            if (count == true)
+            {
+                _hrmsassetcategoryRepository.Table.Where(p => p.ItacCategoryId == category.categoryId)
+                    .ToList()
+                    .ForEach(x =>
+                    {
+                        x.ItacCategoryName = category.categoryname;
+                        x.ItacCreatedBy = "Admin";
+                        x.ItacCreatedByName = "Admin";
+                        x.ItacCreatedByDate = DateTime.Now.Date;
+                        x.ItacIsDelete = false;
+
+                    });
+
+                _uow.Commit();
+
+                response.Success = true;
+                response.Message = UserMessages.strUpdated;
+                response.Data = null;
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotupdated;
+            }
+
+            return response;
+        }
+
+        public BaseResponse DeleteAssestCategory(int id)
+        {
+            BaseResponse response = new BaseResponse();
+            bool count = _hrmsassetcategoryRepository.Table.Where(p => p.ItacCategoryId == id).Count() > 0;
+            if (count == true)
+            {
+                _hrmsassetcategoryRepository.Table.Where(p => p.ItacCategoryId == id)
+                    .ToList()
+                    .ForEach(x =>
+                    {
+                        x.ItacIsDelete = true;
+
+                    });
+
+                _uow.Commit();
+                response.Success = true;
+                response.Message = UserMessages.strDeleted;
+                response.Data = null;
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strAlrdeleted;
+            }
+            _uow.Commit();
+            return response;
+
+
+        }
+
 
         public BaseResponse UpdateAsset(AssetCredential assets)
         {
