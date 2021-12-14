@@ -108,6 +108,7 @@ namespace Web.API
             services.AddTransient(typeof(IEmployeeService), typeof(EmployeeService));
             services.AddTransient(typeof(IAssetService), typeof(AssetService));
             services.AddTransient(typeof(IAssetLaptopService), typeof(AssetLaptopService));
+            services.AddTransient(typeof(IAssetAssignService), typeof(AssetAssignService));
 
 
             //Register Services Repositories
@@ -119,7 +120,8 @@ namespace Web.API
             services.AddTransient(typeof(IHRMSAssetCategoryRepository), typeof(HRMSAssetCategoryRepository));
             services.AddTransient(typeof(IHRMSAssetRepository), typeof(HRMSAssetRepository));
             services.AddTransient(typeof(IHRMSLaptopRepository), typeof(HRMSLaptopRepository));
-            
+            services.AddTransient(typeof(IHRMSAssetAssignRepository), typeof(HRMSAssetAssignRepository));
+
 
 
         }

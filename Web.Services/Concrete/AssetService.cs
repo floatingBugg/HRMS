@@ -41,8 +41,8 @@ namespace Web.Services.Concrete
                 assetcategory.Add(new ImsTblAssetCategory
                 {
                     ItacCategoryName = category.categoryname,
-                    ItacCreatedBy = "Admin",
-                    ItacCreatedByName = "Admin",
+                    ItacCreatedBy = category.createdby,
+                    ItacCreatedByName = category.createdbyname,
                     ItacCreatedByDate = DateTime.Now.Date,
                     ItacIsDelete = false
 
