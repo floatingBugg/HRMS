@@ -13,7 +13,7 @@ namespace Web.Model.Common
         public int assetid { get; set; }
         public string assetname { get; set; }
         public int categoryid { get; set; }
-        public int assignid { get; set; }
+
         public int quantity { get; set; }
         public int cost { get; set; }
         public string serialno { get; set; }
@@ -23,7 +23,7 @@ namespace Web.Model.Common
 
         public string companyname { get; set; }
 
-        public string assingedname { get; set; }
+
         public string description { get; set; }
 
         public DateTime purchaseddate = new DateTime();

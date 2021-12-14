@@ -50,8 +50,6 @@ namespace Web.Services.Concrete
                     ItaCompanyName = laptop.companyName,
                     ItaDescription = laptop.description,
                     ItacCategoryIdFk = laptop.categoryId,
-                    ItaAssignedToId = laptop.assignedId,
-                    ItaAssignedToName = laptop.assignedname,
                     ItaPurchaseDate = laptop.purchaseDate.Date,
                     ItaCreatedBy = laptop.createdby,
                     ItaCreatedByName = laptop.createdbyname,
@@ -108,8 +106,6 @@ namespace Web.Services.Concrete
                         x.ItaCompanyName = laptop.companyName;
                         x.ItaDescription = laptop.description;
                         x.ItacCategoryIdFk = laptop.categoryId;
-                        x.ItaAssignedToId = laptop.assignedId;
-                        x.ItaAssignedToName = laptop.assignedname;
                         x.ItaPurchaseDate = DateTime.Now;
                        x.ItaModifiedBy = laptop.modifiedby;
                         x.ItaModifiedByName = laptop.modifiedbyname;
@@ -194,7 +190,6 @@ namespace Web.Services.Concrete
                 assetid = x.ItaAssetId,
                 assetname = x.ItaAssetName,
                 categoryid = x.ItacCategoryIdFk,
-                assingedname = x.ItaAssignedToName,
             }).ToList().OrderByDescending(x => x.assetid);
 
             if (count == true)

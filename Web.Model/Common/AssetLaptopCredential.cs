@@ -22,9 +22,8 @@ namespace Web.Model.Common
         public string type { get; set; }
 
         public string description { get; set; }
-        public int assignedId { get; set; }
+   
 
-        public string assignedname { get; set; }
 
         public int categoryId { get; set; }
 

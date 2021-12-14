@@ -204,8 +204,6 @@ namespace Web.Services.Concrete
                     ItaModel = assets.model,
                     ItaCompanyName = assets.companyname,
                     ItaType = assets.type,
-                    ItaAssignedToName = assets.assingedname,
-                    ItaAssignedToId = assets.assignid,
                     ItaPurchaseDate = assets.purchaseddate.Date,
                     ItaCreatedBy = assets.createdby,
                     ItaCreatedByName = assets.createdbyname,
@@ -248,8 +246,6 @@ namespace Web.Services.Concrete
                         x.ItaModel = assets.model;
                         x.ItaCompanyName = assets.companyname;
                         x.ItaType = assets.type;
-                        x.ItaAssignedToName = assets.assingedname;
-                        x.ItaAssignedToId = assets.assignid;
                         x.ItaPurchaseDate = DateTime.Now;
                         x.ItaCreatedBy = assets.createdby;
                         x.ItaCreatedByName = assets.createdbyname;
@@ -291,7 +287,7 @@ namespace Web.Services.Concrete
 
                     });
                 
-                _uow.Commit();
+               
 
                 response.Success = true;
                 response.Message = UserMessages.strDeleted;
@@ -303,7 +299,7 @@ namespace Web.Services.Concrete
                 response.Success = false;
                 response.Message = UserMessages.strAlrdeleted;
             }
-
+            _uow.Commit();
             return response;
         }
 
@@ -316,7 +312,7 @@ namespace Web.Services.Concrete
                 assetid = x.ItaAssetId,
                 assetname = x.ItaAssetName,
                 categoryid = x.ItacCategoryIdFk,
-                assingedname = x.ItaAssignedToName,
+                
             }).ToList().OrderByDescending(x => x.assetid);
 
             if (count == true)
