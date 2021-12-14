@@ -87,7 +87,7 @@ namespace Web.API.Controllers
             }
         }
 
-        [HttpGet("/AssestCategoryCategory/GetAssetCategorybyID")]
+        [HttpGet("/AssestCategory/GetAssetCategorybyID")]
         public BaseResponse GetAssetCategorybyID(int id)
         {
             BaseResponse response = new BaseResponse();
