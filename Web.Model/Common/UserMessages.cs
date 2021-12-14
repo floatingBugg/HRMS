@@ -21,7 +21,8 @@ namespace Web.Model.Common
         public static string strUpdated = "Data Updated successfully";
         public static string strAlrdeleted = "Data Already Deleted";
         public static string strNotupdated = "Not Updated";
-        public static string strAlrexist = "Email Already Exist";
+        public static string strEmailexist = "Email Already Exist";
+        public static string strCnicexist = "Cnic Already Exist";
         public static string strNotinsert = "No Data Inserted";
         public static string strNotfound = "No Data Found";
       /*  public UserMessages(string value)

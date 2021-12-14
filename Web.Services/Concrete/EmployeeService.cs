@@ -146,7 +146,7 @@ namespace Web.Services.Concrete
 
          else if (doesExistAlready == true)
             {
-                response.Message = UserMessages.strAlrexist;
+                response.Message = UserMessages.strEmailexist;
             }
 
             else

@@ -25,7 +25,7 @@ namespace Web.API.Controllers
             _logger = new Logger(_hostEnvironment);
         }
         /*ASSET CATEGORY*/
-        [HttpPost("/Asset/CreateAssetCategory")]
+        [HttpPost("/AssetCategory/CreateAssetCategory")]
         public BaseResponse CreateCategory([FromBody] AssetCategoryCredential category)
         {
             BaseResponse response = new BaseResponse();
@@ -49,7 +49,7 @@ namespace Web.API.Controllers
         }
 
 
-        [HttpPost("/Assest/UpdateAssetCategory")]
+        [HttpPost("/AssestCategory/UpdateAssetCategory")]
         public BaseResponse UpdateAssetCategory([FromBody] AssetCategoryCredential category)
         {
             BaseResponse response = new BaseResponse();
@@ -67,7 +67,7 @@ namespace Web.API.Controllers
             }
         }
 
-        [HttpDelete("/Asset/DeleteAssetCategory")]
+        [HttpDelete("/AssetCategory/DeleteAssetCategory")]
         public BaseResponse DeleteAssestCategory(int id)
         {
             BaseResponse response = new BaseResponse();
@@ -87,7 +87,7 @@ namespace Web.API.Controllers
             }
         }
 
-        [HttpGet("/AssestCategory/GetAssetCategorybyID")]
+        [HttpGet("/AssestCategoryCategory/GetAssetCategorybyID")]
         public BaseResponse GetAssetCategorybyID(int id)
         {
             BaseResponse response = new BaseResponse();
@@ -106,7 +106,7 @@ namespace Web.API.Controllers
             }
         }
 
-        [HttpGet("/Assest/DisplayAssetCategory")]
+        [HttpGet("/AssestCategory/DisplayAssetCategory")]
         public BaseResponse GetAllAssetCategory()
         {
             BaseResponse response = new BaseResponse();
