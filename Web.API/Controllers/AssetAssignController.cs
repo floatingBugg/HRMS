@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Web.API.Helper;
+using Web.Model;
 using Web.Services.Interfaces;
 
 namespace Web.API.Controllers
@@ -23,6 +24,44 @@ namespace Web.API.Controllers
             _config = config;
             _hostEnvironment = environment;
             _logger = new Logger(_hostEnvironment);
+        }
+        [HttpDelete("/AssetCategory/DeleteAssetAssign")]
+        public BaseResponse DeleteAssestCategory(int id)
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                response = _assetassignservice.DeleteAssetAssign(id);
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+        }
+
+        [HttpGet("/Assest/DisplayAssignAsset")]
+        public BaseResponse GetAllEmployee(int id)
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                response = _assetassignservice.DisplayAllAssign();
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
         }
     }
 }
