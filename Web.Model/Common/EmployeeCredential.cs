@@ -10,10 +10,9 @@ namespace Web.Model.Common
         public string Lastname { get; set; }
         public string photograph { get; set; }
         public string personalemail { get; set; }
-
         public string officialemail { get; set; }
-        public int? cnic { get; set; }
-        public DateTime? dob { get; set; }
+        public long cnic { get; set; }
+        public DateTime dob { get; set; }
         public string contact { get; set; }
         public string address { get; set; }
         public string gender { get; set; }
@@ -34,26 +33,26 @@ namespace Web.Model.Common
 
         //Academic Qualification
 
-        
+
         public string Qualification { get; set; }
-        public string PassingYear { get; set; }
-        public string Cgpa { get; set; }
-        public string InstituteName{get;set;}
+        public long PassingYear { get; set; }
+        public float Cgpa { get; set; }
+        public string AcademicInstituteName { get; set; }
 
         public string UploadDocuments { get; set; }
 
         //Professional Qualification
-       
-        public string Certification { get; set; }
 
-        public DateTime StartDate = new DateTime();
-        
-        public DateTime EndDate = new DateTime();
-        
+        public string certification { get; set; }
 
+        public DateTime profstartDate = new DateTime();
+
+        public DateTime profendDate = new DateTime();
+
+        public string ProfessionalInstituteName { get; set; }
         public string Documents { get; set; }
 
-       
+
 
         //Emergency Contact
         public string emergencyfirstname { get; set; }
@@ -68,11 +67,11 @@ namespace Web.Model.Common
         // Working History
         public string companyname { get; set; }
 
-        public string Olddesignation { get; set; }
+        public string workdesignation { get; set; }
 
-        public DateTime startdate { get; set; }
+        public DateTime workstartdate { get; set; }
 
-        public DateTime enddate { get; set; }
+        public DateTime workenddate { get; set; }
 
         public string duration { get; set; }
 
@@ -81,20 +80,16 @@ namespace Web.Model.Common
 
         //Professional Details
 
-        
+
 
         public string Salary { get; set; }
 
-        public string NewDesignation { get; set; }
+        public string profdesignation { get; set; }
         public DateTime JoiningDate { get; set; }
 
         public string Probation { get; set; }
 
 
-    }
 
-    public class AllTableDetails
-    {
-        public List<EmployeeCredential> _myPrEmployeeCredentialoperty { get; set; }
     }
 }
