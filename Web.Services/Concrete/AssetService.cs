@@ -155,7 +155,6 @@ namespace Web.Services.Concrete
             return response;
         }
 
-
         public BaseResponse GetAllAssetCategory()
         {
             BaseResponse response = new BaseResponse();

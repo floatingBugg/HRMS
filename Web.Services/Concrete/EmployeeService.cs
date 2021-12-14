@@ -61,11 +61,12 @@ namespace Web.Services.Concrete
         {
             
             BaseResponse response = new BaseResponse();
-            bool doesExistAlready = _hrmsemployeeRepository.Table.Count(p => p.EtedEmailAddress == employee.EtedEmailAddress) > 0;
+            bool doesEmailExistAlready = _hrmsemployeeRepository.Table.Count(p => p.EtedEmailAddress == employee.EtedEmailAddress) > 0;
+            bool doesCNICExistAlready = _hrmsemployeeRepository.Table.Count(p => p.EtedCnic == employee.EtedCnic) > 0;
             if (!string.IsNullOrEmpty(employee.EtedCreatedBy) && !string.IsNullOrEmpty(employee.EtedCreatedByName)
                && !string.IsNullOrEmpty(employee.EtedEmailAddress) && !string.IsNullOrEmpty(employee.EtedAddress) && !string.IsNullOrEmpty(employee.EtedGender) 
                && !string.IsNullOrEmpty(employee.EtedReligion)
-               && (employee.EtedCnic!=null) && doesExistAlready == false )
+               && (employee.EtedCnic!=null) && doesEmailExistAlready == false && doesCNICExistAlready== false)
             {
                 employee.EtedCreatedBy = employee.EtedCreatedBy;
                 employee.EtedCreatedByDate = DateTime.Now;
@@ -144,11 +145,14 @@ namespace Web.Services.Concrete
                 response.Data = null;
             }
 
-         else if (doesExistAlready == true)
-            {
-                response.Message = UserMessages.strEmailexist;
-            }
-
+                else if (doesEmailExistAlready == true)
+                {
+                response.Message = UserMessages.strAlrexist;
+                }
+                else if (doesCNICExistAlready == true)
+                {
+                response.Message = UserMessages.strAlrexist;
+                }
             else
             {
                 response.Data = null;
