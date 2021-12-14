@@ -50,6 +50,10 @@
          "ObjectType": 0
       },
       {
+         "Name": "[dbo].[ims_tbl_assign]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[dbo].[ims_tbl_laptop]",
          "ObjectType": 0
       }
