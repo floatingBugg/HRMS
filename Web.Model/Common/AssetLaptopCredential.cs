@@ -22,7 +22,7 @@ namespace Web.Model.Common
         public string type { get; set; }
 
         public string description { get; set; }
-        public int assignedTo { get; set; }
+        public int assignedId { get; set; }
 
         public string assignedname { get; set; }
 
@@ -40,6 +40,13 @@ namespace Web.Model.Common
 
         public string companyName { get; set; }
 
+        public string createdby { get; set; }
+
+        public string createdbyname { get; set; }
+
+        public string modifiedby { get; set; }
+
+        public string modifiedbyname { get; set; }
 
     }
 }
