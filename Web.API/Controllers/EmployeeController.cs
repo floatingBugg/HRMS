@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Web.API.Helper;
 using Web.Data.Models;
 using Web.Model;
+using Web.Model.Common;
 using Web.Services.Interfaces;
 
 
@@ -67,7 +68,7 @@ namespace Web.API.Controllers
         }
 
         [HttpPost("/Employee/AddEmployee")]
-        public BaseResponse Create([FromBody]EmsTblEmployeeDetails employee)
+        public BaseResponse Create([FromBody] EmployeeCredential employee)
         {
             BaseResponse response = new BaseResponse(); 
             try

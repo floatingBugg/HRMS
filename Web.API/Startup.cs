@@ -106,21 +106,21 @@ namespace Web.API
 
             services.AddTransient(typeof(IJwtAuthService), typeof(AuthService));        
             services.AddTransient(typeof(IEmployeeService), typeof(EmployeeService));
-            services.AddTransient(typeof(IAssetService), typeof(AssetService));
-            services.AddTransient(typeof(IAssetLaptopService), typeof(AssetLaptopService));
-            services.AddTransient(typeof(IAssetAssignService), typeof(AssetAssignService));
+          
 
 
-            //Register Services Repositories
+            //Register Employee Services 
             services.AddTransient(typeof(IHRMSUserAuthRepository), typeof(HRMSUserAuthRepository));
             services.AddTransient(typeof(IHRMSEmployeeRepository), typeof(HRMSEmployeeRepository));
-           
-            
+            services.AddTransient(typeof(IHRMSAcademicRepository), typeof(HRMSAcademicRepository));
+            services.AddTransient(typeof(IHRMSEmployeeContactRepository), typeof(HRMSEmployeeContactRepository));
+            services.AddTransient(typeof(IHRMSPRofessionalRepository), typeof(HRMSProfessionalRepository));
+            services.AddTransient(typeof(IHRMSEmployeeWorkingHistoryRepository), typeof(HRMSEmployeeWorkingHistoryRepository));
+            services.AddTransient(typeof(IHRMSProfessionalDetailsRepository), typeof(HRMSPRofessionalDetailsRepository));
+
+
             //Register Assest Service 
-            services.AddTransient(typeof(IHRMSAssetCategoryRepository), typeof(HRMSAssetCategoryRepository));
-            services.AddTransient(typeof(IHRMSAssetRepository), typeof(HRMSAssetRepository));
-            services.AddTransient(typeof(IHRMSLaptopRepository), typeof(HRMSLaptopRepository));
-            services.AddTransient(typeof(IHRMSAssetAssignRepository), typeof(HRMSAssetAssignRepository));
+
 
 
 

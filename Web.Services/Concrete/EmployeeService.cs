@@ -15,12 +15,23 @@ namespace Web.Services.Concrete
     public class EmployeeService : IEmployeeService
     {
         private readonly IHRMSEmployeeRepository _hrmsemployeeRepository;
+        private readonly IHRMSAcademicRepository _hrmsacademicrepository;
+        private readonly IHRMSPRofessionalRepository _hrmsprofessionalrepository;
+        private readonly IHRMSEmployeeContactRepository _employeeContactRepository;
+        private readonly IHRMSEmployeeWorkingHistoryRepository _workinghistoryRepository;
+        private readonly IHRMSProfessionalDetailsRepository _hrmsprofessionaldetailsrepository;
+
         IConfiguration _config;
         private readonly IUnitOfWork _uow;
-        public EmployeeService(IConfiguration config, IHRMSEmployeeRepository hrmsemployeeRepository, IUnitOfWork uow)
+        public EmployeeService(IConfiguration config, IHRMSEmployeeRepository hrmsemployeeRepository, IHRMSAcademicRepository hRMSAcademicRepository, IHRMSEmployeeContactRepository employeeContactRepository, IHRMSPRofessionalRepository hRMSProfessionalRepository, IHRMSEmployeeWorkingHistoryRepository workingHistoryRepository, IHRMSProfessionalDetailsRepository hRMSProfessionalDetailsRepository, IUnitOfWork uow)
         {
             _config = config;
             _hrmsemployeeRepository = hrmsemployeeRepository;
+            _employeeContactRepository = employeeContactRepository;
+            _hrmsacademicrepository = hRMSAcademicRepository;
+            _hrmsprofessionalrepository = hRMSProfessionalRepository;
+            _workinghistoryRepository = workingHistoryRepository;
+            _hrmsprofessionaldetailsrepository = hRMSProfessionalDetailsRepository;
             _uow = uow;
         }
 
@@ -57,89 +68,138 @@ namespace Web.Services.Concrete
             return response;
         }
 
-        public BaseResponse CreateEmployee(EmsTblEmployeeDetails employee)
+        public BaseResponse CreateEmployee(EmployeeCredential employee)
         {
             
             BaseResponse response = new BaseResponse();
-            bool doesEmailExistAlready = _hrmsemployeeRepository.Table.Count(p => p.EtedEmailAddress == employee.EtedEmailAddress) > 0;
-            bool doesCNICExistAlready = _hrmsemployeeRepository.Table.Count(p => p.EtedCnic == employee.EtedCnic) > 0;
-            if (!string.IsNullOrEmpty(employee.EtedCreatedBy) && !string.IsNullOrEmpty(employee.EtedCreatedByName)
-               && !string.IsNullOrEmpty(employee.EtedEmailAddress) && !string.IsNullOrEmpty(employee.EtedAddress) && !string.IsNullOrEmpty(employee.EtedGender) 
-               && !string.IsNullOrEmpty(employee.EtedReligion)
-               && (employee.EtedCnic!=null) && doesEmailExistAlready == false && doesCNICExistAlready== false)
+            bool doesEmailExistAlready = _hrmsemployeeRepository.Table.Count(p => p.EtedEmailAddress == employee.personalemail) > 0;
+            bool doesCNICExistAlready = _hrmsemployeeRepository.Table.Count(p => p.EtedCnic == employee.cnic) > 0;
+            if (!string.IsNullOrEmpty(employee.created) && !string.IsNullOrEmpty(employee.createdName)
+               && !string.IsNullOrEmpty(employee.officialemail) && !string.IsNullOrEmpty(employee.address) && !string.IsNullOrEmpty(employee.gender) 
+               && !string.IsNullOrEmpty(employee.religion)
+               && (employee.cnic!=null) && doesEmailExistAlready == false && doesCNICExistAlready== false)
             {
-                employee.EtedCreatedBy = employee.EtedCreatedBy;
-                employee.EtedCreatedByDate = DateTime.Now;
-                employee.EtedCreatedByName = employee.EtedCreatedByName;
-                employee.EtedIsDelete = false;
+                List<EmsTblEmployeeDetails> EmpDetails = new List<EmsTblEmployeeDetails>();
+                List<EmsTblAcademicQualification> Empacademic = new List<EmsTblAcademicQualification>();
+                List<EmsTblProfessionalQualification> EmpPro = new List<EmsTblProfessionalQualification>();
+                List<EmsTblEmergencyContact> EmpEmerg = new List<EmsTblEmergencyContact>();
+                List<EmsTblWorkingHistory> EmpWorking = new List<EmsTblWorkingHistory>();
+                List<EmsTblEmployeeProfessionalDetails> EmpProDetails = new List<EmsTblEmployeeProfessionalDetails>();
 
-                // Update AcademicQualification
-                if (employee.EmsTblAcademicQualification.Count > 0)
+
+
+                EmpDetails.Add(new EmsTblEmployeeDetails
                 {
-                    foreach (var item in employee.EmsTblAcademicQualification)
-                    {
-                        item.EtaqCreatedBy = employee.EtedCreatedBy;
-                        item.EtaqCreatedByDate = DateTime.Now;
-                        item.EtaqCreatedByName = employee.EtedCreatedByName;
-                        item.EtaqIsDelete = false;
 
-                    }
-                }
+                    EtedFirstName = employee.firstname,
+                    EtedLastName = employee.Lastname,
+                    EtedEmailAddress = employee.personalemail,
+                    EtedCnic = employee.cnic,
+                    EtedDob = employee.dob,
+                    EtedGender = employee.gender,
+                    EtedAddress = employee.address,
+                    EtedMaritalStatus = employee.martialstatus,
+                    EtedBloodGroup = employee.bloodgroup,
+                    EtedContactNumber = employee.contact,
+                    EtedNationality = employee.nationality,
+                    EtedReligion = employee.religion,
+                    EtedStatus = employee.empstatus,
+                    EtedPhotograph = employee.firstname,
+                    EtedOfficialEmailAddress = employee.officialemail,
+                    EtedCreatedBy = employee.created,
+                    EtedCreatedByDate = DateTime.Now,
+                    EtedCreatedByName = employee.createdName,
+                    EtedIsDelete = false,
+                });
+                _hrmsemployeeRepository.Insert(EmpDetails);
 
-                //Update ProfessionalQualification
-                if (employee.EmsTblProfessionalQualification.Count > 0)
+
+                //Create Method academic Qualification
+
+                Empacademic.Add(new EmsTblAcademicQualification
                 {
-                    foreach (var item in employee.EmsTblProfessionalQualification)
-                    {
-                        item.EtpqCreatedBy = employee.EtedCreatedBy;
-                        item.EtpqCreatedByDate = DateTime.Now;
-                        item.EtpqCreatedByName = employee.EtedCreatedByName;
-                        item.EtpqIsDelete = false;
-                    }
-                }
+                    EtaqEtedEmployeeId = EmpDetails.FirstOrDefault().EtedEmployeeId,
+                    EtaqQualification = employee.Qualification,
+                    EtaqPassingYear = employee.PassingYear,
+                    EtaqCgpa = employee.Cgpa,
+                    EtaqInstituteName = employee.AcademicInstituteName,
+                    EtaqUploadDocuments = "Hello",
+                    EtaqCreatedBy = employee.created,
+                    EtaqCreatedByDate = DateTime.Now,
+                    EtaqCreatedByName = employee.createdName,
+                    EtaqIsDelete = false,
+                });
+                _hrmsacademicrepository.Insert(Empacademic);
 
-                //Update ProfessionalDetails
-                if (employee.EmsTblEmployeeProfessionalDetails.Count > 0)
+                //Create Method Professional Qualification
+
+                EmpPro.Add(new EmsTblProfessionalQualification
                 {
-                    foreach (var item in employee.EmsTblEmployeeProfessionalDetails)
-                    {
-                        item.EtepdCreatedBy = employee.EtedCreatedBy;
-                        item.EtepdCreatedByDate = DateTime.Now;
-                        item.EtepdCreatedByName = employee.EtedCreatedByName;
-                        item.EtepdIsDelete = false;
-                    }
-                }
+                    EtpqEtedEmployeeId = EmpDetails.FirstOrDefault().EtedEmployeeId,
+                    EtpqCertification = employee.certification,
+                    EtpqStratDate = DateTime.Now,
+                    EtpqEndDate = DateTime.Now,
+                    EtpqDocuments = "Testing Here",
+                    EtpqInstituteName = employee.ProfessionalInstituteName,
+                    EtpqCreatedBy = employee.created,
+                    EtpqCreatedByName = employee.createdName,
+                    EtpqCreatedByDate = DateTime.Now,
+                    EtpqIsDelete = false,
+                });
+                _hrmsprofessionalrepository.Insert(EmpPro);
 
-                //Update Emergency Contact
-                if (employee.EmsTblEmergencyContact.Count > 0)
+
+                EmpEmerg.Add(new EmsTblEmergencyContact
                 {
-                    foreach (var item in employee.EmsTblEmergencyContact)
-                    {
-                        item.EtecCreatedBy = employee.EtedCreatedBy;
-                        item.EtecCreatedByDate = DateTime.Now;
-                        item.EtecCreatedByName = employee.EtedCreatedByName;
-                        item.EtecIsDelete = false;
-                    }
-                }
+                    EtecFirstName = employee.emergencyfirstname,
+                    EtecLastName = employee.emergencylastname,
+                    EtecRelation = employee.emergencyrelation,
+                    EtecContactNumber = employee.emergencycontact,
+                    EtecAddress = employee.emergencyaddress,
+                    EtecEtedEmployeeId = EmpDetails.FirstOrDefault().EtedEmployeeId,
+                    EtecCreatedBy = employee.created,
+                    EtecCreatedByName = employee.createdName,
+                    EtecCreatedByDate = DateTime.Now,
+                    EtecIsDelete = false,
 
-                // Working History
-                if (employee.EmsTblWorkingHistory.Count > 0)
+                });
+                _employeeContactRepository.Insert(EmpEmerg);
+                //working History
+                EmpWorking.Add(new EmsTblWorkingHistory
                 {
-                    foreach (var item in employee.EmsTblWorkingHistory)
-                    {
-                        item.EtwhCreatedBy = employee.EtedCreatedBy;
-                        item.EtwhCreatedByDate = DateTime.Now;
-                        item.EtwhCreatedByName = employee.EtedCreatedByName;
-                        item.EtwhIsDelete = false;
-                        response.Message = UserMessages.strUpdated;
-                        response.Success = true;
+                    EtwhEtedEmployeeId = EmpDetails.FirstOrDefault().EtedEmployeeId,
+                    EtwhCompanyName = employee.companyname,
+                    EtwhStratDate = employee.workstartdate,
+                    EtwhEndDate = employee.workenddate,
+                    EtwhDuration = employee.duration,
+                    EtwhDesignation = employee.workdesignation,
+                    EtwhExperienceLetter = "None",
+                    EtwhCreatedBy = employee.created,
+                    EtwhCreatedByName = employee.createdName,
+                    EtwhCreatedByDate = DateTime.Now,
+                    EtwhIsDelete = false,
+                });
+                _workinghistoryRepository.Insert(EmpWorking);
 
+                //Create Method Professional details
 
-                    }
+                EmpProDetails.Add(new EmsTblEmployeeProfessionalDetails
+                {
+                    EtepdEtedEmployeeId = EmpDetails.FirstOrDefault().EtedEmployeeId,
+                    EtepdDesignation = employee.profdesignation,
+                    EtepdSalary = employee.Salary,
+                    EtepdJoiningDate = employee.JoiningDate,
+                    EtepdProbation = employee.Probation,
+                    EtepdCreatedBy = employee.created,
+                    EtepdCreatedByName = employee.createdName,
+                    EtepdCreatedByDate = DateTime.Now,
+                    EtepdIsDelete = false,
 
-                }
+                });
+                _hrmsprofessionaldetailsrepository.Insert(EmpProDetails);
 
-                _hrmsemployeeRepository.Insert(employee);
+                _uow.Commit();
+           
                 response.Success = true;
                 response.Message = UserMessages.strAdded;
                 response.Data = null;
@@ -153,14 +213,14 @@ namespace Web.Services.Concrete
                 {
                 response.Message = UserMessages.strCnicexist;
                 }
-            else
-            {
+                else
+                {
                 response.Data = null;
                 response.Success = false;
                 response.Message = UserMessages.strNotinsert;
-            }
+                }
            
-            return response;
+                return response;
         }
 
         public BaseResponse UpdateEmployee(EmsTblEmployeeDetails employee)
