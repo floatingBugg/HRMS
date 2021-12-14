@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -210,7 +211,7 @@ namespace Web.Services.Concrete
             BaseResponse response = new BaseResponse();
 
             bool count = _hrmsassetRepository.Table.Where(z => z.ItaIsDelete == false && z.ItaAssetId == id).Count() > 0;
-            var assetData = _hrmsassetRepository.Table.Where(x => x.ItaAssetId == id).ToList();
+            var assetData= _hrmsassetRepository.Table.Include(x => x.ImsTblLaptop).Where(x => x.ItaAssetId == id).ToList();
 
 
             if (count == true)

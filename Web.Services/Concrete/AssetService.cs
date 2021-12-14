@@ -155,7 +155,6 @@ namespace Web.Services.Concrete
             return response;
         }
 
-
         public BaseResponse GetAllAssetCategory()
         {
             BaseResponse response = new BaseResponse();
@@ -199,14 +198,14 @@ namespace Web.Services.Concrete
                     ItaAssetName = assets.assetname,
                     ItaQuantity = assets.quantity,
                     ItaCost = assets.cost,
-                    ItacCategoryIdFk = 2,
+                    ItacCategoryIdFk = assets.categoryid,
                     ItaDescription = assets.description,
                     ItaSerialNo = assets.serialno,
                     ItaModel = assets.model,
                     ItaCompanyName = assets.companyname,
                     ItaType = assets.type,
                     ItaAssignedToName = assets.assingedname,
-                    ItaAssignedToId = 1,
+                    ItaAssignedToId = assets.assignid,
                     ItaPurchaseDate = assets.purchaseddate.Date,
                     ItaCreatedBy = assets.createdby,
                     ItaCreatedByName = assets.createdbyname,
