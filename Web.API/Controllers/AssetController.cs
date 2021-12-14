@@ -24,7 +24,7 @@ namespace Web.API.Controllers
             _hostEnvironment = environment;
             _logger = new Logger(_hostEnvironment);
         }
-
+        /*ASSET CATEGORY*/
         [HttpPost("/Asset/CreateAssetCategory")]
         public BaseResponse CreateCategory([FromBody] AssetCategoryCredential category)
         {
@@ -86,6 +86,46 @@ namespace Web.API.Controllers
                 return response;
             }
         }
+
+        [HttpGet("/AssestCategory/GetAssetCategorybyID")]
+        public BaseResponse GetAssetCategorybyID(int id)
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                response = _assetservice.GetAssetcategorybyID(id);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+        }
+
+        [HttpGet("/Assest/DisplayAssetCategory")]
+        public BaseResponse GetAllAssetCategory()
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                response = _assetservice.GetAllAssetCategory();
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+        }
+
+        /*ASSET*/
 
         [HttpPost("/Assest/AddAsset")]
         public BaseResponse CreateAsset([FromBody] AssetCredential assets)

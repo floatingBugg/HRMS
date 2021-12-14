@@ -12,13 +12,7 @@ namespace Web.Model.Common
         public string categoryname { get; set; }
 
         public string createdby { get; set; }
-        
+
         public string createdbyname { get; set; }
-        public DateTime createdbydate = new DateTime();
-
-        
-
-
-
     }
 }

@@ -29,48 +29,7 @@ namespace Web.Services.Concrete
             _hrmsassetRepository = hrmsassetrepository;
         }
 
-        public BaseResponse CreateAsset(AssetCredential assets)
-        {
-            BaseResponse response = new BaseResponse();
-            List<ImsTblAssets> asset = new List<ImsTblAssets>();
-
-            if (!string.IsNullOrEmpty(assets.assetname))
-            {
-                asset.Add(new ImsTblAssets
-                {
-                    ItaAssetName = assets.assetname,
-                    ItaQuantity = assets.quantity,
-                    ItaCost = assets.cost,
-                    ItacCategoryIdFk = 2,
-                    ItaDescription = assets.description,
-                    ItaSerialNo = assets.serialno,
-                    ItaModel = assets.model,
-                    ItaCompanyName = assets.companyname,
-                    ItaType = assets.type,
-                    ItaAssignedToName = assets.assingedname,
-                    ItaAssignedToId = 1,
-                    ItaPurchaseDate = assets.purchaseddate.Date,
-                    ItaCreatedBy = assets.createdby,
-                    ItaCreatedByName = assets.createdbyname,
-                    ItaCreatedByDate = DateTime.Now,
-                    ItaIsDelete = false
-
-                });
-                _hrmsassetRepository.Insert(asset);
-
-
-                response.Success = true;
-                response.Message = UserMessages.strAdded;
-                response.Data = null;
-            }
-            else
-            {
-                response.Data = null;
-                response.Success = false;
-                response.Message = UserMessages.strNotinsert;
-            }
-            return response;
-        }
+        /*ASSET CATEGORY*/
 
         public BaseResponse CreateAssetCategory(AssetCategoryCredential category)
         {
@@ -171,7 +130,105 @@ namespace Web.Services.Concrete
 
         }
 
+        public BaseResponse GetAssetcategorybyID(int id)
+        {
+            BaseResponse response = new BaseResponse();
 
+            bool count = _hrmsassetcategoryRepository.Table.Where(z => z.ItacIsDelete == false && z.ItacCategoryId == id).Count() > 0;
+            var assetData = _hrmsassetcategoryRepository.Table.Where(x => x.ItacCategoryId == id).ToList();
+
+
+            if (count == true)
+            {
+                response.Data = assetData;
+                response.Success = true;
+                response.Message = UserMessages.strSuccess;
+
+
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotfound;
+            }
+            return response;
+        }
+
+
+        public BaseResponse GetAllAssetCategory()
+        {
+            BaseResponse response = new BaseResponse();
+
+            bool count = _hrmsassetcategoryRepository.Table.Count() > 0;
+            var assetdata = _hrmsassetcategoryRepository.Table.Where(z => z.ItacIsDelete == false ).Select(x => new AssetCategoryCredential
+            {
+                categoryId = x.ItacCategoryId,
+                categoryname = x.ItacCategoryName,
+                createdby = x.ItacCreatedBy,
+                createdbyname = x.ItacCreatedByName,
+            }).ToList().OrderByDescending(x => x.categoryId);
+
+            if (count == true)
+            {
+                response.Data = assetdata;
+                response.Success = true;
+                response.Message = UserMessages.strSuccess;
+
+
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotfound;
+            }
+            return response;
+        }
+
+        /*ASSET*/
+        public BaseResponse CreateAsset(AssetCredential assets)
+        {
+            BaseResponse response = new BaseResponse();
+            List<ImsTblAssets> asset = new List<ImsTblAssets>();
+
+            if (!string.IsNullOrEmpty(assets.assetname))
+            {
+                asset.Add(new ImsTblAssets
+                {
+                    ItaAssetName = assets.assetname,
+                    ItaQuantity = assets.quantity,
+                    ItaCost = assets.cost,
+                    ItacCategoryIdFk = 2,
+                    ItaDescription = assets.description,
+                    ItaSerialNo = assets.serialno,
+                    ItaModel = assets.model,
+                    ItaCompanyName = assets.companyname,
+                    ItaType = assets.type,
+                    ItaAssignedToName = assets.assingedname,
+                    ItaAssignedToId = 1,
+                    ItaPurchaseDate = assets.purchaseddate.Date,
+                    ItaCreatedBy = assets.createdby,
+                    ItaCreatedByName = assets.createdbyname,
+                    ItaCreatedByDate = DateTime.Now,
+                    ItaIsDelete = false
+
+                });
+                _hrmsassetRepository.Insert(asset);
+
+
+                response.Success = true;
+                response.Message = UserMessages.strAdded;
+                response.Data = null;
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotinsert;
+            }
+            return response;
+        }
 
         public BaseResponse UpdateAsset(AssetCredential assets)
         {
