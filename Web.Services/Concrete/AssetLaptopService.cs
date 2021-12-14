@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,13 +48,13 @@ namespace Web.Services.Concrete
                     ItaType = laptop.type,
                     ItaCompanyName = laptop.companyName,
                     ItaDescription = laptop.description,
-                    ItacCategoryIdFk = 2,
-                    ItaAssignedToId = 1,
+                    ItacCategoryIdFk = laptop.categoryId,
+                    ItaAssignedToId = laptop.assignedId,
                     ItaAssignedToName = laptop.assignedname,
                     ItaPurchaseDate = laptop.purchaseDate.Date,
-                    ItaCreatedBy = "Admin",
-                    ItaCreatedByName = "Admin",
-                    ItaCreatedByDate = DateTime.Now.Date,
+                    ItaCreatedBy = laptop.createdby,
+                    ItaCreatedByName = laptop.createdbyname,
+                    ItaCreatedByDate = DateTime.Now,
                     ItaIsDelete = false
 
                 });
@@ -100,10 +101,18 @@ namespace Web.Services.Concrete
                         x.ItaAssetName = laptop.assetName;
                         x.ItaQuantity = laptop.quantity;
                         x.ItaCost = laptop.cost;
-                        x.ItaPurchaseDate = laptop.purchaseDate.Date;
-                        x.ItaCreatedBy = "Admin";
-                        x.ItaCreatedByName = "Admin";
-                        x.ItaCreatedByDate = DateTime.Now.Date;
+                        x.ItaSerialNo = laptop.serialno;
+                        x.ItaModel = laptop.model;
+                        x.ItaType = laptop.type;
+                        x.ItaCompanyName = laptop.companyName;
+                        x.ItaDescription = laptop.description;
+                        x.ItacCategoryIdFk = laptop.categoryId;
+                        x.ItaAssignedToId = laptop.assignedId;
+                        x.ItaAssignedToName = laptop.assignedname;
+                        x.ItaPurchaseDate = DateTime.Now;
+                       x.ItaModifiedBy = laptop.modifiedby;
+                        x.ItaModifiedByName = laptop.modifiedbyname;
+                        x.ItaModifiedByDate = DateTime.Now;
                         x.ItaIsDelete = false;
 
                     });
@@ -117,8 +126,8 @@ namespace Web.Services.Concrete
                       x.ItlRam = laptop.ram;
                       x.ItlHdd = laptop.hdd;
                       x.ItlProcessor = laptop.processor;
-                      x.ItlCreatedBy = "Admin";
-                      x.ItlCreatedByName = "Admin";
+                      x.ItlModifiedBy = laptop.modifiedby;
+                      x.ItlModifiedByName = laptop.modifiedbyname;
                       x.ItlIsDelete = false;
 
                   });
@@ -210,7 +219,7 @@ namespace Web.Services.Concrete
             BaseResponse response = new BaseResponse();
 
             bool count = _hrmsassetRepository.Table.Where(z => z.ItaIsDelete == false && z.ItaAssetId == id).Count() > 0;
-            var assetData = _hrmsassetRepository.Table.Where(x => x.ItaAssetId == id).ToList();
+            var assetData = _hrmsassetRepository.Table.Include(x => x.ImsTblLaptop).Where(x => x.ItaAssetId == id).ToList();
 
 
             if (count == true)
