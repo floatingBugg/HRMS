@@ -147,11 +147,11 @@ namespace Web.Services.Concrete
 
                 else if (doesEmailExistAlready == true)
                 {
-                response.Message = UserMessages.strAlrexist;
+                response.Message = UserMessages.strEmailexist;
                 }
                 else if (doesCNICExistAlready == true)
                 {
-                response.Message = UserMessages.strAlrexist;
+                response.Message = UserMessages.strCnicexist;
                 }
             else
             {
