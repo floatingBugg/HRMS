@@ -11,8 +11,6 @@ namespace Web.Model.Common
         public int assetid { get; set; }
         public string assetname { get; set; }
 
-
-
         public int categoryid { get; set; }
 
         public string assingedname { get; set; }
