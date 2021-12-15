@@ -14,7 +14,7 @@ namespace Web.Services.Interfaces
 
         BaseResponse GetAllEmployee();
 
-        BaseResponse DeleteEmployee(int id );
+        BaseResponse DeleteEmployee(int id);
 
         BaseResponse ViewDataEmployeeByid(int id );
     }

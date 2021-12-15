@@ -45,9 +45,9 @@ namespace Web.Model.Common
 
         public string certification { get; set; }
 
-        public DateTime profstartDate = new DateTime();
+        public DateTime profstartDate { get; set; }
 
-        public DateTime profendDate = new DateTime();
+        public DateTime profendDate { get; set; }
 
         public string ProfessionalInstituteName { get; set; }
         public string Documents { get; set; }

@@ -12,7 +12,7 @@ using Web.Services.Interfaces;
 
 namespace Web.API.Controllers
 {
-    [Authorize]
+    /*[Authorize]*/
     public class EmployeeController : Controller
     {
 
@@ -109,12 +109,12 @@ namespace Web.API.Controllers
         }
 
         [HttpDelete("/Employee/DeleteEmployee")]
-        public BaseResponse Delete(int id)
+        public BaseResponse Delete(int empid)
         {
             BaseResponse response = new BaseResponse();
             try
             {          
-                response  = _employeeservice.DeleteEmployee(id);
+                response  = _employeeservice.DeleteEmployee(empid);
               
                 return response;
             }
