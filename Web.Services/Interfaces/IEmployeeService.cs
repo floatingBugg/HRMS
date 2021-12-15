@@ -10,7 +10,7 @@ namespace Web.Services.Interfaces
     {
         BaseResponse CreateEmployee(EmployeeCredential employee);
 
-        BaseResponse UpdateEmployee(EmsTblEmployeeDetails employee );
+        BaseResponse UpdateEmployee(EmployeeCredential employee );
 
         BaseResponse GetAllEmployee();
 

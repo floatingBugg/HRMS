@@ -91,7 +91,7 @@ namespace Web.API.Controllers
         }
 
         [HttpPost("/Employee/UpdateEmployee")]
-        public BaseResponse Update([FromBody] EmsTblEmployeeDetails employee)
+        public BaseResponse Update([FromBody] EmployeeCredential employee)
         {
             BaseResponse response = new BaseResponse();
             

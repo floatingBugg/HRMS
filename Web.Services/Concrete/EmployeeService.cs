@@ -223,13 +223,144 @@ namespace Web.Services.Concrete
                 return response;
         }
 
-        public BaseResponse UpdateEmployee(EmsTblEmployeeDetails employee)
+        public BaseResponse UpdateEmployee(EmployeeCredential employee)
         {
 
             //Update EmployeeDetails
             BaseResponse response = new BaseResponse();
-            
-            employee.EtedModifiedBy = employee.EtedModifiedBy;
+
+            bool count = _hrmsemployeeRepository.Table.Where(p => p.EtedEmployeeId == employee.empID).Count() > 0;
+            if (count == true)
+            {
+                _hrmsemployeeRepository.Table.Where(p => p.EtedEmployeeId == employee.empID)
+                    .ToList()
+                    .ForEach(x =>
+                    {
+                        x.EtedFirstName = employee.firstname;
+                        x.EtedLastName = employee.Lastname;
+                        x.EtedEmailAddress = employee.personalemail;
+                        x.EtedDob = employee.dob;
+                        x.EtedContactNumber = employee.contact;
+                        x.EtedAddress =employee.address;
+                        x.EtedGender =employee.gender;
+                        x.EtedMaritalStatus =employee.martialstatus;
+                        x.EtedBloodGroup =employee.bloodgroup;
+                        x.EtedPhotograph = "test";
+                        x.EtedCnic =employee.cnic;
+                        x.EtedOfficialEmailAddress =employee.officialemail;
+                        x.EtedReligion =employee.religion;
+                        x.EtedNationality =employee.nationality;
+                        x.EtedStatus =employee.empstatus;
+                        x.EtedIsDelete = false;
+                        x.EtedModifiedBy = employee.modified;
+                        x.EtedModifiedByName = employee.modifiedName;
+                        x.EtedModifiedByDate = DateTime.Now;
+                        
+
+                    });
+                _hrmsacademicrepository.Table.Where(p => p.EtaqEtedEmployeeId == employee.empID)
+                    .ToList()
+                    .ForEach(x =>
+                    {
+
+                        x.EtaqQualification = employee.Qualification;
+                        x.EtaqPassingYear = employee.PassingYear;
+                        x.EtaqCgpa = employee.Cgpa;
+                        x.EtaqInstituteName = employee.AcademicInstituteName;
+                        x.EtaqUploadDocuments = "Hello";
+                        x.EtaqCreatedBy = employee.created;
+                        x.EtaqCreatedByDate = DateTime.Now;
+                        x.EtaqCreatedByName = employee.createdName;
+                        x.EtaqIsDelete = false;
+
+
+                    });
+                _hrmsprofessionalrepository.Table.Where(p => p.EtpqEtedEmployeeId == employee.empID)
+                    .ToList()
+                    .ForEach(x =>
+                    {
+
+
+                        x.EtpqCertification = employee.certification;
+                        x.EtpqStratDate = DateTime.Now;
+                        x.EtpqEndDate = DateTime.Now;
+                        x.EtpqDocuments = "Testing Here";
+                        x.EtpqInstituteName = employee.ProfessionalInstituteName;
+                        x.EtpqCreatedBy = employee.created;
+                        x.EtpqCreatedByName = employee.createdName;
+                        x.EtpqCreatedByDate = DateTime.Now;
+                        x.EtpqIsDelete = false;
+
+
+                    });
+
+                _employeeContactRepository.Table.Where(p => p.EtecEtedEmployeeId == employee.empID)
+                   .ToList()
+                   .ForEach(x =>
+                   {
+
+
+                    x.EtecFirstName = employee.emergencyfirstname;
+                    x.EtecLastName = employee.emergencylastname;
+                    x.EtecRelation = employee.emergencyrelation;
+                    x.EtecContactNumber = employee.emergencycontact;
+                    x.EtecAddress = employee.emergencyaddress;
+                    x.EtecModifiedBy = employee.modified;
+                    x.EtecModifiedByName = employee.modifiedName;
+                    x.EtecModifiedByDate = employee.modifiedDate;
+                    x.EtecIsDelete = false;
+
+
+                   });
+                _workinghistoryRepository.Table.Where(p => p.EtwhEtedEmployeeId == employee.empID)
+                   .ToList()
+                   .ForEach(x =>
+                   {
+
+
+
+                       x.EtwhCompanyName = employee.companyname;
+                       x.EtwhStratDate = employee.workstartdate;
+                       x.EtwhEndDate = employee.workenddate;
+                       x.EtwhDuration = employee.duration;
+                       x.EtwhDesignation = employee.workdesignation;
+                       x.EtwhExperienceLetter = "None";
+                       x.EtwhModifiedBy = employee.created;
+                       x.EtwhModifiedByName = employee.createdName;
+                       x.EtwhModifiedByDate = DateTime.Now;
+                      x.EtwhIsDelete = false;
+
+
+                   });
+
+                _hrmsprofessionaldetailsrepository.Table.Where(p => p.EtepdEtedEmployeeId == employee.empID)
+                   .ToList()
+                   .ForEach(x =>
+                   {
+
+
+
+
+                       x.EtepdDesignation = employee.profdesignation;
+                       x.EtepdSalary = employee.Salary;
+                       x.EtepdJoiningDate = employee.JoiningDate;
+                       x.EtepdProbation = employee.Probation;
+                       x.EtepdModifiedBy = employee.created;
+                       x.EtepdModifiedByName = employee.createdName;
+                       x.EtepdModifiedByDate = DateTime.Now;
+                       x.EtepdIsDelete = false;
+
+
+                   });
+
+                _uow.Commit();
+
+                response.Success = true;
+                response.Message = UserMessages.strUpdated;
+                response.Data = null;
+            }
+            return response;
+            /*employee.EtedModifiedBy = employee.EtedModifiedBy;
             employee.EtedModifiedByDate = DateTime.Now;
             employee.EtedModifiedByName = employee.EtedModifiedByName;
             employee.EtedIsDelete = false;
@@ -309,7 +440,7 @@ namespace Web.Services.Concrete
             }
             _hrmsemployeeRepository.Update(employee);
             _uow.Commit();
-            return response;
+            return response;*/
         }
 
         public BaseResponse DeleteEmployee(int empId)
