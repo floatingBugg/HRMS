@@ -11,8 +11,8 @@ namespace Web.Model.Common
     
 
         public int assetid { get; set; }
-        
         public int categoryid { get; set; }
+        public int empid { get; set; }
         public string assetname { get; set; }
         public int quantity { get; set; }
         public int cost { get; set; }
@@ -20,7 +20,14 @@ namespace Web.Model.Common
         public string model { get; set; }
         public string type { get; set; }
         public string companyname { get; set; }
+        public string size { get; set; }
+        public string condition { get; set; }
+        public string generation { get; set; }
+        public string ram { get; set; }
+        public string processor { get; set; }
+        public string storage { get; set; }
 
+        public string assignedto { get; set; }
 
         public DateTime purchaseddate = new DateTime();
 
