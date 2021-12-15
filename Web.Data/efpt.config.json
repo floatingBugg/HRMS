@@ -40,6 +40,14 @@
       {
          "Name": "[dbo].[ems_tbl_working_history]",
          "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ims_tbl_assets]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ims_tbl_assets_category]",
+         "ObjectType": 0
       }
    ],
    "UiHint": "SQL5105.db_a7d47e_hrms",
