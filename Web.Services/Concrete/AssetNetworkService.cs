@@ -178,5 +178,35 @@ namespace Web.Services.Concrete
             }
             return responce;
         }
+
+        public BaseResponse SumOfNetwork(int categoryid)
+        {
+            BaseResponse response = new BaseResponse();
+            var totalCost = _hrmsassetRepository.Table.Where(y => y.ItacCategoryId == categoryid).Sum(x => x.ItaCost * x.ItaQuantity);
+            var totalAssetData = _hrmsassetRepository.Table.Where(p => p.ItacCategoryId == categoryid).ToList();
+            var result = (from a in totalAssetData
+                          select new AssetTotalVM()
+                          {
+                              cost = a.ItaCost,
+                              quantity = a.ItaQuantity,
+                              totalCost = Convert.ToInt32(a.ItaQuantity * a.ItaCost),
+                              subTotalCost = _hrmsassetRepository.Table.Sum(x => x.ItaCost * x.ItaQuantity)
+                          }).ToList();
+
+            response.Data = totalCost;
+            response.Success = false;
+            response.Message = "Sum Caluclated";
+            return response;
+        }
+
+        public BaseResponse TotalQuantityNetwork(int categoryid)
+        {
+            BaseResponse response = new BaseResponse();
+            var totalQuan = _hrmsassetRepository.Table.Where(y => y.ItacCategoryId == categoryid).Sum(x => x.ItaQuantity);
+            response.Data = totalQuan;
+            response.Success = false;
+            response.Message = "Total Quantity Caluclated";
+            return response;
+        }
     }
 }

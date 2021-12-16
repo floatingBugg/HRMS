@@ -122,5 +122,43 @@ namespace Web.API.Controllers
                 return responce;
             }
         }
+
+        [HttpGet("Asset/Network/GetAllSum")]
+        public BaseResponse SumOfNetwork(int categoryid)
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                response = _assetnetworkservice.SumOfNetwork(categoryid);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+        }
+
+        [HttpGet("Asset/Network/GetAllQuantity")]
+        public BaseResponse TotalQuantityNetwork(int categoryid)
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                response = _assetnetworkservice.TotalQuantityNetwork(categoryid);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+        }
     }
 }
