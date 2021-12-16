@@ -100,14 +100,14 @@ namespace Web.API.Controllers
         }
 
         [HttpGet("/Asset/DisplayAssetNetwork")]
-        public BaseResponse DisplayAssetNetwork(int assetid)
+        public BaseResponse DisplayAssetNetwork(int categoryid)
         {
             BaseResponse responce = new BaseResponse();
 
             try
             {
                 var test = ModelState;
-                responce = _assetnetworkservice.DisplayAssetNetwork(assetid);
+                responce = _assetnetworkservice.DisplayAssetNetwork(categoryid);
 
 
 

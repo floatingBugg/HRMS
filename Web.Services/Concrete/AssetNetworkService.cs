@@ -44,6 +44,7 @@ namespace Web.Services.Concrete
                     ItaCost = network.cost,
                     ItaPurchaseDate = DateTime.Now,
                     ItaAssignedTo = network.assignedto,
+                    
                     ItaIsDelete = false
                 });
                 _uow.Commit();
@@ -96,22 +97,37 @@ namespace Web.Services.Concrete
         }
 
 
-        public BaseResponse DisplayAssetNetwork(int assetid)
+        public BaseResponse DisplayAssetNetwork(int categoryid)
         {
             BaseResponse response = new BaseResponse();
             bool count = _hrmsassetRepository.Table.Count() > 0;
-            var networkdata = _hrmsassetRepository.Table.Where(z => z.ItaIsDelete == false && z.ItaAssetId == assetid).Select(x => new AssetCredential()
+            var networkdata = _hrmsassetRepository.Table.Where(z => z.ItaIsDelete == false && z.ItacCategoryId == categoryid).Select(x => new AssetCredential()
             {
                 assetid = x.ItaAssetId,
+                categoryid = (int)x.ItacCategoryId,
+                empid = (int)x.EtedEmployeeId,
                 assetname = x.ItaAssetName,
                 quantity = (int)x.ItaQuantity,
                 cost = (int)x.ItaCost,
-                purchaseddate = DateTime.Now,
+                serialno = x.ItaSerialNo,
+                model = x.ItaModel,
+                type = x.ItaType,
+                companyname = x.ItaCompanyName,
+                size = x.ItaSize,
+                condition = x.ItaCondition,
+                generation = x.ItaGeneration,
+                ram = x.ItaRam,
+                processor = x.ItaProcessor,
+                storage = x.ItaStorage,
+                hardtype = x.ItaHardriveType,
                 assignedto = x.ItaAssignedTo,
+                createdby = x.ItaCreatedBy,
+                createdbyname = x.ItaCreatedByName,
+                modifiedby = x.ItaModifiedBy,
+                modifiedbyname = x.ItaModifiedByName,
+                purchaseddate = DateTime.Now
 
-
-
-            }).ToList().OrderByDescending(x => x.assetid);
+            }).ToList().OrderByDescending(x => x.categoryid);
 
             if (count == true)
             {
@@ -143,6 +159,7 @@ namespace Web.Services.Concrete
                     x.ItaCost = network.cost;
                     x.ItaPurchaseDate = DateTime.Now;
                     x.ItaAssignedTo = network.assignedto;
+                    
                     x.ItaIsDelete = false;
 
 

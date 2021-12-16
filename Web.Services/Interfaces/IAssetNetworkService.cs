@@ -16,6 +16,6 @@ namespace Web.Services.Interfaces
 
         public BaseResponse DeleteAssetNetwork(int id);
 
-        public BaseResponse DisplayAssetNetwork(int assetid);
+        public BaseResponse DisplayAssetNetwork(int categoryid);
     }
 }
