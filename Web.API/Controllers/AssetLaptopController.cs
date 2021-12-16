@@ -67,5 +67,62 @@ namespace Web.API.Controllers
             }
         }
 
+        [HttpDelete("/Asset/Laptop/DeleteLaptop")]
+        public BaseResponse DeleteLaptop(int assetid)
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                response = _assetLaptopservice.deleteLaptop(assetid);
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+        }
+
+        [HttpGet("Asset/Laptop/GetAllSum")]
+        public BaseResponse getTotalCostLaptop(int categoryid)
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                response = _assetLaptopservice.sumOfLaptop(categoryid);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+        }
+
+        [HttpGet("Asset/Laptop/GetAllQuantity")]
+        public BaseResponse getTotalQuantityLaptop(int categoryid)
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                response = _assetLaptopservice.totalQuantityLaptop(categoryid);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+        }
     }
 }
