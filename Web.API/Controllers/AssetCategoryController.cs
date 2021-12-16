@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Web.API.Helper;
+using Web.Model;
+using Web.Model.Common;
 using Web.Services.Interfaces;
 
 namespace Web.API.Controllers
@@ -24,9 +26,102 @@ namespace Web.API.Controllers
             _hostEnvironment = environment;
             _logger = new Logger(_hostEnvironment);
         }
-        public IActionResult Index()
+
+        [HttpPost("/Asset/AddAssetCategory")]
+        public BaseResponse CreateAssetCategory([FromBody] AssetCategoryCredential asset)
         {
-            return View();
+            BaseResponse responce = new BaseResponse();
+
+            try
+            {
+                var test = ModelState;
+                responce = _assetcategoryservice.CreateAssetCategory(asset);
+
+
+
+                return responce;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                responce.Data = null;
+                responce.Message = ex.Message;
+                responce.Success = false;
+                return responce;
+            }
         }
+
+        [HttpPost("/Asset/UpdateAssetCategory")]
+        public BaseResponse UpdateAssetCategory([FromBody] AssetCategoryCredential asset)
+        {
+            BaseResponse responce = new BaseResponse();
+
+            try
+            {
+                var test = ModelState;
+                responce = _assetcategoryservice.UpdateAssetCategory(asset);
+
+
+
+                return responce;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                responce.Data = null;
+                responce.Message = ex.Message;
+                responce.Success = false;
+                return responce;
+            }
+        }
+
+        [HttpDelete("/Asset/DeletAssetCategory")]
+        public BaseResponse DeleteAssetCategory(int id)
+        {
+            BaseResponse responce = new BaseResponse();
+
+            try
+            {
+                var test = ModelState;
+                responce = _assetcategoryservice.DeleteAssetCategory(id);
+
+
+
+                return responce;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                responce.Data = null;
+                responce.Message = ex.Message;
+                responce.Success = false;
+                return responce;
+            }
+        }
+
+        [HttpGet("/Asset/DisplayAssetCategory")]
+        public BaseResponse DisplayAssetCategory()
+        {
+            BaseResponse responce = new BaseResponse();
+
+            try
+            {
+                var test = ModelState;
+                responce = _assetcategoryservice.DisplayAssetCategory();
+
+
+
+                return responce;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                responce.Data = null;
+                responce.Message = ex.Message;
+                responce.Success = false;
+                return responce;
+            }
+        }
+
     }
 }

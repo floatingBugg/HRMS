@@ -31,8 +31,6 @@ namespace Web.Model.Common
 
         public string assignedto { get; set; }
 
-        public DateTime purchaseddate = new DateTime();
-
         public string createdby { get; set; }
 
         public string createdbyname { get; set; }
@@ -40,6 +38,8 @@ namespace Web.Model.Common
         public string modifiedby { get; set; }
 
         public string modifiedbyname { get; set; }
+
+        public DateTime purchaseddate { get; set; }
 
     }
 }
