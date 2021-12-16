@@ -27,7 +27,7 @@ namespace Web.API.Controllers
             _logger = new Logger(_hostEnvironment);
         }
 
-        [HttpPost("/Asset/AddAssetNetworkDevice")]
+        [HttpPost("/Asset/AddAssetNetwork")]
         public BaseResponse CreateAssetNetwork([FromBody] AssetCredential network)
         {
             BaseResponse responce = new BaseResponse();
@@ -36,6 +36,78 @@ namespace Web.API.Controllers
             {
                 var test = ModelState;
                 responce = _assetnetworkservice.CreateAssetnetwork(network);
+
+
+
+                return responce;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                responce.Data = null;
+                responce.Message = ex.Message;
+                responce.Success = false;
+                return responce;
+            }
+        }
+
+        [HttpPost("/Asset/UpdateAssetNetwork")]
+        public BaseResponse UpdateAssetNetwork([FromBody] AssetCredential network)
+        {
+            BaseResponse responce = new BaseResponse();
+
+            try
+            {
+                var test = ModelState;
+                responce = _assetnetworkservice.UpdateAssetNetwork(network);
+
+
+
+                return responce;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                responce.Data = null;
+                responce.Message = ex.Message;
+                responce.Success = false;
+                return responce;
+            }
+        }
+
+        [HttpDelete("/Asset/DeletAssetNetwork")]
+        public BaseResponse DeleteAssetNetwork(int id)
+        {
+            BaseResponse responce = new BaseResponse();
+
+            try
+            {
+                var test = ModelState;
+                responce = _assetnetworkservice.DeleteAssetNetwork(id);
+
+
+
+                return responce;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                responce.Data = null;
+                responce.Message = ex.Message;
+                responce.Success = false;
+                return responce;
+            }
+        }
+
+        [HttpGet("/Asset/DisplayAssetNetwork")]
+        public BaseResponse DisplayAssetNetwork(int assetid)
+        {
+            BaseResponse responce = new BaseResponse();
+
+            try
+            {
+                var test = ModelState;
+                responce = _assetnetworkservice.DisplayAssetNetwork(assetid);
 
 
 
