@@ -18,7 +18,11 @@ namespace Web.Services.Interfaces
 
         BaseResponse getLaptopByID(int id);
 
-        BaseResponse deletel(int id);
+        BaseResponse deleteLaptop(int assetid);
+
+        BaseResponse sumOfLaptop(int categoryid);
+
+        BaseResponse totalQuantityLaptop(int categoryid);
 
 
     }

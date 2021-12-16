@@ -126,11 +126,70 @@ namespace Web.Services.Concrete
             throw new NotImplementedException();
         }
 
-        public BaseResponse deletel(int id)
+        public BaseResponse deleteLaptop(int assetid)
         {
-            throw new NotImplementedException();
+            BaseResponse response = new BaseResponse();
+            bool doesExistAlready = _hrmsassetRepository.Table.Count(p => p.ItaAssetId == assetid) > 0;
+            bool isDeletedAlready = _hrmsassetRepository.Table.Count(p => p.ItaIsDelete == true && p.ItaAssetId == assetid) > 0;
+            if (doesExistAlready == true && isDeletedAlready == false)
+            {
+                _hrmsassetRepository.Table.Where(p => p.ItaAssetId == assetid)
+                      .ToList()
+                      .ForEach(x =>
+                      {
+                          x.ItaIsDelete = true;
+                      });
+                    _uow.Commit();
+            
+                response.Message = UserMessages.strDeleted;
+                response.Success = true;
+                response.Data = assetid;
+            }
+            else if (isDeletedAlready == true && doesExistAlready == true)
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strAlrdeleted;
+            }
+            else if (doesExistAlready == false)
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotfound;
+            }
+
+            return response;
         }
-        
+
+        public BaseResponse sumOfLaptop(int categoryid)
+        {
+            BaseResponse response = new BaseResponse();
+            var totalCost = _hrmsassetRepository.Table.Where(y => y.ItacCategoryId == categoryid).Sum(x => x.ItaCost * x.ItaQuantity);
+            var totalAssetData = _hrmsassetRepository.Table.Where(p => p.ItacCategoryId == categoryid).ToList();
+            var result = (from a in totalAssetData
+                          select new AssetTotalVM()
+                          {
+                              cost = a.ItaCost,
+                              quantity = a.ItaQuantity,
+                              totalCost = Convert.ToInt32(a.ItaQuantity * a.ItaCost),
+                              subTotalCost = _hrmsassetRepository.Table.Sum(x => x.ItaCost * x.ItaQuantity)
+                          }).ToList();
+            
+            response.Data = totalCost;
+            response.Success = false;
+            response.Message = "Sum Caluclated";
+            return response;
+        }
+
+        public BaseResponse totalQuantityLaptop(int categoryid)
+        {
+            BaseResponse response = new BaseResponse();
+            var totalQuan = _hrmsassetRepository.Table.Where(y=>y.ItacCategoryId==categoryid).Sum(x => x.ItaQuantity);
+            response.Data = totalQuan;
+            response.Success = false;
+            response.Message = "Total Quantity Caluclated";
+            return response;
+        }
     }
 
     }
