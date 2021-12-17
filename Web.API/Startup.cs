@@ -107,7 +107,6 @@ namespace Web.API
             services.AddTransient(typeof(IJwtAuthService), typeof(AuthService));        
             services.AddTransient(typeof(IEmployeeService), typeof(EmployeeService));
             services.AddTransient(typeof(IAssetCategoryService), typeof(AssetCategoryService));
-            services.AddTransient(typeof(IAssetNetworkService), typeof(AssetNetworkService));
             services.AddTransient(typeof(IAssetService), typeof(AssetService));
 
 

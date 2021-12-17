@@ -125,11 +125,18 @@ namespace Web.Services.Concrete
             BaseResponse response = new BaseResponse();
             bool count = _hrmsassetRepository.Table.Count() > 0;
             var empid = _hrmsassetRepository.Table.Where(z => z.ItaIsDelete == false && z.ItacCategoryId == type)/*.Select(x => x.EtedEmployeeId)*/;
-            var assetData = _hrmsassetRepository.Table.Where(z => z.ItaIsDelete == false && z.ItacCategoryId == type).Select(x =>  new assetDisplayGrid
+            var assetData = _hrmsassetRepository.Table.Where(z => z.ItaIsDelete == false && z.ItacCategoryId == type).Select(x =>  new AssetCredential
             {   assetname=x.ItaAssetName,
                 serialno=x.ItaSerialNo,
                 companyname = x.ItaCompanyName,
                 processor = x.ItaProcessor,
+                quantity=x.ItaQuantity,
+                cost=x.ItaCost,
+                model=x.ItaModel,
+                type=x.ItaType,
+                condition=x.ItaCondition,
+                size=x.ItaSize,
+                storage=x.ItaStorage,
                 ram = x.ItaRam,
                 generation=x.ItaGeneration,
                 /*assingedname =ham*/ /*_hrmsemployeeRepository.Table.Where(y=>y.EtedEmployeeId==x.EtedEmployeeId).Select(z=>z.EtedFirstName).FirstOrDefault()*/
