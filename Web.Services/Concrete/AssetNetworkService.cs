@@ -103,7 +103,6 @@ namespace Web.Services.Concrete
             {
                 assetid = x.ItaAssetId,
                 categoryid = (int)x.ItacCategoryId,
-                empid = (int)x.EtedEmployeeId,
                 assetname = x.ItaAssetName,
                 quantity = (int)x.ItaQuantity,
                 cost = (int)x.ItaCost,
@@ -118,7 +117,6 @@ namespace Web.Services.Concrete
                 processor = x.ItaProcessor,
                 storage = x.ItaStorage,
                 hardtype = x.ItaHardriveType,
-                assignedto = x.ItaAssignedTo,
                 createdby = x.ItaCreatedBy,
                 createdbyname = x.ItaCreatedByName,
                 modifiedby = x.ItaModifiedBy,
@@ -156,7 +154,6 @@ namespace Web.Services.Concrete
                     x.ItaQuantity = network.quantity;
                     x.ItaCost = network.cost;
                     x.ItaPurchaseDate = DateTime.Now;
-                    x.ItaAssignedTo = network.assignedto;
                     
                     x.ItaIsDelete = false;
 
