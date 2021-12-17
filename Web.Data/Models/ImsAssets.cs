@@ -6,23 +6,27 @@ using System.Collections.Generic;
 
 namespace Web.Data.Models
 {
-    public partial class ImsTblAssets
+    public partial class ImsAssets
     {
+        public ImsAssets()
+        {
+            ImsAssign = new HashSet<ImsAssign>();
+        }
+
         public int ItaAssetId { get; set; }
         public int? ItacCategoryId { get; set; }
-        public int? EtedEmployeeId { get; set; }
         public string ItaAssetName { get; set; }
         public int? ItaQuantity { get; set; }
+        public int? ItaRemaining { get; set; }
+        public int? ItaAssignQuantity { get; set; }
         public long? ItaCost { get; set; }
-        public DateTime? ItaPurchaseDate { get; set; }
-        public string ItaAssignedTo { get; set; }
-        public bool? ItaAssign { get; set; }
+        public string ItaSerialNo { get; set; }
         public string ItaModel { get; set; }
         public string ItaCompanyName { get; set; }
         public string ItaType { get; set; }
+        public DateTime? ItaPurchaseDate { get; set; }
         public string ItaSize { get; set; }
         public string ItaCondition { get; set; }
-        public string ItaSerialNo { get; set; }
         public string ItaGeneration { get; set; }
         public string ItaRam { get; set; }
         public string ItaProcessor { get; set; }
@@ -36,7 +40,7 @@ namespace Web.Data.Models
         public DateTime? ItaModifiedByDate { get; set; }
         public bool? ItaIsDelete { get; set; }
 
-        public virtual EmsTblEmployeeDetails EtedEmployee { get; set; }
-        public virtual ImsTblAssetsCategory ItacCategory { get; set; }
+        public virtual ImsAssetsCategory ItacCategory { get; set; }
+        public virtual ICollection<ImsAssign> ImsAssign { get; set; }
     }
 }

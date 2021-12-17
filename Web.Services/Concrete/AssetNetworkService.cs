@@ -35,15 +35,14 @@ namespace Web.Services.Concrete
             if (!string.IsNullOrEmpty(asset.assetname))
 
             {
-                List<ImsTblAssets> assetnetwork = new List<ImsTblAssets>();
+                List<ImsAssets> assetnetwork = new List<ImsAssets>();
 
-                assetnetwork.Add(new ImsTblAssets
+                assetnetwork.Add(new ImsAssets
                 {
                     ItaAssetName = asset.assetname,
                     ItaQuantity = asset.quantity,
                     ItaCost = asset.cost,
                     ItaPurchaseDate = DateTime.Now,
-                    ItaAssignedTo = asset.assignedto,
 
                 });
                 _uow.Commit();

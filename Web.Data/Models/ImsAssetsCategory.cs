@@ -6,11 +6,12 @@ using System.Collections.Generic;
 
 namespace Web.Data.Models
 {
-    public partial class ImsTblAssetsCategory
+    public partial class ImsAssetsCategory
     {
-        public ImsTblAssetsCategory()
+        public ImsAssetsCategory()
         {
-            ImsTblAssets = new HashSet<ImsTblAssets>();
+            ImsAssets = new HashSet<ImsAssets>();
+            ImsAssign = new HashSet<ImsAssign>();
         }
 
         public int ItacCategoryId { get; set; }
@@ -23,6 +24,7 @@ namespace Web.Data.Models
         public DateTime? ItacModifiedByDate { get; set; }
         public bool? ItacIsDelete { get; set; }
 
-        public virtual ICollection<ImsTblAssets> ImsTblAssets { get; set; }
+        public virtual ICollection<ImsAssets> ImsAssets { get; set; }
+        public virtual ICollection<ImsAssign> ImsAssign { get; set; }
     }
 }

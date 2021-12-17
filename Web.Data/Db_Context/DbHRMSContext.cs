@@ -26,8 +26,9 @@ namespace Web.Data.Db_Context
         public virtual DbSet<EmsTblHrmsUser> EmsTblHrmsUser { get; set; }
         public virtual DbSet<EmsTblProfessionalQualification> EmsTblProfessionalQualification { get; set; }
         public virtual DbSet<EmsTblWorkingHistory> EmsTblWorkingHistory { get; set; }
-        public virtual DbSet<ImsTblAssets> ImsTblAssets { get; set; }
-        public virtual DbSet<ImsTblAssetsCategory> ImsTblAssetsCategory { get; set; }
+        public virtual DbSet<ImsAssets> ImsAssets { get; set; }
+        public virtual DbSet<ImsAssetsCategory> ImsAssetsCategory { get; set; }
+        public virtual DbSet<ImsAssign> ImsAssign { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -411,24 +412,18 @@ namespace Web.Data.Db_Context
                     .HasConstraintName("FK__ems_tbl_w__etwh___31B762FC");
             });
 
-            modelBuilder.Entity<ImsTblAssets>(entity =>
+            modelBuilder.Entity<ImsAssets>(entity =>
             {
                 entity.HasKey(e => e.ItaAssetId)
-                    .HasName("PK__ims_tbl___B51DD0C3231ABB12");
+                    .HasName("PK__ims_asse__B51DD0C3668BD2FE");
 
-                entity.ToTable("ims_tbl_assets");
+                entity.ToTable("ims_assets");
 
                 entity.Property(e => e.ItaAssetId).HasColumnName("ita_asset_id");
 
-                entity.Property(e => e.EtedEmployeeId).HasColumnName("eted_employee_id");
-
                 entity.Property(e => e.ItaAssetName).HasColumnName("ita_asset_name");
 
-                entity.Property(e => e.ItaAssign).HasColumnName("ita_assign");
-
-                entity.Property(e => e.ItaAssignedTo)
-                    .IsUnicode(false)
-                    .HasColumnName("ita_assigned_to");
+                entity.Property(e => e.ItaAssignQuantity).HasColumnName("ita_assign_quantity");
 
                 entity.Property(e => e.ItaCompanyName).HasColumnName("ita_company_name");
 
@@ -470,6 +465,8 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.ItaRam).HasColumnName("ita_ram");
 
+                entity.Property(e => e.ItaRemaining).HasColumnName("ita_remaining");
+
                 entity.Property(e => e.ItaSerialNo).HasColumnName("ita_serial_no");
 
                 entity.Property(e => e.ItaSize).HasColumnName("ita_size");
@@ -480,23 +477,18 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.ItacCategoryId).HasColumnName("itac_category_id");
 
-                entity.HasOne(d => d.EtedEmployee)
-                    .WithMany(p => p.ImsTblAssets)
-                    .HasForeignKey(d => d.EtedEmployeeId)
-                    .HasConstraintName("FK__ims_tbl_a__eted___14B10FFA");
-
                 entity.HasOne(d => d.ItacCategory)
-                    .WithMany(p => p.ImsTblAssets)
+                    .WithMany(p => p.ImsAssets)
                     .HasForeignKey(d => d.ItacCategoryId)
-                    .HasConstraintName("FK__ims_tbl_a__itac___13BCEBC1");
+                    .HasConstraintName("FK__ims_asset__itac___1F2E9E6D");
             });
 
-            modelBuilder.Entity<ImsTblAssetsCategory>(entity =>
+            modelBuilder.Entity<ImsAssetsCategory>(entity =>
             {
                 entity.HasKey(e => e.ItacCategoryId)
-                    .HasName("PK__ims_tbl___30819A4330D62EEB");
+                    .HasName("PK__ims_asse__30819A4323C3B1C9");
 
-                entity.ToTable("ims_tbl_assets_category");
+                entity.ToTable("ims_assets_category");
 
                 entity.Property(e => e.ItacCategoryId).HasColumnName("itac_category_id");
 
@@ -519,6 +511,61 @@ namespace Web.Data.Db_Context
                     .HasColumnName("itac_modified_by_date");
 
                 entity.Property(e => e.ItacModifiedByName).HasColumnName("itac_modified_by_name");
+            });
+
+            modelBuilder.Entity<ImsAssign>(entity =>
+            {
+                entity.HasKey(e => e.ItasAssignId)
+                    .HasName("PK__ims_assi__9BC07BF33898EEFF");
+
+                entity.ToTable("ims_assign");
+
+                entity.Property(e => e.ItasAssignId).HasColumnName("itas_assign_id");
+
+                entity.Property(e => e.ItasAssignedDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("itas_assigned_date");
+
+                entity.Property(e => e.ItasCreatedBy).HasColumnName("itas_created_by");
+
+                entity.Property(e => e.ItasCreatedByDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("itas_created_by_date");
+
+                entity.Property(e => e.ItasCreatedByName).HasColumnName("itas_created_by_name");
+
+                entity.Property(e => e.ItasEtedEmployeeId).HasColumnName("itas_eted_employee_id");
+
+                entity.Property(e => e.ItasIsDelete).HasColumnName("itas_is_delete");
+
+                entity.Property(e => e.ItasItaAssetId).HasColumnName("itas_ita_asset_id");
+
+                entity.Property(e => e.ItasItacCategoryId).HasColumnName("itas_itac_category_id");
+
+                entity.Property(e => e.ItasModifiedBy).HasColumnName("itas_modified_by");
+
+                entity.Property(e => e.ItasModifiedByDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("itas_modified_by_date");
+
+                entity.Property(e => e.ItasModifiedByName).HasColumnName("itas_modified_by_name");
+
+                entity.Property(e => e.ItasQuantity).HasColumnName("itas_quantity");
+
+                entity.HasOne(d => d.ItasEtedEmployee)
+                    .WithMany(p => p.ImsAssign)
+                    .HasForeignKey(d => d.ItasEtedEmployeeId)
+                    .HasConstraintName("FK__ims_assig__itas___22FF2F51");
+
+                entity.HasOne(d => d.ItasItaAsset)
+                    .WithMany(p => p.ImsAssign)
+                    .HasForeignKey(d => d.ItasItaAssetId)
+                    .HasConstraintName("FK__ims_assig__itas___220B0B18");
+
+                entity.HasOne(d => d.ItasItacCategory)
+                    .WithMany(p => p.ImsAssign)
+                    .HasForeignKey(d => d.ItasItacCategoryId)
+                    .HasConstraintName("FK__ims_assig__itas___23F3538A");
             });
 
             OnModelCreatingPartial(modelBuilder);

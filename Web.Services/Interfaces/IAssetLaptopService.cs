@@ -14,7 +14,7 @@ namespace Web.Services.Interfaces
 
         BaseResponse updatelaptop(AssetLaptopCredential asset);
 
-        BaseResponse displayAllLaptop(int type);
+        BaseResponse displayAllLaptopUnAssigned(int type);
 
         BaseResponse getLaptopByID(int id);
 

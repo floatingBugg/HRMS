@@ -33,9 +33,9 @@ namespace Web.Services.Concrete
             if (!string.IsNullOrEmpty(asset.categoryname))
 
             {
-                List<ImsTblAssetsCategory> assetcategory = new List<ImsTblAssetsCategory>();
+                List<ImsAssetsCategory> assetcategory = new List<ImsAssetsCategory>();
 
-                assetcategory.Add(new ImsTblAssetsCategory
+                assetcategory.Add(new ImsAssetsCategory
                 {
                     ItacCategoryName = asset.categoryname,
                     ItacCreatedBy = asset.createdby,

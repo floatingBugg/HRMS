@@ -16,10 +16,12 @@ namespace Web.Services.Concrete
     public class AssetLaptopService : IAssetLaptopService
     {
         private readonly IHRMSAssetRepository _hrmsassetRepository;
+        private readonly IHRMSEmployeeRepository _hrmsemployeeRepository;
         IConfiguration _config;
         private readonly IUnitOfWork _uow;
-        public AssetLaptopService(IConfiguration config, IHRMSAssetRepository hrmsassetRepository, IUnitOfWork uow)
+        public AssetLaptopService(IConfiguration config, IHRMSAssetRepository hrmsassetRepository,IHRMSEmployeeRepository hrmsemployeeRepository, IUnitOfWork uow)
         {
+            _hrmsemployeeRepository = hrmsemployeeRepository;
             _config = config;
             _hrmsassetRepository = hrmsassetRepository;
             _uow = uow;
@@ -29,14 +31,13 @@ namespace Web.Services.Concrete
         {
             BaseResponse response = new BaseResponse();
             if (!string.IsNullOrEmpty(asset.assetname)){
-                List<ImsTblAssets> laptop = new List<ImsTblAssets>();
+                List<ImsAssets> laptop = new List<ImsAssets>();
 
-                laptop.Add(new ImsTblAssets
+                laptop.Add(new ImsAssets
                 {
                     ItaAssetName=asset.assetname,
                     ItaSerialNo=asset.serialno,
                     ItacCategoryId=asset.categoryid,
-                    EtedEmployeeId=asset.empid,
                     ItaGeneration=asset.generation,
                     ItaRam=asset.ram,
                     ItaProcessor=asset.processor,
@@ -44,11 +45,11 @@ namespace Web.Services.Concrete
                     ItaHardriveType=asset.hardtype,
                     ItaCompanyName=asset.companyname,
                     ItaQuantity=asset.quantity,
-                    ItaCost=asset.cost,
+                    ItaRemaining= asset.quantity,
+                    ItaCost =asset.cost,
                     ItaPurchaseDate=asset.purchaseddate,
                     ItaCreatedBy=asset.createdby,
                     ItaCreatedByName=asset.createdbyname,
-                    ItaAssign = false,
                     ItaCreatedByDate =DateTime.Now,
                     ItaIsDelete=false,
                     
@@ -85,7 +86,6 @@ namespace Web.Services.Concrete
                         x.ItaAssetName = asset.assetname;
                         x.ItaSerialNo = asset.serialno;
                         x.ItacCategoryId = asset.categoryid;
-                        x.EtedEmployeeId = asset.empid;
                         x.ItaGeneration = asset.generation;
                         x.ItaRam = asset.ram;
                         x.ItaProcessor = asset.processor;
@@ -116,9 +116,24 @@ namespace Web.Services.Concrete
             return response;
         }
         
-        public BaseResponse displayAllLaptop(int type)
+        public BaseResponse displayAllLaptopUnAssigned(int type)
         {
-            throw new NotImplementedException();
+            BaseResponse response = new BaseResponse();
+            bool count = _hrmsassetRepository.Table.Count() > 0;
+            var empid = _hrmsassetRepository.Table.Where(z => z.ItaIsDelete == false && z.ItacCategoryId == type)/*.Select(x => x.EtedEmployeeId)*/;
+            var assetData = _hrmsassetRepository.Table.Where(z => z.ItaIsDelete == false && z.ItacCategoryId == type).Select(x =>  new assetDisplayGrid
+            {   assetname=x.ItaAssetName,
+                serialno=x.ItaSerialNo,
+                companyname = x.ItaCompanyName,
+                processor = x.ItaProcessor,
+                ram = x.ItaRam,
+                generation=x.ItaGeneration,
+                /*assingedname =ham*/ /*_hrmsemployeeRepository.Table.Where(y=>y.EtedEmployeeId==x.EtedEmployeeId).Select(z=>z.EtedFirstName).FirstOrDefault()*/
+            }).ToList().OrderByDescending(x => x.assetid);
+            response.Data = assetData;
+            response.Success = false;
+            response.Message = "Show record";
+            return response;
         }
 
         public BaseResponse getLaptopByID(int id)

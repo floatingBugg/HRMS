@@ -124,5 +124,24 @@ namespace Web.API.Controllers
                 return response;
             }
         }
+
+        [HttpGet("/Employee/DisplayAllLaptop")]
+        public BaseResponse GetAllEmployee(int type)
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                response =_assetLaptopservice.displayAllLaptopUnAssigned(type);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+        }
     }
 }
