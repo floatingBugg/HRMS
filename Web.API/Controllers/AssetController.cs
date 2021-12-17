@@ -12,28 +12,28 @@ using Web.Services.Interfaces;
 
 namespace Web.API.Controllers
 {
-    public class AssetLaptopController : Controller
+    public class AssetController : Controller
     {
-        private readonly IAssetLaptopService _assetLaptopservice;
+        private readonly IAssetService _assetLaptopservice;
         private IConfiguration _config;
         Logger _logger;
         private IWebHostEnvironment _hostEnvironment;
 
-        public AssetLaptopController(IAssetLaptopService assetLaptopservice, IConfiguration config, IWebHostEnvironment environment)
+        public AssetController(IAssetService assetLaptopservice, IConfiguration config, IWebHostEnvironment environment)
         {
             _assetLaptopservice = assetLaptopservice;
             _config = config;
             _hostEnvironment = environment;
             _logger = new Logger(_hostEnvironment);
         }
-        [HttpPost("/Asset/Laptop/AddLaptop")]
-        public BaseResponse CreateLaptop([FromBody] AssetLaptopCredential asset)
+        [HttpPost("/Asset/AddAsset")]
+        public BaseResponse CreateAsset([FromBody] AssetCredential asset)
         {
             BaseResponse response = new BaseResponse();
             try
             {
                 var test = ModelState;
-                response = _assetLaptopservice.creatLaptop(asset);
+                response = _assetLaptopservice.createAsset(asset);
 
 
 
@@ -49,15 +49,15 @@ namespace Web.API.Controllers
             }
         }
 
-        [HttpPost("/Asset/Laptop/UpdateLaptop")]
-        public BaseResponse UpdateLaptop([FromBody] AssetLaptopCredential asset)
+        [HttpPost("/Asset/UpdateAsset")]
+        public BaseResponse UpdateAsset([FromBody] AssetCredential asset)
         {
             BaseResponse response = new BaseResponse();
 
             try
             {
 
-                response = _assetLaptopservice.updatelaptop(asset);
+                response = _assetLaptopservice.updateAsset(asset);
                 return response;
             }
             catch (Exception ex)
@@ -67,13 +67,13 @@ namespace Web.API.Controllers
             }
         }
 
-        [HttpDelete("/Asset/Laptop/DeleteLaptop")]
+        [HttpDelete("/Asset/DeleteAsset")]
         public BaseResponse DeleteLaptop(int assetid)
         {
             BaseResponse response = new BaseResponse();
             try
             {
-                response = _assetLaptopservice.deleteLaptop(assetid);
+                response = _assetLaptopservice.deleteAsset(assetid);
 
                 return response;
             }
@@ -87,13 +87,13 @@ namespace Web.API.Controllers
             }
         }
 
-        [HttpGet("Asset/Laptop/GetAllSum")]
+        [HttpGet("Asset/GetAllSum")]
         public BaseResponse getTotalCostLaptop(int categoryid)
         {
             BaseResponse response = new BaseResponse();
             try
             {
-                response = _assetLaptopservice.sumOfLaptop(categoryid);
+                response = _assetLaptopservice.sumOfAsset(categoryid);
                 return response;
             }
             catch (Exception ex)
@@ -106,13 +106,13 @@ namespace Web.API.Controllers
             }
         }
 
-        [HttpGet("Asset/Laptop/GetAllQuantity")]
+        [HttpGet("Asset/GetAllQuantity")]
         public BaseResponse getTotalQuantityLaptop(int categoryid)
         {
             BaseResponse response = new BaseResponse();
             try
             {
-                response = _assetLaptopservice.totalQuantityLaptop(categoryid);
+                response = _assetLaptopservice.totalQuantityAsset(categoryid);
                 return response;
             }
             catch (Exception ex)
@@ -125,13 +125,13 @@ namespace Web.API.Controllers
             }
         }
 
-        [HttpGet("/Employee/DisplayAllLaptop")]
+        [HttpGet("/Asset/DisplayAllLaptop")]
         public BaseResponse GetAllEmployee(int type)
         {
             BaseResponse response = new BaseResponse();
             try
             {
-                response =_assetLaptopservice.displayAllLaptopUnAssigned(type);
+                response =_assetLaptopservice.displayAllAssetUnAssigned(type);
                 return response;
             }
             catch (Exception ex)

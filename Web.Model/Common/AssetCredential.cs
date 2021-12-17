@@ -12,10 +12,11 @@ namespace Web.Model.Common
 
         public int assetid { get; set; }
         public int categoryid { get; set; }
-        public int empid { get; set; }
         public string assetname { get; set; }
         public int quantity { get; set; }
         public int cost { get; set; }
+        public int remaining { get; set; }
+        public int assignQuan { get; set; }
         public string serialno { get; set; }
         public string model { get; set; }
         public string type { get; set; }
@@ -29,7 +30,6 @@ namespace Web.Model.Common
 
         public string hardtype { get; set; }
 
-        public string assignedto { get; set; }
 
         public string createdby { get; set; }
 

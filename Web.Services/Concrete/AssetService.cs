@@ -13,13 +13,13 @@ using Web.Services.Interfaces;
 
 namespace Web.Services.Concrete
 {
-    public class AssetLaptopService : IAssetLaptopService
+    public class AssetService : IAssetService
     {
         private readonly IHRMSAssetRepository _hrmsassetRepository;
         private readonly IHRMSEmployeeRepository _hrmsemployeeRepository;
         IConfiguration _config;
         private readonly IUnitOfWork _uow;
-        public AssetLaptopService(IConfiguration config, IHRMSAssetRepository hrmsassetRepository,IHRMSEmployeeRepository hrmsemployeeRepository, IUnitOfWork uow)
+        public AssetService(IConfiguration config, IHRMSAssetRepository hrmsassetRepository,IHRMSEmployeeRepository hrmsemployeeRepository, IUnitOfWork uow)
         {
             _hrmsemployeeRepository = hrmsemployeeRepository;
             _config = config;
@@ -27,7 +27,7 @@ namespace Web.Services.Concrete
             _uow = uow;
         }
 
-        public BaseResponse creatLaptop(AssetLaptopCredential asset)
+        public BaseResponse createAsset(AssetCredential asset)
         {
             BaseResponse response = new BaseResponse();
             if (!string.IsNullOrEmpty(asset.assetname)){
@@ -36,8 +36,12 @@ namespace Web.Services.Concrete
                 laptop.Add(new ImsAssets
                 {
                     ItaAssetName=asset.assetname,
-                    ItaSerialNo=asset.serialno,
-                    ItacCategoryId=asset.categoryid,
+                    ItacCategoryId = asset.categoryid,
+                    ItaSerialNo =asset.serialno,
+                    ItaType=asset.type,
+                    ItaModel=asset.model,
+                    ItaSize=asset.size,
+                    ItaCondition=asset.condition,
                     ItaGeneration=asset.generation,
                     ItaRam=asset.ram,
                     ItaProcessor=asset.processor,
@@ -72,7 +76,7 @@ namespace Web.Services.Concrete
             return response;
         }
 
-        public BaseResponse updatelaptop(AssetLaptopCredential asset)
+        public BaseResponse updateAsset(AssetCredential asset)
         {
             BaseResponse response = new BaseResponse();
 
@@ -116,7 +120,7 @@ namespace Web.Services.Concrete
             return response;
         }
         
-        public BaseResponse displayAllLaptopUnAssigned(int type)
+        public BaseResponse displayAllAssetUnAssigned(int type)
         {
             BaseResponse response = new BaseResponse();
             bool count = _hrmsassetRepository.Table.Count() > 0;
@@ -136,12 +140,12 @@ namespace Web.Services.Concrete
             return response;
         }
 
-        public BaseResponse getLaptopByID(int id)
+        public BaseResponse getAssetByID(int id)
         {
             throw new NotImplementedException();
         }
 
-        public BaseResponse deleteLaptop(int assetid)
+        public BaseResponse deleteAsset(int assetid)
         {
             BaseResponse response = new BaseResponse();
             bool doesExistAlready = _hrmsassetRepository.Table.Count(p => p.ItaAssetId == assetid) > 0;
@@ -176,7 +180,7 @@ namespace Web.Services.Concrete
             return response;
         }
 
-        public BaseResponse sumOfLaptop(int categoryid)
+        public BaseResponse sumOfAsset(int categoryid)
         {
             BaseResponse response = new BaseResponse();
             var totalCost = _hrmsassetRepository.Table.Where(y => y.ItacCategoryId == categoryid).Sum(x => x.ItaCost * x.ItaQuantity);
@@ -196,7 +200,7 @@ namespace Web.Services.Concrete
             return response;
         }
 
-        public BaseResponse totalQuantityLaptop(int categoryid)
+        public BaseResponse totalQuantityAsset(int categoryid)
         {
             BaseResponse response = new BaseResponse();
             var totalQuan = _hrmsassetRepository.Table.Where(y=>y.ItacCategoryId==categoryid).Sum(x => x.ItaQuantity);

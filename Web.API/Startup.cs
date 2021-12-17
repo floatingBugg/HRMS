@@ -108,7 +108,7 @@ namespace Web.API
             services.AddTransient(typeof(IEmployeeService), typeof(EmployeeService));
             services.AddTransient(typeof(IAssetCategoryService), typeof(AssetCategoryService));
             services.AddTransient(typeof(IAssetNetworkService), typeof(AssetNetworkService));
-            services.AddTransient(typeof(IAssetLaptopService), typeof(AssetLaptopService));
+            services.AddTransient(typeof(IAssetService), typeof(AssetService));
 
 
             //Register Employee Services 
