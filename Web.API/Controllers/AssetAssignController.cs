@@ -74,5 +74,29 @@ namespace Web.API.Controllers
             }
         }
 
+        [HttpGet("/Asset/GetEmployee")]
+        public BaseResponse getEmployee()
+        {
+            BaseResponse responce = new BaseResponse();
+
+            try
+            {
+                var test = ModelState;
+                responce = _assetassignservice.getEmployee();
+
+
+
+                return responce;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                responce.Data = null;
+                responce.Message = ex.Message;
+                responce.Success = false;
+                return responce;
+            }
+        }
+
     }
 }

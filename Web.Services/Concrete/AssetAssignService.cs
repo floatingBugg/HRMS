@@ -141,5 +141,34 @@ namespace Web.Services.Concrete
 
             return response;
         }
+
+        public BaseResponse getEmployee()
+        {
+            BaseResponse response = new BaseResponse();
+            bool count = _hrmsemployeeRepository.Table.Count() > 0;
+            var assigndata = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false).Select(x => new DisplayEmployeeGrid()
+            {
+                empID = (int)x.EtedEmployeeId,
+                fullName = x.EtedFirstName + " " + x.EtedLastName
+
+
+            }).ToList().OrderByDescending(x => x.empID);
+
+            if (count == true)
+            {
+                response.Data = assigndata;
+                response.Success = true;
+                response.Message = UserMessages.strSuccess;
+
+
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotfound;
+            }
+            return response;
+        }
     }
 }
