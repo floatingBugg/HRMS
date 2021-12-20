@@ -92,6 +92,53 @@ namespace Web.API.Controllers
             }
         }
 
+        [HttpGet("/Asset/GetEmployee")]
+        public BaseResponse getEmployee()
+        {
+            BaseResponse responce = new BaseResponse();
+
+            try
+            {
+                var test = ModelState;
+                responce = _assetassignservice.getEmployee();
+
+
+
+                return responce;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                responce.Data = null;
+                responce.Message = ex.Message;
+                responce.Success = false;
+                return responce;
+            }
+        }
+
+        [HttpGet("/Asset/DisplayAssignAsset")]
+        public BaseResponse DisplayAssignAsset(int type)
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                var test = ModelState;
+                response = _assetassignservice.displayAllAssetAssigned(type);
+
+
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+        }
+
       
     
     }
