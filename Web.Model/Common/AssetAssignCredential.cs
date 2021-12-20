@@ -8,6 +8,7 @@ namespace Web.Model.Common
 {
     public class AssetAssignCredential
     {
+        public int assignid { get; set; }
         public int assetid { get; set; }
         public int categoryid { get; set; }
         public int empid { get; set; }
@@ -21,6 +22,7 @@ namespace Web.Model.Common
 
         public string modifiedbyname { get; set; }
 
+        public DateTime assigndate { get; set; }
         public DateTime purchaseddate { get; set; }
     }
 }

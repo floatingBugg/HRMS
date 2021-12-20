@@ -28,6 +28,7 @@ namespace Web.Model.Common
         public string processor { get; set; }
         public string storage { get; set; }
 
+
         public string hardtype { get; set; }
 
         public DateTime purchaseddate { get; set; }

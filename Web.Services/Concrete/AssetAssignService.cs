@@ -73,10 +73,43 @@ namespace Web.Services.Concrete
             throw new NotImplementedException();
         }
 
-
         public BaseResponse updateAssign(AssetAssignCredential assign)
         {
-            throw new NotImplementedException();
+            BaseResponse response = new BaseResponse();
+
+            bool count = _hrmsassetassignRepository.Table.Where(p => p.ItasAssignId == assign.assignid).Count() > 0;
+            if (count == true)
+            {
+                _hrmsassetassignRepository.Table.Where(p => p.ItasAssignId == assign.assignid)
+                    .ToList()
+                    .ForEach(x =>
+                    {
+                        x.ItasItaAssetId = assign.assetid;
+                        x.ItasEtedEmployeeId = assign.empid;
+                        x.ItasItacCategoryId = assign.categoryid;
+                        x.ItasQuantity = assign.quantity;
+                        x.ItasAssignedDate = assign.assigndate;
+                        x.ItasModifiedBy = assign.modifiedby;
+                        x.ItasModifiedByName = assign.modifiedbyname;
+                        x.ItasModifiedByDate = DateTime.Now;
+                        
+                       
+
+                    });
+                _uow.Commit();
+                response.Success = true;
+                response.Message = UserMessages.strUpdated;
+                response.Data = null;
+            }
+
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotupdated;
+            }
+
+            return response;
         }
     }
 }
