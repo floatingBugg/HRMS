@@ -15,7 +15,7 @@ namespace Web.Model.Common
         public string assetname { get; set; }
         public int? quantity { get; set; }
         public long? cost { get; set; }
-        public int remaining { get; set; }
+        public int? remaining { get; set; }
         public int assignQuan { get; set; }
         public string serialno { get; set; }
         public string model { get; set; }

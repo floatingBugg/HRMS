@@ -120,6 +120,7 @@ namespace Web.API
             services.AddTransient(typeof(IHRMSProfessionalDetailsRepository), typeof(HRMSPRofessionalDetailsRepository));
             services.AddTransient(typeof(IHRMSAssetCategoryRepository), typeof(HRMSAssetCategoryRepository));
             services.AddTransient(typeof(IHRMSAssetRepository), typeof(HRMSAssetRepository));
+            services.AddTransient(typeof(IHRMSAssetAssignRepository), typeof(HRMSAssetAssetRepository));
 
 
             //Register Assest Service 

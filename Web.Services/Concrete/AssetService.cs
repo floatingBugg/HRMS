@@ -131,6 +131,7 @@ namespace Web.Services.Concrete
                 companyname = x.ItaCompanyName,
                 processor = x.ItaProcessor,
                 quantity=x.ItaQuantity,
+                remaining=x.ItaRemaining,
                 cost=x.ItaCost,
                 model=x.ItaModel,
                 type=x.ItaType,
