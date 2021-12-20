@@ -50,5 +50,29 @@ namespace Web.API.Controllers
             }
         }
 
+        [HttpDelete("/Asset/DeleteAssignedAsset")]
+        public BaseResponse deleteAssign(int assignid)
+        {
+            BaseResponse responce = new BaseResponse();
+
+            try
+            {
+                var test = ModelState;
+                responce = _assetassignservice.deleteAssign(assignid);
+
+
+
+                return responce;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                responce.Data = null;
+                responce.Message = ex.Message;
+                responce.Success = false;
+                return responce;
+            }
+        }
+
     }
 }

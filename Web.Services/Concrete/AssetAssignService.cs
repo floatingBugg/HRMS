@@ -63,9 +63,39 @@ namespace Web.Services.Concrete
             return response;
         }
 
-        public BaseResponse deleteAssign(int assetid)
+        public BaseResponse deleteAssign(int assignid)
         {
-            throw new NotImplementedException();
+            BaseResponse response = new BaseResponse();
+            bool doesExistAlready = _hrmsassetassignRepository.Table.Count(p => p.ItasAssignId == assignid) > 0;
+            bool isDeletedAlready = _hrmsassetassignRepository.Table.Count(p => p.ItasIsDelete == true && p.ItasAssignId == assignid) > 0;
+            if (doesExistAlready == true && isDeletedAlready == false)
+            {
+                _hrmsassetassignRepository.Table.Where(p => p.ItasAssignId == assignid)
+                      .ToList()
+                      .ForEach(x =>
+                      {
+                          x.ItasIsDelete = true;
+                      });
+                _uow.Commit();
+
+                response.Message = UserMessages.strDeleted;
+                response.Success = true;
+                response.Data = assignid;
+            }
+            else if (isDeletedAlready == true && doesExistAlready == true)
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strAlrdeleted;
+            }
+            else if (doesExistAlready == false)
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotfound;
+            }
+
+            return response;
         }
 
         public BaseResponse displayAllAssetAssigned(int type)

@@ -14,7 +14,7 @@ namespace Web.Services.Interfaces
 
         BaseResponse updateAssign(AssetAssignCredential assign);
 
-        BaseResponse deleteAssign(int assetid);
+        BaseResponse deleteAssign(int assignid);
 
         BaseResponse displayAllAssetAssigned(int type);
 
