@@ -125,7 +125,7 @@ namespace Web.Services.Concrete
             BaseResponse response = new BaseResponse();
             bool count = _hrmsassetRepository.Table.Count() > 0;
             var empid = _hrmsassetRepository.Table.Where(z => z.ItaIsDelete == false && z.ItacCategoryId == type)/*.Select(x => x.EtedEmployeeId)*/;
-            var assetData = _hrmsassetRepository.Table.Where(z => z.ItaIsDelete == false && z.ItacCategoryId == type).Select(x =>  new AssetCredential
+            var assetData = _hrmsassetRepository.Table.Where(z => z.ItaIsDelete == false && z.ItacCategoryId == type && z.ItaRemaining>0).Select(x =>  new AssetCredential
             {   assetname=x.ItaAssetName,
                 serialno=x.ItaSerialNo,
                 companyname = x.ItaCompanyName,

@@ -30,6 +30,7 @@ namespace Web.Model.Common
 
         public string hardtype { get; set; }
 
+        public DateTime purchaseddate { get; set; }
 
         public string createdby { get; set; }
 
@@ -39,7 +40,7 @@ namespace Web.Model.Common
 
         public string modifiedbyname { get; set; }
 
-        public DateTime purchaseddate { get; set; }
+        
 
     }
 }
