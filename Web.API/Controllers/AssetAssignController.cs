@@ -28,7 +28,7 @@ namespace Web.API.Controllers
         }
 
         [HttpPost("/Asset/AssignAsset")]
-        public BaseResponse CreateAsset([FromBody] AssetAssignCredential assign)
+        public BaseResponse CreateAssign([FromBody] AssetAssignCredential assign)
         {
             BaseResponse response = new BaseResponse();
             try
@@ -51,7 +51,7 @@ namespace Web.API.Controllers
         }
 
         [HttpDelete("/Asset/DeleteAssignedAsset")]
-        public BaseResponse deleteAssign(int assignid)
+        public BaseResponse DeleteAssign(int assignid)
         {
             BaseResponse responce = new BaseResponse();
 
@@ -74,5 +74,27 @@ namespace Web.API.Controllers
             }
         }
 
+        [HttpPost("/Asset/UpdateAssignAsset")]
+        public BaseResponse Update([FromBody] AssetAssignCredential assign)
+        {
+            BaseResponse response = new BaseResponse();
+
+            try
+            {
+
+                response = _assetassignservice.updateAssign(assign);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                return response;
+            }
+        }
+
+      
+    
     }
-}
+    }
+
+
