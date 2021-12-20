@@ -10,9 +10,9 @@ namespace Web.Services.Interfaces
 {
     public interface IAssetAssignService
     {
-        BaseResponse createAssign(AssetCredential assign);
+        BaseResponse createAssign(AssetAssignCredential assign);
 
-        BaseResponse updateAssign(AssetCredential asset);
+        BaseResponse updateAssign(AssetAssignCredential assign);
 
         BaseResponse deleteAssign(int assetid);
 
