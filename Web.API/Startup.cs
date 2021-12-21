@@ -149,6 +149,7 @@ namespace Web.API
             app.UseAuthentication();
 
             app.UseAuthorization();
+            app.UseStaticFiles();
 
             // global error handler
             app.UseMiddleware<ErrorHandlerMiddleware>();

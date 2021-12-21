@@ -8,7 +8,6 @@ namespace Web.Model.Common
         public int empID { get; set; }
         public string firstname { get; set; }
         public string Lastname { get; set; }
-        public string photograph { get; set; }
         public string personalemail { get; set; }
         public string officialemail { get; set; }
         public long cnic { get; set; }
@@ -21,6 +20,10 @@ namespace Web.Model.Common
         public string religion { get; set; }
         public string nationality { get; set; }
         public string empstatus { get; set; }
+        public string imageUrlPhoto { get; set; }
+
+        public byte[] photograph { get; set; }
+
         public string created { get; set; }
         public string createdName { get; set; }
 
@@ -40,6 +43,7 @@ namespace Web.Model.Common
         public string AcademicInstituteName { get; set; }
 
         public string UploadDocuments { get; set; }
+        public byte[] UploadDocumentAcad { get; set; }
 
         //Professional Qualification
 
@@ -51,6 +55,8 @@ namespace Web.Model.Common
 
         public string ProfessionalInstituteName { get; set; }
         public string Documents { get; set; }
+
+        public byte[] DocumentsProfQual { get; set; }
 
 
 
@@ -77,9 +83,9 @@ namespace Web.Model.Common
 
         public string expletter { get; set; }
 
+        public byte[] workexpletter { get; set; }
 
         //Professional Details
-
 
 
         public string Salary { get; set; }
@@ -88,8 +94,6 @@ namespace Web.Model.Common
         public DateTime JoiningDate { get; set; }
 
         public string Probation { get; set; }
-
-
 
     }
 }

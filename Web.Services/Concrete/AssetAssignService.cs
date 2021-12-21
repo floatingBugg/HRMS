@@ -18,14 +18,18 @@ namespace Web.Services.Concrete
         private readonly IHRMSAssetAssignRepository _hrmsassetassignRepository;
         private readonly IHRMSAssetRepository _hrmsassetRepository;
         private readonly IHRMSEmployeeRepository _hrmsemployeeRepository;
+        
+
         IConfiguration _config;
         private readonly IUnitOfWork _uow;
+       
         public AssetAssignService(IConfiguration config, IHRMSAssetAssignRepository hrmsassetassignRepository, IHRMSAssetRepository hrmsassetRepository,IHRMSEmployeeRepository hrmsemployeeRepository, IUnitOfWork uow)
         {
             _hrmsassetRepository = hrmsassetRepository;
             _hrmsemployeeRepository = hrmsemployeeRepository;
             _config = config;
             _hrmsassetassignRepository = hrmsassetassignRepository;
+            _hrmsassetRepository = hrmsassetRepository;
             _uow = uow;
         }
         public BaseResponse createAssign(AssetAssignCredential assign)
@@ -125,7 +129,35 @@ namespace Web.Services.Concrete
 
         public BaseResponse displayAllAssetAssigned(int type)
         {
-            throw new NotImplementedException();
+            BaseResponse response = new BaseResponse();
+            
+            bool count = _hrmsassetRepository.Table.Count() > 0;
+            var assetData = _hrmsassetRepository.Table.Where(z =>z.ItacCategoryId==type && z.ItaIsDelete == false).Select(x => new AssetAssignGrid()
+            {
+                
+                assetname = x.ItaAssetName,
+                model = x.ItaModel,
+                companyname = x.ItaCompanyName,
+                type = x.ItaType,
+                quantity=x.ImsAssign.Count > 0 ? x.ImsAssign.Where(y=>y.ItasItaAssetId==x.ItaAssetId).Select(z=>z.ItasQuantity).FirstOrDefault() : 0
+
+            }).ToList().OrderByDescending(x => x.assetid);
+
+            if (count == true)
+            {
+                response.Data = assetData;
+                response.Success = true;
+                response.Message = UserMessages.strSuccess;
+
+
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotfound;
+            }
+            return response;
         }
 
         public BaseResponse updateAssign(AssetAssignCredential assign)
@@ -181,6 +213,35 @@ namespace Web.Services.Concrete
                 response.Message = UserMessages.strNotupdated;
             }
 
+            return response;
+        }
+
+        public BaseResponse getEmployee()
+        {
+            BaseResponse response = new BaseResponse();
+            bool count = _hrmsemployeeRepository.Table.Count() > 0;
+            var assigndata = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false).Select(x => new DisplayEmployeeGrid()
+            {
+                empID = (int)x.EtedEmployeeId,
+                fullName = x.EtedFirstName + " " + x.EtedLastName
+
+
+            }).ToList().OrderByDescending(x => x.empID);
+
+            if (count == true)
+            {
+                response.Data = assigndata;
+                response.Success = true;
+                response.Message = UserMessages.strSuccess;
+
+
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotfound;
+            }
             return response;
         }
 

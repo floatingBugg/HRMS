@@ -70,11 +70,12 @@ namespace Web.API.Controllers
         [HttpPost("/Employee/AddEmployee")]
         public BaseResponse Create([FromBody] EmployeeCredential employee)
         {
+            string projectRootPath = _hostEnvironment.WebRootPath;
             BaseResponse response = new BaseResponse(); 
             try
             {
                 var test = ModelState;
-                response = _employeeservice.CreateEmployee(employee);
+                response = _employeeservice.CreateEmployee(employee,projectRootPath);
                
                     
                 

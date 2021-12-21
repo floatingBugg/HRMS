@@ -19,5 +19,7 @@ namespace Web.Services.Interfaces
 
         BaseResponse displayAllAssetAssigned(int type);
 
+        BaseResponse getEmployee();
+
     }
 }

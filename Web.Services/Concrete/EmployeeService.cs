@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -68,12 +69,86 @@ namespace Web.Services.Concrete
             return response;
         }
 
-        public BaseResponse CreateEmployee(EmployeeCredential employee)
+        public BaseResponse CreateEmployee(EmployeeCredential employee,string rootpath)
         {
             
             BaseResponse response = new BaseResponse();
             bool doesEmailExistAlready = _hrmsemployeeRepository.Table.Count(p => p.EtedEmailAddress == employee.personalemail) > 0;
             bool doesCNICExistAlready = _hrmsemployeeRepository.Table.Count(p => p.EtedCnic == employee.cnic) > 0;
+                //Employee Details
+                if (!string.IsNullOrEmpty(employee.imageUrlPhoto))
+            {
+                var RootPath = rootpath;
+                string FilePathPhoto = "Images\\EmployeeID\\PhotoGraph\\";
+                var targetPathProfile = Path.Combine(RootPath, FilePathPhoto);
+
+                if (!Directory.Exists(targetPathProfile))
+                {
+                    Directory.CreateDirectory(targetPathProfile);
+                }
+                employee.photograph = Convert.FromBase64String(employee.imageUrlPhoto.Replace("data:image/jpeg;base64,", ""));
+                targetPathProfile += $"{employee.firstname}-{employee.Lastname}_{employee.empID}.png";
+                using (FileStream fs = new FileStream(targetPathProfile, FileMode.Create, FileAccess.Write))
+                {
+                    fs.Write(employee.photograph);
+                }
+                    employee.imageUrlPhoto = targetPathProfile.Replace(RootPath, "").Replace("\\", "/"); 
+                }
+                //Work Exp Letter
+                if (!string.IsNullOrEmpty(employee.expletter))
+                {
+                var RootPath = rootpath;
+                string FilePathWork = "Images\\EmployeeID\\WorkingHistory\\";
+                var targetPathWork = Path.Combine(RootPath, FilePathWork);
+                if (!Directory.Exists(targetPathWork))
+                {
+                    Directory.CreateDirectory(targetPathWork);
+                }
+                employee.workexpletter = Convert.FromBase64String(employee.expletter.Replace("data:image/jpeg;base64,", ""));
+                targetPathWork += $"{employee.firstname}-{employee.Lastname}_{employee.empID}_{employee.workdesignation}.png";
+                using (FileStream fs = new FileStream(targetPathWork, FileMode.Create, FileAccess.Write))
+                {
+                    fs.Write(employee.workexpletter);
+                }
+                employee.expletter = targetPathWork.Replace(RootPath, "").Replace("\\", "/"); 
+                }
+                //Professional Qualification
+                if (!string.IsNullOrEmpty(employee.Documents))
+                {
+                var RootPath = rootpath;
+                string FilePathProf = "Images\\EmployeeID\\ProfessionalQualification\\";
+                var targetPathProfQual = Path.Combine(RootPath, FilePathProf);
+                if (!Directory.Exists(targetPathProfQual))
+                {
+                    Directory.CreateDirectory(targetPathProfQual);
+                }
+                employee.DocumentsProfQual = Convert.FromBase64String(employee.Documents.Replace("data:image/jpeg;base64,", ""));
+                targetPathProfQual += $"{employee.firstname}-{employee.Lastname}_{employee.empID}_{employee.certification}.png";
+                using (FileStream fs = new FileStream(targetPathProfQual, FileMode.Create, FileAccess.Write))
+                {
+                    fs.Write(employee.DocumentsProfQual);
+                }
+                employee.expletter = targetPathProfQual.Replace(RootPath, "").Replace("\\", "/");
+                }
+                //Academic
+                if (!string.IsNullOrEmpty(employee.UploadDocuments))
+                {
+                var RootPath = rootpath;
+                string FilePathAcad = "Images\\EmployeeID\\AcademicQualification\\";
+                var targetPathAcademicQual = Path.Combine(RootPath, FilePathAcad);
+                if (!Directory.Exists(targetPathAcademicQual))
+                {
+                    Directory.CreateDirectory(targetPathAcademicQual);
+                }
+                employee.UploadDocumentAcad = Convert.FromBase64String(employee.UploadDocuments.Replace("data:image/jpeg;base64,", ""));
+                targetPathAcademicQual += $"{employee.firstname}-{employee.Lastname}_{employee.empID}_{employee.AcademicInstituteName}.png";
+                using (FileStream fs = new FileStream(targetPathAcademicQual, FileMode.Create, FileAccess.Write))
+                {
+                    fs.Write(employee.UploadDocumentAcad);
+                }
+                employee.UploadDocuments = targetPathAcademicQual.Replace(RootPath, "").Replace("\\", "/");
+                }
+
             if (!string.IsNullOrEmpty(employee.created) && !string.IsNullOrEmpty(employee.createdName)
                && !string.IsNullOrEmpty(employee.officialemail) && !string.IsNullOrEmpty(employee.address) && !string.IsNullOrEmpty(employee.gender) 
                && !string.IsNullOrEmpty(employee.religion)
@@ -104,7 +179,7 @@ namespace Web.Services.Concrete
                     EtedNationality = employee.nationality,
                     EtedReligion = employee.religion,
                     EtedStatus = employee.empstatus,
-                    EtedPhotograph = employee.firstname,
+                    EtedPhotograph=employee.imageUrlPhoto,
                     EtedOfficialEmailAddress = employee.officialemail,
                     EtedCreatedBy = employee.created,
                     EtedCreatedByDate = DateTime.Now,
