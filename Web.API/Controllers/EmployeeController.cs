@@ -95,11 +95,11 @@ namespace Web.API.Controllers
         public BaseResponse Update([FromBody] EmployeeCredential employee)
         {
             BaseResponse response = new BaseResponse();
-            
+            string projectRootPath = _hostEnvironment.WebRootPath;
             try
             {
                
-                response = _employeeservice.UpdateEmployee(employee);                  
+                response = _employeeservice.UpdateEmployee(employee,projectRootPath);                  
                 return response;
             }
             catch (Exception ex)

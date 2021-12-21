@@ -139,7 +139,7 @@ namespace Web.Services.Concrete
                 model = x.ItaModel,
                 companyname = x.ItaCompanyName,
                 type = x.ItaType,
-                quantity=x.ImsAssign.Count > 0 ? x.ImsAssign.Where(y=>y.ItasItaAssetId==x.ItaAssetId).Select(z=>z.ItasQuantity).FirstOrDefault() : 0
+                quantity =x.ImsAssign.Count > 0 ? x.ImsAssign.Where(y=>y.ItasItaAssetId==x.ItaAssetId).Select(z=>z.ItasQuantity).FirstOrDefault() : 0
 
             }).ToList().OrderByDescending(x => x.assetid);
 
