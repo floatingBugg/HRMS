@@ -8,14 +8,7 @@ namespace Web.Data.ViewModels
 {
     public partial class EmsTblEmployeeDetailsVM
     {
-        public EmsTblEmployeeDetailsVM()
-        {
-            EmsTblAcademicQualificationVM = new HashSet<EmsTblAcademicQualificationVM>();
-            EmsTblEmergencyContactVM = new HashSet<EmsTblEmergencyContactVM>();
-            EmsTblEmployeeProfessionalDetailsVM = new HashSet<EmsTblEmployeeProfessionalDetailsVM>();
-            EmsTblProfessionalQualificationVM = new HashSet<EmsTblProfessionalQualificationVM>();
-            EmsTblWorkingHistoryVM = new HashSet<EmsTblWorkingHistoryVM>();
-        }
+       
 
         public int EtedEmployeeId { get; set; }
         public string EtedFirstName { get; set; }
@@ -27,7 +20,8 @@ namespace Web.Data.ViewModels
         public string EtedGender { get; set; }
         public string EtedMaritalStatus { get; set; }
         public string EtedBloodGroup { get; set; }
-        public string EtedPhotograph { get; set; }
+        public string EtedPhotographurl { get; set; }
+        public byte[] EtedPhotograph { get; set; }
         public long? EtedCnic { get; set; }
         public string EtedOfficialEmailAddress { get; set; }
         public string EtedReligion { get; set; }
@@ -41,10 +35,11 @@ namespace Web.Data.ViewModels
         public DateTime? EtedModifiedByDate { get; set; }
         public bool? EtedIsDelete { get; set; }
 
-        public virtual ICollection<EmsTblAcademicQualificationVM> EmsTblAcademicQualificationVM { get; set; }
-        public virtual ICollection<EmsTblEmergencyContactVM> EmsTblEmergencyContactVM { get; set; }
-        public virtual ICollection<EmsTblEmployeeProfessionalDetailsVM> EmsTblEmployeeProfessionalDetailsVM { get; set; }
-        public virtual ICollection<EmsTblProfessionalQualificationVM> EmsTblProfessionalQualificationVM { get; set; }
-        public virtual ICollection<EmsTblWorkingHistoryVM> EmsTblWorkingHistoryVM { get; set; }
+        public List<EmsTblAcademicQualificationVM> EmsTblAcademicQualification { get; set; }
+        public List<EmsTblEmergencyContactVM> EmsTblEmergencyContact { get; set; }
+        public List<EmsTblEmployeeProfessionalDetailsVM> EmsTblEmployeeProfessionalDetails { get; set; }
+        public List<EmsTblProfessionalQualificationVM> EmsTblProfessionalQualification { get; set; }
+        public List<EmsTblWorkingHistoryVM> EmsTblWorkingHistory { get; set; }
+        public List<ImsAssignVM> ImsAssign { get; set; }
     }
 }

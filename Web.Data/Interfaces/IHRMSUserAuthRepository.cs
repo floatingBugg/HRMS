@@ -3,7 +3,7 @@ using Web.Data.Generic_Repository;
 
 namespace Web.Data.Interfaces
 {
-    public interface IHRMSUserAuthRepository : IRepository<EmsTblHrmsUser>
+    public interface IHRMSUserAuthRepository : IRepository<EmsTblHrmsUserVM>
     {
     }
 }

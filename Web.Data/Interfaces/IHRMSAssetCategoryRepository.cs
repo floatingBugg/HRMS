@@ -8,7 +8,7 @@ using Web.Data.Models;
 
 namespace Web.Data.Interfaces
 {
-    public interface IHRMSAssetCategoryRepository : IRepository<ImsAssetsCategory>
+    public interface IHRMSAssetCategoryRepository : IRepository<ImsAssetsCategoryVM>
     {
     }
 }

@@ -49,9 +49,9 @@ namespace Web.Model.Common
 
         public string certification { get; set; }
 
-        public DateTime profstartDate { get; set; }
+        public DateTime profstartDate { get; set; } = DateTime.Now;
 
-        public DateTime profendDate { get; set; }
+        public DateTime profendDate { get; set; } = DateTime.Now;
 
         public string ProfessionalInstituteName { get; set; }
         public string Documents { get; set; }
@@ -75,9 +75,9 @@ namespace Web.Model.Common
 
         public string workdesignation { get; set; }
 
-        public DateTime workstartdate { get; set; }
+        public DateTime workstartdate { get; set; } = DateTime.Now;
 
-        public DateTime workenddate { get; set; }
+        public DateTime workenddate { get; set; } = DateTime.Now;
 
         public string duration { get; set; }
 
@@ -91,7 +91,7 @@ namespace Web.Model.Common
         public string Salary { get; set; }
 
         public string profdesignation { get; set; }
-        public DateTime JoiningDate { get; set; }
+        public DateTime JoiningDate { get; set; } = DateTime.Now;
 
         public string Probation { get; set; }
 

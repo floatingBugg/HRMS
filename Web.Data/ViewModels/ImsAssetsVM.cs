@@ -4,15 +4,11 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace Web.Data.Models
+namespace Web.Data.ViewModels
 {
-    public partial class ImsAssets
+    public partial class ImsAssetsVM
     {
-        public ImsAssetsVM()
-        {
-            ImsAssign = new HashSet<ImsAssign>();
-        }
-
+      
         public int ItaAssetId { get; set; }
         public int? ItacCategoryId { get; set; }
         public string ItaAssetName { get; set; }
@@ -40,7 +36,7 @@ namespace Web.Data.Models
         public DateTime? ItaModifiedByDate { get; set; }
         public bool? ItaIsDelete { get; set; }
 
-        public virtual ImsAssetsCategory ItacCategory { get; set; }
-        public virtual ICollection<ImsAssign> ImsAssign { get; set; }
+        public virtual ImsAssetsCategoryVM ItacCategory { get; set; }
+        public List<ImsAssignVM> ImsAssign { get; set; }
     }
 }

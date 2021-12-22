@@ -5,7 +5,7 @@ using Web.Data.Generic_Repository;
 
 namespace Web.Data.Concrete
 {
-    public class HRMSUserAuthRepository : GenericRepository<EmsTblHrmsUser>, IHRMSUserAuthRepository
+    public class HRMSUserAuthRepository : GenericRepository<EmsTblHrmsUserVM>, IHRMSUserAuthRepository
 	{
 		public HRMSUserAuthRepository(DbHRMSContext context)
 			  : base(context)

@@ -6,15 +6,11 @@ using System.Collections.Generic;
 
 namespace Web.Data.ViewModels
 {
-    public partial class ImsTblAssetsCategoryVM
+    public partial class ImsAssetsCategoryVM
     {
-        public ImsTblAssetsCategoryVM()
-        {
-            ImsTblAssestsVM = new HashSet<ImsTblAssestsVM>();
-        }
-
-        public int ItacAcId { get; set; }
-        public string ItacCategory { get; set; }
+     
+        public int ItacCategoryId { get; set; }
+        public string ItacCategoryName { get; set; }
         public string ItacCreatedBy { get; set; }
         public string ItacCreatedByName { get; set; }
         public DateTime? ItacCreatedByDate { get; set; }
@@ -23,6 +19,7 @@ namespace Web.Data.ViewModels
         public DateTime? ItacModifiedByDate { get; set; }
         public bool? ItacIsDelete { get; set; }
 
-        public virtual ICollection<ImsTblAssestsVM> ImsTblAssestsVM { get; set; }
+        public List<ImsAssetsVM> ImsAssets { get; set; }
+        public List<ImsAssignVM> ImsAssign { get; set; }
     }
 }

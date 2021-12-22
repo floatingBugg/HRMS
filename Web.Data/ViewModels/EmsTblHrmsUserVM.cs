@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace Web.Data.Models
+namespace Web.Data.ViewModels
 {
     public partial class EmsTblHrmsUserVM
     {

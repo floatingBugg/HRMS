@@ -68,7 +68,7 @@ namespace Web.API.Controllers
         }
 
         [HttpPost("/Employee/AddEmployee")]
-        public BaseResponse Create([FromBody] EmployeeCredential employee)
+        public BaseResponse Create([FromBody] EmsTblEmployeeDetailsVM employee)
         {
             string projectRootPath = _hostEnvironment.WebRootPath;
             BaseResponse response = new BaseResponse(); 

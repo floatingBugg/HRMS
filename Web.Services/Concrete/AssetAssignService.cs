@@ -41,9 +41,9 @@ namespace Web.Services.Concrete
             remaining = remaining - assign.quantity;
             if (!string.IsNullOrEmpty(assign.createdby)&& remaining>0)
             {
-                List<ImsAssign> asset = new List<ImsAssign>();
+                List<ImsAssignVM> asset = new List<ImsAssignVM>();
                 
-                asset.Add(new ImsAssign
+                asset.Add(new ImsAssignVM
                 {
                     ItasItaAssetId=assign.assetid,
                     ItasEtedEmployeeId=assign.empid,
