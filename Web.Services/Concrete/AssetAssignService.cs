@@ -72,6 +72,12 @@ namespace Web.Services.Concrete
                 response.Message = UserMessages.strAdded;
                 response.Data = null;
             }
+            else if (remaining == 0)
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strStockEmpty;
+            }
             else
             {
                 response.Data = null;
@@ -171,7 +177,7 @@ namespace Web.Services.Concrete
             remaining = remaining + qty;
             assigned = assigned - qty;
             bool count = _hrmsassetassignRepository.Table.Where(p => p.ItasAssignId == assign.assignid).Count() > 0;
-            if (count == true)
+            if (count == true && remaining>0)
             {
                 _hrmsassetassignRepository.Table.Where(p => p.ItasAssignId == assign.assignid)
                     .ToList()
@@ -210,7 +216,12 @@ namespace Web.Services.Concrete
                 response.Message = UserMessages.strUpdated;
                 response.Data = null;
             }
-
+            else if (remaining == 0)
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strStockEmpty;
+            }
             else
             {
                 response.Data = null;
