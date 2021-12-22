@@ -165,8 +165,9 @@ namespace Web.Services.Concrete
             BaseResponse response = new BaseResponse();
             var assigned = _hrmsassetRepository.Table.Where(x => x.ItaAssetId == assign.assetid).Select(y => y.ItaAssignQuantity).FirstOrDefault();
             var remaining = _hrmsassetRepository.Table.Where(x => x.ItaAssetId == assign.assetid).Select(y => y.ItaRemaining).FirstOrDefault();
-            remaining = remaining + assigned;
-            assigned = assigned - assigned;
+            var qty=_hrmsassetassignRepository.Table.Where(x => x.ItasAssignId == assign.assignid).Select(y => y.ItasQuantity).FirstOrDefault();
+            remaining = remaining + qty;
+            assigned = assigned - qty;
             bool count = _hrmsassetassignRepository.Table.Where(p => p.ItasAssignId == assign.assignid).Count() > 0;
             if (count == true)
             {
@@ -183,6 +184,7 @@ namespace Web.Services.Concrete
                         x.ItasModifiedByName = assign.modifiedbyname;
                         x.ItasModifiedByDate = DateTime.Now;
                     });
+
                 _hrmsassetRepository.Table.Where(p => p.ItaAssetId == assign.assetid)
                       .ToList()
                       .ForEach(x =>
@@ -192,11 +194,12 @@ namespace Web.Services.Concrete
 
                       });
 
+
                 _hrmsassetRepository.Table.Where(p => p.ItaAssetId == assign.assetid)
                       .ToList()
                       .ForEach(x =>
                       {
-                          x.ItaAssignQuantity = assign.quantity;
+                          x.ItaAssignQuantity = x.ItaAssignQuantity + assign.quantity;
                           x.ItaRemaining = remaining-assign.quantity;
 
                       });
