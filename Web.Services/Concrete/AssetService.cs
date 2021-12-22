@@ -150,7 +150,43 @@ namespace Web.Services.Concrete
 
         public BaseResponse getAssetByID(int id)
         {
-            throw new NotImplementedException();
+            BaseResponse response = new BaseResponse();
+
+            bool count = _hrmsassetRepository.Table.Where(z => z.ItaIsDelete == false && z.ItaAssetId == id).Count() > 0;
+            var assetdata=_hrmsassetRepository.Table.Where(x => x.ItaAssetId == id && x.ItaIsDelete == false).Select(x => new AssetCredential
+            {
+                assetname=x.ItaAssetName,
+                serialno=x.ItaSerialNo,
+                model=x.ItaModel,
+                companyname=x.ItaCompanyName,
+                type=x.ItaType,
+                size=x.ItaSize,
+                condition=x.ItaCondition,
+                generation=x.ItaGeneration,
+                ram=x.ItaRam,
+                processor=x.ItaProcessor,
+                storage=x.ItaStorage,
+                hardtype=x.ItaHardriveType
+
+
+
+            }).ToList().OrderByDescending(x=>x.assetid).Take(10);
+
+            if (count == true)
+            {
+                response.Data = assetdata;
+                response.Success = true;
+                response.Message = UserMessages.strSuccess;
+
+
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotfound;
+            }
+            return response;
         }
 
         public BaseResponse deleteAsset(int assetid)

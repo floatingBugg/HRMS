@@ -125,13 +125,13 @@ namespace Web.API.Controllers
             }
         }
 
-        [HttpGet("/Asset/DisplayAllLaptop")]
-        public BaseResponse GetAllEmployee(int type)
+        [HttpGet("/Asset/DisplayAssetUnassign")]
+        public BaseResponse GetAssetUnAssign(int type)
         {
             BaseResponse response = new BaseResponse();
             try
             {
-                response =_assetLaptopservice.displayAllAssetUnAssigned(type);
+                response = _assetLaptopservice.displayAllAssetUnAssigned(type);
                 return response;
             }
             catch (Exception ex)
@@ -142,6 +142,31 @@ namespace Web.API.Controllers
                 response.Success = false;
                 return response;
             }
+
+
         }
+        [HttpGet("/Asset/DisplayAssetById")]
+        public BaseResponse GetAssetById(int type)
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                response = _assetLaptopservice.getAssetByID(type);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+
+
+        }
+
     }
 }
+
+    
