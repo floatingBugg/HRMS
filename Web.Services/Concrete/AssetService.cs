@@ -50,6 +50,7 @@ namespace Web.Services.Concrete
                     ItaCompanyName=asset.companyname,
                     ItaQuantity=asset.quantity,
                     ItaRemaining= asset.quantity,
+                    ItaAssignQuantity = 0,
                     ItaCost =asset.cost,
                     ItaPurchaseDate=asset.purchaseddate,
                     ItaCreatedBy=asset.createdby,
