@@ -119,14 +119,14 @@ namespace Web.API
             services.AddTransient(typeof(IHRMSPRofessionalRepository), typeof(HRMSProfessionalRepository));
             services.AddTransient(typeof(IHRMSEmployeeWorkingHistoryRepository), typeof(HRMSEmployeeWorkingHistoryRepository));
             services.AddTransient(typeof(IHRMSProfessionalDetailsRepository), typeof(HRMSPRofessionalDetailsRepository));
-            services.AddTransient(typeof(IHRMSAssetCategoryRepository), typeof(HRMSAssetCategoryRepository));
-            services.AddTransient(typeof(IHRMSAssetRepository), typeof(HRMSAssetRepository));
-            services.AddTransient(typeof(IHRMSAssetAssignRepository), typeof(HRMSAssetAssignRepository));
+
 
 
             //Register Assest Service 
 
-
+            services.AddTransient(typeof(IHRMSAssetCategoryRepository), typeof(HRMSAssetCategoryRepository));
+            services.AddTransient(typeof(IHRMSAssetRepository), typeof(HRMSAssetRepository));
+            services.AddTransient(typeof(IHRMSAssetAssignRepository), typeof(HRMSAssetAssignRepository));
 
 
         }

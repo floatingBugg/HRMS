@@ -17,7 +17,7 @@ namespace Web.Services.Interfaces
         BaseResponse deleteAssign(int assignid);
 
 
-        BaseResponse displayAllAssetAssigned(int type,int id);
+        BaseResponse displayAllAssetAssigned(int type);
 
         BaseResponse getEmployee();
 

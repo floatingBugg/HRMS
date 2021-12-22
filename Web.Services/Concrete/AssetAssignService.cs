@@ -128,20 +128,19 @@ namespace Web.Services.Concrete
             return response;
         }
 
-        public BaseResponse displayAllAssetAssigned(int type,int id)
+        public BaseResponse displayAllAssetAssigned(int type)
         {
             BaseResponse response = new BaseResponse();
             
-            bool count = _hrmsassetassignRepository.Table.Where(x=>x.ItasAssignId==id && x.ItasItacCategoryId==type).Count() > 0;
-            var assignobj = _hrmsassetassignRepository.Table.Where(z => z.ItasItacCategoryId == type && z.ItasIsDelete == false && z.ItasAssignId == id).FirstOrDefault();
-            var assetData = _hrmsassetRepository.Table.Where(z => z.ItacCategoryId == type && z.ItaIsDelete == false && z.ItaAssetId == assignobj.ItasItaAssetId).Select(x => new AssetAssignGrid()
+            bool count = _hrmsassetassignRepository.Table.Where(x=>x.ItasItacCategoryId==type).Count() > 0;
+            /*var assignobj = _hrmsassetassignRepository.Table.Where(z => z.ItasItacCategoryId == type && z.ItasIsDelete == false).FirstOrDefault();*/
+            var assetData = _hrmsassetassignRepository.Table.Where(z => z.ItasItacCategoryId == type && z.ItasIsDelete == false).Select(x => new AssetAssignGrid()
             {
-                assetname = x.ItaAssetName,
-                model = x.ItaModel,
-                companyname = x.ItaCompanyName,
-                type = x.ItaType,
-                quantity = x.ImsAssign.Count > 0 ? x.ImsAssign.Where(y => y.ItasItaAssetId == x.ItaAssetId).Select(z => z.ItasQuantity).FirstOrDefault() : 0,
-                assingeto = _hrmsemployeeRepository.Table.Where(y => y.EtedEmployeeId == assignobj.ItasEtedEmployeeId).Select(p=>p.EtedFirstName+" "+p.EtedLastName).FirstOrDefault(),
+                assetname = _hrmsassetRepository.Table.Where(y=>y.ItaAssetId==x.ItasItaAssetId).Select(z=>z.ItaAssetName).FirstOrDefault(),
+                model = _hrmsassetRepository.Table.Where(y => y.ItaAssetId == x.ItasItaAssetId).Select(z => z.ItaModel).FirstOrDefault(),
+                companyname = _hrmsassetRepository.Table.Where(y => y.ItaAssetId == x.ItasItaAssetId).Select(z => z.ItaCompanyName).FirstOrDefault(),
+                quantity = x.ItasQuantity,
+                assingeto = _hrmsemployeeRepository.Table.Where(y => y.EtedEmployeeId == x.ItasEtedEmployeeId && y.EtedIsDelete==false).Select(p=>p.EtedFirstName+" "+p.EtedLastName).FirstOrDefault(),
 
             }).ToList().OrderByDescending(x => x.assetid);
 

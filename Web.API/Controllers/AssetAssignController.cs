@@ -117,13 +117,13 @@ namespace Web.API.Controllers
         }
 
         [HttpGet("/Asset/DisplayAssignAsset")]
-        public BaseResponse DisplayAssignAsset(int type,int id)
+        public BaseResponse DisplayAssignAsset(int type)
         {
             BaseResponse response = new BaseResponse();
             try
             {
                 var test = ModelState;
-                response = _assetassignservice.displayAllAssetAssigned(type,id);
+                response = _assetassignservice.displayAllAssetAssigned(type);
 
 
 
