@@ -17,9 +17,11 @@ namespace Web.Services.Interfaces
         BaseResponse deleteAssign(int assignid);
 
 
-        BaseResponse displayAllAssetAssigned(int type);
+        BaseResponse displayAllAssetAssigned(int type,int id);
 
         BaseResponse getEmployee();
+
+        BaseResponse ViewDataAssignByid(int id);
 
     }
 }

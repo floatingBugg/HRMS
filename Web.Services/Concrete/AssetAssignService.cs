@@ -53,6 +53,7 @@ namespace Web.Services.Concrete
                     ItasCreatedBy=assign.createdby,
                     ItasCreatedByName=assign.createdbyname,
                     ItasCreatedByDate=DateTime.Now,
+                    ItasIsDelete=false,
                    
 
                 });
@@ -127,19 +128,20 @@ namespace Web.Services.Concrete
             return response;
         }
 
-        public BaseResponse displayAllAssetAssigned(int type)
+        public BaseResponse displayAllAssetAssigned(int type,int id)
         {
             BaseResponse response = new BaseResponse();
             
-            bool count = _hrmsassetRepository.Table.Count() > 0;
-            var assetData = _hrmsassetRepository.Table.Where(z =>z.ItacCategoryId==type && z.ItaIsDelete == false).Select(x => new AssetAssignGrid()
+            bool count = _hrmsassetassignRepository.Table.Where(x=>x.ItasAssignId==id && x.ItasItacCategoryId==type).Count() > 0;
+            var assignobj = _hrmsassetassignRepository.Table.Where(z => z.ItasItacCategoryId == type && z.ItasIsDelete == false && z.ItasAssignId == id).FirstOrDefault();
+            var assetData = _hrmsassetRepository.Table.Where(z => z.ItacCategoryId == type && z.ItaIsDelete == false && z.ItaAssetId == assignobj.ItasItaAssetId).Select(x => new AssetAssignGrid()
             {
-                
                 assetname = x.ItaAssetName,
                 model = x.ItaModel,
                 companyname = x.ItaCompanyName,
                 type = x.ItaType,
-                quantity =x.ImsAssign.Count > 0 ? x.ImsAssign.Where(y=>y.ItasItaAssetId==x.ItaAssetId).Select(z=>z.ItasQuantity).FirstOrDefault() : 0
+                quantity = x.ImsAssign.Count > 0 ? x.ImsAssign.Where(y => y.ItasItaAssetId == x.ItaAssetId).Select(z => z.ItasQuantity).FirstOrDefault() : 0,
+                assingeto = _hrmsemployeeRepository.Table.Where(y => y.EtedEmployeeId == assignobj.ItasEtedEmployeeId).Select(p=>p.EtedFirstName+" "+p.EtedLastName).FirstOrDefault(),
 
             }).ToList().OrderByDescending(x => x.assetid);
 
@@ -248,6 +250,30 @@ namespace Web.Services.Concrete
             return response;
         }
 
+        public BaseResponse ViewDataAssignByid(int id)
+        {
+            BaseResponse response = new BaseResponse();
+
+            bool count = _hrmsassetassignRepository.Table.Where(z => z.ItasIsDelete == false && z.ItasAssignId == id).Count() > 0;
+            var assignData = _hrmsassetassignRepository.Table.Where(x => x.ItasAssignId == id).ToList();
+
+
+            if (count == true)
+            {
+                response.Data = assignData;
+                response.Success = true;
+                response.Message = UserMessages.strSuccess;
+
+
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotfound;
+            }
+            return response;
+        }
 
     }
 }

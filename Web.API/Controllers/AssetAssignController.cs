@@ -117,13 +117,13 @@ namespace Web.API.Controllers
         }
 
         [HttpGet("/Asset/DisplayAssignAsset")]
-        public BaseResponse DisplayAssignAsset(int type)
+        public BaseResponse DisplayAssignAsset(int type,int id)
         {
             BaseResponse response = new BaseResponse();
             try
             {
                 var test = ModelState;
-                response = _assetassignservice.displayAllAssetAssigned(type);
+                response = _assetassignservice.displayAllAssetAssigned(type,id);
 
 
 
@@ -139,8 +139,25 @@ namespace Web.API.Controllers
             }
         }
 
-      
-    
+        [HttpGet("/Asset/GetAssetbyID")]
+        public BaseResponse ViewAssignDataByid(int id)
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                response = _assetassignservice.ViewDataAssignByid(id);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+        }
+
     }
     }
 

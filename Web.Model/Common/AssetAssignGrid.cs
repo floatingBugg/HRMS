@@ -16,6 +16,6 @@ namespace Web.Model.Common
         public int? quantity { get; set; }
         public string type { get; set; }
         
-        public string assingedname { get; set; }
+        public string assingeto { get; set; }
     }
 }
