@@ -11,7 +11,7 @@ namespace Web.Services.Interfaces
     {
         BaseResponse CreateEmployee(EmsTblEmployeeDetailsVM employee,string rootpath);
 
-        BaseResponse UpdateEmployee(EmployeeCredential employee,string rootpath );
+        BaseResponse UpdateEmployee(EmsTblEmployeeDetailsVM employee,string rootpath );
 
         BaseResponse GetAllEmployee();
 
