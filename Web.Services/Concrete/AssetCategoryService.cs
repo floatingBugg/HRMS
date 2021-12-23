@@ -59,20 +59,18 @@ namespace Web.Services.Concrete
         public BaseResponse UpdateAssetCategory(ImsAssetsCategoryVM asset)
         {
             BaseResponse response = new BaseResponse();
+            ImsAssetsCategory imsAssetsCategory = new ImsAssetsCategory();
             bool count = _hrmsassetcategoryRepository.Table.Where(p => p.ItacCategoryId == asset.ItacCategoryId).Count() > 0;
             if (count == true)
             {
-                _hrmsassetcategoryRepository.Table.Where(p => p.ItacCategoryId == asset.ItacCategoryId)
-                    .ToList()
-                    .ForEach(x =>
-                    {
-                        x.ItacCategoryName = asset.ItacCategoryName;
-                        x.ItacCreatedBy = asset.ItacCreatedBy;
-                        x.ItacCreatedByName = asset.ItacCreatedByName;
-                        x.ItacCreatedByDate = asset.ItacCreatedByDate;
-                        x.ItacIsDelete = asset.ItacIsDelete;
+                        imsAssetsCategory.ItacCategoryId = asset.ItacCategoryId;  
+                        imsAssetsCategory.ItacCategoryName = asset.ItacCategoryName;
+                        imsAssetsCategory.ItacCreatedBy = asset.ItacCreatedBy;
+                        imsAssetsCategory.ItacCreatedByName = asset.ItacCreatedByName;
+                        imsAssetsCategory.ItacCreatedByDate = asset.ItacCreatedByDate;
+                        imsAssetsCategory.ItacIsDelete = asset.ItacIsDelete;
 
-                    });
+                _hrmsassetcategoryRepository.Update(imsAssetsCategory);
                 _uow.Commit();
                 response.Success = true;
                 response.Message = UserMessages.strUpdated;
