@@ -9,6 +9,7 @@ using Web.Data.Interfaces;
 using Web.Data.Models;
 using Web.Model;
 using Web.Model.Common;
+using Web.Model.ViewModel;
 using Web.Services.Interfaces;
 
 namespace Web.Services.Concrete
@@ -26,27 +27,19 @@ namespace Web.Services.Concrete
             _uow = uow;
         }
 
-        public BaseResponse CreateAssetCategory(AssetCategoryCredential asset)
+        public BaseResponse CreateAssetCategory(ImsAssetsCategoryVM asset)
         {
             BaseResponse response = new BaseResponse();
-
-            if (!string.IsNullOrEmpty(asset.categoryname))
+            ImsAssetsCategory imsAssetCatergory = new ImsAssetsCategory();
+            if (!string.IsNullOrEmpty(asset.ItacCategoryName))
 
             {
-                List<ImsAssetsCategory> assetcategory = new List<ImsAssetsCategory>();
-
-                assetcategory.Add(new ImsAssetsCategory
-                {
-                    ItacCategoryName = asset.categoryname,
-                    ItacCreatedBy = asset.createdby,
-                    ItacCreatedByName = asset.createdbyname,
-                    ItacCreatedByDate = DateTime.Now,
-                    ItacIsDelete = false
-
-
-                });
+                imsAssetCatergory.ItacCategoryName = asset.ItacCategoryName;
+                imsAssetCatergory.ItacCreatedBy = asset.ItacCreatedBy;
+                imsAssetCatergory.ItacCreatedByName = asset.ItacCreatedByName;
+                imsAssetCatergory.ItacCreatedByDate = asset.ItacCreatedByDate;
                 _uow.Commit();
-                _hrmsassetcategoryRepository.Insert(assetcategory);
+                _hrmsassetcategoryRepository.Insert(imsAssetCatergory);
                 response.Success = true;
                 response.Message = UserMessages.strAdded;
                 response.Data = null;
@@ -56,42 +49,42 @@ namespace Web.Services.Concrete
                 response.Success = false;
                 response.Message = UserMessages.strNotinsert;
             }
-                return response;
-            
+            return response;
 
         }
 
 
-        public BaseResponse UpdateAssetCategory(AssetCategoryCredential asset)
+
+        public BaseResponse UpdateAssetCategory(ImsAssetsCategoryVM asset)
         {
-            BaseResponse responce = new BaseResponse();
-            bool count = _hrmsassetcategoryRepository.Table.Where(p => p.ItacCategoryId == asset.categoryId).Count() > 0;
-            if (count==true)
+            BaseResponse response = new BaseResponse();
+            bool count = _hrmsassetcategoryRepository.Table.Where(p => p.ItacCategoryId == asset.ItacCategoryId).Count() > 0;
+            if (count == true)
             {
-                _hrmsassetcategoryRepository.Table.Where(p => p.ItacCategoryId == asset.categoryId).ToList().ForEach(x =>
-                {
-                    x.ItacCategoryName = asset.categoryname;
-                    x.ItacModifiedBy = asset.modifiedby;
-                    x.ItacModifiedByName = asset.modifiedbyname;
-                    x.ItacModifiedByDate = DateTime.Now;
-                    x.ItacIsDelete = false;
+                _hrmsassetcategoryRepository.Table.Where(p => p.ItacCategoryId == asset.ItacCategoryId)
+                    .ToList()
+                    .ForEach(x =>
+                    {
+                        x.ItacCategoryName = asset.ItacCategoryName;
+                        x.ItacCreatedBy = asset.ItacCreatedBy;
+                        x.ItacCreatedByName = asset.ItacCreatedByName;
+                        x.ItacCreatedByDate = asset.ItacCreatedByDate;
 
-
-                });
+                    });
                 _uow.Commit();
-                responce.Success = true;
-                responce.Message = UserMessages.strUpdated;
-                responce.Data = null;
-
+                response.Success = true;
+                response.Message = UserMessages.strUpdated;
+                response.Data = null;
             }
+
             else
             {
-                responce.Success = false;
-                responce.Message = UserMessages.strNotupdated;
-                responce.Data = null;
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotupdated;
             }
-            return responce;
-        
+
+            return response;
         }
 
         public BaseResponse DeleteAssetCategory(int id)

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Web.API.Helper;
 using Web.Model;
 using Web.Model.Common;
+using Web.Model.ViewModel;
 using Web.Services.Interfaces;
 
 namespace Web.API.Controllers
@@ -28,7 +29,7 @@ namespace Web.API.Controllers
         }
 
         [HttpPost("/Asset/AddAssetCategory")]
-        public BaseResponse CreateAssetCategory([FromBody] AssetCategoryCredential asset)
+        public BaseResponse CreateAssetCategory([FromBody] ImsAssetsCategoryVM asset)
         {
             BaseResponse responce = new BaseResponse();
 
@@ -52,7 +53,7 @@ namespace Web.API.Controllers
         }
 
         [HttpPost("/Asset/UpdateAssetCategory")]
-        public BaseResponse UpdateAssetCategory([FromBody] AssetCategoryCredential asset)
+        public BaseResponse UpdateAssetCategory([FromBody] ImsAssetsCategoryVM asset)
         {
             BaseResponse responce = new BaseResponse();
 
@@ -74,6 +75,7 @@ namespace Web.API.Controllers
                 return responce;
             }
         }
+
 
         [HttpDelete("/Asset/DeletAssetCategory")]
         public BaseResponse DeleteAssetCategory(int id)
