@@ -9,14 +9,14 @@ namespace Web.Services.Interfaces
 {
     public interface IEmployeeService
     {
-        BaseResponse CreateEmployee(EmsTblEmployeeDetailsVM employee,string rootpath);
+        public BaseResponse CreateEmployee(EmsTblEmployeeDetailsVM employee,string rootpath);
 
-        BaseResponse UpdateEmployee(EmsTblEmployeeDetailsVM employee,string rootpath );
+        public BaseResponse UpdateEmployee(EmsTblEmployeeDetailsVM employee,string rootpath );
 
-        BaseResponse GetAllEmployee();
+        public BaseResponse GetAllEmployee();
 
-        BaseResponse DeleteEmployee(int id);
+        public BaseResponse DeleteEmployee(int id);
 
-        BaseResponse ViewDataEmployeeByid(int id);
+        public BaseResponse ViewDataEmployeeByid(int id);
     }
 }
