@@ -8,7 +8,7 @@ namespace Web.Data.Models
 {
     public partial class ImsAssets
     {
-        public ImsAssetsVM()
+        public ImsAssets()
         {
             ImsAssign = new HashSet<ImsAssign>();
         }

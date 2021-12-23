@@ -31,7 +31,7 @@ namespace Web.Services.Concrete
         {
             BaseResponse response = new BaseResponse();
             if (!string.IsNullOrEmpty(asset.assetname)){
-                List<ImsAssetsVM> laptop = new List<ImsAssetsVM>();
+                List<ImsAssets> laptop = new List<ImsAssets>();
 
                 laptop.Add(new ImsAssets
                 {

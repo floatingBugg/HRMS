@@ -5,7 +5,7 @@ using Web.Data.Models;
 
 namespace Web.Data.Concrete
 {
-    public class HRMSPRofessionalDetailsRepository : GenericRepository<EmsTblEmployeeProfessionalDetailsVM>, IHRMSProfessionalDetailsRepository
+    public class HRMSPRofessionalDetailsRepository : GenericRepository<EmsTblEmployeeProfessionalDetails>, IHRMSProfessionalDetailsRepository
     {
 
         public HRMSPRofessionalDetailsRepository(DbHRMSContext context)

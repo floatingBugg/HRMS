@@ -8,7 +8,7 @@ using Web.Data.Models;
 
 namespace Web.Data.Interfaces
 {
-    public interface IHRMSAssetAssignRepository : IRepository<ImsAssignVM>
+    public interface IHRMSAssetAssignRepository : IRepository<ImsAssign>
     {
 
     }

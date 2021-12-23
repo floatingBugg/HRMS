@@ -33,7 +33,7 @@ namespace Web.Services.Concrete
             if (!string.IsNullOrEmpty(asset.categoryname))
 
             {
-                List<ImsAssetsCategoryVM> assetcategory = new List<ImsAssetsCategoryVM>();
+                List<ImsAssetsCategory> assetcategory = new List<ImsAssetsCategory>();
 
                 assetcategory.Add(new ImsAssetsCategory
                 {

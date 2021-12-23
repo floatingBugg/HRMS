@@ -5,7 +5,7 @@ using Web.Data.Generic_Repository;
 
 namespace Web.Data.Concrete
 {
-    public class HRMSProfessionalRepository : GenericRepository<EmsTblProfessionalQualificationVM>, IHRMSPRofessionalRepository
+    public class HRMSProfessionalRepository : GenericRepository<EmsTblProfessionalQualification>, IHRMSPRofessionalRepository
     {
 
         public HRMSProfessionalRepository(DbHRMSContext context)

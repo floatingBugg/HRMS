@@ -8,7 +8,6 @@ using Microsoft.Extensions.Configuration;
 using Web.Data;
 using Web.Data.Interfaces;
 using Web.Data.Models;
-using Web.Data.ViewModels;
 using Web.Model;
 using Web.Model.Common;
 using Web.Model.ViewModel;
@@ -266,32 +265,9 @@ namespace Web.Services.Concrete
                     });
                     emsTblEmployeeDetails.EmsTblWorkingHistory = _emsTblWorkingHistoryList.ToArray();
                 }
-                    EtwhCreatedByName = employee.createdName,
-                    _hrmsemployeeRepository.Insert(emsTblEmployeeDetails);
-                    EtwhIsDelete = false,
-                });
-                _workinghistoryRepository.Insert(EmpWorking);
+                    
 
-                //Create Method Professional details
-
-                EmpProDetails.Add(new EmsTblEmployeeProfessionalDetails
-                {
-                    EtepdEtedEmployeeId = EmpDetails.FirstOrDefault().EtedEmployeeId,
-                    EtepdDesignation = employee.profdesignation,
-                    EtepdSalary = employee.Salary,
-                    EtepdJoiningDate = employee.JoiningDate,
-                    EtepdProbation = employee.Probation,
-                    EtepdCreatedBy = employee.created,
-                    EtepdCreatedByName = employee.createdName,
-                    EtepdCreatedByDate = DateTime.Now,
-                    EtepdIsDelete = false,
-
-                });
-                _hrmsprofessionaldetailsrepository.Insert(EmpProDetails);
-
-                }
-
-                _hrmsemployeeRepository.Insert(employee);
+                _hrmsemployeeRepository.Insert(emsTblEmployeeDetails);
                 response.Success = true;
                 response.Message = UserMessages.strAdded;
                 response.Data = null;
