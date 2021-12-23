@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using Web.Data.Models;
 using Web.Data.ViewModels;
 using Web.Model;
 using Web.Model.Common;
+using Web.Model.ViewModel;
 using Web.Services.Interfaces;
 
 namespace Web.Services.Concrete
@@ -76,156 +78,216 @@ namespace Web.Services.Concrete
             BaseResponse response = new BaseResponse();
             bool doesEmailExistAlready = _hrmsemployeeRepository.Table.Count(p => p.EtedEmailAddress == employee.EtedEmailAddress) > 0;
             bool doesCNICExistAlready = _hrmsemployeeRepository.Table.Count(p => p.EtedCnic == employee.EtedCnic) > 0;
-                //Employee Details
-                if (!string.IsNullOrEmpty(employee.EtedPhotographurl))
-                {
-                var RootPath = rootpath;
-                string FilePathPhoto = "Images\\EmployeeID\\PhotoGraph\\";
-                var targetPathProfile = Path.Combine(RootPath, FilePathPhoto);
+            EmsTblEmployeeDetails emsTblEmployeeDetails = new EmsTblEmployeeDetails();
+            /* //Employee Details
+             if (!string.IsNullOrEmpty(employee.imageUrlPhoto))
+             {
+             var RootPath = rootpath;
+             string FilePathPhoto = "Images\\EmployeeID\\PhotoGraph\\";
+             var targetPathProfile = Path.Combine(RootPath, FilePathPhoto);
 
-                if (!Directory.Exists(targetPathProfile))
-                {
-                    Directory.CreateDirectory(targetPathProfile);
-                }
-                employee.EtedPhotograph = Convert.FromBase64String(employee.EtedPhotographurl.Replace("data:image/jpeg;base64,", ""));
-                targetPathProfile += $"{employee.EtedFirstName}-{employee.EtedLastName}_{employee.EtedEmployeeId}.png";
-                using (FileStream fs = new FileStream(targetPathProfile, FileMode.Create, FileAccess.Write))
-                {
-                    fs.Write(employee.EtedPhotograph);
-                }
-                    employee.EtedPhotographurl = targetPathProfile.Replace(RootPath, "").Replace("\\", "/"); 
-                }
-                //Professional Qualification
-                if (!string.IsNullOrEmpty(employee.Documents))
-                {
-                var RootPath = rootpath;
-                string FilePathProf = "Images\\EmployeeID\\ProfessionalQualification\\";
-                var targetPathProfQual = Path.Combine(RootPath, FilePathProf);
-                if (!Directory.Exists(targetPathProfQual))
-                {
-                    Directory.CreateDirectory(targetPathProfQual);
-                }
-                employee.DocumentsProfQual = Convert.FromBase64String(employee.Documents.Replace("data:image/jpeg;base64,", ""));
-                targetPathProfQual += $"{employee.firstname}-{employee.Lastname}_{employee.empID}_{employee.certification}.png";
-                using (FileStream fs = new FileStream(targetPathProfQual, FileMode.Create, FileAccess.Write))
-                {
-                    fs.Write(employee.DocumentsProfQual);
-                }
-                employee.expletter = targetPathProfQual.Replace(RootPath, "").Replace("\\", "/");
-                }
+             if (!Directory.Exists(targetPathProfile))
+             {
+                 Directory.CreateDirectory(targetPathProfile);
+             }
+             employee.photograph = Convert.FromBase64String(employee.imageUrlPhoto.Replace("data:image/jpeg;base64,", ""));
+             targetPathProfile += $"{employee.firstname}-{employee.Lastname}_{employee.empID}.png";
+             using (FileStream fs = new FileStream(targetPathProfile, FileMode.Create, FileAccess.Write))
+             {
+                 fs.Write(employee.photograph);
+             }
+                 employee.imageUrlPhoto = targetPathProfile.Replace(RootPath, "").Replace("\\", "/"); 
+             }
+             //Work Exp Letter
+             if (!string.IsNullOrEmpty(employee.expletter))
+             {
+             var RootPath = rootpath;
+             string FilePathWork = "Images\\EmployeeID\\WorkingHistory\\";
+             var targetPathWork = Path.Combine(RootPath, FilePathWork);
+             if (!Directory.Exists(targetPathWork))
+             {
+                 Directory.CreateDirectory(targetPathWork);
+             }
+             employee.workexpletter = Convert.FromBase64String(employee.expletter.Replace("data:image/jpeg;base64,", ""));
+             targetPathWork += $"{employee.firstname}-{employee.Lastname}_{employee.empID}_{employee.workdesignation}.png";
+             using (FileStream fs = new FileStream(targetPathWork, FileMode.Create, FileAccess.Write))
+             {
+                 fs.Write(employee.workexpletter);
+             }
+             employee.expletter = targetPathWork.Replace(RootPath, "").Replace("\\", "/"); 
+             }
+             //Professional Qualification
+             if (!string.IsNullOrEmpty(employee.Documents))
+             {
+             var RootPath = rootpath;
+             string FilePathProf = "Images\\EmployeeID\\ProfessionalQualification\\";
+             var targetPathProfQual = Path.Combine(RootPath, FilePathProf);
+             if (!Directory.Exists(targetPathProfQual))
+             {
+                 Directory.CreateDirectory(targetPathProfQual);
+             }
+             employee.DocumentsProfQual = Convert.FromBase64String(employee.Documents.Replace("data:image/jpeg;base64,", ""));
+             targetPathProfQual += $"{employee.firstname}-{employee.Lastname}_{employee.empID}_{employee.certification}.png";
+             using (FileStream fs = new FileStream(targetPathProfQual, FileMode.Create, FileAccess.Write))
+             {
+                 fs.Write(employee.DocumentsProfQual);
+             }
+             employee.expletter = targetPathProfQual.Replace(RootPath, "").Replace("\\", "/");
+             }
+             //Academic
+             if (!string.IsNullOrEmpty(employee.UploadDocuments))
+             {
+             var RootPath = rootpath;
+             string FilePathAcad = "Images\\EmployeeID\\AcademicQualification\\";
+             var targetPathAcademicQual = Path.Combine(RootPath, FilePathAcad);
+             if (!Directory.Exists(targetPathAcademicQual))
+             {
+                 Directory.CreateDirectory(targetPathAcademicQual);
+             }
+             employee.UploadDocumentAcad = Convert.FromBase64String(employee.UploadDocuments.Replace("data:image/jpeg;base64,", ""));
+             targetPathAcademicQual += $"{employee.firstname}-{employee.Lastname}_{employee.empID}_{employee.AcademicInstituteName}.png";
+             using (FileStream fs = new FileStream(targetPathAcademicQual, FileMode.Create, FileAccess.Write))
+             {
+                 fs.Write(employee.UploadDocumentAcad);
+             }
+             employee.UploadDocuments = targetPathAcademicQual.Replace(RootPath, "").Replace("\\", "/");
+             }*/
 
+            if (!string.IsNullOrEmpty(employee.EtedCreatedBy) && !string.IsNullOrEmpty(employee.EtedCreatedByName)
+               && !string.IsNullOrEmpty(employee.EtedOfficialEmailAddress) && !string.IsNullOrEmpty(employee.EtedAddress) && !string.IsNullOrEmpty(employee.EtedGender)
+               && !string.IsNullOrEmpty(employee.EtedReligion)
+               && (employee.EtedCnic != null) && doesEmailExistAlready == false && doesCNICExistAlready == false)
+            {
+                emsTblEmployeeDetails.EtedEmployeeId = employee.EtedEmployeeId;
+                emsTblEmployeeDetails.EtedFirstName = employee.EtedFirstName;
+                emsTblEmployeeDetails.EtedLastName = employee.EtedLastName;
+                emsTblEmployeeDetails.EtedEmailAddress = employee.EtedEmailAddress;
+                emsTblEmployeeDetails.EtedOfficialEmailAddress = employee.EtedOfficialEmailAddress;
+                emsTblEmployeeDetails.EtedBloodGroup = employee.EtedBloodGroup;
+                emsTblEmployeeDetails.EtedCnic = employee.EtedCnic;
+                emsTblEmployeeDetails.EtedDob = employee.EtedDob;
+                emsTblEmployeeDetails.EtedAddress = employee.EtedAddress;
+                emsTblEmployeeDetails.EtedGender = employee.EtedGender;
+                emsTblEmployeeDetails.EtedMaritalStatus = employee.EtedMaritalStatus;
+                emsTblEmployeeDetails.EtedReligion = employee.EtedReligion;
+                emsTblEmployeeDetails.EtedNationality = employee.EtedNationality;
+                emsTblEmployeeDetails.EtedStatus = employee.EtedStatus;
+                emsTblEmployeeDetails.EtedCreatedBy = employee.EtedCreatedBy;
+                emsTblEmployeeDetails.EtedCreatedByName = employee.EtedCreatedByName;
+                emsTblEmployeeDetails.EtedCreatedByDate = DateTime.Now;
+                emsTblEmployeeDetails.EtedIsDelete = false;
 
                 //Academic
-                if (!string.IsNullOrEmpty(employee.UploadDocuments))
-                {
-                var RootPath = rootpath;
-                string FilePathAcad = "Images\\EmployeeID\\AcademicQualification\\";
-                var targetPathAcademicQual = Path.Combine(RootPath, FilePathAcad);
-                if (!Directory.Exists(targetPathAcademicQual))
-                {
-                    Directory.CreateDirectory(targetPathAcademicQual);
-                }
-                employee.UploadDocumentAcad = Convert.FromBase64String(employee.UploadDocuments.Replace("data:image/jpeg;base64,", ""));
-                targetPathAcademicQual += $"{employee.firstname}-{employee.Lastname}_{employee.empID}_{employee.AcademicInstituteName}.png";
-                using (FileStream fs = new FileStream(targetPathAcademicQual, FileMode.Create, FileAccess.Write))
-                {
-                    fs.Write(employee.UploadDocumentAcad);
-                }
-                employee.UploadDocuments = targetPathAcademicQual.Replace(RootPath, "").Replace("\\", "/");
-                }
-
-            if (/*!string.IsNullOrEmpty(employee.created) && !string.IsNullOrEmpty(employee.createdName)
-               && !string.IsNullOrEmpty(employee.officialemail) && !string.IsNullOrEmpty(employee.address) && !string.IsNullOrEmpty(employee.gender) 
-               && !string.IsNullOrEmpty(employee.religion)*/
-               /*&&*/ (employee.cnic!=null) && doesEmailExistAlready == false && doesCNICExistAlready== false)
-            {
-                employee.EtedCreatedBy = userId;
-                employee.EtedCreatedByDate = DateTime.Now;
-                employee.EtedCreatedByName = userName;
-                employee.EtedIsDelete = false;
-
-                // Update AcademicQualification
                 if (employee.EmsTblAcademicQualification.Count > 0)
                 {
-                    foreach (var item in employee.EmsTblAcademicQualification)
+                   var _emsTblAcademicQualificationList = employee.EmsTblAcademicQualification.Select(x => new EmsTblAcademicQualification
                     {
-                        item.EtaqCreatedBy = userId;
-                        item.EtaqCreatedByDate = DateTime.Now;
-                        item.EtaqCreatedByName = userName;
-                        item.EtaqIsDelete = false;
-
-                    }
+                        EtaqEtedEmployeeId = x.EtaqEtedEmployeeId,
+                        EtaqInstituteName = x.EtaqInstituteName,
+                        EtaqPassingYear = x.EtaqPassingYear,
+                        EtaqCgpa = x.EtaqCgpa,
+                        EtaqQualification = x.EtaqQualification,
+                        EtaqCreatedBy = x.EtaqCreatedBy,
+                        EtaqCreatedByDate = DateTime.Now,
+                        EtaqCreatedByName = x.EtaqCreatedByName,
+                        EtaqIsDelete = false,
+                    });
+                    emsTblEmployeeDetails.EmsTblAcademicQualification = _emsTblAcademicQualificationList.ToArray();
                 }
-
-                //Update ProfessionalQualification
+                //Professional Qualification
                 if (employee.EmsTblProfessionalQualification.Count > 0)
                 {
-                    foreach (var item in employee.EmsTblProfessionalQualification)
+                    var _emsTblProfessionalQualificationList = employee.EmsTblProfessionalQualification.Select(x => new EmsTblProfessionalQualification
                     {
-                        item.EtpqCreatedBy = userId;
-                        item.EtpqCreatedByDate = DateTime.Now;
-                        item.EtpqCreatedByName = userName;
-                        item.EtpqIsDelete = false;
-                    }
+                        EtpqEtedEmployeeId = x.EtpqEtedEmployeeId,
+                        EtpqCertification = x.EtpqCertification,
+                        EtpqStratDate = x.EtpqStratDate,
+                        EtpqEndDate = x.EtpqEndDate,
+                        EtpqInstituteName = x.EtpqInstituteName,
+                        EtpqCreatedBy = x.EtpqCreatedBy,
+                        EtpqCreatedByDate = DateTime.Now,
+                        EtpqCreatedByName = x.EtpqCreatedByName,
+                        EtpqIsDelete = false,
+                    });
+                    emsTblEmployeeDetails.EmsTblProfessionalQualification = _emsTblProfessionalQualificationList.ToArray();
                 }
 
-                //Update ProfessionalDetails
+                //Professional Detail
                 if (employee.EmsTblEmployeeProfessionalDetails.Count > 0)
                 {
-                    foreach (var item in employee.EmsTblEmployeeProfessionalDetails)
+                    var _emsTblEmployeeProfessionalDetailsList = employee.EmsTblEmployeeProfessionalDetails.Select(x => new EmsTblEmployeeProfessionalDetails
                     {
-                        item.EtepdCreatedBy = userId;
-                        item.EtepdCreatedByDate = DateTime.Now;
-                        item.EtepdCreatedByName = userName;
-                        item.EtepdIsDelete = false;
-                    }
+                        EtepdEtedEmployeeId = x.EtepdEtedEmployeeId,
+                        EtepdDesignation = x.EtepdProfDesignation,
+                        EtepdSalary = x.EtepdSalary,
+                        EtepdJoiningDate = x.EtepdJoiningDate,
+                        EtepdProbation = x.EtepdProbation,
+                        EtepdCreatedBy = x.EtepdCreatedBy,
+                        EtepdCreatedByDate = DateTime.Now,
+                        EtepdCreatedByName = x.EtepdCreatedByName,
+                        EtepdIsDelete = false,
+                    });
+                    emsTblEmployeeDetails.EmsTblEmployeeProfessionalDetails = _emsTblEmployeeProfessionalDetailsList.ToArray();
                 }
 
-                //Update Emergency Contact
+                //Emergency Contact
                 if (employee.EmsTblEmergencyContact.Count > 0)
                 {
-                    foreach (var item in employee.EmsTblEmergencyContact)
+                    var _emsTblEmergencyContactList = employee.EmsTblEmergencyContact.Select(x => new EmsTblEmergencyContact
                     {
-                        item.EtecCreatedBy = userId;
-                        item.EtecCreatedByDate = DateTime.Now;
-                        item.EtecCreatedByName = userName;
-                        item.EtecIsDelete = false;
-                    }
+                        EtecEtedEmployeeId = x.EtecEtedEmployeeId,
+                        EtecFirstName = x.EtecFirstName,
+                        EtecLastName = x.EtecLastName,
+                        EtecRelation = x.EtecRelation,
+                        EtecContactNumber = x.EtecContactNumber,
+                        EtecAddress=x.EtecAddress,
+                        EtecCreatedBy = x.EtecCreatedBy,
+                        EtecCreatedByDate = DateTime.Now,
+                        EtecCreatedByName = x.EtecCreatedByName,
+                        EtecIsDelete = false,
+                    });
+                    emsTblEmployeeDetails.EmsTblEmergencyContact = _emsTblEmergencyContactList.ToArray();
                 }
-
-                // Working History
+                //Working History
                 if (employee.EmsTblWorkingHistory.Count > 0)
                 {
-                    foreach (var item in employee.EmsTblWorkingHistory)
+                    var _emsTblWorkingHistoryList = employee.EmsTblWorkingHistory.Select(x => new EmsTblWorkingHistory
                     {
-                        //Work Exp Letter
-                        if (!string.IsNullOrEmpty(item.EtwhExperienceLetterurl))
-                        {
-                            var RootPath = rootpath;
-                            string FilePathWork = "Images\\EmployeeID\\WorkingHistory\\";
-                            var targetPathWork = Path.Combine(RootPath, FilePathWork);
-                            if (!Directory.Exists(targetPathWork))
-                            {
-                                Directory.CreateDirectory(targetPathWork);
-                            }
-                            item.EtwhExperienceLetter = Convert.FromBase64String(item.EtwhExperienceLetterurl.Replace("data:image/jpeg;base64,", ""));
-                            targetPathWork += $"{employee.EtedFirstName}-{employee.EtedLastName}_{employee.EtedEmployeeId}_{item.EtwhDesignation}.png";
-                            using (FileStream fs = new FileStream(targetPathWork, FileMode.Create, FileAccess.Write))
-                            {
-                                fs.Write(employee.workexpletter);
-                            }
-                            employee.expletter = targetPathWork.Replace(RootPath, "").Replace("\\", "/");
-                        }
+                        EtwhEtedEmployeeId = x.EtwhEtedEmployeeId,
+                        EtwhCompanyName = x.EtwhCompanyName,
+                        EtwhDesignation = x.EtwhWorkDesignation,
+                        EtwhStratDate = x.EtwhStratDate,
+                        EtwhEndDate = x.EtwhEndDate,
+                        EtwhDuration = x.EtwhDuration,
+                        EtwhCreatedBy = x.EtwhCreatedBy,
+                        EtwhCreatedByDate = DateTime.Now,
+                        EtwhCreatedByName = x.EtwhCreatedByName,
+                        EtwhIsDelete = false,
+                    });
+                    emsTblEmployeeDetails.EmsTblWorkingHistory = _emsTblWorkingHistoryList.ToArray();
+                }
+                    EtwhCreatedByName = employee.createdName,
+                    _hrmsemployeeRepository.Insert(emsTblEmployeeDetails);
+                    EtwhIsDelete = false,
+                });
+                _workinghistoryRepository.Insert(EmpWorking);
 
-                        item.EtwhCreatedBy = userId;
-                        item.EtwhCreatedByDate = DateTime.Now;
-                        item.EtwhCreatedByName = userName;
-                        item.EtwhIsDelete = false;
-                        response.Message = UserMessages.strUpdated;
-                        response.Success = true;
+                //Create Method Professional details
 
+                EmpProDetails.Add(new EmsTblEmployeeProfessionalDetails
+                {
+                    EtepdEtedEmployeeId = EmpDetails.FirstOrDefault().EtedEmployeeId,
+                    EtepdDesignation = employee.profdesignation,
+                    EtepdSalary = employee.Salary,
+                    EtepdJoiningDate = employee.JoiningDate,
+                    EtepdProbation = employee.Probation,
+                    EtepdCreatedBy = employee.created,
+                    EtepdCreatedByName = employee.createdName,
+                    EtepdCreatedByDate = DateTime.Now,
+                    EtepdIsDelete = false,
 
-                    }
+                });
+                _hrmsprofessionaldetailsrepository.Insert(EmpProDetails);
 
                 }
 

@@ -7,6 +7,7 @@ using Web.API.Helper;
 using Web.Data.Models;
 using Web.Model;
 using Web.Model.Common;
+using Web.Model.ViewModel;
 using Web.Services.Interfaces;
 
 
