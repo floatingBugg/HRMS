@@ -9,6 +9,7 @@ using Web.Data.Interfaces;
 using Web.Data.Models;
 using Web.Model;
 using Web.Model.Common;
+using Web.Model.ViewModel;
 using Web.Services.Interfaces;
 
 namespace Web.Services.Concrete
@@ -27,40 +28,37 @@ namespace Web.Services.Concrete
             _uow = uow;
         }
 
-        public BaseResponse createAsset(AssetCredential asset)
+        public BaseResponse createAsset(ImsAssetsVM asset)
         {
             BaseResponse response = new BaseResponse();
-            if (!string.IsNullOrEmpty(asset.assetname)){
-                List<ImsAssets> laptop = new List<ImsAssets>();
+            if (!string.IsNullOrEmpty(asset.ItaAssetName)){
+                ImsAssets imsAsset = new ImsAssets();
 
-                laptop.Add(new ImsAssets
-                {
-                    ItaAssetName=asset.assetname,
-                    ItacCategoryId = asset.categoryid,
-                    ItaSerialNo =asset.serialno,
-                    ItaType=asset.type,
-                    ItaModel=asset.model,
-                    ItaSize=asset.size,
-                    ItaCondition=asset.condition,
-                    ItaGeneration=asset.generation,
-                    ItaRam=asset.ram,
-                    ItaProcessor=asset.processor,
-                    ItaStorage=asset.storage,
-                    ItaHardriveType=asset.hardtype,
-                    ItaCompanyName=asset.companyname,
-                    ItaQuantity=asset.quantity,
-                    ItaRemaining= asset.quantity,
-                    ItaAssignQuantity = 0,
-                    ItaCost =asset.cost,
-                    ItaPurchaseDate=asset.purchaseddate,
-                    ItaCreatedBy=asset.createdby,
-                    ItaCreatedByName=asset.createdbyname,
-                    ItaCreatedByDate =DateTime.Now,
-                    ItaIsDelete=false,
-                    
-                    
-                });
-                _hrmsassetRepository.Insert(laptop);
+                imsAsset.ItaAssetName = asset.ItaAssetName;
+                imsAsset.ItacCategoryId = asset.ItacCategoryId;
+                imsAsset.ItaQuantity = asset.ItaQuantity;
+                imsAsset.ItaRemaining = asset.ItaQuantity;
+                imsAsset.ItaAssignQuantity = 0;
+                imsAsset.ItaCost = asset.ItaCost;
+                imsAsset.ItaProcessor = asset.ItaProcessor;
+                imsAsset.ItaGeneration = asset.ItaGeneration;
+                imsAsset.ItaRam = asset.ItaRam;
+                imsAsset.ItaStorage = asset.ItaStorage;
+                imsAsset.ItaHardriveType = asset.ItaHardriveType;
+                imsAsset.ItaCondition = asset.ItaCondition;
+                imsAsset.ItaPurchaseDate = asset.ItaPurchaseDate;
+                imsAsset.ItaSerialNo = asset.ItaSerialNo;
+                imsAsset.ItaCompanyName = asset.ItaCompanyName;
+                imsAsset.ItaModel = asset.ItaModel;
+                imsAsset.ItaType = asset.ItaType;
+                imsAsset.ItaSize = asset.ItaSize;
+                imsAsset.ItaCreatedBy = asset.ItaCreatedBy;
+                imsAsset.ItaCreatedByName = asset.ItaCreatedByName;
+                imsAsset.ItaCreatedByDate = DateTime.Now;
+                imsAsset.ItaIsDelete = false;
+
+
+                _hrmsassetRepository.Insert(imsAsset);
                 _uow.Commit();
 
                 response.Success = true;
@@ -77,35 +75,45 @@ namespace Web.Services.Concrete
             return response;
         }
 
-        public BaseResponse updateAsset(AssetCredential asset)
+        public BaseResponse updateAsset(ImsAssetsVM asset)
         {
+
             BaseResponse response = new BaseResponse();
 
-            bool count = _hrmsassetRepository.Table.Where(p => p.ItaAssetId == asset.assetid).Count() > 0;
+            bool count = _hrmsassetRepository.Table.Where(p => p.ItaAssetId == asset.ItaAssetId).Count() > 0;
             if (count == true)
             {
-                _hrmsassetRepository.Table.Where(p => p.ItaAssetId == asset.assetid)
-                    .ToList()
-                    .ForEach(x =>
-                    {
-                        x.ItaAssetName = asset.assetname;
-                        x.ItaSerialNo = asset.serialno;
-                        x.ItacCategoryId = asset.categoryid;
-                        x.ItaGeneration = asset.generation;
-                        x.ItaRam = asset.ram;
-                        x.ItaProcessor = asset.processor;
-                        x.ItaStorage = asset.storage;
-                        x.ItaHardriveType = asset.hardtype;
-                        x.ItaCompanyName = asset.companyname;
-                        x.ItaQuantity = asset.quantity;
-                        x.ItaCost = asset.cost;
-                        x.ItaPurchaseDate = asset.purchaseddate;
-                        x.ItaModifiedBy = asset.modifiedby;
-                        x.ItaModifiedByName = asset.modifiedbyname;
-                        x.ItaModifiedByDate = DateTime.Now;
+                if (!string.IsNullOrEmpty(asset.ItaAssetName))
+                {
+                    ImsAssets imsAsset = new ImsAssets();
 
-                    });
-                _uow.Commit();
+                    imsAsset.ItaAssetId = asset.ItaAssetId;
+                    imsAsset.ItaAssetName = asset.ItaAssetName;
+                    imsAsset.ItacCategoryId = asset.ItacCategoryId;
+                    imsAsset.ItaQuantity = asset.ItaQuantity;
+                    imsAsset.ItaRemaining = asset.ItaQuantity;
+                    imsAsset.ItaAssignQuantity = 0;
+                    imsAsset.ItaCost = asset.ItaCost;
+                    imsAsset.ItaProcessor = asset.ItaProcessor;
+                    imsAsset.ItaGeneration = asset.ItaGeneration;
+                    imsAsset.ItaRam = asset.ItaRam;
+                    imsAsset.ItaStorage = asset.ItaStorage;
+                    imsAsset.ItaHardriveType = asset.ItaHardriveType;
+                    imsAsset.ItaCondition = asset.ItaCondition;
+                    imsAsset.ItaPurchaseDate = asset.ItaPurchaseDate;
+                    imsAsset.ItaSerialNo = asset.ItaSerialNo;
+                    imsAsset.ItaCompanyName = asset.ItaCompanyName;
+                    imsAsset.ItaModel = asset.ItaModel;
+                    imsAsset.ItaType = asset.ItaType;
+                    imsAsset.ItaSize = asset.ItaSize;
+                    imsAsset.ItaModifiedBy = asset.ItaModifiedBy;
+                    imsAsset.ItaModifiedByName = asset.ItaModifiedByName;
+                    imsAsset.ItaModifiedByDate = DateTime.Now;
+                    imsAsset.ItaIsDelete = false;
+                }
+            
+
+                    _uow.Commit();
                 response.Success = true;
                 response.Message = UserMessages.strUpdated;
                 response.Data = null;

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Web.API.Helper;
 using Web.Model;
 using Web.Model.Common;
+using Web.Model.ViewModel;
 using Web.Services.Interfaces;
 
 namespace Web.API.Controllers
@@ -28,7 +29,7 @@ namespace Web.API.Controllers
         }
 
         [HttpPost("/Asset/AssignAsset")]
-        public BaseResponse CreateAssign([FromBody] AssetAssignCredential assign)
+        public BaseResponse CreateAssign([FromBody] ImsAssignVM assign)
         {
             BaseResponse response = new BaseResponse();
             try
@@ -75,7 +76,7 @@ namespace Web.API.Controllers
         }
 
         [HttpPost("/Asset/UpdateAssignAsset")]
-        public BaseResponse Update([FromBody] AssetAssignCredential assign)
+        public BaseResponse Update([FromBody] ImsAssignVM assign)
         {
             BaseResponse response = new BaseResponse();
 

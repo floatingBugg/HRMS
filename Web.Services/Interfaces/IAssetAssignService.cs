@@ -5,14 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using Web.Model;
 using Web.Model.Common;
+using Web.Model.ViewModel;
 
 namespace Web.Services.Interfaces
 {
     public interface IAssetAssignService
     {
-        BaseResponse createAssign(AssetAssignCredential assign);
+        BaseResponse createAssign(ImsAssignVM assign);
 
-        BaseResponse updateAssign(AssetAssignCredential assign);
+        BaseResponse updateAssign(ImsAssignVM assign);
 
         BaseResponse deleteAssign(int assignid);
 

@@ -9,6 +9,7 @@ using Web.Data.Interfaces;
 using Web.Data.Models;
 using Web.Model;
 using Web.Model.Common;
+using Web.Model.ViewModel;
 using Web.Services.Interfaces;
 
 namespace Web.Services.Concrete
@@ -32,32 +33,30 @@ namespace Web.Services.Concrete
             _hrmsassetRepository = hrmsassetRepository;
             _uow = uow;
         }
-        public BaseResponse createAssign(AssetAssignCredential assign)
+        public BaseResponse createAssign(ImsAssignVM assign)
         {
             BaseResponse response = new BaseResponse();
-            var remaining =_hrmsassetRepository.Table.Where(x => x.ItaAssetId == assign.assetid).Select(y => y.ItaRemaining).FirstOrDefault();
-            var assigned = _hrmsassetRepository.Table.Where(x => x.ItaAssetId == assign.assetid).Select(y => y.ItaAssignQuantity).FirstOrDefault();
-            assigned = assigned + assign.quantity;
-            remaining = remaining - assign.quantity;
-            if (!string.IsNullOrEmpty(assign.createdby)&& remaining>0)
+            var remaining =_hrmsassetRepository.Table.Where(x => x.ItaAssetId == assign.ItasItaAssetId).Select(y => y.ItaRemaining).FirstOrDefault();
+            var assigned = _hrmsassetRepository.Table.Where(x => x.ItaAssetId == assign.ItasItaAssetId).Select(y => y.ItaAssignQuantity).FirstOrDefault();
+            assigned = assigned + assign.ItasQuantity;
+            remaining = remaining - assign.ItasQuantity;
+            
+            if (!string.IsNullOrEmpty(assign.ItasCreatedBy)&& remaining>0)
             {
-                List<ImsAssign> asset = new List<ImsAssign>();
-                
-                asset.Add(new ImsAssign
-                {
-                    ItasItaAssetId=assign.assetid,
-                    ItasEtedEmployeeId=assign.empid,
-                    ItasItacCategoryId=assign.categoryid,
-                    ItasQuantity=assign.quantity,
-                    ItasAssignedDate=DateTime.Now,
-                    ItasCreatedBy=assign.createdby,
-                    ItasCreatedByName=assign.createdbyname,
-                    ItasCreatedByDate=DateTime.Now,
-                    ItasIsDelete=false,
-                   
+                ImsAssign imsAssign = new ImsAssign();
 
-                });
-                _hrmsassetRepository.Table.Where(p => p.ItaAssetId == assign.assetid)
+                imsAssign.ItasItacCategoryId = assign.ItasItacCategoryId;
+                imsAssign.ItasItaAssetId = assign.ItasItaAssetId;
+                imsAssign.ItasEtedEmployeeId = assign.ItasEtedEmployeeId;
+                imsAssign.ItasQuantity = assign.ItasQuantity;
+                imsAssign.ItasCreatedBy = assign.ItasCreatedBy;
+                imsAssign.ItasCreatedByName = assign.ItasCreatedByName;
+                imsAssign.ItasCreatedByDate = DateTime.Now;
+                imsAssign.ItasIsDelete = false;
+
+
+                
+                _hrmsassetRepository.Table.Where(p => p.ItaAssetId == assign.ItasItaAssetId)
                       .ToList()
                       .ForEach(x =>
                       {
@@ -65,7 +64,7 @@ namespace Web.Services.Concrete
                           x.ItaRemaining = remaining;
 
                       });
-                _hrmsassetassignRepository.Insert(asset);
+                _hrmsassetassignRepository.Insert(imsAssign);
                 _uow.Commit();
 
                 response.Success = true;
@@ -167,32 +166,31 @@ namespace Web.Services.Concrete
             return response;
         }
 
-        public BaseResponse updateAssign(AssetAssignCredential assign)
+        public BaseResponse updateAssign(ImsAssignVM assign)
         {
             BaseResponse response = new BaseResponse();
-            var assigned = _hrmsassetRepository.Table.Where(x => x.ItaAssetId == assign.assetid).Select(y => y.ItaAssignQuantity).FirstOrDefault();
-            var remaining = _hrmsassetRepository.Table.Where(x => x.ItaAssetId == assign.assetid).Select(y => y.ItaRemaining).FirstOrDefault();
-            var qty=_hrmsassetassignRepository.Table.Where(x => x.ItasAssignId == assign.assignid).Select(y => y.ItasQuantity).FirstOrDefault();
+            var assigned = _hrmsassetRepository.Table.Where(x => x.ItaAssetId == assign.ItasItaAssetId).Select(y => y.ItaAssignQuantity).FirstOrDefault();
+            var remaining = _hrmsassetRepository.Table.Where(x => x.ItaAssetId == assign.ItasItaAssetId).Select(y => y.ItaRemaining).FirstOrDefault();
+            var qty=_hrmsassetassignRepository.Table.Where(x => x.ItasAssignId == assign.ItasAssignId).Select(y => y.ItasQuantity).FirstOrDefault();
             remaining = remaining + qty;
             assigned = assigned - qty;
-            bool count = _hrmsassetassignRepository.Table.Where(p => p.ItasAssignId == assign.assignid).Count() > 0;
+            bool count = _hrmsassetassignRepository.Table.Where(p => p.ItasAssignId == assign.ItasAssignId).Count() > 0;
             if (count == true && remaining>0)
             {
-                _hrmsassetassignRepository.Table.Where(p => p.ItasAssignId == assign.assignid)
-                    .ToList()
-                    .ForEach(x =>
-                    {
-                        x.ItasItaAssetId = assign.assetid;
-                        x.ItasEtedEmployeeId = assign.empid;
-                        x.ItasItacCategoryId = assign.categoryid;
-                        x.ItasQuantity = assign.quantity;
-                        x.ItasAssignedDate = assign.assigndate;
-                        x.ItasModifiedBy = assign.modifiedby;
-                        x.ItasModifiedByName = assign.modifiedbyname;
-                        x.ItasModifiedByDate = DateTime.Now;
-                    });
+                ImsAssign imsAssign = new ImsAssign();
 
-                _hrmsassetRepository.Table.Where(p => p.ItaAssetId == assign.assetid)
+                imsAssign.ItasAssignId = assign.ItasAssignId;
+                imsAssign.ItasItacCategoryId = assign.ItasItacCategoryId;
+                imsAssign.ItasItaAssetId = assign.ItasItaAssetId;
+                imsAssign.ItasEtedEmployeeId = assign.ItasEtedEmployeeId;
+                imsAssign.ItasQuantity = assign.ItasQuantity;
+                imsAssign.ItasModifiedBy = assign.ItasModifiedBy;
+                imsAssign.ItasModifiedByName = assign.ItasModifiedByName;
+                imsAssign.ItasModifiedByDate = DateTime.Now;
+                imsAssign.ItasIsDelete = false;
+
+
+                _hrmsassetRepository.Table.Where(p => p.ItaAssetId == assign.ItasItaAssetId)
                       .ToList()
                       .ForEach(x =>
                       {
@@ -202,12 +200,12 @@ namespace Web.Services.Concrete
                       });
 
 
-                _hrmsassetRepository.Table.Where(p => p.ItaAssetId == assign.assetid)
+                _hrmsassetRepository.Table.Where(p => p.ItaAssetId == assign.ItasItaAssetId)
                       .ToList()
                       .ForEach(x =>
                       {
-                          x.ItaAssignQuantity = x.ItaAssignQuantity + assign.quantity;
-                          x.ItaRemaining = remaining-assign.quantity;
+                          x.ItaAssignQuantity = x.ItaAssignQuantity + assign.ItasQuantity;
+                          x.ItaRemaining = remaining-assign.ItasQuantity;
 
                       });
                 _uow.Commit();
