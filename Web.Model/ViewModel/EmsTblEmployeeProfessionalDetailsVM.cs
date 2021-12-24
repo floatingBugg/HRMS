@@ -10,7 +10,7 @@ namespace Web.Model.ViewModel
     {
         public int EtepdPdId { get; set; }
         public int? EtepdEtedEmployeeId { get; set; }
-        public string EtepdProfDesignation { get; set; }
+        public string EtepdDesignation { get; set; }
         public string EtepdSalary { get; set; }
         public DateTime? EtepdJoiningDate { get; set; }
         public string EtepdProbation { get; set; }

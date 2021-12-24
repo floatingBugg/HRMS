@@ -14,9 +14,9 @@ namespace Web.Model.ViewModel
         public DateTime? EtpqStratDate { get; set; }
         public DateTime? EtpqEndDate { get; set; }
         public string EtpqInstituteName { get; set; }
-        public string EtpqDocumentsurl { get; set; }
+        public string EtpqDocuments { get; set; }
 
-        public byte[] EtpqDocuments { get; set; }
+        public byte[] EtpqDocumentsByte { get; set; }
         public string EtpqCreatedBy { get; set; }
         public string EtpqCreatedByName { get; set; }
         public DateTime? EtpqCreatedByDate { get; set; }

@@ -18,8 +18,8 @@ namespace Web.Model.ViewModel
         public string EtedGender { get; set; }
         public string EtedMaritalStatus { get; set; }
         public string EtedBloodGroup { get; set; }
-        public string EtedPhotographurl { get; set; }
-        public byte[] EtedPhotograph { get; set; }
+        public string EtedPhotograph { get; set; }
+        public byte[] EtedPhotographByte { get; set; }
         public long? EtedCnic { get; set; }
         public string EtedOfficialEmailAddress { get; set; }
         public string EtedReligion { get; set; }

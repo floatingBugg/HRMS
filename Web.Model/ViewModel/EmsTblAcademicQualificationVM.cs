@@ -14,8 +14,8 @@ namespace Web.Model.ViewModel
         public long EtaqPassingYear { get; set; }
         public double? EtaqCgpa { get; set; }
         public string EtaqInstituteName { get; set; }
-        public string EtaqUploadDocumentsUrl { get; set; }
-        public byte[] EtaqUploadDocuments { get; set; }
+        public string EtaqUploadDocuments { get; set; }
+        public byte[] EtaqUploadDocumentsByte { get; set; }
         public string EtaqCreatedBy { get; set; }
         public string EtaqCreatedByName { get; set; }
         public DateTime? EtaqCreatedByDate { get; set; }

@@ -11,13 +11,13 @@ namespace Web.Model.ViewModel
         public int EtwhWhId { get; set; }
         public int? EtwhEtedEmployeeId { get; set; }
         public string EtwhCompanyName { get; set; }
-        public string EtwhWorkDesignation { get; set; }
+        public string EtwhDesignation { get; set; }
         public DateTime? EtwhStratDate { get; set; }
         public DateTime? EtwhEndDate { get; set; }
         public string EtwhDuration { get; set; }
-        public string EtwhExperienceLetterurl { get; set; }
+        public string EtwhExperienceLetter { get; set; }
 
-        public byte[] EtwhExperienceLetter { get; set; }
+        public byte[] EtwhExperienceLetterByte { get; set; }
         public string EtwhCreatedBy { get; set; }
         public string EtwhCreatedByName { get; set; }
         public DateTime? EtwhCreatedByDate { get; set; }
