@@ -108,6 +108,7 @@ namespace Web.Services.Concrete
                 emsTblEmployeeDetails.EtedFirstName = employee.EtedFirstName;
                 emsTblEmployeeDetails.EtedLastName = employee.EtedLastName;
                 emsTblEmployeeDetails.EtedEmailAddress = employee.EtedEmailAddress;
+                emsTblEmployeeDetails.EtedContactNumber = employee.EtedContactNumber;
                 emsTblEmployeeDetails.EtedOfficialEmailAddress = employee.EtedOfficialEmailAddress;
                 emsTblEmployeeDetails.EtedBloodGroup = employee.EtedBloodGroup;
                 emsTblEmployeeDetails.EtedCnic = employee.EtedCnic;
