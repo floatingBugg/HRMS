@@ -15,7 +15,6 @@ namespace Web.Model.ViewModel
         public double? EtaqCgpa { get; set; }
         public string EtaqInstituteName { get; set; }
         public string EtaqUploadDocuments { get; set; }
-        public byte[] EtaqUploadDocumentsByte { get; set; }
         public string EtaqCreatedBy { get; set; }
         public string EtaqCreatedByName { get; set; }
         public DateTime? EtaqCreatedByDate { get; set; }

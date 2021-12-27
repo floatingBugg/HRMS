@@ -16,8 +16,6 @@ namespace Web.Model.ViewModel
         public DateTime? EtwhEndDate { get; set; }
         public string EtwhDuration { get; set; }
         public string EtwhExperienceLetter { get; set; }
-
-        public byte[] EtwhExperienceLetterByte { get; set; }
         public string EtwhCreatedBy { get; set; }
         public string EtwhCreatedByName { get; set; }
         public DateTime? EtwhCreatedByDate { get; set; }
