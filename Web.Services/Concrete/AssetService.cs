@@ -79,14 +79,14 @@ namespace Web.Services.Concrete
         {
 
             BaseResponse response = new BaseResponse();
-
+            ImsAssets imsAsset = new ImsAssets();
             bool count = _hrmsassetRepository.Table.Where(p => p.ItaAssetId == asset.ItaAssetId).Count() > 0;
             if (count == true)
             {
                 if (!string.IsNullOrEmpty(asset.ItaAssetName))
                 {
-                    ImsAssets imsAsset = new ImsAssets();
-
+                    
+                    
                     imsAsset.ItaAssetId = asset.ItaAssetId;
                     imsAsset.ItaAssetName = asset.ItaAssetName;
                     imsAsset.ItacCategoryId = asset.ItacCategoryId;
@@ -111,8 +111,8 @@ namespace Web.Services.Concrete
                     imsAsset.ItaModifiedByDate = DateTime.Now;
                     imsAsset.ItaIsDelete = false;
                 }
-            
 
+                _hrmsassetRepository.Update(imsAsset);
                     _uow.Commit();
                 response.Success = true;
                 response.Message = UserMessages.strUpdated;
