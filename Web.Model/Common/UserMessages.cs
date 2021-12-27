@@ -11,10 +11,9 @@ namespace Web.Model.Common
     {
 
         public static string strUserfound = "User Found";
-        public static string strUsernotfound = "User Not found";
+        public static string strUsernotfound = "Invalid Username/Invalid Password";
         public static string strRefreshtoken = "Refresh Token Generated";
         public static string strStockEmpty = "Out of Stock/Zero Left";
-
         public static string strSuccess = "Success";
         public static string strError = "Error";
         public static string strAdded = "Data Added Successfully";
