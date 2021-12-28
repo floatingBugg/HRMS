@@ -81,7 +81,6 @@ namespace Web.Services.Concrete
             BaseResponse response = new BaseResponse();
             ImsAssets imsAsset = new ImsAssets();
             bool count = _hrmsassetRepository.Table.Where(p => p.ItaAssetId == asset.ItaAssetId).Count() > 0;
-            ImsAssets imsAsset = new ImsAssets();
             if (count == true)
             {
                 if (!string.IsNullOrEmpty(asset.ItaAssetName))
