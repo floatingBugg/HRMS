@@ -11,18 +11,18 @@ namespace Web.Services.Interfaces
 {
     public interface IAssetAssignService
     {
-        BaseResponse createAssign(ImsAssignVM assign);
+        public BaseResponse createAssign(ImsAssignVM assign);
 
-        BaseResponse updateAssign(ImsAssignVM assign);
+        public BaseResponse updateAssign(ImsAssignVM assign);
 
-        BaseResponse deleteAssign(int assignid);
+        public BaseResponse deleteAssign(int assignid);
 
 
-        BaseResponse displayAllAssetAssigned(int type);
+        public BaseResponse displayAllAssetAssigned(int type);
 
-        BaseResponse getEmployee();
+        public BaseResponse getEmployee();
 
-        BaseResponse ViewDataAssignByid(int id);
+        public BaseResponse ViewDataAssignByid(int id);
 
     }
 }

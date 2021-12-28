@@ -77,7 +77,7 @@ namespace Web.API.Controllers
         }
 
 
-        [HttpDelete("/Asset/DeletAssetCategory")]
+        [HttpDelete("/Asset/DeleteAssetCategory")]
         public BaseResponse DeleteAssetCategory(int id)
         {
             BaseResponse responce = new BaseResponse();

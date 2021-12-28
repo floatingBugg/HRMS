@@ -38,7 +38,7 @@ namespace Web.Services.Concrete
                 imsAssetCatergory.ItacCreatedBy = asset.ItacCreatedBy;
                 imsAssetCatergory.ItacCreatedByName = asset.ItacCreatedByName;
                 imsAssetCatergory.ItacCreatedByDate = asset.ItacCreatedByDate;
-                imsAssetCatergory.ItacIsDelete = asset.ItacIsDelete;
+                imsAssetCatergory.ItacIsDelete = false;
                 _uow.Commit();
                 _hrmsassetcategoryRepository.Insert(imsAssetCatergory);
                 response.Success = true;
@@ -68,7 +68,7 @@ namespace Web.Services.Concrete
                         imsAssetsCategory.ItacCreatedBy = asset.ItacCreatedBy;
                         imsAssetsCategory.ItacCreatedByName = asset.ItacCreatedByName;
                         imsAssetsCategory.ItacCreatedByDate = asset.ItacCreatedByDate;
-                        imsAssetsCategory.ItacIsDelete = asset.ItacIsDelete;
+                        imsAssetsCategory.ItacIsDelete = false;
 
                 _hrmsassetcategoryRepository.Update(imsAssetsCategory);
                 _uow.Commit();

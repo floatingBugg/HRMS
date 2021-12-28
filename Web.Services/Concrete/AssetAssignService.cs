@@ -208,6 +208,8 @@ namespace Web.Services.Concrete
                           x.ItaRemaining = remaining-assign.ItasQuantity;
 
                       });
+
+                _hrmsassetassignRepository.Update(imsAssign);
                 _uow.Commit();
                 response.Success = true;
                 response.Message = UserMessages.strUpdated;
