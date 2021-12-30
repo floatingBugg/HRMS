@@ -52,6 +52,52 @@ namespace Web.API.Controllers
             }
         }
 
+        [HttpPost("/Recruiter/UpdateRecruit")]
+        public BaseResponse UpdateRecruit([FromBody] RmsTblRecruiterVM recruit)
+        {
+            BaseResponse responce = new BaseResponse();
 
+            try
+            {
+                var test = ModelState;
+                responce = _recruiterservice.UpdateRecruit(recruit);
+
+
+
+                return responce;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                responce.Data = null;
+                responce.Message = ex.Message;
+                responce.Success = false;
+                return responce;
+            }
+        }
+
+        [HttpGet("/Recruiter/DisplayRecruit")]
+        public BaseResponse DisplayRecruit()
+        {
+            BaseResponse responce = new BaseResponse();
+
+            try
+            {
+                var test = ModelState;
+                responce = _recruiterservice.DisplayRecruit();
+
+
+
+                return responce;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                responce.Data = null;
+                responce.Message = ex.Message;
+                responce.Success = false;
+                return responce;
+            }
+        }
     }
 }

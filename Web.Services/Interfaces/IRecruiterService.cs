@@ -14,7 +14,7 @@ namespace Web.Services.Interfaces
 
         public BaseResponse UpdateRecruit(RmsTblRecruiterVM recruit);
 
-        public BaseResponse GetAllRecruit();
+        public BaseResponse DisplayRecruit();
 
         public BaseResponse DeleteRecruit(int id);
 
