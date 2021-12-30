@@ -182,7 +182,37 @@ namespace Web.Services.Concrete
 
         public BaseResponse DeleteRecruit(int id)
         {
-            throw new NotImplementedException();
+            BaseResponse responce = new BaseResponse();
+            bool doesExistAlready = _hrmsrecruiterRepository.Table.Count(p => p.RtrRecId == id) > 0;
+            bool isDeletedAlready = _hrmsrecruiterRepository.Table.Count(p => p.RtrRecId == id && p.RtrIsDelete == true) > 0;
+
+            _hrmsrecruiterRepository.Table.Where(p => p.RtrRecId == id).ToList().ForEach(x =>
+            {
+
+                x.RtrIsDelete = true;
+
+            });
+            _uow.Commit();
+            if (doesExistAlready == true && isDeletedAlready == false)
+            {
+                responce.Success = true;
+                responce.Data = id;
+                responce.Message = UserMessages.strDeleted;
+            }
+            else if (doesExistAlready == true && isDeletedAlready == true)
+            {
+                responce.Success = false;
+                responce.Message = UserMessages.strAlrdeleted;
+                responce.Data = null;
+            }
+
+            else if (doesExistAlready == false)
+            {
+                responce.Data = null;
+                responce.Success = false;
+                responce.Message = UserMessages.strNotfound;
+            }
+            return responce;
         }
 
         public BaseResponse ViewDataRecruitByid(int id)

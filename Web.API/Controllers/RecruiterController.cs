@@ -99,5 +99,31 @@ namespace Web.API.Controllers
                 return responce;
             }
         }
+
+        [HttpDelete("/Recruiter/DeleteRecruit")]
+        public BaseResponse DeleteRecruit(int id)
+        {
+            BaseResponse responce = new BaseResponse();
+
+            try
+            {
+                var test = ModelState;
+                responce = _recruiterservice.DeleteRecruit(id);
+
+
+
+                return responce;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                responce.Data = null;
+                responce.Message = ex.Message;
+                responce.Success = false;
+                return responce;
+            }
+        }
+
+
     }
 }
