@@ -71,6 +71,7 @@ namespace Web.API.Controllers
         [HttpPost("/Employee/AddEmployee")]
         public BaseResponse Create([FromBody] EmsTblEmployeeDetailsVM employee)
         {
+            var state = ModelState;
             string projectRootPath = _hostEnvironment.WebRootPath;
             BaseResponse response = new BaseResponse(); 
             try

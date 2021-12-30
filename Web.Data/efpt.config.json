@@ -52,6 +52,14 @@
       {
          "Name": "[dbo].[ims_assign]",
          "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[rms_tbl_position_applied]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[rms_tbl_recruiter]",
+         "ObjectType": 0
       }
    ],
    "UiHint": "SQL5105.db_a7d47e_hrms",
@@ -62,6 +70,7 @@
    "UseHandleBars": false,
    "UseInflector": false,
    "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
    "UseNoConstructor": false,
    "UseNoDefaultConstructor": false,
    "UseNoNavigations": false,

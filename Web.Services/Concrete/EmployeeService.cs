@@ -342,6 +342,7 @@ namespace Web.Services.Concrete
 
                         emsTblEmployeeDetails.EtedEmployeeId = employee.EtedEmployeeId;
                         emsTblEmployeeDetails.EtedFirstName = employee.EtedFirstName;
+                        emsTblEmployeeDetails.EtedPhotograph = employee.EtedPhotograph;
                         emsTblEmployeeDetails.EtedLastName = employee.EtedLastName;
                         emsTblEmployeeDetails.EtedEmailAddress = employee.EtedEmailAddress;
                         emsTblEmployeeDetails.EtedDob = employee.EtedDob;
@@ -387,10 +388,10 @@ namespace Web.Services.Concrete
                     var _emsTblAcademicQualificationList = employee.EmsTblAcademicQualification.Where(z => z.EtaqEtedEmployeeId == employee.EtedEmployeeId).Select(x => new EmsTblAcademicQualification
                     {
                         EtaqAqId = x.EtaqAqId,
+                        EtaqUploadDocuments=x.EtaqUploadDocuments,
                         EtaqEtedEmployeeId = employee.EtedEmployeeId,
                         EtaqInstituteName = x.EtaqInstituteName,
-                        EtaqPassingYear = x.EtaqPassingYear,
-                        EtaqUploadDocuments=x.EtaqUploadDocuments,
+                        EtaqPassingYear = x.EtaqPassingYear,            
                         EtaqCgpa = x.EtaqCgpa,
                         EtaqQualification = x.EtaqQualification,
                         EtaqCreatedBy = x.EtaqCreatedBy,
@@ -428,10 +429,10 @@ namespace Web.Services.Concrete
                     var _emsTblProfessionalQualificationList = employee.EmsTblProfessionalQualification.Where(z => z.EtpqEtedEmployeeId == employee.EtedEmployeeId).Select(x => new EmsTblProfessionalQualification
                     {
                         EtpqPqId = x.EtpqPqId,
+                        EtpqDocuments=x.EtpqDocuments,
                         EtpqEtedEmployeeId = employee.EtedEmployeeId,
                         EtpqCertification = x.EtpqCertification,
                         EtpqStratDate = x.EtpqStratDate,
-                        EtpqDocuments=x.EtpqDocuments,
                         EtpqEndDate = x.EtpqEndDate,
                         EtpqInstituteName = x.EtpqInstituteName,
                         EtpqCreatedBy = x.EtpqCreatedBy,
@@ -509,9 +510,9 @@ namespace Web.Services.Concrete
                         EtwhWhId = x.EtwhWhId,
                         EtwhCompanyName = x.EtwhCompanyName,
                         EtwhDesignation = x.EtwhDesignation,
+                        EtwhExperienceLetter=x.EtwhExperienceLetter,
                         EtwhStratDate = x.EtwhStratDate,
                         EtwhEndDate = x.EtwhEndDate,
-                        EtwhExperienceLetter=x.EtwhExperienceLetter,
                         EtwhDuration = x.EtwhDuration,
                         EtwhCreatedBy = x.EtwhCreatedBy,
                         EtwhCreatedByDate = DateTime.Now,
