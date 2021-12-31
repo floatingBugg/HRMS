@@ -110,6 +110,7 @@ namespace Web.API
             services.AddTransient(typeof(IAssetService), typeof(AssetService));
             services.AddTransient(typeof(IAssetAssignService), typeof(AssetAssignService));
             services.AddTransient(typeof(IRecruiterService), typeof(RecruiterService));
+            services.AddTransient(typeof(IPositionAppliedService), typeof(PositionAppliedService));
 
 
             //Register Employee Services 
