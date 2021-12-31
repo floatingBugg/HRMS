@@ -52,6 +52,78 @@ namespace Web.API.Controllers
             }
         }
 
+        [HttpPost("/PositionApplied/UpdatePosition")]
+        public BaseResponse UpdatePosition([FromBody] RmsTblPositionAppliedVM position)
+        {
+            BaseResponse responce = new BaseResponse();
+
+            try
+            {
+                var test = ModelState;
+                responce = _positionappliedservice.UpdatePosition(position);
+
+
+
+                return responce;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                responce.Data = null;
+                responce.Message = ex.Message;
+                responce.Success = false;
+                return responce;
+            }
+        }
+
+        [HttpGet("/PositionApplied/DisplayPosition")]
+        public BaseResponse DisplayPosition()
+        {
+            BaseResponse responce = new BaseResponse();
+
+            try
+            {
+                var test = ModelState;
+                responce = _positionappliedservice.DisplayPosition();
+
+
+
+                return responce;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                responce.Data = null;
+                responce.Message = ex.Message;
+                responce.Success = false;
+                return responce;
+            }
+        }
+
+        [HttpDelete("/PositionApplied/DeletePosition")]
+        public BaseResponse DeletePosition(int id)
+        {
+            BaseResponse responce = new BaseResponse();
+
+            try
+            {
+                var test = ModelState;
+                responce = _positionappliedservice.DeletePosition(id);
+
+
+
+                return responce;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                responce.Data = null;
+                responce.Message = ex.Message;
+                responce.Success = false;
+                return responce;
+            }
+        }
+
 
     }
 }
