@@ -522,7 +522,7 @@ namespace Web.Services.Concrete
                     emsTblEmployeeDetails.EmsTblWorkingHistory = _emsTblWorkingHistoryList.ToArray();
                 }
 
-                _hrmsemployeeRepository.Update(emsTblEmployeeDetails);
+                _hrmsemployeeRepository.Insert(emsTblEmployeeDetails);
                 _uow.Commit();
                 response.Success = true;
                 response.Message = UserMessages.strUpdated;
