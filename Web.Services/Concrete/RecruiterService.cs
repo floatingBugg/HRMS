@@ -31,11 +31,12 @@ namespace Web.Services.Concrete
 
         public BaseResponse CreateRecruit(RmsTblRecruiterVM recruit)
         {
+
             BaseResponse response = new BaseResponse();
             RmsTblRecruiter rmsRecruiter = new RmsTblRecruiter();
             if (!string.IsNullOrEmpty(recruit.RtrEmail))
-
             {
+
                 rmsRecruiter.RtrRecId = recruit.RtrRecId;
                 rmsRecruiter.RtrEmail = recruit.RtrEmail;
                 rmsRecruiter.RtrPhoneNo = recruit.RtrPhoneNo;
@@ -106,9 +107,6 @@ namespace Web.Services.Concrete
                 rmsRecruiter.RtrCreatedBy = recruit.RtrCreatedBy;
                 rmsRecruiter.RtrCreatedByName = recruit.RtrCreatedByName;
                 rmsRecruiter.RtrCreatedByDate = recruit.RtrCreatedByDate;
-                rmsRecruiter.RtrModifiedBy = recruit.RtrModifiedBy;
-                rmsRecruiter.RtrModifiedByName = recruit.RtrModifiedByName;
-                rmsRecruiter.RtrModifiedByDate = recruit.RtrModifiedByDate;
                 rmsRecruiter.RtrIsDelete = false;
 
                 _hrmsrecruiterRepository.Update(rmsRecruiter);
@@ -153,9 +151,6 @@ namespace Web.Services.Concrete
                 RtrRecommendedBy = x.RtrRecommendedBy,
                 RtrRecommendedPersonRemarks = x.RtrRecommendedPersonRemarks,
                 RtrHiringStatus = x.RtrHiringStatus,
-                RtrCreatedBy = x.RtrCreatedBy,
-                RtrCreatedByName = x.RtrCreatedByName,
-                RtrCreatedByDate = x.RtrCreatedByDate,
                 RtrModifiedBy = x.RtrModifiedBy,
                 RtrModifiedByName = x.RtrModifiedByName,
                 RtrModifiedByDate = x.RtrModifiedByDate,

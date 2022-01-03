@@ -2,6 +2,7 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Web.Data.Models
 {
@@ -34,7 +35,7 @@ namespace Web.Data.Models
         public string RtrModifiedByName { get; set; }
         public DateTime? RtrModifiedByDate { get; set; }
         public bool? RtrIsDelete { get; set; }
-
+        [JsonIgnore]
         public virtual RmsTblPositionApplied RtpaPos { get; set; }
     }
 }
