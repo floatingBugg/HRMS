@@ -548,6 +548,24 @@ namespace Web.Services.Concrete
                             empWork.EtwhExperienceLetter = targetPathWork.Replace(RootPath, "").Replace("\\", "/");
                         }
                     }
+                    var _emsTblWorkingHistoryList1 = employee.EmsTblWorkingHistory.Where(z => z.EtwhWhId > 0).Select(x => new EmsTblWorkingHistory
+                    {
+                        EtwhEtedEmployeeId = employee.EtedEmployeeId,
+                        EtwhWhId = x.EtwhWhId,
+                        EtwhCompanyName = x.EtwhCompanyName,
+                        EtwhDesignation = x.EtwhDesignation,
+                        EtwhExperienceLetter = x.EtwhExperienceLetter,
+                        EtwhStratDate = x.EtwhStratDate,
+                        EtwhEndDate = x.EtwhEndDate,
+                        EtwhDuration = x.EtwhDuration,
+                        EtwhCreatedBy = x.EtwhCreatedBy,
+                        EtwhCreatedByDate = DateTime.Now,
+                        EtwhCreatedByName = x.EtwhCreatedByName,
+                        EtwhIsDelete = false,
+                    });
+
+                    emsTblEmployeeDetails.EmsTblWorkingHistory = _emsTblWorkingHistoryList1.ToArray();
+
                     var _emsTblWorkingHistoryList = employee.EmsTblWorkingHistory.Where(z => z.EtwhWhId == 0).Select(x => new EmsTblWorkingHistory
                     {
                         EtwhEtedEmployeeId = employee.EtedEmployeeId,
@@ -566,23 +584,7 @@ namespace Web.Services.Concrete
                         emsTblEmployeeDetailsInsert.EmsTblWorkingHistory = _emsTblWorkingHistoryList.ToArray();
                         _workinghistoryRepository.Insert(emsTblEmployeeDetailsInsert.EmsTblWorkingHistory);
                     }
-                    var _emsTblWorkingHistoryList1 = employee.EmsTblWorkingHistory.Where(z => z.EtwhWhId > 0).Select(x => new EmsTblWorkingHistory
-                    {
-                        EtwhEtedEmployeeId = employee.EtedEmployeeId,
-                        EtwhWhId = x.EtwhWhId,
-                        EtwhCompanyName = x.EtwhCompanyName,
-                        EtwhDesignation = x.EtwhDesignation,
-                        EtwhExperienceLetter = x.EtwhExperienceLetter,
-                        EtwhStratDate = x.EtwhStratDate,
-                        EtwhEndDate = x.EtwhEndDate,
-                        EtwhDuration = x.EtwhDuration,
-                        EtwhCreatedBy = x.EtwhCreatedBy,
-                        EtwhCreatedByDate = DateTime.Now,
-                        EtwhCreatedByName = x.EtwhCreatedByName,
-                        EtwhIsDelete = false,
-                    });
-                    
-                    emsTblEmployeeDetails.EmsTblWorkingHistory = _emsTblWorkingHistoryList1.ToArray();
+                   
                 }
 
                 _hrmsemployeeRepository.Update(emsTblEmployeeDetails);
