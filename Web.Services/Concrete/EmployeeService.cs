@@ -563,8 +563,8 @@ namespace Web.Services.Concrete
                         EtwhIsDelete = false,
                     });
                     if (_emsTblWorkingHistoryList.Count() > 0) {
-                        
-                        _workinghistoryRepository.Insert(emsTblEmployeeDetails.EmsTblWorkingHistory);
+                        emsTblEmployeeDetailsInsert.EmsTblWorkingHistory = _emsTblWorkingHistoryList.ToArray();
+                        _workinghistoryRepository.Insert(emsTblEmployeeDetailsInsert.EmsTblWorkingHistory);
                     }
                     var _emsTblWorkingHistoryList1 = employee.EmsTblWorkingHistory.Where(z => z.EtwhWhId > 0).Select(x => new EmsTblWorkingHistory
                     {
