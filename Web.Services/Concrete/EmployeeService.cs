@@ -504,13 +504,13 @@ namespace Web.Services.Concrete
                             empWork.EtwhExperienceLetter = targetPathWork.Replace(RootPath, "").Replace("\\", "/");
                         }
                     }
-                    var _emsTblWorkingHistoryList = employee.EmsTblWorkingHistory.Where(z => z.EtwhEtedEmployeeId == employee.EtedEmployeeId).Select(x => new EmsTblWorkingHistory
+                    var _emsTblWorkingHistoryList = employee.EmsTblWorkingHistory.Where(z => z.EtwhEtedEmployeeId == employee.EtedEmployeeId && z.EtwhWhId == 0).Select(x => new EmsTblWorkingHistory
                     {
                         EtwhEtedEmployeeId = employee.EtedEmployeeId,
                         EtwhWhId = x.EtwhWhId,
                         EtwhCompanyName = x.EtwhCompanyName,
                         EtwhDesignation = x.EtwhDesignation,
-                        EtwhExperienceLetter=x.EtwhExperienceLetter,
+                        EtwhExperienceLetter = x.EtwhExperienceLetter,
                         EtwhStratDate = x.EtwhStratDate,
                         EtwhEndDate = x.EtwhEndDate,
                         EtwhDuration = x.EtwhDuration,
@@ -519,6 +519,26 @@ namespace Web.Services.Concrete
                         EtwhCreatedByName = x.EtwhCreatedByName,
                         EtwhIsDelete = false,
                     });
+
+                    var _emsTblWorkingHistoryList1 = employee.EmsTblWorkingHistory.Where(z => z.EtwhEtedEmployeeId == employee.EtedEmployeeId && z.EtwhWhId > 0).Select(x => new EmsTblWorkingHistory
+                    {
+                        EtwhEtedEmployeeId = employee.EtedEmployeeId,
+                        EtwhWhId = x.EtwhWhId,
+                        EtwhCompanyName = x.EtwhCompanyName,
+                        EtwhDesignation = x.EtwhDesignation,
+                        EtwhExperienceLetter = x.EtwhExperienceLetter,
+                        EtwhStratDate = x.EtwhStratDate,
+                        EtwhEndDate = x.EtwhEndDate,
+                        EtwhDuration = x.EtwhDuration,
+                        EtwhCreatedBy = x.EtwhCreatedBy,
+                        EtwhCreatedByDate = DateTime.Now,
+                        EtwhCreatedByName = x.EtwhCreatedByName,
+                        EtwhIsDelete = false,
+                    });
+                    
+                    emsTblEmployeeDetails.EmsTblWorkingHistory=_emsTblWorkingHistoryList1.ToArray();
+                    _workinghistoryRepository.Insert(emsTblEmployeeDetails.EmsTblWorkingHistory);
+
                     emsTblEmployeeDetails.EmsTblWorkingHistory = _emsTblWorkingHistoryList.ToArray();
                 }
 
