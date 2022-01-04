@@ -534,8 +534,8 @@ namespace Web.Services.Concrete
                         EtwhIsDelete = false,
                     });
                     if (_emsTblWorkingHistoryList.Count() > 0) {
-                        emsTblEmployeeDetailsInsert.EmsTblWorkingHistory = _emsTblWorkingHistoryList.ToArray();
-                        _workinghistoryRepository.Insert(emsTblEmployeeDetailsInsert.EmsTblWorkingHistory);
+                        
+                        _workinghistoryRepository.Insert(emsTblEmployeeDetails.EmsTblWorkingHistory);
                     }
                     var _emsTblWorkingHistoryList1 = employee.EmsTblWorkingHistory.Where(z => z.EtwhWhId > 0).Select(x => new EmsTblWorkingHistory
                     {
