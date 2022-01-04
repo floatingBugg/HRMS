@@ -507,7 +507,6 @@ namespace Web.Services.Concrete
                     var _emsTblWorkingHistoryList = employee.EmsTblWorkingHistory.Where(z => z.EtwhEtedEmployeeId == employee.EtedEmployeeId && z.EtwhWhId == 0).Select(x => new EmsTblWorkingHistory
                     {
                         EtwhEtedEmployeeId = employee.EtedEmployeeId,
-                        EtwhWhId = x.EtwhWhId,
                         EtwhCompanyName = x.EtwhCompanyName,
                         EtwhDesignation = x.EtwhDesignation,
                         EtwhExperienceLetter = x.EtwhExperienceLetter,
@@ -536,13 +535,13 @@ namespace Web.Services.Concrete
                         EtwhIsDelete = false,
                     });
                     
-                    emsTblEmployeeDetails.EmsTblWorkingHistory=_emsTblWorkingHistoryList1.ToArray();
+                    emsTblEmployeeDetails.EmsTblWorkingHistory=_emsTblWorkingHistoryList.ToArray();
                     _workinghistoryRepository.Insert(emsTblEmployeeDetails.EmsTblWorkingHistory);
 
-                    emsTblEmployeeDetails.EmsTblWorkingHistory = _emsTblWorkingHistoryList.ToArray();
+                    emsTblEmployeeDetails.EmsTblWorkingHistory = _emsTblWorkingHistoryList1.ToArray();
                 }
 
-                _hrmsemployeeRepository.Insert(emsTblEmployeeDetails);
+                _hrmsemployeeRepository.Update(emsTblEmployeeDetails);
                 _uow.Commit();
                 response.Success = true;
                 response.Message = UserMessages.strUpdated;
