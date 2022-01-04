@@ -315,7 +315,7 @@ namespace Web.Services.Concrete
 
             BaseResponse response = new BaseResponse();
             EmsTblEmployeeDetails emsTblEmployeeDetails = new EmsTblEmployeeDetails();
-           
+            EmsTblEmployeeDetails emsTblEmployeeDetailsInsert = new EmsTblEmployeeDetails();
             bool count = _hrmsemployeeRepository.Table.Where(p => p.EtedEmployeeId == employee.EtedEmployeeId).Count() > 0;
             if (count == true)
             {
@@ -464,10 +464,24 @@ namespace Web.Services.Concrete
 
                 if (employee.EmsTblEmergencyContact.Count > 0)
                 {
-                    var _emsTblEmergencyContactList = employee.EmsTblEmergencyContact.Where(z => z.EtecEtedEmployeeId == employee.EtedEmployeeId).Select(x => new EmsTblEmergencyContact
+                    var _emsTblEmergencyContactList1 = employee.EmsTblEmergencyContact.Where(z => z.EtecEcId == 0).Select(x => new EmsTblEmergencyContact
                     {
                         EtecEcId=x.EtecEcId,
                         EtecEtedEmployeeId=employee.EtedEmployeeId,
+                        EtecFirstName = x.EtecFirstName,
+                        EtecLastName = x.EtecLastName,
+                        EtecRelation = x.EtecRelation,
+                        EtecContactNumber = x.EtecContactNumber,
+                        EtecAddress = x.EtecAddress,
+                        EtecCreatedBy = x.EtecCreatedBy,
+                        EtecCreatedByDate = DateTime.Now,
+                        EtecCreatedByName = x.EtecCreatedByName,
+                        EtecIsDelete = false,
+                    });
+                    var _emsTblEmergencyContactList = employee.EmsTblEmergencyContact.Where(z => z.EtecEcId == 0).Select(x => new EmsTblEmergencyContact
+                    {
+                        EtecEcId = x.EtecEcId,
+                        EtecEtedEmployeeId = employee.EtedEmployeeId,
                         EtecFirstName = x.EtecFirstName,
                         EtecLastName = x.EtecLastName,
                         EtecRelation = x.EtecRelation,
@@ -519,8 +533,9 @@ namespace Web.Services.Concrete
                         EtwhCreatedByName = x.EtwhCreatedByName,
                         EtwhIsDelete = false,
                     });
-                    if (_emsTblWorkingHistoryList.Count() > 0) { 
-                    _workinghistoryRepository.Insert(emsTblEmployeeDetails.EmsTblWorkingHistory);
+                    if (_emsTblWorkingHistoryList.Count() > 0) {
+                        emsTblEmployeeDetailsInsert.EmsTblWorkingHistory = _emsTblWorkingHistoryList.ToArray();
+                        _workinghistoryRepository.Insert(emsTblEmployeeDetailsInsert.EmsTblWorkingHistory);
                     }
                     var _emsTblWorkingHistoryList1 = employee.EmsTblWorkingHistory.Where(z => z.EtwhWhId > 0).Select(x => new EmsTblWorkingHistory
                     {
@@ -538,8 +553,6 @@ namespace Web.Services.Concrete
                         EtwhIsDelete = false,
                     });
                     
-                    
-
                     emsTblEmployeeDetails.EmsTblWorkingHistory = _emsTblWorkingHistoryList1.ToArray();
                 }
 
