@@ -385,13 +385,37 @@ namespace Web.Services.Concrete
                             empAcad.EtaqUploadDocuments = targetPathAcademicQual.Replace(RootPath, "").Replace("\\", "/");
                         }
                     }
-                    var _emsTblAcademicQualificationList = employee.EmsTblAcademicQualification.Where(z => z.EtaqEtedEmployeeId == employee.EtedEmployeeId).Select(x => new EmsTblAcademicQualification
+
+                    /*FOR INSERTION*/
+
+                    var _emsTblAcademicQualificationList1 = employee.EmsTblAcademicQualification.Where(z => z.EtaqAqId==0).Select(x => new EmsTblAcademicQualification
                     {
                         EtaqAqId = x.EtaqAqId,
                         EtaqUploadDocuments=x.EtaqUploadDocuments,
                         EtaqEtedEmployeeId = employee.EtedEmployeeId,
                         EtaqInstituteName = x.EtaqInstituteName,
                         EtaqPassingYear = x.EtaqPassingYear,            
+                        EtaqCgpa = x.EtaqCgpa,
+                        EtaqQualification = x.EtaqQualification,
+                        EtaqCreatedBy = x.EtaqCreatedBy,
+                        EtaqCreatedByDate = DateTime.Now,
+                        EtaqCreatedByName = x.EtaqCreatedByName,
+                        EtaqIsDelete = false,
+                    });
+                    if (_emsTblAcademicQualificationList1.Count() > 0)
+                    {
+
+                        _hrmsacademicrepository.Insert(emsTblEmployeeDetails.EmsTblAcademicQualification);
+                    }
+
+                    /*FOR UPDATE*/
+                    var _emsTblAcademicQualificationList = employee.EmsTblAcademicQualification.Where(z => z.EtaqAqId > 0).Select(x => new EmsTblAcademicQualification
+                    {
+                        EtaqAqId = x.EtaqAqId,
+                        EtaqUploadDocuments = x.EtaqUploadDocuments,
+                        EtaqEtedEmployeeId = employee.EtedEmployeeId,
+                        EtaqInstituteName = x.EtaqInstituteName,
+                        EtaqPassingYear = x.EtaqPassingYear,
                         EtaqCgpa = x.EtaqCgpa,
                         EtaqQualification = x.EtaqQualification,
                         EtaqCreatedBy = x.EtaqCreatedBy,
@@ -478,7 +502,12 @@ namespace Web.Services.Concrete
                         EtecCreatedByName = x.EtecCreatedByName,
                         EtecIsDelete = false,
                     });
-                    var _emsTblEmergencyContactList = employee.EmsTblEmergencyContact.Where(z => z.EtecEcId == 0).Select(x => new EmsTblEmergencyContact
+                    if (_emsTblEmergencyContactList1.Count() > 0)
+                    {
+
+                        _employeeContactRepository.Insert(emsTblEmployeeDetails.EmsTblEmergencyContact);
+                    }
+                    var _emsTblEmergencyContactList = employee.EmsTblEmergencyContact.Where(z => z.EtecEcId > 0).Select(x => new EmsTblEmergencyContact
                     {
                         EtecEcId = x.EtecEcId,
                         EtecEtedEmployeeId = employee.EtedEmployeeId,
