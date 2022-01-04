@@ -286,6 +286,7 @@ namespace Web.Services.Concrete
                    emsTblEmployeeDetails.EmsTblWorkingHistory = _emsTblWorkingHistoryList.ToArray();
 
                     _workinghistoryRepository.DeleteRange(emsTblEmployeeDetails.EmsTblWorkingHistory);
+                    //Change sdaasgafsdsafafs
                 }
                     
 
