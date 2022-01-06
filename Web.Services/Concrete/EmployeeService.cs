@@ -494,7 +494,7 @@ namespace Web.Services.Concrete
                     
                     var _emsTblEmployeeProfessionalDetailsList1 = employee.EmsTblEmployeeProfessionalDetails.Where(z => z.EtepdPdId > 0).Select(x => new EmsTblEmployeeProfessionalDetails
                     {
-
+                        EtepdPdId=x.EtepdPdId,
                         EtepdEtedEmployeeId = employee.EtedEmployeeId,
                         EtepdDesignation = x.EtepdDesignation,
                         EtepdSalary = x.EtepdSalary,
