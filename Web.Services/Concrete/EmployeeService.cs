@@ -142,7 +142,7 @@ namespace Web.Services.Concrete
                             }
                             var imageUrl = empAcad.EtaqUploadDocuments.Split("base64,");
                             var uploadDocumentsByte = Convert.FromBase64String(imageUrl.Count() > 1 ? imageUrl[1] : imageUrl[0]);
-                            targetPathAcademicQual += $"{employee.EtedFirstName}-{employee.EtedLastName}_{employee.EtedEmployeeId}_{empAcad.EtaqInstituteName}.png";
+                            targetPathAcademicQual += $"{employee.EtedFirstName}-{employee.EtedLastName}_{employee.EtedEmployeeId}_{empAcad.EtaqInstituteName}.docx";
                             using (FileStream fs = new FileStream(targetPathAcademicQual, FileMode.Create, FileAccess.Write))
                             {
                                 fs.Write(uploadDocumentsByte);
@@ -381,7 +381,7 @@ namespace Web.Services.Concrete
                             }
                             var imageUrl = empAcad.EtaqUploadDocuments.Split("base64,");
                             var uploadDocumentsByte = Convert.FromBase64String(imageUrl.Count() > 1 ? imageUrl[1] : imageUrl[0]);
-                            targetPathAcademicQual += $"{employee.EtedFirstName}-{employee.EtedLastName}_{employee.EtedEmployeeId}_{empAcad.EtaqInstituteName}.png";
+                            targetPathAcademicQual += $"{employee.EtedFirstName}-{employee.EtedLastName}_{employee.EtedEmployeeId}_{empAcad.EtaqInstituteName}.docx";
                             using (FileStream fs = new FileStream(targetPathAcademicQual, FileMode.Create, FileAccess.Write))
                             {
                                 fs.Write(uploadDocumentsByte);
@@ -508,23 +508,6 @@ namespace Web.Services.Concrete
                     if (_emsTblEmployeeProfessionalDetailsList1.Count() > 0)
                     { 
                     _hrmsprofessionaldetailsrepository.Update(_emsTblEmployeeProfessionalDetailsList1.ToList());
-                    }
-                    var _emsTblEmployeeProfessionalDetailsList = employee.EmsTblEmployeeProfessionalDetails.Where(z => z.EtepdPdId == 0).Select(x => new EmsTblEmployeeProfessionalDetails
-                    {
-                        EtepdPdId = x.EtepdPdId,
-                        EtepdEtedEmployeeId = employee.EtedEmployeeId,
-                        EtepdDesignation = x.EtepdDesignation,
-                        EtepdSalary = x.EtepdSalary,
-                        EtepdJoiningDate = x.EtepdJoiningDate,
-                        EtepdProbation = x.EtepdProbation,
-                        EtepdCreatedBy = x.EtepdCreatedBy,
-                        EtepdCreatedByDate = DateTime.Now,
-                        EtepdCreatedByName = x.EtepdCreatedByName,
-                        EtepdIsDelete = false,
-                    });
-                    if (_emsTblEmployeeProfessionalDetailsList1.Count() == 0)
-                    {
-                        _hrmsprofessionaldetailsrepository.Insert(_emsTblEmployeeProfessionalDetailsList.ToList());
                     }
                 }
 

@@ -19,6 +19,7 @@ using Web.Data.Generic_Repository;
 using Web.Data.Interfaces;
 using Web.Services.Concrete;
 using Web.Services.Interfaces;
+using Microsoft.Extensions.FileProviders;
 
 namespace Web.API
 {
