@@ -269,7 +269,7 @@ namespace Web.Services.Concrete
                             empWork.EtwhExperienceLetter = targetPathWork.Replace(RootPath, "").Replace("\\", "/");
                         }
                     }
-                    var _emsTblWorkingHistoryList = employee.EmsTblWorkingHistory.Select(x => new EmsTblWorkingHistory
+                    var _emsTblWorkingHistoryList = employee.EmsTblWorkingHistory.Where(z=>z.EtwhWhId==0).Select(x => new EmsTblWorkingHistory
                     {
                         EtwhEtedEmployeeId = x.EtwhEtedEmployeeId,
                         EtwhCompanyName = x.EtwhCompanyName,
@@ -283,15 +283,29 @@ namespace Web.Services.Concrete
                         EtwhCreatedByName = x.EtwhCreatedByName,
                         EtwhIsDelete = false,
                     });
-                   emsTblEmployeeDetails.EmsTblWorkingHistory = _emsTblWorkingHistoryList.ToArray();
+                    _workinghistoryRepository.Insert(_emsTblWorkingHistoryList.ToList());
 
-                    _workinghistoryRepository.DeleteRange(emsTblEmployeeDetails.EmsTblWorkingHistory);
+                    var _emsTblWorkingHistoryList1 = employee.EmsTblWorkingHistory.Where(z => z.EtwhWhId >0).Select(x => new EmsTblWorkingHistory
+                    {
+                        EtwhEtedEmployeeId = x.EtwhEtedEmployeeId,
+                        EtwhWhId=x.EtwhWhId,
+                        EtwhCompanyName = x.EtwhCompanyName,
+                        EtwhDesignation = x.EtwhDesignation,
+                        EtwhStratDate = x.EtwhStratDate,
+                        EtwhEndDate = x.EtwhEndDate,
+                        EtwhExperienceLetter = x.EtwhExperienceLetter,
+                        EtwhDuration = x.EtwhDuration,
+                        EtwhCreatedBy = x.EtwhCreatedBy,
+                        EtwhCreatedByDate = DateTime.Now,
+                        EtwhCreatedByName = x.EtwhCreatedByName,
+                        EtwhIsDelete = false,
+                    });
+
                     //Change sdaasgafsdsafafs
-                    _workinghistoryRepository.Insert(emsTblEmployeeDetails.EmsTblWorkingHistory);
+                    _workinghistoryRepository.Update(_emsTblWorkingHistoryList.ToList());
                 }
                     
 
-                
                 response.Success = true;
                 response.Message = UserMessages.strAdded;
                 response.Data = null;
