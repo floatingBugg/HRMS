@@ -428,7 +428,7 @@ namespace Web.Services.Concrete
                             empProfQual.EtpqDocuments = targetPathProfQual.Replace(RootPath, "").Replace("\\", "/");
                         }                      
                     }
-                    var _emsTblProfessionalQualificationList = employee.EmsTblProfessionalQualification.Where(z => z.EtpqEtedEmployeeId == employee.EtedEmployeeId).Select(x => new EmsTblProfessionalQualification
+                    var _emsTblProfessionalQualificationList = employee.EmsTblProfessionalQualification.Where(z => z.EtpqPqId==0).Select(x => new EmsTblProfessionalQualification
                     {
                         EtpqPqId = x.EtpqPqId,
                         EtpqDocuments=x.EtpqDocuments,
@@ -442,16 +442,35 @@ namespace Web.Services.Concrete
                         EtpqCreatedByName = x.EtpqCreatedByName,
                         EtpqIsDelete = false,
                     });
-                    emsTblEmployeeDetails.EmsTblProfessionalQualification = _emsTblProfessionalQualificationList.ToArray();
+
+                    _hrmsprofessionalrepository.Update(_emsTblProfessionalQualificationList.ToList());
+
+                    var _emsTblProfessionalQualificationList1 = employee.EmsTblProfessionalQualification.Where(z => z.EtpqPqId > 0).Select(x => new EmsTblProfessionalQualification
+                    {
+                        EtpqDocuments = x.EtpqDocuments,
+                        EtpqEtedEmployeeId = employee.EtedEmployeeId,
+                        EtpqCertification = x.EtpqCertification,
+                        EtpqStratDate = x.EtpqStratDate,
+                        EtpqEndDate = x.EtpqEndDate,
+                        EtpqInstituteName = x.EtpqInstituteName,
+                        EtpqCreatedBy = x.EtpqCreatedBy,
+                        EtpqCreatedByDate = DateTime.Now,
+                        EtpqCreatedByName = x.EtpqCreatedByName,
+                        EtpqIsDelete = false,
+                    });
+
+                    _hrmsprofessionalrepository.Insert(_emsTblProfessionalQualificationList1.ToList());
+
                 }
 
 
                 if (employee.EmsTblEmployeeProfessionalDetails.Count > 0)
                 {
-                    var _emsTblEmployeeProfessionalDetailsList = employee.EmsTblEmployeeProfessionalDetails.Where(z => z.EtepdEtedEmployeeId == employee.EtedEmployeeId).Select(x => new EmsTblEmployeeProfessionalDetails
+                    
+                    var _emsTblEmployeeProfessionalDetailsList1 = employee.EmsTblEmployeeProfessionalDetails.Where(z => z.EtepdPdId > 0).Select(x => new EmsTblEmployeeProfessionalDetails
                     {
-                        EtepdPdId=x.EtepdPdId,
-                        EtepdEtedEmployeeId=employee.EtedEmployeeId,
+
+                        EtepdEtedEmployeeId = employee.EtedEmployeeId,
                         EtepdDesignation = x.EtepdDesignation,
                         EtepdSalary = x.EtepdSalary,
                         EtepdJoiningDate = x.EtepdJoiningDate,
@@ -461,29 +480,30 @@ namespace Web.Services.Concrete
                         EtepdCreatedByName = x.EtepdCreatedByName,
                         EtepdIsDelete = false,
                     });
-                    emsTblEmployeeDetails.EmsTblEmployeeProfessionalDetails = _emsTblEmployeeProfessionalDetailsList.ToArray();
+                    _hrmsprofessionaldetailsrepository.Update(_emsTblEmployeeProfessionalDetailsList1.ToList());
+
+                    var _emsTblEmployeeProfessionalDetailsList = employee.EmsTblEmployeeProfessionalDetails.Where(z => z.EtepdPdId == 0).Select(x => new EmsTblEmployeeProfessionalDetails
+                    {
+                        EtepdPdId = x.EtepdPdId,
+                        EtepdEtedEmployeeId = employee.EtedEmployeeId,
+                        EtepdDesignation = x.EtepdDesignation,
+                        EtepdSalary = x.EtepdSalary,
+                        EtepdJoiningDate = x.EtepdJoiningDate,
+                        EtepdProbation = x.EtepdProbation,
+                        EtepdCreatedBy = x.EtepdCreatedBy,
+                        EtepdCreatedByDate = DateTime.Now,
+                        EtepdCreatedByName = x.EtepdCreatedByName,
+                        EtepdIsDelete = false,
+                    });
+
+                    _hrmsprofessionaldetailsrepository.Insert(_emsTblEmployeeProfessionalDetailsList.ToList());
                 }
 
                 if (employee.EmsTblEmergencyContact.Count > 0)
                 {
-                    var _emsTblEmergencyContactList = employee.EmsTblEmergencyContact.Where(z => z.EtecEcId == 0).Select(x => new EmsTblEmergencyContact
-                    {
-                        EtecEcId=x.EtecEcId,
-                        EtecEtedEmployeeId=employee.EtedEmployeeId,
-                        EtecFirstName = x.EtecFirstName,
-                        EtecLastName = x.EtecLastName,
-                        EtecRelation = x.EtecRelation,
-                        EtecContactNumber = x.EtecContactNumber,
-                        EtecAddress = x.EtecAddress,
-                        EtecCreatedBy = x.EtecCreatedBy,
-                        EtecCreatedByDate = DateTime.Now,
-                        EtecCreatedByName = x.EtecCreatedByName,
-                        EtecIsDelete = false,
-                    });
-                    _employeeContactRepository.Update(_emsTblEmergencyContactList.ToList());
-
                     var _emsTblEmergencyContactList1 = employee.EmsTblEmergencyContact.Where(z => z.EtecEcId > 0).Select(x => new EmsTblEmergencyContact
                     {
+                        EtecEcId = x.EtecEcId,
                         EtecEtedEmployeeId = employee.EtedEmployeeId,
                         EtecFirstName = x.EtecFirstName,
                         EtecLastName = x.EtecLastName,
@@ -495,7 +515,24 @@ namespace Web.Services.Concrete
                         EtecCreatedByName = x.EtecCreatedByName,
                         EtecIsDelete = false,
                     });
-                    _employeeContactRepository.Insert(_emsTblEmergencyContactList1.ToList());
+                    _employeeContactRepository.Update(_emsTblEmergencyContactList1.ToList());
+                    var _emsTblEmergencyContactList = employee.EmsTblEmergencyContact.Where(z => z.EtecEcId == 0).Select(x => new EmsTblEmergencyContact
+                    {
+                        
+                        EtecEtedEmployeeId=employee.EtedEmployeeId,
+                        EtecFirstName = x.EtecFirstName,
+                        EtecLastName = x.EtecLastName,
+                        EtecRelation = x.EtecRelation,
+                        EtecContactNumber = x.EtecContactNumber,
+                        EtecAddress = x.EtecAddress,
+                        EtecCreatedBy = x.EtecCreatedBy,
+                        EtecCreatedByDate = DateTime.Now,
+                        EtecCreatedByName = x.EtecCreatedByName,
+                        EtecIsDelete = false,
+                    });
+                    _employeeContactRepository.Insert(_emsTblEmergencyContactList.ToList());
+
+               
                 }
 
                 if (employee.EmsTblWorkingHistory.Count > 0)
