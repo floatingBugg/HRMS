@@ -363,6 +363,8 @@ namespace Web.Services.Concrete
                         emsTblEmployeeDetails.EtedModifiedBy = employee.EtedModifiedBy;
                         emsTblEmployeeDetails.EtedModifiedByName = employee.EtedModifiedByName;
 
+                _hrmsemployeeRepository.Update(emsTblEmployeeDetails);
+
 
                 if (employee.EmsTblAcademicQualification.Count > 0)
                 {
@@ -401,9 +403,10 @@ namespace Web.Services.Concrete
                         EtaqCreatedByName = x.EtaqCreatedByName,
                         EtaqIsDelete = false,
                     });
-
+                    if (_emsTblAcademicQualificationList.Count() > 0) 
+                    { 
                     _hrmsacademicrepository.Update(_emsTblAcademicQualificationList.ToList());
-
+                    }
                     var _emsTblAcademicQualificationList1 = employee.EmsTblAcademicQualification.Where(z => z.EtaqAqId == 0).Select(x => new EmsTblAcademicQualification
                     {
                         EtaqAqId = x.EtaqAqId,
@@ -418,9 +421,10 @@ namespace Web.Services.Concrete
                         EtaqCreatedByName = x.EtaqCreatedByName,
                         EtaqIsDelete = false,
                     });
-
-                    _hrmsacademicrepository.Insert(_emsTblAcademicQualificationList1.ToList());
-
+                    if (_emsTblAcademicQualificationList1.Count() > 0) 
+                    { 
+                        _hrmsacademicrepository.Insert(_emsTblAcademicQualificationList1.ToList());
+                    }
                 }
 
                 if (employee.EmsTblProfessionalQualification.Count > 0)
@@ -461,8 +465,10 @@ namespace Web.Services.Concrete
                         EtpqCreatedByName = x.EtpqCreatedByName,
                         EtpqIsDelete = false,
                     });
-
+                    if(_emsTblProfessionalQualificationList.Count() > 0) 
+                    { 
                     _hrmsprofessionalrepository.Update(_emsTblProfessionalQualificationList.ToList());
+                    }
 
                     var _emsTblProfessionalQualificationList1 = employee.EmsTblProfessionalQualification.Where(z => z.EtpqPqId == 0).Select(x => new EmsTblProfessionalQualification
                     {
@@ -477,9 +483,10 @@ namespace Web.Services.Concrete
                         EtpqCreatedByName = x.EtpqCreatedByName,
                         EtpqIsDelete = false,
                     });
-
-                    _hrmsprofessionalrepository.Insert(_emsTblProfessionalQualificationList1.ToList());
-
+                    if (_emsTblProfessionalQualificationList1.Count() > 0) 
+                    { 
+                        _hrmsprofessionalrepository.Insert(_emsTblProfessionalQualificationList1.ToList());
+                    }
                 }
 
                 if (employee.EmsTblEmployeeProfessionalDetails.Count > 0)
@@ -498,8 +505,10 @@ namespace Web.Services.Concrete
                         EtepdCreatedByName = x.EtepdCreatedByName,
                         EtepdIsDelete = false,
                     });
+                    if (_emsTblEmployeeProfessionalDetailsList1.Count() > 0)
+                    { 
                     _hrmsprofessionaldetailsrepository.Update(_emsTblEmployeeProfessionalDetailsList1.ToList());
-
+                    }
                     var _emsTblEmployeeProfessionalDetailsList = employee.EmsTblEmployeeProfessionalDetails.Where(z => z.EtepdPdId == 0).Select(x => new EmsTblEmployeeProfessionalDetails
                     {
                         EtepdPdId = x.EtepdPdId,
@@ -513,8 +522,10 @@ namespace Web.Services.Concrete
                         EtepdCreatedByName = x.EtepdCreatedByName,
                         EtepdIsDelete = false,
                     });
-
-                    _hrmsprofessionaldetailsrepository.Insert(_emsTblEmployeeProfessionalDetailsList.ToList());
+                    if (_emsTblEmployeeProfessionalDetailsList1.Count() == 0)
+                    {
+                        _hrmsprofessionaldetailsrepository.Insert(_emsTblEmployeeProfessionalDetailsList.ToList());
+                    }
                 }
 
                 if (employee.EmsTblEmergencyContact.Count > 0)
@@ -533,7 +544,10 @@ namespace Web.Services.Concrete
                         EtecCreatedByName = x.EtecCreatedByName,
                         EtecIsDelete = false,
                     });
+                    if (_emsTblEmergencyContactList1.Count() > 0) 
+                    { 
                     _employeeContactRepository.Update(_emsTblEmergencyContactList1.ToList());
+                    }
                     var _emsTblEmergencyContactList = employee.EmsTblEmergencyContact.Where(z => z.EtecEcId == 0).Select(x => new EmsTblEmergencyContact
                     {
                         
@@ -548,9 +562,10 @@ namespace Web.Services.Concrete
                         EtecCreatedByName = x.EtecCreatedByName,
                         EtecIsDelete = false,
                     });
-                    _employeeContactRepository.Insert(_emsTblEmergencyContactList.ToList());
-
-               
+                    if (_emsTblEmergencyContactList.Count() > 0)
+                    {
+                        _employeeContactRepository.Insert(_emsTblEmergencyContactList.ToList());
+                    }
                 }
 
                 if (employee.EmsTblWorkingHistory.Count > 0)
@@ -592,10 +607,10 @@ namespace Web.Services.Concrete
                         EtwhCreatedByName = x.EtwhCreatedByName,
                         EtwhIsDelete = false,
                     });
-                    //Change sdaasgafsdsafafs
+                    if (_emsTblWorkingHistoryList1.Count() > 0) 
+                    { 
                     _workinghistoryRepository.Update(_emsTblWorkingHistoryList1.ToList());
-                    _uow.Commit();
-
+                    }
                     var _emsTblWorkingHistoryList = employee.EmsTblWorkingHistory.Where(z => z.EtwhWhId == 0).Select(x => new EmsTblWorkingHistory
                     {
                         EtwhEtedEmployeeId = employee.EtedEmployeeId,
@@ -610,8 +625,10 @@ namespace Web.Services.Concrete
                         EtwhCreatedByName = x.EtwhCreatedByName,
                         EtwhIsDelete = false,
                     });
-                    _workinghistoryRepository.Insert(_emsTblWorkingHistoryList.ToList());
-                    _uow.Commit();
+                    if (_emsTblWorkingHistoryList.Count() > 0) 
+                    { 
+                        _workinghistoryRepository.Insert(_emsTblWorkingHistoryList.ToList());
+                    }
                 }
 
                 
