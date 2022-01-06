@@ -466,7 +466,7 @@ namespace Web.Services.Concrete
 
                 if (employee.EmsTblEmergencyContact.Count > 0)
                 {
-                    var _emsTblEmergencyContactList = employee.EmsTblEmergencyContact.Where(z => z.EtecEtedEmployeeId == employee.EtedEmployeeId).Select(x => new EmsTblEmergencyContact
+                    var _emsTblEmergencyContactList = employee.EmsTblEmergencyContact.Where(z => z.EtecEcId == 0).Select(x => new EmsTblEmergencyContact
                     {
                         EtecEcId=x.EtecEcId,
                         EtecEtedEmployeeId=employee.EtedEmployeeId,
@@ -480,7 +480,22 @@ namespace Web.Services.Concrete
                         EtecCreatedByName = x.EtecCreatedByName,
                         EtecIsDelete = false,
                     });
-                    emsTblEmployeeDetails.EmsTblEmergencyContact = _emsTblEmergencyContactList.ToArray();
+                    _employeeContactRepository.Update(_emsTblEmergencyContactList.ToList());
+
+                    var _emsTblEmergencyContactList1 = employee.EmsTblEmergencyContact.Where(z => z.EtecEcId > 0).Select(x => new EmsTblEmergencyContact
+                    {
+                        EtecEtedEmployeeId = employee.EtedEmployeeId,
+                        EtecFirstName = x.EtecFirstName,
+                        EtecLastName = x.EtecLastName,
+                        EtecRelation = x.EtecRelation,
+                        EtecContactNumber = x.EtecContactNumber,
+                        EtecAddress = x.EtecAddress,
+                        EtecCreatedBy = x.EtecCreatedBy,
+                        EtecCreatedByDate = DateTime.Now,
+                        EtecCreatedByName = x.EtecCreatedByName,
+                        EtecIsDelete = false,
+                    });
+                    _employeeContactRepository.Insert(_emsTblEmergencyContactList1.ToList());
                 }
 
                 if (employee.EmsTblWorkingHistory.Count > 0)
@@ -544,10 +559,6 @@ namespace Web.Services.Concrete
                     _uow.Commit();
                 }
 
-                
-
-                    
-  
                 
                 response.Success = true;
                 response.Message = UserMessages.strUpdated;
