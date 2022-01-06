@@ -287,10 +287,11 @@ namespace Web.Services.Concrete
 
                     _workinghistoryRepository.DeleteRange(emsTblEmployeeDetails.EmsTblWorkingHistory);
                     //Change sdaasgafsdsafafs
+                    _workinghistoryRepository.Insert(emsTblEmployeeDetails.EmsTblWorkingHistory);
                 }
                     
 
-                _hrmsemployeeRepository.Insert(emsTblEmployeeDetails);
+                
                 response.Success = true;
                 response.Message = UserMessages.strAdded;
                 response.Data = null;
