@@ -97,7 +97,7 @@ namespace Web.Services.Concrete
                     }
                     var imageUrl = employee.EtedPhotograph.Split("base64,");
                     var photographByte = Convert.FromBase64String(imageUrl.Count()>1 ?imageUrl[1]:imageUrl[0]);
-                    targetPathProfile += $"{employee.EtedFirstName}-{employee.EtedLastName}_{employee.EtedEmployeeId}.png";
+                    targetPathProfile += $"{employee.EtedFirstName}-{employee.EtedLastName}_{employee.EtedEmployeeId}.jpg";
                     using (FileStream fs = new FileStream(targetPathProfile, FileMode.Create, FileAccess.Write))
                     {
                         fs.Write(photographByte);
@@ -142,7 +142,7 @@ namespace Web.Services.Concrete
                             }
                             var imageUrl = empAcad.EtaqUploadDocuments.Split("base64,");
                             var uploadDocumentsByte = Convert.FromBase64String(imageUrl.Count() > 1 ? imageUrl[1] : imageUrl[0]);
-                            targetPathAcademicQual += $"{employee.EtedFirstName}-{employee.EtedLastName}_{employee.EtedEmployeeId}_{empAcad.EtaqInstituteName}.docx";
+                            targetPathAcademicQual += $"{employee.EtedFirstName}-{employee.EtedLastName}_{employee.EtedEmployeeId}_{empAcad.EtaqInstituteName}.jpg";
                             using (FileStream fs = new FileStream(targetPathAcademicQual, FileMode.Create, FileAccess.Write))
                             {
                                 fs.Write(uploadDocumentsByte);
@@ -261,7 +261,7 @@ namespace Web.Services.Concrete
 
                             var imageUrl = empWork.EtwhExperienceLetter.Split("base64,");
                             var experienceLetterByte = Convert.FromBase64String(imageUrl[1]);
-                            targetPathWork += $"{employee.EtedFirstName}-{employee.EtedLastName}_{employee.EtedEmployeeId}_{empWork.EtwhDesignation}.png";
+                            targetPathWork += $"{employee.EtedFirstName}-{employee.EtedLastName}_{employee.EtedEmployeeId}_{empWork.EtwhDesignation}.jpg";
                             using (FileStream fs = new FileStream(targetPathWork, FileMode.Create, FileAccess.Write))
                             {
                                 fs.Write(experienceLetterByte);
@@ -333,7 +333,7 @@ namespace Web.Services.Concrete
                         }
                         var imageUrl = employee.EtedPhotograph.Split("base64,");
                         var photographByte = Convert.FromBase64String(imageUrl.Count() > 1 ? imageUrl[1] : imageUrl[0]);
-                        targetPathProfile += $"{employee.EtedFirstName}-{employee.EtedLastName}_{employee.EtedEmployeeId}.png";
+                        targetPathProfile += $"{employee.EtedFirstName}-{employee.EtedLastName}_{employee.EtedEmployeeId}.jpg";
                         using (FileStream fs = new FileStream(targetPathProfile, FileMode.Create, FileAccess.Write))
                         {
                             fs.Write(photographByte);
@@ -381,7 +381,7 @@ namespace Web.Services.Concrete
                             }
                             var imageUrl = empAcad.EtaqUploadDocuments.Split("base64,");
                             var uploadDocumentsByte = Convert.FromBase64String(imageUrl.Count() > 1 ? imageUrl[1] : imageUrl[0]);
-                            targetPathAcademicQual += $"{employee.EtedFirstName}-{employee.EtedLastName}_{employee.EtedEmployeeId}_{empAcad.EtaqInstituteName}.docx";
+                            targetPathAcademicQual += $"{employee.EtedFirstName}-{employee.EtedLastName}_{employee.EtedEmployeeId}_{empAcad.EtaqInstituteName}.jpg";
                             using (FileStream fs = new FileStream(targetPathAcademicQual, FileMode.Create, FileAccess.Write))
                             {
                                 fs.Write(uploadDocumentsByte);
@@ -443,7 +443,7 @@ namespace Web.Services.Concrete
                             }
                             var imageUrl = empProfQual.EtpqDocuments.Split("base64,");
                             var documentsByte = Convert.FromBase64String(imageUrl.Count() > 1 ? imageUrl[1] : imageUrl[0]);
-                            targetPathProfQual += $"{employee.EtedFirstName}-{employee.EtedLastName}_{employee.EtedEmployeeId}_{empProfQual.EtpqInstituteName}.png";
+                            targetPathProfQual += $"{employee.EtedFirstName}-{employee.EtedLastName}_{employee.EtedEmployeeId}_{empProfQual.EtpqInstituteName}.jpg";
                             using (FileStream fs = new FileStream(targetPathProfQual, FileMode.Create, FileAccess.Write))
                             {
                                 fs.Write(documentsByte);
@@ -531,24 +531,6 @@ namespace Web.Services.Concrete
                     { 
                     _employeeContactRepository.Update(_emsTblEmergencyContactList1.ToList());
                     }
-                    var _emsTblEmergencyContactList = employee.EmsTblEmergencyContact.Where(z => z.EtecEcId == 0).Select(x => new EmsTblEmergencyContact
-                    {
-                        
-                        EtecEtedEmployeeId=employee.EtedEmployeeId,
-                        EtecFirstName = x.EtecFirstName,
-                        EtecLastName = x.EtecLastName,
-                        EtecRelation = x.EtecRelation,
-                        EtecContactNumber = x.EtecContactNumber,
-                        EtecAddress = x.EtecAddress,
-                        EtecCreatedBy = x.EtecCreatedBy,
-                        EtecCreatedByDate = DateTime.Now,
-                        EtecCreatedByName = x.EtecCreatedByName,
-                        EtecIsDelete = false,
-                    });
-                    if (_emsTblEmergencyContactList.Count() > 0)
-                    {
-                        _employeeContactRepository.Insert(_emsTblEmergencyContactList.ToList());
-                    }
                 }
 
                 if (employee.EmsTblWorkingHistory.Count > 0)
@@ -566,7 +548,7 @@ namespace Web.Services.Concrete
                             }
                             var imageUrl = empWork.EtwhExperienceLetter.Split("base64,");
                             var experienceLetterByte = Convert.FromBase64String(imageUrl[1]);
-                            targetPathWork += $"{employee.EtedFirstName}-{employee.EtedLastName}_{employee.EtedEmployeeId}_{empWork.EtwhDesignation}.png";
+                            targetPathWork += $"{employee.EtedFirstName}-{employee.EtedLastName}_{employee.EtedEmployeeId}_{empWork.EtwhDesignation}.jpg";
                             using (FileStream fs = new FileStream(targetPathWork, FileMode.Create, FileAccess.Write))
                             {
                                 fs.Write(experienceLetterByte);
