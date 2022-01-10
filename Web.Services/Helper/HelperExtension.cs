@@ -20,7 +20,7 @@ namespace Web.Services.Helper
             {
                 a= ".doc";
             }
-            else if (FileType == "application/jpeg" || FileType == "application/jpg" || FileType == "application/png")
+            else if (FileType == "image/jpeg" || FileType == "image/jpg" || FileType == "image/png")
             {
                 a= ".jpg";
             }

@@ -343,7 +343,7 @@ namespace Web.Services.Concrete
                 }
                 else
                 {
-                    employee.EtedPhotograph = this._hrmsemployeeRepository.Table.FirstOrDefault(e => e.EtedEmployeeId == employee.EtedEmployeeId && e.EtedIsDelete != true).EtedPhotograph.ToString();
+                    employee.EtedPhotograph = _hrmsemployeeRepository.Table.Where(e => e.EtedEmployeeId == employee.EtedEmployeeId && e.EtedIsDelete != true).Select(x=>x.EtedPhotograph).FirstOrDefault();
                 }
 
 
@@ -395,6 +395,10 @@ namespace Web.Services.Concrete
                             }
                             empAcad.EtaqUploadDocuments = targetPathAcademicQual.Replace(RootPath, "").Replace("\\", "/");
                         }
+                        else
+                        {
+                            empAcad.EtaqUploadDocuments = _hrmsacademicrepository.Table.Where(x => x.EtaqAqId == empAcad.EtaqAqId).Select(z=>z.EtaqUploadDocuments).FirstOrDefault();
+                        }
                     }
                     var _emsTblAcademicQualificationList = employee.EmsTblAcademicQualification.Where(z => z.EtaqAqId > 0).Select(x => new EmsTblAcademicQualification
                     {
@@ -416,7 +420,6 @@ namespace Web.Services.Concrete
                     }
                     var _emsTblAcademicQualificationList1 = employee.EmsTblAcademicQualification.Where(z => z.EtaqAqId == 0).Select(x => new EmsTblAcademicQualification
                     {
-                        EtaqAqId = x.EtaqAqId,
                         EtaqUploadDocuments = x.EtaqUploadDocuments,
                         EtaqEtedEmployeeId = employee.EtedEmployeeId,
                         EtaqInstituteName = x.EtaqInstituteName,
@@ -458,6 +461,10 @@ namespace Web.Services.Concrete
                                 fs.Write(documentsByte);
                             }
                             empProfQual.EtpqDocuments = targetPathProfQual.Replace(RootPath, "").Replace("\\", "/");
+                        }
+                        else
+                        {
+                            empProfQual.EtpqDocuments = _hrmsprofessionalrepository.Table.Where(x => x.EtpqPqId == empProfQual.EtpqPqId).Select(z => z.EtpqDocuments).FirstOrDefault();
                         }
                     }
                     var _emsTblProfessionalQualificationList = employee.EmsTblProfessionalQualification.Where(z => z.EtpqPqId > 0).Select(x => new EmsTblProfessionalQualification
@@ -540,6 +547,25 @@ namespace Web.Services.Concrete
                     {
                         _employeeContactRepository.Update(_emsTblEmergencyContactList1.ToList());
                     }
+
+                    var _emsTblEmergencyContactList = employee.EmsTblEmergencyContact.Where(z => z.EtecEcId == 0).Select(x => new EmsTblEmergencyContact
+                    {
+                        
+                        EtecEtedEmployeeId = employee.EtedEmployeeId,
+                        EtecFirstName = x.EtecFirstName,
+                        EtecLastName = x.EtecLastName,
+                        EtecRelation = x.EtecRelation,
+                        EtecContactNumber = x.EtecContactNumber,
+                        EtecAddress = x.EtecAddress,
+                        EtecCreatedBy = x.EtecCreatedBy,
+                        EtecCreatedByDate = DateTime.Now,
+                        EtecCreatedByName = x.EtecCreatedByName,
+                        EtecIsDelete = false,
+                    });
+                    if (_emsTblEmergencyContactList1.Count() > 0)
+                    {
+                        _employeeContactRepository.Insert(_emsTblEmergencyContactList.ToList());
+                    }
                 }
 
                 if (employee.EmsTblWorkingHistory.Count > 0)
@@ -565,6 +591,10 @@ namespace Web.Services.Concrete
                                 fs.Write(experienceLetterByte);
                             }
                             empWork.EtwhExperienceLetter = targetPathWork.Replace(RootPath, "").Replace("\\", "/");
+                        }
+                        else
+                        {
+                            empWork.EtwhExperienceLetter = _workinghistoryRepository.Table.Where(x => x.EtwhWhId == empWork.EtwhWhId).Select(z => z.EtwhExperienceLetter).FirstOrDefault();
                         }
                     }
 
