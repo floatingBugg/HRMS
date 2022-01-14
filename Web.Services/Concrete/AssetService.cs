@@ -31,7 +31,7 @@ namespace Web.Services.Concrete
         public BaseResponse createAsset(ImsAssetsVM asset)
         {
             BaseResponse response = new BaseResponse();
-            if (!string.IsNullOrEmpty(asset.ItaAssetName)){
+            if (!string.IsNullOrEmpty(asset.ItaAssetName) && !string.IsNullOrWhiteSpace(asset.ItaAssetName)){
                 ImsAssets imsAsset = new ImsAssets();
 
                 imsAsset.ItaAssetName = asset.ItaAssetName;
@@ -136,7 +136,9 @@ namespace Web.Services.Concrete
             bool count = _hrmsassetRepository.Table.Count() > 0;
             var empid = _hrmsassetRepository.Table.Where(z => z.ItaIsDelete == false && z.ItacCategoryId == type)/*.Select(x => x.EtedEmployeeId)*/;
             var assetData = _hrmsassetRepository.Table.Where(z => z.ItaIsDelete == false && z.ItacCategoryId == type && z.ItaRemaining>0).Select(x =>  new AssetCredential
-            {   assetname=x.ItaAssetName,
+            {   
+                assetid=x.ItaAssetId,
+                assetname=x.ItaAssetName,
                 serialno=x.ItaSerialNo,
                 companyname = x.ItaCompanyName,
                 processor = x.ItaProcessor,

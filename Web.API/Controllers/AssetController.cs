@@ -107,7 +107,7 @@ namespace Web.API.Controllers
             }
         }
 
-        [HttpGet("Asset/GetAllQuantity")]
+        [HttpGet("/Asset/GetAllQuantity")]
         public BaseResponse getTotalQuantityLaptop(int categoryid)
         {
             BaseResponse response = new BaseResponse();
