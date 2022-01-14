@@ -251,7 +251,7 @@ namespace Web.Services.Concrete
                           }).ToList();
             
             response.Data = totalCost;
-            response.Success = false;
+            response.Success = true;
             response.Message = "Sum Caluclated";
             return response;
         }

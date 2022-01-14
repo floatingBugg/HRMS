@@ -41,7 +41,7 @@ namespace Web.Services.Concrete
             assigned = assigned + assign.ItasQuantity;
             remaining = remaining - assign.ItasQuantity;
             
-            if (!string.IsNullOrEmpty(assign.ItasCreatedBy)&& remaining>0)
+            if (/*!string.IsNullOrEmpty(assign.ItasQuantity)&&*/ remaining>0)
             {
                 ImsAssign imsAssign = new ImsAssign();
 
@@ -49,6 +49,7 @@ namespace Web.Services.Concrete
                 imsAssign.ItasItaAssetId = assign.ItasItaAssetId;
                 imsAssign.ItasEtedEmployeeId = assign.ItasEtedEmployeeId;
                 imsAssign.ItasQuantity = assign.ItasQuantity;
+                imsAssign.ItasAssignedDate = assign.ItasAssignedDate;
                 imsAssign.ItasCreatedBy = assign.ItasCreatedBy;
                 imsAssign.ItasCreatedByName = assign.ItasCreatedByName;
                 imsAssign.ItasCreatedByDate = DateTime.Now;
