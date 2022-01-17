@@ -152,7 +152,7 @@ namespace Web.Services.Concrete
                 companyname = _hrmsassetRepository.Table.Where(y => y.ItaAssetId == x.ItasItaAssetId).Select(z => z.ItaCompanyName).FirstOrDefault(),
                 quantity = x.ItasQuantity,
                 assingeto = _hrmsemployeeRepository.Table.Where(y => y.EtedEmployeeId == x.ItasEtedEmployeeId && y.EtedIsDelete==false).Select(p=>p.EtedFirstName+" "+p.EtedLastName).FirstOrDefault(),
-
+                type=_hrmsassetRepository.Table.Where(y=>y.ItaAssetId==x.ItasItaAssetId).Select(z=>z.ItaType).FirstOrDefault(),
             }).ToList().OrderByDescending(x => x.assetid);
 
             if (count == true)
