@@ -11,6 +11,14 @@ namespace Web.Model.Common
         public int empid { get; set; }
         public int assetid { get; set; }
         public string assetname { get; set; }
+
+        public string processor { get; set; }
+
+        public string ram { get; set; }
+
+        public string storage { get; set; }
+
+        public string generation { get; set; }
         public string model { get; set; }
         public string companyname { get; set; }
         public int? quantity { get; set; }

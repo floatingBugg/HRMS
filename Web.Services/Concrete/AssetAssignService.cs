@@ -41,7 +41,7 @@ namespace Web.Services.Concrete
             assigned = assigned + assign.ItasQuantity;
             remaining = remaining - assign.ItasQuantity;
             
-            if (/*!string.IsNullOrEmpty(assign.ItasQuantity)&&*/ remaining>0)
+            if (/*!string.IsNullOrEmpty(assign.ItasQuantity)&&*/ remaining>=0)
             {
                 ImsAssign imsAssign = new ImsAssign();
 
@@ -144,6 +144,10 @@ namespace Web.Services.Concrete
             {
                 assetname = _hrmsassetRepository.Table.Where(y=>y.ItaAssetId==x.ItasItaAssetId).Select(z=>z.ItaAssetName).FirstOrDefault(),
                 model = _hrmsassetRepository.Table.Where(y => y.ItaAssetId == x.ItasItaAssetId).Select(z => z.ItaModel).FirstOrDefault(),
+                processor= _hrmsassetRepository.Table.Where(y => y.ItaAssetId == x.ItasItaAssetId).Select(z => z.ItaProcessor).FirstOrDefault(),
+                generation= _hrmsassetRepository.Table.Where(y => y.ItaAssetId == x.ItasItaAssetId).Select(z => z.ItaGeneration).FirstOrDefault(),
+                storage= _hrmsassetRepository.Table.Where(y => y.ItaAssetId == x.ItasItaAssetId).Select(z => z.ItaStorage).FirstOrDefault(),
+                ram = _hrmsassetRepository.Table.Where(y => y.ItaAssetId == x.ItasItaAssetId).Select(z => z.ItaRam).FirstOrDefault(),
                 companyname = _hrmsassetRepository.Table.Where(y => y.ItaAssetId == x.ItasItaAssetId).Select(z => z.ItaCompanyName).FirstOrDefault(),
                 quantity = x.ItasQuantity,
                 assingeto = _hrmsemployeeRepository.Table.Where(y => y.EtedEmployeeId == x.ItasEtedEmployeeId && y.EtedIsDelete==false).Select(p=>p.EtedFirstName+" "+p.EtedLastName).FirstOrDefault(),
