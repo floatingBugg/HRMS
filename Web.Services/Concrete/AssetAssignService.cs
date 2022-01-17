@@ -94,8 +94,10 @@ namespace Web.Services.Concrete
             bool doesExistAlready = _hrmsassetassignRepository.Table.Count(p => p.ItasAssignId == assignid) > 0;
             bool isDeletedAlready = _hrmsassetassignRepository.Table.Count(p => p.ItasIsDelete == true && p.ItasAssignId == assignid) > 0;
             var remaining = _hrmsassetassignRepository.Table.Where(x => x.ItasAssignId == assignid).Select(y => y.ItasQuantity).FirstOrDefault();
+            var assetid= _hrmsassetassignRepository.Table.Where(x => x.ItasAssignId == assignid).Select(y => y.ItasItaAssetId).FirstOrDefault();
             if (doesExistAlready == true && isDeletedAlready == false)
             {
+
                 _hrmsassetassignRepository.Table.Where(p => p.ItasAssignId == assignid)
                       .ToList()
                       .ForEach(x =>
@@ -103,7 +105,7 @@ namespace Web.Services.Concrete
                           x.ItasQuantity = 0;
                           x.ItasIsDelete = true;
                       });
-                _hrmsassetRepository.Table.Where(p => p.ItaAssetId == assignid)
+                _hrmsassetRepository.Table.Where(p => p.ItaAssetId == assetid)
                       .ToList()
                       .ForEach(x =>
                       {
@@ -142,11 +144,13 @@ namespace Web.Services.Concrete
             /*var assignobj = _hrmsassetassignRepository.Table.Where(z => z.ItasItacCategoryId == type && z.ItasIsDelete == false).FirstOrDefault();*/
             var assetData = _hrmsassetassignRepository.Table.Where(z => z.ItasItacCategoryId == type && z.ItasIsDelete == false).Select(x => new AssetAssignGrid()
             {
+                assignid= x.ItasAssignId,
                 assetname = _hrmsassetRepository.Table.Where(y=>y.ItaAssetId==x.ItasItaAssetId).Select(z=>z.ItaAssetName).FirstOrDefault(),
                 model = _hrmsassetRepository.Table.Where(y => y.ItaAssetId == x.ItasItaAssetId).Select(z => z.ItaModel).FirstOrDefault(),
                 processor= _hrmsassetRepository.Table.Where(y => y.ItaAssetId == x.ItasItaAssetId).Select(z => z.ItaProcessor).FirstOrDefault(),
                 generation= _hrmsassetRepository.Table.Where(y => y.ItaAssetId == x.ItasItaAssetId).Select(z => z.ItaGeneration).FirstOrDefault(),
                 size= _hrmsassetRepository.Table.Where(y => y.ItaAssetId == x.ItasItaAssetId).Select(z => z.ItaSize ).FirstOrDefault(),
+                type= _hrmsassetRepository.Table.Where(y => y.ItaAssetId == x.ItasItaAssetId).Select(z => z.ItaType).FirstOrDefault(),
                 storage = _hrmsassetRepository.Table.Where(y => y.ItaAssetId == x.ItasItaAssetId).Select(z => z.ItaStorage).FirstOrDefault(),
                 ram = _hrmsassetRepository.Table.Where(y => y.ItaAssetId == x.ItasItaAssetId).Select(z => z.ItaRam).FirstOrDefault(),
                 companyname = _hrmsassetRepository.Table.Where(y => y.ItaAssetId == x.ItasItaAssetId).Select(z => z.ItaCompanyName).FirstOrDefault(),

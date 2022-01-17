@@ -9,6 +9,9 @@ namespace Web.Model.Common
     public class AssetAssignGrid
     {
         public int empid { get; set; }
+
+        public int assignid { get; set; }
+
         public int assetid { get; set; }
         public string assetname { get; set; }
 
