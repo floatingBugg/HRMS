@@ -15,6 +15,7 @@ namespace Web.Model.Common
         public string processor { get; set; }
 
         public string ram { get; set; }
+        public string size { get; set; }
 
         public string storage { get; set; }
 
