@@ -165,24 +165,28 @@ namespace Web.Services.Concrete
             BaseResponse response = new BaseResponse();
 
             bool count = _hrmsassetRepository.Table.Where(z => z.ItaIsDelete == false && z.ItaAssetId == id).Count() > 0;
-            var assetdata=_hrmsassetRepository.Table.Where(x => x.ItaAssetId == id && x.ItaIsDelete == false).Select(x => new AssetCredential
+            var assetdata=_hrmsassetRepository.Table.Where(x => x.ItaAssetId == id && x.ItaIsDelete == false).Select(x => new ImsAssets
             {
-                assetname=x.ItaAssetName,
-                serialno=x.ItaSerialNo,
-                model=x.ItaModel,
-                companyname=x.ItaCompanyName,
-                type=x.ItaType,
-                size=x.ItaSize,
-                condition=x.ItaCondition,
-                generation=x.ItaGeneration,
-                ram=x.ItaRam,
-                processor=x.ItaProcessor,
-                storage=x.ItaStorage,
-                hardtype=x.ItaHardriveType
+                ItaAssetName=x.ItaAssetName,
+                ItaSerialNo=x.ItaSerialNo,
+                ItaModel=x.ItaModel,
+                ItaCompanyName=x.ItaCompanyName,
+                ItaType=x.ItaType,
+                ItaSize=x.ItaSize,
+                ItaCondition=x.ItaCondition,
+                ItaGeneration=x.ItaGeneration,
+                ItaRam=x.ItaRam,
+                ItaProcessor=x.ItaProcessor,
+                ItaStorage=x.ItaStorage,
+                ItaHardriveType=x.ItaHardriveType,
+                ItaPurchaseDate=x.ItaPurchaseDate,
+                ItaCost=x.ItaCost,
+                ItaQuantity=x.ItaQuantity,
+                ItaRemaining=x.ItaRemaining
 
 
 
-            }).ToList().OrderByDescending(x=>x.assetid).Take(10);
+            }).ToList().OrderByDescending(x=>x.ItaAssetId);
 
             if (count == true)
             {

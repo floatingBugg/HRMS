@@ -30,6 +30,8 @@ namespace Web.Model.Common
 
       
 
+      
+
         public string hardtype { get; set; }
 
         public DateTime purchaseddate { get; set; }
