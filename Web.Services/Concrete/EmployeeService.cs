@@ -24,10 +24,11 @@ namespace Web.Services.Concrete
         private readonly IHRMSEmployeeContactRepository _employeeContactRepository;
         private readonly IHRMSEmployeeWorkingHistoryRepository _workinghistoryRepository;
         private readonly IHRMSProfessionalDetailsRepository _hrmsprofessionaldetailsrepository;
+        private readonly IHRMSUserAuthRepository _hrmsUserAuthRepository;
 
         IConfiguration _config;
         private readonly IUnitOfWork _uow;
-        public EmployeeService(IConfiguration config, IHRMSEmployeeRepository hrmsemployeeRepository, IHRMSAcademicRepository hRMSAcademicRepository, IHRMSEmployeeContactRepository employeeContactRepository, IHRMSPRofessionalRepository hRMSProfessionalRepository, IHRMSEmployeeWorkingHistoryRepository workingHistoryRepository, IHRMSProfessionalDetailsRepository hRMSProfessionalDetailsRepository, IUnitOfWork uow)
+        public EmployeeService(IConfiguration config, IHRMSUserAuthRepository hrmsUserAuthRepository, IHRMSEmployeeRepository hrmsemployeeRepository, IHRMSAcademicRepository hRMSAcademicRepository, IHRMSEmployeeContactRepository employeeContactRepository, IHRMSPRofessionalRepository hRMSProfessionalRepository, IHRMSEmployeeWorkingHistoryRepository workingHistoryRepository, IHRMSProfessionalDetailsRepository hRMSProfessionalDetailsRepository, IUnitOfWork uow)
         {
             _config = config;
             _hrmsemployeeRepository = hrmsemployeeRepository;
@@ -36,6 +37,7 @@ namespace Web.Services.Concrete
             _hrmsprofessionalrepository = hRMSProfessionalRepository;
             _workinghistoryRepository = workingHistoryRepository;
             _hrmsprofessionaldetailsrepository = hRMSProfessionalDetailsRepository;
+            _hrmsUserAuthRepository = hrmsUserAuthRepository;
             _uow = uow;
         }
 
@@ -79,6 +81,8 @@ namespace Web.Services.Concrete
             bool doesEmailExistAlready = _hrmsemployeeRepository.Table.Count(p => p.EtedEmailAddress == employee.EtedEmailAddress) > 0;
             bool doesCNICExistAlready = _hrmsemployeeRepository.Table.Count(p => p.EtedCnic == employee.EtedCnic) > 0;
             EmsTblEmployeeDetails emsTblEmployeeDetails = new EmsTblEmployeeDetails();
+            EmsTblHrmsUser emsuser = new EmsTblHrmsUser();
+
             //Employee Details
 
             if (!string.IsNullOrEmpty(employee.EtedCreatedBy) && !string.IsNullOrEmpty(employee.EtedCreatedByName)
