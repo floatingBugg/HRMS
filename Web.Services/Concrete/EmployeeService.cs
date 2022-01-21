@@ -78,7 +78,7 @@ namespace Web.Services.Concrete
         {
 
             BaseResponse response = new BaseResponse();
-            bool doesEmailExistAlready = _hrmsemployeeRepository.Table.Count(p => p.EtedEmailAddress == employee.EtedEmailAddress) > 0;
+            bool doesEmailExistAlready = _hrmsemployeeRepository.Table.Count(p => p.EtedOfficialEmailAddress == employee.EtedOfficialEmailAddress) > 0;
             bool doesCNICExistAlready = _hrmsemployeeRepository.Table.Count(p => p.EtedCnic == employee.EtedCnic) > 0;
             EmsTblEmployeeDetails emsTblEmployeeDetails = new EmsTblEmployeeDetails();
             EmsTblHrmsUser emsuser = new EmsTblHrmsUser();
