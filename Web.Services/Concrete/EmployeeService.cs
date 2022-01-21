@@ -109,7 +109,8 @@ namespace Web.Services.Concrete
                     }
                     employee.EtedPhotograph = targetPathProfile.Replace(RootPath, "").Replace("\\", "/");
                 }
-
+                //HRMS
+                    
                 emsTblEmployeeDetails.EtedFirstName = employee.EtedFirstName;
                 emsTblEmployeeDetails.EtedLastName = employee.EtedLastName;
                 emsTblEmployeeDetails.EtedEmailAddress = employee.EtedEmailAddress;
@@ -130,6 +131,21 @@ namespace Web.Services.Concrete
                 emsTblEmployeeDetails.EtedCreatedByDate = DateTime.Now;
                 emsTblEmployeeDetails.EtedIsDelete = false;
                 _hrmsemployeeRepository.Insert(emsTblEmployeeDetails);
+                
+                //HRMS
+                emsuser.EtrEthuRoleId = employee.EtrEthuRoleId;
+                emsuser.EthuFullName = employee.EtedFirstName + " " + employee.EtedLastName;
+                emsuser.EthuUserName = emsTblEmployeeDetails.EtedFirstName + emsTblEmployeeDetails.EtedEmployeeId;
+                emsuser.EthuGender = employee.EtedGender;
+                emsuser.EthuEmailAddress = employee.EtedOfficialEmailAddress;
+                emsuser.EthuPhoneNumber = employee.EtedContactNumber;
+                emsuser.EthuPassword = employee.EthuPassword;
+                emsuser.EthuIsDelete = false;
+                emsuser.EthuCreatedBy = employee.EtedCreatedBy;
+                emsuser.EthuCreatedByName = employee.EtedCreatedByName;
+                emsuser.EthuCreatedByDate = employee.EtedCreatedByDate;
+
+                _hrmsUserAuthRepository.Insert(emsuser);
                 //Academic
                 if (employee.EmsTblAcademicQualification.Count > 0)
                 {
