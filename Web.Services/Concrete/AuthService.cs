@@ -79,7 +79,8 @@ namespace Web.Services.Concrete
                 token = new JwtSecurityTokenHandler().WriteToken(token),
                 expires = tokenExpiryTime,
                 userId = userid,
-                userName = username
+                userName = username,
+                roleid,
             };
         }
       
