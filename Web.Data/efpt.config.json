@@ -38,6 +38,10 @@
          "ObjectType": 0
       },
       {
+         "Name": "[dbo].[ems_tbl_roles]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[dbo].[ems_tbl_working_history]",
          "ObjectType": 0
       },
@@ -51,14 +55,6 @@
       },
       {
          "Name": "[dbo].[ims_assign]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[rms_tbl_position_applied]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[rms_tbl_recruiter]",
          "ObjectType": 0
       }
    ],

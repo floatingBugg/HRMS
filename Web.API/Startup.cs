@@ -110,8 +110,7 @@ namespace Web.API
             services.AddTransient(typeof(IAssetCategoryService), typeof(AssetCategoryService));
             services.AddTransient(typeof(IAssetService), typeof(AssetService));
             services.AddTransient(typeof(IAssetAssignService), typeof(AssetAssignService));
-            services.AddTransient(typeof(IRecruiterService), typeof(RecruiterService));
-            services.AddTransient(typeof(IPositionAppliedService), typeof(PositionAppliedService));
+      
 
 
             //Register Employee Services 
@@ -134,8 +133,7 @@ namespace Web.API
 
             //Register Recruiter Service
 
-            services.AddTransient(typeof(IHRMSRecruiterRepository), typeof(HRMSRecruiterRepository));
-            services.AddTransient(typeof(IHRMSPositionAppliedRepository), typeof(HRMSPositionAppliedRepository));
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

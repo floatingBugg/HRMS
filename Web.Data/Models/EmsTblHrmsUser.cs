@@ -8,6 +8,7 @@ namespace Web.Data.Models
     public partial class EmsTblHrmsUser
     {
         public int EthuUserId { get; set; }
+        public int EtrEthuRoleId { get; set; }
         public string EthuFullName { get; set; }
         public string EthuUserName { get; set; }
         public string EthuEmailAddress { get; set; }
@@ -21,5 +22,7 @@ namespace Web.Data.Models
         public string EthuModifiedByName { get; set; }
         public DateTime? EthuModifiedByDate { get; set; }
         public bool? EthuIsDelete { get; set; }
+
+        public virtual EmsTblRoles EtrEthuRole { get; set; }
     }
 }

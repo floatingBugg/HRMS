@@ -33,6 +33,8 @@ namespace Web.Data.Models
         public string EtedReligion { get; set; }
         public string EtedNationality { get; set; }
         public string EtedStatus { get; set; }
+        public int? EtedManagerId { get; set; }
+        public bool? EtedIsManager { get; set; }
         public string EtedCreatedBy { get; set; }
         public string EtedCreatedByName { get; set; }
         public DateTime? EtedCreatedByDate { get; set; }
