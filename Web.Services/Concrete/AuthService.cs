@@ -81,7 +81,8 @@ namespace Web.Services.Concrete
                 expires = tokenExpiryTime,
                 userId = userid,
                 userName = username,
-                roleid,
+                roleId,
+                empid,
             };
         }
       
