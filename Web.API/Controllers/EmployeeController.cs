@@ -31,15 +31,34 @@ namespace Web.API.Controllers
         }
 
         [HttpGet("/Employee/DisplayAllEmployees")]
-        public BaseResponse GetAllEmployee(int roleid)
+        public BaseResponse GetAllEmployee()
         {
             BaseResponse response = new BaseResponse();
             try
             {
-                response = _employeeservice.GetAllEmployee(roleid);
+                response = _employeeservice.GetAllEmployee();
                  return response;
             }
             catch(Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+        }
+
+        [HttpGet("/Employee/DisplayAllEmployeesbyRoles")]
+        public BaseResponse GetAllEmployeebyRoles(int roleid,int empid)
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                response = _employeeservice.GetAllEmployee(roleid,empid);
+                return response;
+            }
+            catch (Exception ex)
             {
                 _logger.LogExceptions(ex);
                 response.Data = null;
