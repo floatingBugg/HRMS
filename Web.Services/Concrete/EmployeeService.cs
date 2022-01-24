@@ -78,7 +78,7 @@ namespace Web.Services.Concrete
 
         public BaseResponse GetAllEmployee(int roleid,int empid)
         {
-
+            
             BaseResponse response = new BaseResponse();
             List<DisplayEmployeeGrid> empCred = new List<DisplayEmployeeGrid>();
             bool count = _hrmsemployeeRepository.Table.Count() > 0;
@@ -124,7 +124,8 @@ namespace Web.Services.Concrete
                 response.Message = UserMessages.strSuccess;
 
 
-            }
+                }
+            
             else
             {
                 response.Data = null;
