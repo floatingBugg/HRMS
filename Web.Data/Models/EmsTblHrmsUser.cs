@@ -24,7 +24,6 @@ namespace Web.Data.Models
         public DateTime? EthuModifiedByDate { get; set; }
         public bool? EthuIsDelete { get; set; }
 
-        public virtual EmsTblEmployeeDetails EtedEthuEmp { get; set; }
         public virtual EmsTblRoles EtrEthuRole { get; set; }
     }
 }
