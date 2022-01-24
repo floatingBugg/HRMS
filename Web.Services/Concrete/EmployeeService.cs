@@ -42,13 +42,23 @@ namespace Web.Services.Concrete
         }
 
 
-        public BaseResponse GetAllEmployee(int roleid)
+        public BaseResponse GetAllEmployee(int roleid,int empid)
         {
 
             BaseResponse response = new BaseResponse();
             List<DisplayEmployeeGrid> empCred = new List<DisplayEmployeeGrid>();
             bool count = _hrmsemployeeRepository.Table.Count() > 0;
-            if (roleid == 1) { 
+            
+            var employeeData = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false && z.EtedEmployeeId==empid).Select(x => new DisplayEmployeeGrid()
+            {
+                empID = x.EtedEmployeeId,
+                fullName = x.EtedFirstName,
+                emailAddress = x.EtedEmailAddress,
+                contactNumber = x.EtedContactNumber,
+                empDesignation = x.EmsTblEmployeeProfessionalDetails.Count > 0 ? x.EmsTblEmployeeProfessionalDetails.Where(y => y.EtepdEtedEmployeeId == x.EtedEmployeeId).Select(z => z.EtepdDesignation).FirstOrDefault() : "Not assigned"
+            }).ToList().OrderByDescending(x => x.empID);
+
+            if (roleid == 1 || roleid == 2 ) { 
             var employeesData = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false).Select(x => new DisplayEmployeeGrid()
             {
                 empID = x.EtedEmployeeId,
@@ -59,13 +69,23 @@ namespace Web.Services.Concrete
             }).ToList().OrderByDescending(x => x.empID);
                 response.Data = employeesData;
             }
-            else if (roleid == 2)
-            {
 
+            else if (roleid == 3)
+            {
+                var employeesData = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false && z.EtedManagerId==empid).Select(x => new DisplayEmployeeGrid()
+                {
+                    empID = x.EtedEmployeeId,
+                    fullName = x.EtedFirstName,
+                    emailAddress = x.EtedEmailAddress,
+                    contactNumber = x.EtedContactNumber,
+                    empDesignation = x.EmsTblEmployeeProfessionalDetails.Count > 0 ? x.EmsTblEmployeeProfessionalDetails.Where(y => y.EtepdEtedEmployeeId == x.EtedEmployeeId).Select(z => z.EtepdDesignation).FirstOrDefault() : "Not assigned"
+                }).ToList().OrderByDescending(x => x.empID);
+                response.Data = employeesData;
             }
+
             if (count == true)
             {
-                
+                response.Data2 = employeeData;
                 response.Success = true;
                 response.Message = UserMessages.strSuccess;
 

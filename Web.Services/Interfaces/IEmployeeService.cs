@@ -13,7 +13,7 @@ namespace Web.Services.Interfaces
 
         public BaseResponse UpdateEmployee(EmsTblEmployeeDetailsVM employee,string rootpath );
 
-        public BaseResponse GetAllEmployee(int roleid);
+        public BaseResponse GetAllEmployee(int roleid,int empid);
 
         public BaseResponse DeleteEmployee(int id);
 

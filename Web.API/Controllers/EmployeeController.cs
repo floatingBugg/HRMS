@@ -31,12 +31,12 @@ namespace Web.API.Controllers
         }
 
         [HttpGet("/Employee/DisplayAllEmployees")]
-        public BaseResponse GetAllEmployee()
+        public BaseResponse GetAllEmployee(int roleid)
         {
             BaseResponse response = new BaseResponse();
             try
             {
-                response = _employeeservice.GetAllEmployee();
+                response = _employeeservice.GetAllEmployee(roleid);
                  return response;
             }
             catch(Exception ex)
