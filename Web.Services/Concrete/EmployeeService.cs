@@ -56,11 +56,19 @@ namespace Web.Services.Concrete
                 empDesignation = x.EmsTblEmployeeProfessionalDetails.Count > 0 ? x.EmsTblEmployeeProfessionalDetails.Where(y => y.EtepdEtedEmployeeId == x.EtedEmployeeId).Select(z => z.EtepdDesignation).FirstOrDefault() : "Not assigned"
             }).ToList().OrderByDescending(x => x.empID);
 
-           
+            var managerData = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false && z.EtedIsManager == true).Select(x => new DisplayEmployeeGrid()
+            {
+                empID = x.EtedEmployeeId,
+                fullName = x.EtedFirstName,
+                emailAddress = x.EtedEmailAddress,
+                contactNumber = x.EtedContactNumber,
+                empDesignation = x.EmsTblEmployeeProfessionalDetails.Count > 0 ? x.EmsTblEmployeeProfessionalDetails.Where(y => y.EtepdEtedEmployeeId == x.EtedEmployeeId).Select(z => z.EtepdDesignation).FirstOrDefault() : "Not assigned"
+            }).ToList().OrderByDescending(x => x.empID);
 
-           
+
             if (count == true)
             {
+                response.Data2 = managerData;
                 response.Data = employeesData;
                 response.Success = true;
                 response.Message = UserMessages.strSuccess;
@@ -84,6 +92,15 @@ namespace Web.Services.Concrete
             bool count = _hrmsemployeeRepository.Table.Count() > 0;
             
             var employeeData = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false && z.EtedEmployeeId==empid).Select(x => new DisplayEmployeeGrid()
+            {
+                empID = x.EtedEmployeeId,
+                fullName = x.EtedFirstName,
+                emailAddress = x.EtedEmailAddress,
+                contactNumber = x.EtedContactNumber,
+                empDesignation = x.EmsTblEmployeeProfessionalDetails.Count > 0 ? x.EmsTblEmployeeProfessionalDetails.Where(y => y.EtepdEtedEmployeeId == x.EtedEmployeeId).Select(z => z.EtepdDesignation).FirstOrDefault() : "Not assigned"
+            }).ToList().OrderByDescending(x => x.empID);
+
+            var managerData = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false && z.EtedIsManager == true).Select(x => new DisplayEmployeeGrid()
             {
                 empID = x.EtedEmployeeId,
                 fullName = x.EtedFirstName,
@@ -119,6 +136,7 @@ namespace Web.Services.Concrete
 
             if (count == true)
             {
+                response.Data3 = managerData;
                 response.Data2 = employeeData;
                 response.Success = true;
                 response.Message = UserMessages.strSuccess;

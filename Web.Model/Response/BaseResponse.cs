@@ -7,6 +7,8 @@
         public object Data { get; set; }
         public object Data2 { get; set; }
 
+        public object Data3 { get; set; }
+
 
 
     }
