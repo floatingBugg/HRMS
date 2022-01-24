@@ -2,6 +2,7 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Web.Data.Models
 {
@@ -21,7 +22,7 @@ namespace Web.Data.Models
         public string EtaqModifiedByName { get; set; }
         public DateTime? EtaqModifiedByDate { get; set; }
         public bool? EtaqIsDelete { get; set; }
-
+        [JsonIgnore]
         public virtual EmsTblEmployeeDetails EtaqEtedEmployee { get; set; }
     }
 }
