@@ -93,7 +93,7 @@ namespace Web.Services.Concrete
             }).ToList().OrderByDescending(x => x.empID);
 
             if (roleid == 1 || roleid == 2 ) { 
-            var employeesData = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false).Select(x => new DisplayEmployeeGrid()
+            var employeesData = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false && z.EtedEmployeeId!=empid).Select(x => new DisplayEmployeeGrid()
             {
                 empID = x.EtedEmployeeId,
                 fullName = x.EtedFirstName,
@@ -106,7 +106,7 @@ namespace Web.Services.Concrete
 
             else if (roleid == 3)
             {
-                var employeesData = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false && z.EtedManagerId==empid).Select(x => new DisplayEmployeeGrid()
+                var employeesData = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false && z.EtedManagerId==empid && z.EtedEmployeeId != empid).Select(x => new DisplayEmployeeGrid()
                 {
                     empID = x.EtedEmployeeId,
                     fullName = x.EtedFirstName,
@@ -191,6 +191,11 @@ namespace Web.Services.Concrete
                 emsTblEmployeeDetails.EtedCreatedByName = employee.EtedCreatedByName;
                 emsTblEmployeeDetails.EtedCreatedByDate = DateTime.Now;
                 emsTblEmployeeDetails.EtedIsDelete = false;
+                emsTblEmployeeDetails.EtedManagerId = employee.EtedManagerId;
+                if (employee.EtrEthuRoleId == 3) {
+
+                    emsTblEmployeeDetails.EtedIsManager = true;
+                }
                 _hrmsemployeeRepository.Insert(emsTblEmployeeDetails);
                 
                 //HRMS
