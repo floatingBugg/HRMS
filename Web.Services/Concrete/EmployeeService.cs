@@ -214,6 +214,10 @@ namespace Web.Services.Concrete
 
                     emsTblEmployeeDetails.EtedIsManager = true;
                 }
+                else 
+                {
+                    emsTblEmployeeDetails.EtedIsManager = false;
+                }
                 _hrmsemployeeRepository.Insert(emsTblEmployeeDetails);
                 
                 //HRMS
