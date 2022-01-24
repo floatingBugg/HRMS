@@ -12,6 +12,7 @@ namespace Web.Data.Models
             EmsTblAcademicQualification = new HashSet<EmsTblAcademicQualification>();
             EmsTblEmergencyContact = new HashSet<EmsTblEmergencyContact>();
             EmsTblEmployeeProfessionalDetails = new HashSet<EmsTblEmployeeProfessionalDetails>();
+            EmsTblHrmsUser = new HashSet<EmsTblHrmsUser>();
             EmsTblProfessionalQualification = new HashSet<EmsTblProfessionalQualification>();
             EmsTblWorkingHistory = new HashSet<EmsTblWorkingHistory>();
             ImsAssign = new HashSet<ImsAssign>();
@@ -46,6 +47,7 @@ namespace Web.Data.Models
         public virtual ICollection<EmsTblAcademicQualification> EmsTblAcademicQualification { get; set; }
         public virtual ICollection<EmsTblEmergencyContact> EmsTblEmergencyContact { get; set; }
         public virtual ICollection<EmsTblEmployeeProfessionalDetails> EmsTblEmployeeProfessionalDetails { get; set; }
+        public virtual ICollection<EmsTblHrmsUser> EmsTblHrmsUser { get; set; }
         public virtual ICollection<EmsTblProfessionalQualification> EmsTblProfessionalQualification { get; set; }
         public virtual ICollection<EmsTblWorkingHistory> EmsTblWorkingHistory { get; set; }
         public virtual ICollection<ImsAssign> ImsAssign { get; set; }

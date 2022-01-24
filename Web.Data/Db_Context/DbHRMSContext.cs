@@ -48,7 +48,7 @@ namespace Web.Data.Db_Context
             modelBuilder.Entity<EmsTblAcademicQualification>(entity =>
             {
                 entity.HasKey(e => e.EtaqAqId)
-                    .HasName("PK__ems_tbl___128BDF7824908789");
+                    .HasName("PK__ems_tbl___128BDF78FF97F1EF");
 
                 entity.ToTable("ems_tbl_academic_qualification");
 
@@ -89,13 +89,13 @@ namespace Web.Data.Db_Context
                 entity.HasOne(d => d.EtaqEtedEmployee)
                     .WithMany(p => p.EmsTblAcademicQualification)
                     .HasForeignKey(d => d.EtaqEtedEmployeeId)
-                    .HasConstraintName("FK__ems_tbl_a__etaq___000AF8CF");
+                    .HasConstraintName("FK__ems_tbl_a__etaq___253C7D7E");
             });
 
             modelBuilder.Entity<EmsTblEmergencyContact>(entity =>
             {
                 entity.HasKey(e => e.EtecEcId)
-                    .HasName("PK__ems_tbl___BBD724E903F25A17");
+                    .HasName("PK__ems_tbl___BBD724E92F27D73D");
 
                 entity.ToTable("ems_tbl_emergency_contact");
 
@@ -136,13 +136,13 @@ namespace Web.Data.Db_Context
                 entity.HasOne(d => d.EtecEtedEmployee)
                     .WithMany(p => p.EmsTblEmergencyContact)
                     .HasForeignKey(d => d.EtecEtedEmployeeId)
-                    .HasConstraintName("FK__ems_tbl_e__etec___00FF1D08");
+                    .HasConstraintName("FK__ems_tbl_e__etec___2630A1B7");
             });
 
             modelBuilder.Entity<EmsTblEmployeeDetails>(entity =>
             {
                 entity.HasKey(e => e.EtedEmployeeId)
-                    .HasName("PK__ems_tbl___516C46CD564BF72D");
+                    .HasName("PK__ems_tbl___516C46CD702B05B2");
 
                 entity.ToTable("ems_tbl_employee_details");
 
@@ -228,7 +228,7 @@ namespace Web.Data.Db_Context
             modelBuilder.Entity<EmsTblEmployeeProfessionalDetails>(entity =>
             {
                 entity.HasKey(e => e.EtepdPdId)
-                    .HasName("PK__ems_tbl___DBCDA814AC6A5470");
+                    .HasName("PK__ems_tbl___DBCDA814FC54D713");
 
                 entity.ToTable("ems_tbl_employee_professional_details");
 
@@ -269,17 +269,19 @@ namespace Web.Data.Db_Context
                 entity.HasOne(d => d.EtepdEtedEmployee)
                     .WithMany(p => p.EmsTblEmployeeProfessionalDetails)
                     .HasForeignKey(d => d.EtepdEtedEmployeeId)
-                    .HasConstraintName("FK__ems_tbl_e__etepd__01F34141");
+                    .HasConstraintName("FK__ems_tbl_e__etepd__2724C5F0");
             });
 
             modelBuilder.Entity<EmsTblHrmsUser>(entity =>
             {
                 entity.HasKey(e => e.EthuUserId)
-                    .HasName("PK__ems_tbl___7F2D16AC06E96A9F");
+                    .HasName("PK__ems_tbl___7F2D16ACC02BB40D");
 
                 entity.ToTable("ems_tbl_hrms_user");
 
                 entity.Property(e => e.EthuUserId).HasColumnName("ethu_user_id");
+
+                entity.Property(e => e.EtedEthuEmpId).HasColumnName("eted_ethu_emp_id");
 
                 entity.Property(e => e.EthuCreatedBy)
                     .HasMaxLength(100)
@@ -335,17 +337,23 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.EtrEthuRoleId).HasColumnName("etr_ethu_role_id");
 
+                entity.HasOne(d => d.EtedEthuEmp)
+                    .WithMany(p => p.EmsTblHrmsUser)
+                    .HasForeignKey(d => d.EtedEthuEmpId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__ems_tbl_h__eted___2AF556D4");
+
                 entity.HasOne(d => d.EtrEthuRole)
                     .WithMany(p => p.EmsTblHrmsUser)
                     .HasForeignKey(d => d.EtrEthuRoleId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__ems_tbl_h__etr_e__04CFADEC");
+                    .HasConstraintName("FK__ems_tbl_h__etr_e__2A01329B");
             });
 
             modelBuilder.Entity<EmsTblProfessionalQualification>(entity =>
             {
                 entity.HasKey(e => e.EtpqPqId)
-                    .HasName("PK__ems_tbl___E07F4F72C9E2422A");
+                    .HasName("PK__ems_tbl___E07F4F72D14B0F92");
 
                 entity.ToTable("ems_tbl_professional_qualification");
 
@@ -390,13 +398,13 @@ namespace Web.Data.Db_Context
                 entity.HasOne(d => d.EtpqEtedEmployee)
                     .WithMany(p => p.EmsTblProfessionalQualification)
                     .HasForeignKey(d => d.EtpqEtedEmployeeId)
-                    .HasConstraintName("FK__ems_tbl_p__etpq___02E7657A");
+                    .HasConstraintName("FK__ems_tbl_p__etpq___2818EA29");
             });
 
             modelBuilder.Entity<EmsTblRoles>(entity =>
             {
                 entity.HasKey(e => e.EtrRoleId)
-                    .HasName("PK__ems_tbl___4E47CA1E97886824");
+                    .HasName("PK__ems_tbl___4E47CA1ED3C84767");
 
                 entity.ToTable("ems_tbl_roles");
 
@@ -424,7 +432,7 @@ namespace Web.Data.Db_Context
             modelBuilder.Entity<EmsTblWorkingHistory>(entity =>
             {
                 entity.HasKey(e => e.EtwhWhId)
-                    .HasName("PK__ems_tbl___EE14BDFFAEE55224");
+                    .HasName("PK__ems_tbl___EE14BDFF6F3058DC");
 
                 entity.ToTable("ems_tbl_working_history");
 
@@ -471,13 +479,13 @@ namespace Web.Data.Db_Context
                 entity.HasOne(d => d.EtwhEtedEmployee)
                     .WithMany(p => p.EmsTblWorkingHistory)
                     .HasForeignKey(d => d.EtwhEtedEmployeeId)
-                    .HasConstraintName("FK__ems_tbl_w__etwh___03DB89B3");
+                    .HasConstraintName("FK__ems_tbl_w__etwh___290D0E62");
             });
 
             modelBuilder.Entity<ImsAssets>(entity =>
             {
                 entity.HasKey(e => e.ItaAssetId)
-                    .HasName("PK__ims_asse__B51DD0C3A60C0244");
+                    .HasName("PK__ims_asse__B51DD0C302ADDEAE");
 
                 entity.ToTable("ims_assets");
 
@@ -542,13 +550,13 @@ namespace Web.Data.Db_Context
                 entity.HasOne(d => d.ItacCategory)
                     .WithMany(p => p.ImsAssets)
                     .HasForeignKey(d => d.ItacCategoryId)
-                    .HasConstraintName("FK__ims_asset__itac___09946309");
+                    .HasConstraintName("FK__ims_asset__itac___2FBA0BF1");
             });
 
             modelBuilder.Entity<ImsAssetsCategory>(entity =>
             {
                 entity.HasKey(e => e.ItacCategoryId)
-                    .HasName("PK__ims_asse__30819A43439B976A");
+                    .HasName("PK__ims_asse__30819A438F9594CE");
 
                 entity.ToTable("ims_assets_category");
 
@@ -578,7 +586,7 @@ namespace Web.Data.Db_Context
             modelBuilder.Entity<ImsAssign>(entity =>
             {
                 entity.HasKey(e => e.ItasAssignId)
-                    .HasName("PK__ims_assi__9BC07BF3FC7AA90B");
+                    .HasName("PK__ims_assi__9BC07BF3324DB361");
 
                 entity.ToTable("ims_assign");
 
@@ -617,17 +625,17 @@ namespace Web.Data.Db_Context
                 entity.HasOne(d => d.ItasEtedEmployee)
                     .WithMany(p => p.ImsAssign)
                     .HasForeignKey(d => d.ItasEtedEmployeeId)
-                    .HasConstraintName("FK__ims_assig__itas___0D64F3ED");
+                    .HasConstraintName("FK__ims_assig__itas___338A9CD5");
 
                 entity.HasOne(d => d.ItasItaAsset)
                     .WithMany(p => p.ImsAssign)
                     .HasForeignKey(d => d.ItasItaAssetId)
-                    .HasConstraintName("FK__ims_assig__itas___0C70CFB4");
+                    .HasConstraintName("FK__ims_assig__itas___3296789C");
 
                 entity.HasOne(d => d.ItasItacCategory)
                     .WithMany(p => p.ImsAssign)
                     .HasForeignKey(d => d.ItasItacCategoryId)
-                    .HasConstraintName("FK__ims_assig__itas___0E591826");
+                    .HasConstraintName("FK__ims_assig__itas___347EC10E");
             });
 
             OnModelCreatingPartial(modelBuilder);

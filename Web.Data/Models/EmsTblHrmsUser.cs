@@ -15,6 +15,7 @@ namespace Web.Data.Models
         public string EthuPhoneNumber { get; set; }
         public string EthuPassword { get; set; }
         public string EthuGender { get; set; }
+        public int EtedEthuEmpId { get; set; }
         public string EthuCreatedBy { get; set; }
         public string EthuCreatedByName { get; set; }
         public DateTime? EthuCreatedByDate { get; set; }
@@ -23,6 +24,7 @@ namespace Web.Data.Models
         public DateTime? EthuModifiedByDate { get; set; }
         public bool? EthuIsDelete { get; set; }
 
+        public virtual EmsTblEmployeeDetails EtedEthuEmp { get; set; }
         public virtual EmsTblRoles EtrEthuRole { get; set; }
     }
 }

@@ -9,6 +9,7 @@ namespace Web.Model.ViewModel
     public class EmsTblEmployeeDetailsVM
     {
         public int EtedEmployeeId { get; set; }
+        public int EtedEthuEmpId { get; set; }
         public string EtedFirstName { get; set; }
         public string EtedLastName { get; set; }
         public string EtedEmailAddress { get; set; }

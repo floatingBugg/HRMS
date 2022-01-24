@@ -42,12 +42,13 @@ namespace Web.Services.Concrete
         }
 
 
-        public BaseResponse GetAllEmployee()
+        public BaseResponse GetAllEmployee(int roleid)
         {
 
             BaseResponse response = new BaseResponse();
             List<DisplayEmployeeGrid> empCred = new List<DisplayEmployeeGrid>();
             bool count = _hrmsemployeeRepository.Table.Count() > 0;
+            if (roleid == 1) { 
             var employeesData = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false).Select(x => new DisplayEmployeeGrid()
             {
                 empID = x.EtedEmployeeId,
@@ -56,10 +57,15 @@ namespace Web.Services.Concrete
                 contactNumber = x.EtedContactNumber,
                 empDesignation = x.EmsTblEmployeeProfessionalDetails.Count > 0 ? x.EmsTblEmployeeProfessionalDetails.Where(y => y.EtepdEtedEmployeeId == x.EtedEmployeeId).Select(z => z.EtepdDesignation).FirstOrDefault() : "Not assigned"
             }).ToList().OrderByDescending(x => x.empID);
+                response.Data = employeesData;
+            }
+            else if (roleid == 2)
+            {
 
+            }
             if (count == true)
             {
-                response.Data = employeesData;
+                
                 response.Success = true;
                 response.Message = UserMessages.strSuccess;
 
@@ -144,6 +150,7 @@ namespace Web.Services.Concrete
                 emsuser.EthuCreatedBy = employee.EtedCreatedBy;
                 emsuser.EthuCreatedByName = employee.EtedCreatedByName;
                 emsuser.EthuCreatedByDate = employee.EtedCreatedByDate;
+                emsuser.EtedEthuEmpId = emsTblEmployeeDetails.EtedEmployeeId;
 
                 _hrmsUserAuthRepository.Insert(emsuser);
                 //Academic
