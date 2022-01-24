@@ -36,7 +36,7 @@ namespace Web.Services.Concrete
                 var result = _hrmsUserAuthRepository.Table.Where(x => x.EthuEmailAddress == login.email && x.EthuPassword == login.password).FirstOrDefault();
                 if (result != null)
                 {
-                    response.Data = GenerateJSONWebToken(result.EthuFullName,result.EthuUserId,result.EtrEthuRoleId);
+                    response.Data = GenerateJSONWebToken(result.EthuFullName,result.EthuUserId,result.EtrEthuRoleId,result.EtedEthuEmpId);
                     response.Success = true;
                     response.Message = UserMessages.strUserfound;
                 }
@@ -50,7 +50,7 @@ namespace Web.Services.Concrete
             return response;
         }
 
-        public object GenerateJSONWebToken(string Username,int Userid,int Roleid)
+        public object GenerateJSONWebToken(string Username,int Userid,int Roleid,int Empid)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Secret"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
@@ -66,6 +66,7 @@ namespace Web.Services.Concrete
             var userid = Userid;
             var username = Username;
             var roleid = Roleid;
+            var empid = Empid;
             var token = new JwtSecurityToken(_config["Jwt:ValidIssuer"],
               _config["Jwt:ValidIssuer"],
               /*claims,*/
@@ -80,7 +81,8 @@ namespace Web.Services.Concrete
                 expires = tokenExpiryTime,
                 userId = userid,
                 userName = username,
-                roleid,
+                roleId=roleid,
+                empid=empid,
             };
         }
       
