@@ -149,5 +149,32 @@ namespace Web.API.Controllers
                 return response;
             }
         }
+
+        [HttpPost("/Dropdown/AddDropdownValue")]
+        public BaseResponse CreateDropdownvalue([FromBody] HrmsDropdownValueVM value)
+        {
+            var state = ModelState;
+            string projectRootPath = _hostEnvironment.WebRootPath;
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                var test = ModelState;
+                response = _employeeservice.CreateDropdownvalue(value);
+
+
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+        }
+
+
     }
 }
