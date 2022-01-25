@@ -870,7 +870,7 @@ namespace Web.Services.Concrete
             if (!string.IsNullOrEmpty(value.HdvValueName))
 
             {
-                hrmsdropdownvalue.HdvHdDropdownId=1 ;
+                hrmsdropdownvalue.HdvHdDropdownId=value.HdvHdDropdownId ;
                 hrmsdropdownvalue.HdvValueName = value.HdvValueName;
                 hrmsdropdownvalue.HdvCreatedBy = value.HdvCreatedBy;
                 hrmsdropdownvalue.HdvCreatedByName = value.HdvCreatedByName;
