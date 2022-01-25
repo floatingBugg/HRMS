@@ -176,7 +176,7 @@ namespace Web.API.Controllers
         }
 
         [HttpGet("/Employee/GetEmployeeDesignationbyID")]
-        public BaseResponse getDropdownvalue(int id)
+        public BaseResponse getEmployeeDesignation(int id)
         {
             BaseResponse response = new BaseResponse();
             try
