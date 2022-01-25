@@ -23,5 +23,7 @@ namespace Web.Services.Interfaces
         public BaseResponse CreateDropdownvalue(HrmsDropdownValueVM value);
 
         public BaseResponse getDropdownValuesByid(int id);
+
+        public BaseResponse getEmployeeUnderTeamLeadByid(int empid);
     }
 }

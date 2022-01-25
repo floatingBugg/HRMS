@@ -895,13 +895,38 @@ namespace Web.Services.Concrete
         {
             BaseResponse response = new BaseResponse();
 
-            bool count = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false && z.EtedEmployeeId == id).Count() > 0;
+            bool count = _hrmsdropdownvaluerepository.Table.Where(z => z.HdvIsDelete == false && z.HdvHdDropdownId == id).Count() > 0;
             var dropDownValueData = _hrmsdropdownvaluerepository.Table.Where(y => y.HdvHdDropdownId == id).Select(x => x.HdvValueName).ToList();
 
 
             if (count == true)
             {
                 response.Data = dropDownValueData;
+                response.Success = true;
+                response.Message = UserMessages.strSuccess;
+
+
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotfound;
+            }
+            return response;
+        }
+
+        public BaseResponse getEmployeeUnderTeamLeadByid(int empid)
+        {
+            BaseResponse response = new BaseResponse();
+
+            bool count = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false && z.EtedManagerId == empid).Count() > 0;
+            var employeeData = _hrmsemployeeRepository.Table.Where(y => y.EtedManagerId ==empid).ToList();
+
+
+            if (count == true)
+            {
+                response.Data = employeeData;
                 response.Success = true;
                 response.Message = UserMessages.strSuccess;
 

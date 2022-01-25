@@ -294,12 +294,12 @@ namespace Web.Services.Concrete
             return response;
         }
 
-        public BaseResponse ViewAllDataAssignByid()
+        public BaseResponse ViewAllDataAssign(int empid)
         {
             BaseResponse response = new BaseResponse();
 
-            bool count = _hrmsassetassignRepository.Table.Where(z => z.ItasIsDelete == false ).Count() > 0;
-            var assignData = _hrmsassetassignRepository.Table.Where(x => x.ItasIsDelete == false).ToList();
+            bool count = _hrmsassetassignRepository.Table.Where(z => z.ItasIsDelete == false).Count() > 0;
+            var assignData = _hrmsassetassignRepository.Table.Where(x => x.ItasIsDelete == false && x.ItasEtedEmployeeId==empid).ToList();
 
 
             if (count == true)
