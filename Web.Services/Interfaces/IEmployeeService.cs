@@ -21,5 +21,7 @@ namespace Web.Services.Interfaces
         public BaseResponse ViewDataEmployeeByid(int id);
 
         public BaseResponse CreateDropdownvalue(HrmsDropdownValueVM value);
+
+        public BaseResponse getDropdownValuesByid(int id);
     }
 }

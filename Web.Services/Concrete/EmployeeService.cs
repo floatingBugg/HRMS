@@ -891,6 +891,29 @@ namespace Web.Services.Concrete
 
             return response;
         }
-        
+        public BaseResponse getDropdownValuesByid(int id)
+        {
+            BaseResponse response = new BaseResponse();
+
+            bool count = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false && z.EtedEmployeeId == id).Count() > 0;
+            var dropDownValueData = _hrmsdropdownvaluerepository.Table.Where(y => y.HdvHdDropdownId == id).Select(x => x.HdvValueName).ToList();
+
+
+            if (count == true)
+            {
+                response.Data = dropDownValueData;
+                response.Success = true;
+                response.Message = UserMessages.strSuccess;
+
+
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotfound;
+            }
+            return response;
+        }
     }
 }

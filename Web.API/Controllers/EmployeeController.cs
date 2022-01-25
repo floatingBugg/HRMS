@@ -149,5 +149,27 @@ namespace Web.API.Controllers
                 return response;
             }
         }
+
+        [HttpGet("/Employee/GetEmployeeDesignationbyID")]
+        public BaseResponse getDropdownvalue(int id)
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                response = _employeeservice.getDropdownValuesByid(id);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+        }
+
+
+
     }
 }
