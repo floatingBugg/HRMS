@@ -150,6 +150,33 @@ namespace Web.API.Controllers
             }
         }
 
+        [HttpPost("/Dropdown/AddDropdownValue")]
+        public BaseResponse CreateDropdownvalue([FromBody] HrmsDropdownValueVM value)
+        {
+            var state = ModelState;
+            string projectRootPath = _hostEnvironment.WebRootPath;
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                var test = ModelState;
+                response = _employeeservice.CreateDropdownvalue(value);
+
+
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+        }
+
+
+
         [HttpGet("/Employee/GetEmployeeDesignationbyID")]
         public BaseResponse getDropdownvalue(int id)
         {
