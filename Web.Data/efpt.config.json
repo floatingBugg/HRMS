@@ -46,6 +46,14 @@
          "ObjectType": 0
       },
       {
+         "Name": "[dbo].[hrms_dropdown]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[hrms_dropdown_value]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[dbo].[ims_assets]",
          "ObjectType": 0
       },

@@ -28,6 +28,8 @@ namespace Web.Data.Db_Context
         public virtual DbSet<EmsTblProfessionalQualification> EmsTblProfessionalQualification { get; set; }
         public virtual DbSet<EmsTblRoles> EmsTblRoles { get; set; }
         public virtual DbSet<EmsTblWorkingHistory> EmsTblWorkingHistory { get; set; }
+        public virtual DbSet<HrmsDropdown> HrmsDropdown { get; set; }
+        public virtual DbSet<HrmsDropdownValue> HrmsDropdownValue { get; set; }
         public virtual DbSet<ImsAssets> ImsAssets { get; set; }
         public virtual DbSet<ImsAssetsCategory> ImsAssetsCategory { get; set; }
         public virtual DbSet<ImsAssign> ImsAssign { get; set; }
@@ -474,6 +476,69 @@ namespace Web.Data.Db_Context
                     .WithMany(p => p.EmsTblWorkingHistory)
                     .HasForeignKey(d => d.EtwhEtedEmployeeId)
                     .HasConstraintName("FK__ems_tbl_w__etwh___4F32B74A");
+            });
+
+            modelBuilder.Entity<HrmsDropdown>(entity =>
+            {
+                entity.HasKey(e => e.HdDropdownId)
+                    .HasName("PK__hrms_dro__74BD5D9CDA622157");
+
+                entity.ToTable("hrms_dropdown");
+
+                entity.Property(e => e.HdDropdownId).HasColumnName("hd_dropdown_id");
+
+                entity.Property(e => e.HdCreatedBy)
+                    .HasMaxLength(100)
+                    .HasColumnName("hd_created_by");
+
+                entity.Property(e => e.HdCreatedByDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("hd_created_by_date");
+
+                entity.Property(e => e.HdCreatedByName)
+                    .HasMaxLength(100)
+                    .HasColumnName("hd_created_by_name");
+
+                entity.Property(e => e.HdDropdownName)
+                    .HasMaxLength(100)
+                    .HasColumnName("hd_dropdown_name");
+
+                entity.Property(e => e.HdIsDelete).HasColumnName("hd_is_delete");
+            });
+
+            modelBuilder.Entity<HrmsDropdownValue>(entity =>
+            {
+                entity.HasKey(e => e.HdvValueId)
+                    .HasName("PK__hrms_dro__BB10F2BFA71A5328");
+
+                entity.ToTable("hrms_dropdown_value");
+
+                entity.Property(e => e.HdvValueId).HasColumnName("hdv_value_id");
+
+                entity.Property(e => e.HdvCreatedBy)
+                    .HasMaxLength(100)
+                    .HasColumnName("hdv_created_by");
+
+                entity.Property(e => e.HdvCreatedByDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("hdv_created_by_date");
+
+                entity.Property(e => e.HdvCreatedByName)
+                    .HasMaxLength(100)
+                    .HasColumnName("hdv_created_by_name");
+
+                entity.Property(e => e.HdvHdDropdownId).HasColumnName("hdv_hd_dropdown_id");
+
+                entity.Property(e => e.HdvIsDelete).HasColumnName("hdv_is_delete");
+
+                entity.Property(e => e.HdvValueName)
+                    .HasMaxLength(100)
+                    .HasColumnName("hdv_value_name");
+
+                entity.HasOne(d => d.HdvHdDropdown)
+                    .WithMany(p => p.HrmsDropdownValue)
+                    .HasForeignKey(d => d.HdvHdDropdownId)
+                    .HasConstraintName("FK__hrms_drop__hdv_h__5E74FADA");
             });
 
             modelBuilder.Entity<ImsAssets>(entity =>
