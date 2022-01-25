@@ -19,5 +19,7 @@ namespace Web.Services.Interfaces
         public BaseResponse DeleteEmployee(int id);
 
         public BaseResponse ViewDataEmployeeByid(int id);
+
+        public BaseResponse CreateDropdownvalue(HrmsDropdownValueVM value);
     }
 }

@@ -25,10 +25,11 @@ namespace Web.Services.Concrete
         private readonly IHRMSEmployeeWorkingHistoryRepository _workinghistoryRepository;
         private readonly IHRMSProfessionalDetailsRepository _hrmsprofessionaldetailsrepository;
         private readonly IHRMSUserAuthRepository _hrmsUserAuthRepository;
+        private readonly IHRMSDropdownValueRepository _hrmsdropdownvaluerepository;
 
         IConfiguration _config;
         private readonly IUnitOfWork _uow;
-        public EmployeeService(IConfiguration config, IHRMSUserAuthRepository hrmsUserAuthRepository, IHRMSEmployeeRepository hrmsemployeeRepository, IHRMSAcademicRepository hRMSAcademicRepository, IHRMSEmployeeContactRepository employeeContactRepository, IHRMSPRofessionalRepository hRMSProfessionalRepository, IHRMSEmployeeWorkingHistoryRepository workingHistoryRepository, IHRMSProfessionalDetailsRepository hRMSProfessionalDetailsRepository, IUnitOfWork uow)
+        public EmployeeService(IConfiguration config, IHRMSUserAuthRepository hrmsUserAuthRepository, IHRMSEmployeeRepository hrmsemployeeRepository, IHRMSAcademicRepository hRMSAcademicRepository, IHRMSEmployeeContactRepository employeeContactRepository, IHRMSPRofessionalRepository hRMSProfessionalRepository, IHRMSEmployeeWorkingHistoryRepository workingHistoryRepository, IHRMSProfessionalDetailsRepository hRMSProfessionalDetailsRepository, IHRMSDropdownValueRepository hrmsdropdownvaluerepository, IUnitOfWork uow)
         {
             _config = config;
             _hrmsemployeeRepository = hrmsemployeeRepository;
@@ -38,6 +39,7 @@ namespace Web.Services.Concrete
             _workinghistoryRepository = workingHistoryRepository;
             _hrmsprofessionaldetailsrepository = hRMSProfessionalDetailsRepository;
             _hrmsUserAuthRepository = hrmsUserAuthRepository;
+            _hrmsdropdownvaluerepository = hrmsdropdownvaluerepository;
             _uow = uow;
         }
 
@@ -860,6 +862,35 @@ namespace Web.Services.Concrete
             return response;
         }
 
+        public BaseResponse CreateDropdownvalue(HrmsDropdownValueVM value)
+        {
+            BaseResponse response = new BaseResponse();
+
+            HrmsDropdownValue hrmsdropdownvalue = new HrmsDropdownValue();
+            if (!string.IsNullOrEmpty(value.HdvValueName))
+
+            {
+                hrmsdropdownvalue.HdvHdDropdownId=1 ;
+                hrmsdropdownvalue.HdvValueName = value.HdvValueName;
+                hrmsdropdownvalue.HdvCreatedBy = value.HdvCreatedBy;
+                hrmsdropdownvalue.HdvCreatedByName = value.HdvCreatedByName;
+                hrmsdropdownvalue.HdvCreatedByDate = value.HdvCreatedByDate;
+                hrmsdropdownvalue.HdvIsDelete = value.HdvIsDelete;
+                _uow.Commit();
+                _hrmsdropdownvaluerepository.Insert(hrmsdropdownvalue);
+                response.Success = true;
+                response.Message = UserMessages.strAdded;
+                response.Data = null;
+            }
+
+            else
+            {
+                response.Success = false;
+                response.Message = UserMessages.strNotinsert;
+            }
+
+            return response;
+        }
         
     }
 }
