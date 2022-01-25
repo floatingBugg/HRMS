@@ -24,5 +24,7 @@ namespace Web.Services.Interfaces
 
         public BaseResponse ViewDataAssignByid(int id);
 
+        public BaseResponse ViewAllDataAssignByid();
+
     }
 }

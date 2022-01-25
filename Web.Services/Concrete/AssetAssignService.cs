@@ -294,5 +294,29 @@ namespace Web.Services.Concrete
             return response;
         }
 
+        public BaseResponse ViewAllDataAssignByid()
+        {
+            BaseResponse response = new BaseResponse();
+
+            bool count = _hrmsassetassignRepository.Table.Where(z => z.ItasIsDelete == false ).Count() > 0;
+            var assignData = _hrmsassetassignRepository.Table.Where(x => x.ItasIsDelete == false).ToList();
+
+
+            if (count == true)
+            {
+                response.Data = assignData;
+                response.Success = true;
+                response.Message = UserMessages.strSuccess;
+
+
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotfound;
+            }
+            return response;
+        }
     }
 }
