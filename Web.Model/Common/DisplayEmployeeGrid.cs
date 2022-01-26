@@ -7,6 +7,8 @@
         public string emailAddress { get; set; }
         public string contactNumber { get; set; }
         public string empDesignation { get; set; }
+        public string empStatus { get; set; }
+        public string manager { get; set; }
 
     }
 }
