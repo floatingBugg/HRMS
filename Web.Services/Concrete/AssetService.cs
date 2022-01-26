@@ -269,6 +269,31 @@ namespace Web.Services.Concrete
             response.Message = "Total Quantity Caluclated";
             return response;
         }
+
+        public BaseResponse ViewAllDataUnAssign()
+        {
+            BaseResponse response = new BaseResponse();
+
+            bool count = _hrmsassetRepository.Table.Where(z => z.ItaIsDelete == false).Count() > 0;
+            var assignData = _hrmsassetRepository.Table.Where(x => x.ItaIsDelete == false).ToList();
+
+
+            if (count == true)
+            {
+                response.Data = assignData;
+                response.Success = true;
+                response.Message = UserMessages.strSuccess;
+
+
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotfound;
+            }
+            return response;
+        }
     }
 
     }

@@ -22,9 +22,9 @@ namespace Web.Services.Interfaces
 
         public BaseResponse getEmployee();
 
-        public BaseResponse ViewDataAssignByid(int id);
+        public BaseResponse ViewAllDataAssign(int empid);
 
-        public BaseResponse ViewAllDataAssignByid();
+       
 
     }
 }

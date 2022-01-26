@@ -167,6 +167,26 @@ namespace Web.API.Controllers
 
         }
 
+        [HttpGet("/Asset/GetAllUnAsset")]
+        public BaseResponse ViewUnAssignDataByid()
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                response = _assetLaptopservice.ViewAllDataUnAssign();
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+        }
+
+
     }
 }
 

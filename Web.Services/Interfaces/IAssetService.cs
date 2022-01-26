@@ -25,6 +25,8 @@ namespace Web.Services.Interfaces
 
         BaseResponse totalQuantityAsset(int categoryid);
 
+        public BaseResponse ViewAllDataUnAssign();
+
 
     }
 }
