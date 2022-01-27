@@ -41,5 +41,6 @@ namespace Web.Model.ViewModel
         public List<EmsTblEmployeeProfessionalDetailsVM> EmsTblEmployeeProfessionalDetails { get; set; }
         public List<EmsTblProfessionalQualificationVM> EmsTblProfessionalQualification { get; set; }
         public List<EmsTblWorkingHistoryVM> EmsTblWorkingHistory { get; set; }
+        public List<ImsAssignVM> ImsAssign { get; set; }
     }
 }

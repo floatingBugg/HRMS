@@ -18,11 +18,13 @@ namespace Web.Services.Concrete
     {
         private readonly IHRMSAssetRepository _hrmsassetRepository;
         private readonly IHRMSEmployeeRepository _hrmsemployeeRepository;
+        private readonly IHRMSAssetCategoryRepository _hrmsassetCategoryRepository;
         IConfiguration _config;
         private readonly IUnitOfWork _uow;
-        public AssetService(IConfiguration config, IHRMSAssetRepository hrmsassetRepository,IHRMSEmployeeRepository hrmsemployeeRepository, IUnitOfWork uow)
+        public AssetService(IConfiguration config, IHRMSAssetRepository hrmsassetRepository,IHRMSEmployeeRepository hrmsemployeeRepository, IUnitOfWork uow, IHRMSAssetCategoryRepository hrmsassetCategoryRepository)
         {
             _hrmsemployeeRepository = hrmsemployeeRepository;
+            _hrmsassetCategoryRepository = hrmsassetCategoryRepository;
             _config = config;
             _hrmsassetRepository = hrmsassetRepository;
             _uow = uow;
@@ -275,7 +277,14 @@ namespace Web.Services.Concrete
             BaseResponse response = new BaseResponse();
 
             bool count = _hrmsassetRepository.Table.Where(z => z.ItaIsDelete == false).Count() > 0;
-            var assignData = _hrmsassetRepository.Table.Where(x => x.ItaIsDelete == false).ToList();
+            var assignData = _hrmsassetRepository.Table.Where(x => x.ItaIsDelete == false).Select(y => new UnAssignedAssetEmployeeGrid()
+            {
+                assetid = y.ItaAssetId,
+                assetname=y.ItaAssetName,
+                categoryid=y.ItacCategoryId,
+                category=_hrmsassetCategoryRepository.Table.Where(z=>z.ItacCategoryId==y.ItacCategoryId).Select(x=>x.ItacCategoryName).FirstOrDefault(),
+
+            }).ToList().OrderBy(x=>x.assetid);
 
 
             if (count == true)
