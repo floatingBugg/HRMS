@@ -26,12 +26,17 @@ namespace Web.Services.Concrete
         private readonly IHRMSProfessionalDetailsRepository _hrmsprofessionaldetailsrepository;
         private readonly IHRMSUserAuthRepository _hrmsUserAuthRepository;
         private readonly IHRMSDropdownValueRepository _hrmsdropdownvaluerepository;
+        private readonly IHRMSAssetRepository _hrmsassetRepository;
+        private readonly IHRMSAssetAssignRepository _hrmsassetAssignRepository;
+
 
         IConfiguration _config;
         private readonly IUnitOfWork _uow;
-        public EmployeeService(IConfiguration config, IHRMSUserAuthRepository hrmsUserAuthRepository, IHRMSEmployeeRepository hrmsemployeeRepository, IHRMSAcademicRepository hRMSAcademicRepository, IHRMSEmployeeContactRepository employeeContactRepository, IHRMSPRofessionalRepository hRMSProfessionalRepository, IHRMSEmployeeWorkingHistoryRepository workingHistoryRepository, IHRMSProfessionalDetailsRepository hRMSProfessionalDetailsRepository, IHRMSDropdownValueRepository hrmsdropdownvaluerepository, IUnitOfWork uow)
+        public EmployeeService(IConfiguration config, IHRMSUserAuthRepository hrmsUserAuthRepository, IHRMSAssetRepository hrmsassetRepository, IHRMSEmployeeRepository hrmsemployeeRepository, IHRMSAcademicRepository hRMSAcademicRepository, IHRMSEmployeeContactRepository employeeContactRepository, IHRMSPRofessionalRepository hRMSProfessionalRepository, IHRMSEmployeeWorkingHistoryRepository workingHistoryRepository, IHRMSProfessionalDetailsRepository hRMSProfessionalDetailsRepository, IHRMSDropdownValueRepository hrmsdropdownvaluerepository, IUnitOfWork uow, IHRMSAssetAssignRepository hrmsassetAssignRepository)
         {
             _config = config;
+            _hrmsassetRepository = hrmsassetRepository;
+            _hrmsassetAssignRepository = hrmsassetAssignRepository; 
             _hrmsemployeeRepository = hrmsemployeeRepository;
             _employeeContactRepository = employeeContactRepository;
             _hrmsacademicrepository = hRMSAcademicRepository;
@@ -40,6 +45,7 @@ namespace Web.Services.Concrete
             _hrmsprofessionaldetailsrepository = hRMSProfessionalDetailsRepository;
             _hrmsUserAuthRepository = hrmsUserAuthRepository;
             _hrmsdropdownvaluerepository = hrmsdropdownvaluerepository;
+
             _uow = uow;
         }
 
@@ -410,8 +416,41 @@ namespace Web.Services.Concrete
 
                 }
 
-                
-                response.Success = true;
+                if (employee.ImsAssign.Count > 0)
+                {
+                    foreach (var imsAssign in employee.ImsAssign)
+                    {
+                        var remaining = _hrmsassetRepository.Table.Where(x => x.ItaAssetId == imsAssign.ItasItaAssetId).Select(y => y.ItaRemaining).FirstOrDefault();
+                        var assigned = _hrmsassetRepository.Table.Where(x => x.ItaAssetId == imsAssign.ItasItaAssetId).Select(y => y.ItaAssignQuantity).FirstOrDefault();
+                        assigned = assigned + imsAssign.ItasQuantity;
+                        remaining = remaining - imsAssign.ItasQuantity;
+                        var _imsAssignList = employee.ImsAssign.Select(x => new ImsAssign
+                        {
+                            ItasEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
+                            ItasItacCategoryId = x.ItasItacCategoryId,
+                            ItasItaAssetId = x.ItasItaAssetId,
+                            ItasQuantity = x.ItasQuantity,
+                            ItasAssignedDate = x.ItasAssignedDate,
+                            ItasCreatedBy = x.ItasCreatedBy,
+                            ItasCreatedByDate = x.ItasCreatedByDate,
+                            ItasCreatedByName = x.ItasCreatedByName
+                        });
+
+                        _hrmsassetRepository.Table.Where(p => p.ItaAssetId == imsAssign.ItasItaAssetId)
+                      .ToList()
+                      .ForEach(x =>
+                      {
+                          x.ItaAssignQuantity = assigned;
+                          x.ItaRemaining = remaining;
+
+                      });
+                        _hrmsassetAssignRepository.Insert(_imsAssignList.ToList());
+                    }
+
+                    
+                }
+
+                    response.Success = true;
                 response.Message = UserMessages.strAdded;
                 response.Data = null;
             }
