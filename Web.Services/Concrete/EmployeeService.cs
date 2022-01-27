@@ -55,7 +55,7 @@ namespace Web.Services.Concrete
                 fullName = x.EtedFirstName,
                 emailAddress = x.EtedEmailAddress,
                 contactNumber = x.EtedContactNumber,
-                empDesignation = x.EmsTblEmployeeProfessionalDetails.Count > 0 ? x.EmsTblEmployeeProfessionalDetails.Where(y => y.EtepdEtedEmployeeId == x.EtedEmployeeId).Select(z => z.EtepdDesignation).FirstOrDefault() : "Not assigned"
+                empDesignation = x.EmsTblEmployeeProfessionalDetails.Count > 0 ? x.EmsTblEmployeeProfessionalDetails.Where(y => y.EtepdEtedEmployeeId == x.EtedEmployeeId).Select(z => z.EtepdDesignation).FirstOrDefault() : "Not Assigned"
             }).ToList().OrderByDescending(x => x.empID);
 
             var managerData = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false && z.EtedIsManager == true).Select(x => new DisplayEmployeeGrid()
@@ -64,7 +64,7 @@ namespace Web.Services.Concrete
                 fullName = x.EtedFirstName,
                 emailAddress = x.EtedEmailAddress,
                 contactNumber = x.EtedContactNumber,
-                empDesignation = x.EmsTblEmployeeProfessionalDetails.Count > 0 ? x.EmsTblEmployeeProfessionalDetails.Where(y => y.EtepdEtedEmployeeId == x.EtedEmployeeId).Select(z => z.EtepdDesignation).FirstOrDefault() : "Not assigned"
+                empDesignation = x.EmsTblEmployeeProfessionalDetails.Count > 0 ? x.EmsTblEmployeeProfessionalDetails.Where(y => y.EtepdEtedEmployeeId == x.EtedEmployeeId).Select(z => z.EtepdDesignation).FirstOrDefault() : "Not Assigned"
             }).ToList().OrderByDescending(x => x.empID);
 
 
@@ -99,8 +99,8 @@ namespace Web.Services.Concrete
                 fullName = x.EtedFirstName,
                 emailAddress = x.EtedEmailAddress,
                 contactNumber = x.EtedContactNumber,
-                empDesignation = x.EmsTblEmployeeProfessionalDetails.Count > 0 ? x.EmsTblEmployeeProfessionalDetails.Where(y => y.EtepdEtedEmployeeId == x.EtedEmployeeId).Select(z => z.EtepdDesignation).FirstOrDefault() : "Not assigned",
-                manager = _hrmsemployeeRepository.Table.Where(m => m.EtedEmployeeId == x.EtedManagerId && m.EtedIsDelete != true).Select(m => m.EtedFirstName + " " + m.EtedLastName).FirstOrDefault() ?? "not assigned",
+                empDesignation = x.EmsTblEmployeeProfessionalDetails.Count > 0 ? x.EmsTblEmployeeProfessionalDetails.Where(y => y.EtepdEtedEmployeeId == x.EtedEmployeeId).Select(z => z.EtepdDesignation).FirstOrDefault() : "Not Assigned",
+                manager = _hrmsemployeeRepository.Table.Where(m => m.EtedEmployeeId == x.EtedManagerId && m.EtedIsDelete != true).Select(m => m.EtedFirstName + " " + m.EtedLastName).FirstOrDefault() ?? "Not Assigned",
                 empStatus=x.EtedStatus,
             }).ToList().OrderByDescending(x => x.empID);
 
@@ -110,7 +110,7 @@ namespace Web.Services.Concrete
                 fullName = x.EtedFirstName,
                 emailAddress = x.EtedEmailAddress,
                 contactNumber = x.EtedContactNumber,
-                empDesignation = x.EmsTblEmployeeProfessionalDetails.Count > 0 ? x.EmsTblEmployeeProfessionalDetails.Where(y => y.EtepdEtedEmployeeId == x.EtedEmployeeId).Select(z => z.EtepdDesignation).FirstOrDefault() : "Not assigned",
+                empDesignation = x.EmsTblEmployeeProfessionalDetails.Count > 0 ? x.EmsTblEmployeeProfessionalDetails.Where(y => y.EtepdEtedEmployeeId == x.EtedEmployeeId).Select(z => z.EtepdDesignation).FirstOrDefault() : "Not Assigned",
                 empStatus = x.EtedStatus,
             }).ToList().OrderByDescending(x => x.empID);
 
@@ -121,9 +121,9 @@ namespace Web.Services.Concrete
                 fullName = x.EtedFirstName,
                 emailAddress = x.EtedEmailAddress,
                 contactNumber = x.EtedContactNumber,
-                empDesignation = x.EmsTblEmployeeProfessionalDetails.Count > 0 ? x.EmsTblEmployeeProfessionalDetails.Where(y => y.EtepdEtedEmployeeId == x.EtedEmployeeId).Select(z => z.EtepdDesignation).FirstOrDefault() : "Not assigned",
+                empDesignation = x.EmsTblEmployeeProfessionalDetails.Count > 0 ? x.EmsTblEmployeeProfessionalDetails.Where(y => y.EtepdEtedEmployeeId == x.EtedEmployeeId).Select(z => z.EtepdDesignation).FirstOrDefault() : "Not Assigned",
                 empStatus = x.EtedStatus,
-                manager = _hrmsemployeeRepository.Table.Where(m => m.EtedEmployeeId == x.EtedManagerId && m.EtedIsDelete != true).Select(m => m.EtedFirstName + " " + m.EtedLastName).FirstOrDefault() ??  "not assigned"
+                manager = _hrmsemployeeRepository.Table.Where(m => m.EtedEmployeeId == x.EtedManagerId && m.EtedIsDelete != true).Select(m => m.EtedFirstName + " " + m.EtedLastName).FirstOrDefault() ??  "Not Assigned"
             }).ToList().OrderByDescending(x => x.empID);
                 response.Data = employeesData;
             }
@@ -136,9 +136,9 @@ namespace Web.Services.Concrete
                     fullName = x.EtedFirstName,
                     emailAddress = x.EtedEmailAddress,
                     contactNumber = x.EtedContactNumber,
-                    empDesignation = x.EmsTblEmployeeProfessionalDetails.Count > 0 ? x.EmsTblEmployeeProfessionalDetails.Where(y => y.EtepdEtedEmployeeId == x.EtedEmployeeId).Select(z => z.EtepdDesignation).FirstOrDefault() : "Not assigned",
+                    empDesignation = x.EmsTblEmployeeProfessionalDetails.Count > 0 ? x.EmsTblEmployeeProfessionalDetails.Where(y => y.EtepdEtedEmployeeId == x.EtedEmployeeId).Select(z => z.EtepdDesignation).FirstOrDefault() : "Not Assigned",
                     empStatus = x.EtedStatus,
-                    manager = _hrmsemployeeRepository.Table.Where(m => m.EtedEmployeeId == x.EtedManagerId && m.EtedIsDelete != true).Select(m => m.EtedFirstName + " " + m.EtedLastName).FirstOrDefault() ?? "not assigned"
+                    manager = _hrmsemployeeRepository.Table.Where(m => m.EtedEmployeeId == x.EtedManagerId && m.EtedIsDelete != true).Select(m => m.EtedFirstName + " " + m.EtedLastName).FirstOrDefault() ?? "Not Assigned"
                 }).ToList().OrderByDescending(x => x.empID);
                 response.Data = employeesData;
             }
