@@ -176,6 +176,7 @@ namespace Web.Services.Concrete
             bool doesCNICExistAlready = _hrmsemployeeRepository.Table.Count(p => p.EtedCnic == employee.EtedCnic) > 0;
             EmsTblEmployeeDetails emsTblEmployeeDetails = new EmsTblEmployeeDetails();
             EmsTblHrmsUser emsuser = new EmsTblHrmsUser();
+            ImsAssign imsassign = new ImsAssign();
 
             //Employee Details
 
@@ -184,7 +185,7 @@ namespace Web.Services.Concrete
                && !string.IsNullOrEmpty(employee.EtedReligion)
                && (employee.EtedCnic != null) && doesEmailExistAlready == false && doesCNICExistAlready == false)
             {
-                if (!string.IsNullOrEmpty(employee.EtedPhotograph))
+                if (!string.IsNullOrEmpty(employee.EtedPhotograph) && employee.EtedPhotograph!="")
                 {
                     var RootPath = rootpath;
                     string FilePathPhoto = "Images\\EmployeeID\\PhotoGraph\\";
@@ -255,7 +256,7 @@ namespace Web.Services.Concrete
                 {
                     foreach (var empAcad in employee.EmsTblAcademicQualification)
                     {
-                        if (!string.IsNullOrEmpty(empAcad.EtaqUploadDocuments))
+                        if (!string.IsNullOrEmpty(empAcad.EtaqUploadDocuments) && empAcad.EtaqUploadDocuments!="")
                         {
                             var RootPath = rootpath;
                             string FilePathAcad = "Images\\EmployeeID\\AcademicQualification\\";
@@ -299,7 +300,7 @@ namespace Web.Services.Concrete
                     foreach (var empProfQual in employee.EmsTblProfessionalQualification)
                     {
                         //Professional Qualification
-                        if (!string.IsNullOrEmpty(empProfQual.EtpqDocuments))
+                        if (!string.IsNullOrEmpty(empProfQual.EtpqDocuments)&& empProfQual.EtpqDocuments !="")
                         {
                             var RootPath = rootpath;
                             string FilePathProf = "Images\\EmployeeID\\ProfessionalQualification\\";
@@ -377,7 +378,7 @@ namespace Web.Services.Concrete
                 {
                     foreach (var empWork in employee.EmsTblWorkingHistory)
                     {
-                        if (!string.IsNullOrEmpty(empWork.EtwhExperienceLetter))
+                        if (!string.IsNullOrEmpty(empWork.EtwhExperienceLetter) && empWork.EtwhExperienceLetter !="")
                         {
                             var RootPath = rootpath;
                             string FilePathWork = "Images\\EmployeeID\\WorkingHistory\\";
@@ -418,25 +419,15 @@ namespace Web.Services.Concrete
 
                 if (employee.ImsAssign.Count > 0)
                 {
+                    
                     foreach (var imsAssign in employee.ImsAssign)
                     {
                         var remaining = _hrmsassetRepository.Table.Where(x => x.ItaAssetId == imsAssign.ItasItaAssetId).Select(y => y.ItaRemaining).FirstOrDefault();
                         var assigned = _hrmsassetRepository.Table.Where(x => x.ItaAssetId == imsAssign.ItasItaAssetId).Select(y => y.ItaAssignQuantity).FirstOrDefault();
                         assigned = assigned + imsAssign.ItasQuantity;
                         remaining = remaining - imsAssign.ItasQuantity;
-                        var _imsAssignList = employee.ImsAssign.Select(x => new ImsAssign
-                        {
-                            ItasEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
-                            ItasItacCategoryId = x.ItasItacCategoryId,
-                            ItasItaAssetId = x.ItasItaAssetId,
-                            ItasQuantity = x.ItasQuantity,
-                            ItasAssignedDate = x.ItasAssignedDate,
-                            ItasCreatedBy = x.ItasCreatedBy,
-                            ItasCreatedByDate = x.ItasCreatedByDate,
-                            ItasCreatedByName = x.ItasCreatedByName
-                        });
-
-                        _hrmsassetRepository.Table.Where(p => p.ItaAssetId == imsAssign.ItasItaAssetId)
+                        if (remaining > 0) { 
+                       _hrmsassetRepository.Table.Where(p => p.ItaAssetId == imsAssign.ItasItaAssetId)
                       .ToList()
                       .ForEach(x =>
                       {
@@ -444,9 +435,21 @@ namespace Web.Services.Concrete
                           x.ItaRemaining = remaining;
 
                       });
-                        _hrmsassetAssignRepository.Insert(_imsAssignList.ToList());
+                            var _imsAssignList =  new ImsAssign
+                            {
+                                ItasEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
+                                ItasItacCategoryId = imsAssign.ItasItacCategoryId,
+                                ItasItaAssetId = imsAssign.ItasItaAssetId,
+                                ItasQuantity = imsAssign.ItasQuantity,
+                                ItasAssignedDate = imsAssign.ItasAssignedDate,
+                                ItasCreatedBy = imsAssign.ItasCreatedBy,
+                                ItasCreatedByDate = imsAssign.ItasCreatedByDate,
+                                ItasCreatedByName = imsAssign.ItasCreatedByName
+                            };
+                            _hrmsassetAssignRepository.Insert(_imsAssignList);
+                        }
+                        
                     }
-
                     
                 }
 
