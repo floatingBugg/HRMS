@@ -66,7 +66,7 @@
          "ObjectType": 0
       }
    ],
-   "UiHint": "SQL5105.db_a7d47e_hrms",
+   "UiHint": "DESKTOP-UPBHV19\\SQLEXPRESS.HRMS",
    "UseBoolPropertiesWithoutDefaultSql": false,
    "UseDatabaseNames": false,
    "UseDbContextSplitting": false,
