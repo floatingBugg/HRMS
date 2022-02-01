@@ -924,7 +924,7 @@ namespace Web.Services.Concrete
                 hrmsdropdownvalue.HdvCreatedBy = value.HdvCreatedBy;
                 hrmsdropdownvalue.HdvCreatedByName = value.HdvCreatedByName;
                 hrmsdropdownvalue.HdvCreatedByDate = value.HdvCreatedByDate;
-                hrmsdropdownvalue.HdvIsDelete = value.HdvIsDelete;
+                hrmsdropdownvalue.HdvIsDelete = false;
                 _uow.Commit();
                 _hrmsdropdownvaluerepository.Insert(hrmsdropdownvalue);
                 response.Success = true;
