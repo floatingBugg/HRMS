@@ -33,6 +33,9 @@ namespace Web.Data.Db_Context
         public virtual DbSet<ImsAssets> ImsAssets { get; set; }
         public virtual DbSet<ImsAssetsCategory> ImsAssetsCategory { get; set; }
         public virtual DbSet<ImsAssign> ImsAssign { get; set; }
+        public virtual DbSet<LmsEmployeeLeave> LmsEmployeeLeave { get; set; }
+        public virtual DbSet<LmsLeaveRecord> LmsLeaveRecord { get; set; }
+        public virtual DbSet<LmsLeaveType> LmsLeaveType { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -695,6 +698,129 @@ namespace Web.Data.Db_Context
                     .WithMany(p => p.ImsAssign)
                     .HasForeignKey(d => d.ItasItacCategoryId)
                     .HasConstraintName("FK__ims_assig__itas___40058253");
+            });
+
+            modelBuilder.Entity<LmsEmployeeLeave>(entity =>
+            {
+                entity.HasKey(e => e.LmselLeaveId)
+                    .HasName("PK__lms_empl__E19D4012DC624163");
+
+                entity.ToTable("lms_employee_leave");
+
+                entity.Property(e => e.LmselLeaveId).HasColumnName("lmsel_leave_id");
+
+                entity.Property(e => e.LmselCreatedBy)
+                    .HasMaxLength(100)
+                    .HasColumnName("lmsel_created_by");
+
+                entity.Property(e => e.LmselCreatedByDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("lmsel_created_by_date");
+
+                entity.Property(e => e.LmselCreatedByName)
+                    .HasMaxLength(100)
+                    .HasColumnName("lmsel_created_by_name");
+
+                entity.Property(e => e.LmselDays).HasColumnName("lmsel_days");
+
+                entity.Property(e => e.LmselEndDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("lmsel_end_date");
+
+                entity.Property(e => e.LmselEtedEmployeeId).HasColumnName("lmsel_eted_employee_id");
+
+                entity.Property(e => e.LmselIsDelete).HasColumnName("lmsel_is_delete");
+
+                entity.Property(e => e.LmselLeaveType).HasColumnName("lmsel_leave_type");
+
+                entity.Property(e => e.LmselStartDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("lmsel_start_date");
+
+                entity.HasOne(d => d.LmselEtedEmployee)
+                    .WithMany(p => p.LmsEmployeeLeave)
+                    .HasForeignKey(d => d.LmselEtedEmployeeId)
+                    .HasConstraintName("FK__lms_emplo__lmsel__4B7734FF");
+
+                entity.HasOne(d => d.LmselLeaveTypeNavigation)
+                    .WithMany(p => p.LmsEmployeeLeave)
+                    .HasForeignKey(d => d.LmselLeaveType)
+                    .HasConstraintName("FK__lms_emplo__lmsel__4A8310C6");
+            });
+
+            modelBuilder.Entity<LmsLeaveRecord>(entity =>
+            {
+                entity.HasKey(e => e.LmslrRecordId)
+                    .HasName("PK__lms_leav__0BF567EF4C0DFF7C");
+
+                entity.ToTable("lms_leave_record");
+
+                entity.Property(e => e.LmslrRecordId).HasColumnName("lmslr_record_id");
+
+                entity.Property(e => e.LmslrAnnualAssign).HasColumnName("lmslr_annual_assign");
+
+                entity.Property(e => e.LmslrAnnualTaken).HasColumnName("lmslr_annual_taken");
+
+                entity.Property(e => e.LmslrCasualAssign).HasColumnName("lmslr_casual_assign");
+
+                entity.Property(e => e.LmslrCasualTaken).HasColumnName("lmslr_casual_taken");
+
+                entity.Property(e => e.LmslrCreatedBy)
+                    .HasMaxLength(100)
+                    .HasColumnName("lmslr_created_by");
+
+                entity.Property(e => e.LmslrCreatedByDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("lmslr_created_by_date");
+
+                entity.Property(e => e.LmslrCreatedByName)
+                    .HasMaxLength(100)
+                    .HasColumnName("lmslr_created_by_name");
+
+                entity.Property(e => e.LmslrEtedEmployeeId).HasColumnName("lmslr_eted_employee_id");
+
+                entity.Property(e => e.LmslrIsDelete).HasColumnName("lmslr_is_delete");
+
+                entity.Property(e => e.LmslrSickAssign).HasColumnName("lmslr_sick_assign");
+
+                entity.Property(e => e.LmslrSickTaken).HasColumnName("lmslr_sick_taken");
+
+                entity.Property(e => e.LmslrTotalAssign).HasColumnName("lmslr_total_assign");
+
+                entity.Property(e => e.LmslrTotalTaken).HasColumnName("lmslr_total_taken");
+
+                entity.HasOne(d => d.LmslrEtedEmployee)
+                    .WithMany(p => p.LmsLeaveRecord)
+                    .HasForeignKey(d => d.LmslrEtedEmployeeId)
+                    .HasConstraintName("FK__lms_leave__lmslr__4E53A1AA");
+            });
+
+            modelBuilder.Entity<LmsLeaveType>(entity =>
+            {
+                entity.HasKey(e => e.LmsltTypeId)
+                    .HasName("PK__lms_leav__8E3F3D7450F50926");
+
+                entity.ToTable("lms_leave_type");
+
+                entity.Property(e => e.LmsltTypeId).HasColumnName("lmslt_type_id");
+
+                entity.Property(e => e.LmsltCreatedBy)
+                    .HasMaxLength(100)
+                    .HasColumnName("lmslt_created_by");
+
+                entity.Property(e => e.LmsltCreatedByDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("lmslt_created_by_date");
+
+                entity.Property(e => e.LmsltCreatedByName)
+                    .HasMaxLength(100)
+                    .HasColumnName("lmslt_created_by_name");
+
+                entity.Property(e => e.LmsltIsDelete).HasColumnName("lmslt_is_delete");
+
+                entity.Property(e => e.LmsltLeaveName)
+                    .HasMaxLength(100)
+                    .HasColumnName("lmslt_leave_name");
             });
 
             OnModelCreatingPartial(modelBuilder);

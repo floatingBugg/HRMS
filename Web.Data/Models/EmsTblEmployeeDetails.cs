@@ -15,6 +15,8 @@ namespace Web.Data.Models
             EmsTblProfessionalQualification = new HashSet<EmsTblProfessionalQualification>();
             EmsTblWorkingHistory = new HashSet<EmsTblWorkingHistory>();
             ImsAssign = new HashSet<ImsAssign>();
+            LmsEmployeeLeave = new HashSet<LmsEmployeeLeave>();
+            LmsLeaveRecord = new HashSet<LmsLeaveRecord>();
         }
 
         public int EtedEmployeeId { get; set; }
@@ -49,5 +51,7 @@ namespace Web.Data.Models
         public virtual ICollection<EmsTblProfessionalQualification> EmsTblProfessionalQualification { get; set; }
         public virtual ICollection<EmsTblWorkingHistory> EmsTblWorkingHistory { get; set; }
         public virtual ICollection<ImsAssign> ImsAssign { get; set; }
+        public virtual ICollection<LmsEmployeeLeave> LmsEmployeeLeave { get; set; }
+        public virtual ICollection<LmsLeaveRecord> LmsLeaveRecord { get; set; }
     }
 }

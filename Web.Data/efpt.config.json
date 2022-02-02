@@ -64,6 +64,18 @@
       {
          "Name": "[dbo].[ims_assign]",
          "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[lms_employee_leave]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[lms_leave_record]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[lms_leave_type]",
+         "ObjectType": 0
       }
    ],
    "UiHint": "DESKTOP-UPBHV19\\SQLEXPRESS.HRMS",
