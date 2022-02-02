@@ -10,5 +10,6 @@ namespace Web.Data.Interfaces
 {
    public interface IHRMSLeaveTypeRepository : IRepository<LmsLeaveType>
     {
+
     }
 }
