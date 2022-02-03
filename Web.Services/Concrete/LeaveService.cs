@@ -45,6 +45,7 @@ namespace Web.Services.Concrete
             empleave.LmslrCreatedBy = leave.LmslrCreatedBy;
             empleave.LmslrCreatedByName = leave.LmslrCreatedByName;
             empleave.LmslrCreatedByDate = leave.LmslrCreatedByDate;
+            empleave.LmslrIsDelete = false;
 
             _hrmsleaverecordrepository.Insert(empleave);
 
