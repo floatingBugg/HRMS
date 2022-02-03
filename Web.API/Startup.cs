@@ -110,6 +110,8 @@ namespace Web.API
             services.AddTransient(typeof(IAssetCategoryService), typeof(AssetCategoryService));
             services.AddTransient(typeof(IAssetService), typeof(AssetService));
             services.AddTransient(typeof(IAssetAssignService), typeof(AssetAssignService));
+            services.AddTransient(typeof(IEmpLeaveService), typeof(EmpLeaveService));
+            services.AddTransient(typeof(ILeaveService), typeof(LeaveService));
            
 
 
@@ -131,6 +133,10 @@ namespace Web.API
             services.AddTransient(typeof(IHRMSAssetAssignRepository), typeof(HRMSAssetAssignRepository));
 
 
+            //Register Leave Service
+            services.AddTransient(typeof(IHRMSEmployeeLeaveRepository), typeof(HRMSEmployeeLeaveRepository));
+            services.AddTransient(typeof(IHRMSLeaveRecordRepository), typeof(HRMSLeaveRecordRepository));
+            services.AddTransient(typeof(IHRMSLeaveTypeRepository), typeof(HRMSLeaveTypeRepository));
             //Register Dropdown Value Service
 
             services.AddTransient(typeof(IHRMSDropdownValueRepository), typeof(HRMSDropdownValueRepository));
