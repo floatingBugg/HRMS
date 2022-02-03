@@ -26,7 +26,7 @@ namespace Web.API.Controllers
             _hostEnvironment = environment;
             _logger = new Logger(_hostEnvironment);
         }
-        [HttpPost("/Leave/AssignLeave")]
+        [HttpPost("/Leave/AddLeaveRecord")]
         public BaseResponse CreateLeave([FromBody] LmsLeaveRecordVM leave)
         {
             BaseResponse response = new BaseResponse();
@@ -49,7 +49,7 @@ namespace Web.API.Controllers
             }
         }
 
-        [HttpPost("/Leave/UpdateAssignedLeave")]
+        [HttpPost("/Leave/UpdateLeaveRecord")]
         public BaseResponse UpdateLeave([FromBody] LmsLeaveRecordVM leave)
         {
             BaseResponse response = new BaseResponse();
@@ -72,7 +72,7 @@ namespace Web.API.Controllers
             }
         }
 
-        [HttpGet("/Leave/ViewLeaveByEmpid")]
+        [HttpGet("/Leave/ViewLeaveRecordByEmpid")]
         public BaseResponse ViewRecordbyempid(int id)
         {
             BaseResponse response = new BaseResponse();
@@ -95,14 +95,14 @@ namespace Web.API.Controllers
             }
         }
 
-        [HttpGet("/Leave/ViewLeaveByEmpid")]
+        [HttpGet("/Leave/ViewLeaveRecordByRecordid")]
         public BaseResponse ViewRecordbyrecordid(int id)
         {
             BaseResponse response = new BaseResponse();
             try
             {
                 var test = ModelState;
-                response = _leaveservice.ViewLeaveByempid(id);
+                response = _leaveservice.ViewLeaveByrecordid(id);
 
 
 
