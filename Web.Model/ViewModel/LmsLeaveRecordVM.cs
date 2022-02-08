@@ -11,6 +11,7 @@ namespace Web.Model.ViewModel
         public int LmslrRecordId { get; set; }
         public int? LmslrEtedEmployeeId { get; set; }
 
+        public string EmpDesignation { get; set; }
         public string? LmslrEtedEmployeeName { get; set; }
 
         public int? LmslrAnnualAssign { get; set; }

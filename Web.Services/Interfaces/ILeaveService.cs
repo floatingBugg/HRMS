@@ -18,5 +18,7 @@ namespace Web.Services.Interfaces
 
         public BaseResponse ViewLeaveByrecordid(int id);
 
+        public BaseResponse ViewLeaveEmployee();
+
     }
 }

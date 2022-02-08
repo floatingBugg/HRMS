@@ -117,5 +117,30 @@ namespace Web.API.Controllers
                 return response;
             }
         }
+
+        [HttpGet("/Leave/ViewAllLeaveRecord")]
+        public BaseResponse ViewAllRecord()
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                var test = ModelState;
+                response = _leaveservice.ViewLeaveEmployee();
+
+
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+        }
+
+
     }
 }

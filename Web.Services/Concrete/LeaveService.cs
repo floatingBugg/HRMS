@@ -81,8 +81,9 @@ namespace Web.Services.Concrete
                 empleave.LmslrCreatedBy = leave.LmslrCreatedBy;
                 empleave.LmslrCreatedByName = leave.LmslrCreatedByName;
                 empleave.LmslrCreatedByDate = leave.LmslrCreatedByDate;
+                empleave.LmslrIsDelete = false;
 
-                _hrmsleaverecordrepository.Insert(empleave);
+                _hrmsleaverecordrepository.Update(empleave);
 
                 response.Success = true;
                 response.Message = UserMessages.strAdded;
@@ -171,6 +172,42 @@ namespace Web.Services.Concrete
             return response;
         }
 
+        public BaseResponse ViewLeaveEmployee()
+        {
+            BaseResponse response = new BaseResponse();
 
+            bool count = _hrmsleaverecordrepository.Table.Where(z => z.LmslrIsDelete == false).Count() > 0;
+            var leavedata = _hrmsleaverecordrepository.Table.Where(x => x.LmslrIsDelete == false).Select(x => new LmsLeaveRecordVM
+            {
+                LmslrRecordId = x.LmslrRecordId,
+                LmslrEtedEmployeeName = _hrmsemployeeRepository.Table.Where(z => z.EtedEmployeeId == x.LmslrEtedEmployeeId).Select(z => z.EtedFirstName + " " + z.EtedLastName).FirstOrDefault(),
+                LmslrCasualTaken = x.LmslrCasualTaken,
+                EmpDesignation= _hrmsemployeeRepository.Table.Where(z => z.EtedEmployeeId == x.LmslrEtedEmployeeId).Select(z => z.EmsTblEmployeeProfessionalDetails.Where(i=>i.EtepdEtedEmployeeId==x.LmslrEtedEmployeeId).Select(u=>u.EtepdDesignation).FirstOrDefault()).FirstOrDefault(),
+                LmslrSickTaken = x.LmslrSickTaken,
+                LmslrAnnualTaken = x.LmslrAnnualTaken,
+                LmslrTotalTaken = x.LmslrTotalTaken,
+                LmslrCasualAssign = x.LmslrCasualAssign,
+                LmslrSickAssign = x.LmslrSickAssign,
+                LmslrAnnualAssign = x.LmslrAnnualAssign,
+                LmslrTotalAssign = x.LmslrTotalAssign
+
+            }).ToList().OrderByDescending(x => x.LmslrRecordId);
+
+            if (count == true)
+            {
+                response.Data = leavedata;
+                response.Success = true;
+                response.Message = UserMessages.strSuccess;
+
+
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotfound;
+            }
+            return response;
+        }
     }
 }
