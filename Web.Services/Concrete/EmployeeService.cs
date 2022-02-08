@@ -110,6 +110,8 @@ namespace Web.Services.Concrete
                 empStatus=x.EtedStatus,
             }).ToList().OrderByDescending(x => x.empID);
 
+           
+
             var managerData = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false && z.EtedIsManager == true).Select(x => new DisplayEmployeeGrid()
             {
                 empID = x.EtedEmployeeId,
@@ -132,6 +134,7 @@ namespace Web.Services.Concrete
                 manager = _hrmsemployeeRepository.Table.Where(m => m.EtedEmployeeId == x.EtedManagerId && m.EtedIsDelete != true).Select(m => m.EtedFirstName + " " + m.EtedLastName).FirstOrDefault() ??  "Not Assigned"
             }).ToList().OrderByDescending(x => x.empID);
                 response.Data = employeesData;
+                
             }
 
             else if (roleid == 3)
@@ -153,6 +156,7 @@ namespace Web.Services.Concrete
             {
                 response.Data3 = managerData;
                 response.Data2 = employeeData;
+                
                 response.Success = true;
                 response.Message = UserMessages.strSuccess;
 

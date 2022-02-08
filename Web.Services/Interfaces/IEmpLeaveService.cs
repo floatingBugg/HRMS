@@ -11,5 +11,10 @@ namespace Web.Services.Interfaces
     public interface IEmpLeaveService
     {
         public BaseResponse createLeave(LmsEmployeeLeaveVM leave);
+        public BaseResponse updateLeave(LmsEmployeeLeaveVM leave);
+        public BaseResponse ViewLeaveRecordByempid(int id);
+
+        public BaseResponse EmployeeData(int roleid, int empid);
     }
 }
+

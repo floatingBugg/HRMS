@@ -25,6 +25,10 @@ namespace Web.Model.Common
         public static string strCnicexist = "Cnic Already Exist";
         public static string strNotinsert = "No Data Inserted";
         public static string strNotfound = "No Data Found";
+        public static string strNoSick = "No Sick Leave Left";
+        public static string strNoCasual = "No Casual Leave Left";
+        public static string strNoAnnual = "No annual Leave Left";
+        public static string strNoLeave = "No Leave Assigned";
       /*  public UserMessages(string value)
         {
             Value = value;

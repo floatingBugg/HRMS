@@ -47,5 +47,67 @@ namespace Web.API.Controllers
                 return response;
             }
         }
+
+        [HttpPost("/Leave/UpdateAssignLeave")]
+        public BaseResponse UpdateAssignLeave([FromBody] LmsEmployeeLeaveVM leave)
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                var test = ModelState;
+                response = _empLeaveservice.updateLeave(leave);
+
+
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+        }
+
+        [HttpGet("/Leave/ViewAssignLeaveByEmpid")]
+        public BaseResponse ViewAssignLeaveByEmpid(int empid)
+
+        {
+            BaseResponse response = new BaseResponse();
+            try {
+                var test = ModelState;
+                response = _empLeaveservice.ViewLeaveRecordByempid(empid);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+        }
+
+        [HttpGet("/Leave/DisplayAllEmployeesbyRoles")]
+        public BaseResponse GetAllEmployeebyRoles(int roleid, int empid)
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                response = _empLeaveservice.EmployeeData(roleid, empid);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+        }
     }
 }
