@@ -11,7 +11,11 @@ namespace Web.Model.Common
         public int assignid { get; set; }
         public int assetid { get; set; }
         public string assetname { get; set; }
+        public string categoryname { get; set; }
+
         public int? quantity { get; set; }
         public string assingedname { get; set; }
+
+        public DateTime? assingedDate { get; set; }
     }
 }

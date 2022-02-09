@@ -19,13 +19,15 @@ namespace Web.Services.Concrete
         private readonly IHRMSAssetAssignRepository _hrmsassetassignRepository;
         private readonly IHRMSAssetRepository _hrmsassetRepository;
         private readonly IHRMSEmployeeRepository _hrmsemployeeRepository;
-        
+        private readonly IHRMSAssetCategoryRepository _hrmsassetcategoryRepository;
+
 
         IConfiguration _config;
         private readonly IUnitOfWork _uow;
        
-        public AssetAssignService(IConfiguration config, IHRMSAssetAssignRepository hrmsassetassignRepository, IHRMSAssetRepository hrmsassetRepository,IHRMSEmployeeRepository hrmsemployeeRepository, IUnitOfWork uow)
+        public AssetAssignService(IConfiguration config, IHRMSAssetCategoryRepository hrmsassetcategoryRepository, IHRMSAssetAssignRepository hrmsassetassignRepository, IHRMSAssetRepository hrmsassetRepository,IHRMSEmployeeRepository hrmsemployeeRepository, IUnitOfWork uow)
         {
+            _hrmsassetcategoryRepository = hrmsassetcategoryRepository;
             _hrmsassetRepository = hrmsassetRepository;
             _hrmsemployeeRepository = hrmsemployeeRepository;
             _config = config;
@@ -299,7 +301,15 @@ namespace Web.Services.Concrete
             BaseResponse response = new BaseResponse();
 
             bool count = _hrmsassetassignRepository.Table.Where(z => z.ItasIsDelete == false).Count() > 0;
-            var assignData = _hrmsassetassignRepository.Table.Where(x => x.ItasIsDelete == false && x.ItasEtedEmployeeId==empid).ToList();
+            var assignData = _hrmsassetassignRepository.Table.Where(x => x.ItasIsDelete == false && x.ItasEtedEmployeeId == empid).Select(y => new DisplayAssetAssignCredential()
+            {
+                assignid=y.ItasAssignId,
+                assetname=_hrmsassetRepository.Table.Where(z=>z.ItaAssetId==y.ItasItaAssetId).Select(z=>z.ItaAssetName).FirstOrDefault(),
+                categoryname=_hrmsassetcategoryRepository.Table.Where(z=>z.ItacCategoryId==y.ItasItacCategoryId).Select(z=>z.ItacCategoryName).FirstOrDefault(),
+                quantity=y.ItasQuantity,
+                assingedDate=y.ItasAssignedDate,
+            }
+            ).ToList();
 
 
             if (count == true)
