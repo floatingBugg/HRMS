@@ -488,6 +488,7 @@ namespace Web.Services.Concrete
             EmsTblEmployeeDetails emsTblEmployeeDetails = new EmsTblEmployeeDetails();
             EmsTblEmployeeDetails emsTblEmployeeDetailsInsert = new EmsTblEmployeeDetails();
             EmsTblHrmsUser emsTblUser = new EmsTblHrmsUser();
+            var userid = _hrmsUserAuthRepository.Table.Where(x => x.EtedEthuEmpId == employee.EtedEmployeeId).Select(y => y.EthuUserId).FirstOrDefault();
 
             bool count = _hrmsemployeeRepository.Table.Where(p => p.EtedEmployeeId == employee.EtedEmployeeId).Count() > 0;
             if (count == true)
@@ -551,7 +552,7 @@ namespace Web.Services.Concrete
                 _hrmsemployeeRepository.Update(emsTblEmployeeDetails);
 
 
-            
+                emsTblUser.EthuUserId = userid;
                 emsTblUser.EthuPassword = employee.EthuPassword;
                 emsTblUser.EthuGender = employee.EtedGender;
                 emsTblUser.EthuEmailAddress = employee.EtedOfficialEmailAddress;
@@ -871,6 +872,65 @@ namespace Web.Services.Concrete
 
                     }
                 }
+
+                if (employee.ImsAssign.Count > 0)
+                {
+
+                    foreach (var imsAssign in employee.ImsAssign)
+                    {
+
+                        var remaining = _hrmsassetRepository.Table.Where(x => x.ItaAssetId == imsAssign.ItasItaAssetId).Select(y => y.ItaRemaining).FirstOrDefault();
+                        var assigned = _hrmsassetRepository.Table.Where(x => x.ItaAssetId == imsAssign.ItasItaAssetId).Select(y => y.ItaAssignQuantity).FirstOrDefault();
+                        assigned = assigned + imsAssign.ItasQuantity;
+                        remaining = remaining - imsAssign.ItasQuantity;
+                        if (remaining > 0)
+                        {
+                            _hrmsassetRepository.Table.Where(p => p.ItaAssetId == imsAssign.ItasItaAssetId)
+                           .ToList()
+                           .ForEach(x =>
+                           {
+                               x.ItaAssignQuantity = assigned;
+                               x.ItaRemaining = remaining;
+
+                           });
+                            if (imsAssign.ItasAssignId > 0) { 
+                            var _imsAssignList = new ImsAssign
+                            {
+                                ItasAssignId=imsAssign.ItasAssignId,
+                                ItasEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
+                                ItasItacCategoryId = imsAssign.ItasItacCategoryId,
+                                ItasItaAssetId = imsAssign.ItasItaAssetId,
+                                ItasQuantity = imsAssign.ItasQuantity,
+                                ItasAssignedDate = imsAssign.ItasAssignedDate,
+                                ItasCreatedBy = imsAssign.ItasCreatedBy,
+                                ItasCreatedByDate = imsAssign.ItasCreatedByDate,
+                                ItasCreatedByName = imsAssign.ItasCreatedByName,
+                                ItasIsDelete = false
+                            };
+                                _hrmsassetAssignRepository.Update(_imsAssignList);
+                            }
+                            else
+                            {
+                                var _imsAssignList = new ImsAssign
+                                {
+                                    ItasEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
+                                    ItasItacCategoryId = imsAssign.ItasItacCategoryId,
+                                    ItasItaAssetId = imsAssign.ItasItaAssetId,
+                                    ItasQuantity = imsAssign.ItasQuantity,
+                                    ItasAssignedDate = imsAssign.ItasAssignedDate,
+                                    ItasCreatedBy = imsAssign.ItasCreatedBy,
+                                    ItasCreatedByDate = imsAssign.ItasCreatedByDate,
+                                    ItasCreatedByName = imsAssign.ItasCreatedByName,
+                                    ItasIsDelete = false
+                                };
+                                _hrmsassetAssignRepository.Insert(_imsAssignList);
+                            }
+                        }
+
+                    }
+
+                }
+
 
 
                 response.Success = true;
