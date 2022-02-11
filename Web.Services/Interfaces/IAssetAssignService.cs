@@ -24,7 +24,10 @@ namespace Web.Services.Interfaces
 
         public BaseResponse ViewAllDataAssign(int empid);
 
-       
+        public BaseResponse ViewAllDataAssigned(int empid);
+
+
+
 
     }
 }

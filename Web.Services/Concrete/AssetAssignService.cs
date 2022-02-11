@@ -300,14 +300,48 @@ namespace Web.Services.Concrete
         {
             BaseResponse response = new BaseResponse();
 
-            bool count = _hrmsassetassignRepository.Table.Where(z => z.ItasIsDelete == false).Count() > 0;
-            var assignData = _hrmsassetassignRepository.Table.Where(x => x.ItasIsDelete == false && x.ItasEtedEmployeeId == empid).Select(y => new DisplayAssetAssignCredential()
+            bool count = _hrmsassetassignRepository.Table.Where(z => z.ItasIsDelete != true).Count() > 0;
+            var assignData = _hrmsassetassignRepository.Table.Where(x => x.ItasIsDelete != true && x.ItasEtedEmployeeId == empid).Select(y => new DisplayAssetAssignCredential()
             {
                 assignid=y.ItasAssignId,
-                assetname=_hrmsassetRepository.Table.Where(z=>z.ItaAssetId==y.ItasItaAssetId).Select(z=>z.ItaAssetName).FirstOrDefault(),
+                assetName=_hrmsassetRepository.Table.Where(z=>z.ItaAssetId==y.ItasItaAssetId).Select(z=>z.ItaAssetName).FirstOrDefault(),
                 categoryname=_hrmsassetcategoryRepository.Table.Where(z=>z.ItacCategoryId==y.ItasItacCategoryId).Select(z=>z.ItacCategoryName).FirstOrDefault(),
                 quantity=y.ItasQuantity,
                 assingedDate=y.ItasAssignedDate,
+            }
+            ).ToList();
+
+
+            if (count == true)
+            {
+                response.Data = assignData;
+                response.Success = true;
+                response.Message = UserMessages.strSuccess;
+
+
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotfound;
+            }
+            return response;
+        }
+
+        public BaseResponse ViewAllDataAssigned(int empid)
+        {
+            BaseResponse response = new BaseResponse();
+
+            bool count = _hrmsassetassignRepository.Table.Where(z => z.ItasIsDelete != true).Count() > 0;
+            var assignData = _hrmsassetassignRepository.Table.Where(x => x.ItasIsDelete != true && x.ItasEtedEmployeeId == empid).Select(y => new DisplayAssetAssignCredential()
+            {
+                itasItaAssetId = y.ItasAssignId,
+                assetName= _hrmsassetRepository.Table.Where(z => z.ItaAssetId == y.ItasItaAssetId).Select(z => z.ItaAssetName).FirstOrDefault(),
+                assetCatagoryName = _hrmsassetcategoryRepository.Table.Where(z => z.ItacCategoryId == y.ItasItacCategoryId).Select(z => z.ItacCategoryName).FirstOrDefault(),
+                itasItacCategoryId=y.ItasItacCategoryId,
+                itasQuantity = y.ItasQuantity,
+                itasAssignedDate = y.ItasAssignedDate,
             }
             ).ToList();
 

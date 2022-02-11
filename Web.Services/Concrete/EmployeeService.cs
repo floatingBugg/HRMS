@@ -439,7 +439,7 @@ namespace Web.Services.Concrete
                           x.ItaRemaining = remaining;
 
                       });
-                            var _imsAssignList =  new ImsAssign
+                            var _imsAssignList = new ImsAssign
                             {
                                 ItasEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
                                 ItasItacCategoryId = imsAssign.ItasItacCategoryId,
@@ -448,7 +448,8 @@ namespace Web.Services.Concrete
                                 ItasAssignedDate = imsAssign.ItasAssignedDate,
                                 ItasCreatedBy = imsAssign.ItasCreatedBy,
                                 ItasCreatedByDate = imsAssign.ItasCreatedByDate,
-                                ItasCreatedByName = imsAssign.ItasCreatedByName
+                                ItasCreatedByName = imsAssign.ItasCreatedByName,
+                                ItasIsDelete = false
                             };
                             _hrmsassetAssignRepository.Insert(_imsAssignList);
                         }
@@ -896,11 +897,12 @@ namespace Web.Services.Concrete
 
             bool count = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false && z.EtedEmployeeId == id).Count() > 0;
             var employeesData = _hrmsemployeeRepository.Table.Include(x => x.EmsTblAcademicQualification).Include(x => x.EmsTblEmergencyContact).Include(x => x.EmsTblEmployeeProfessionalDetails).Include(x => x.EmsTblProfessionalQualification).Include(x => x.EmsTblWorkingHistory).Where(x => x.EtedEmployeeId == id).ToList();
-
+            var userData = _hrmsUserAuthRepository.Table.Where(x => x.EtedEthuEmpId == id).ToList();
 
             if (count == true)
             {
                 response.Data = employeesData;
+                response.Data2 = userData;
                 response.Success = true;
                 response.Message = UserMessages.strSuccess;
 
@@ -948,7 +950,7 @@ namespace Web.Services.Concrete
         {
             BaseResponse response = new BaseResponse();
 
-            bool count = _hrmsdropdownvaluerepository.Table.Where(z => z.HdvIsDelete == false && z.HdvHdDropdownId == id).Count() > 0;
+            bool count = _hrmsdropdownvaluerepository.Table.Where(z => z.HdvIsDelete != true && z.HdvHdDropdownId == id).Count() > 0;
             var dropDownValueData = _hrmsdropdownvaluerepository.Table.Where(y => y.HdvHdDropdownId == id).Select(x => x.HdvValueName).ToList();
 
 

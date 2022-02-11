@@ -160,6 +160,25 @@ namespace Web.API.Controllers
         }
 
 
+        [HttpGet("/Asset/GetAssetbyEmpID")]
+        public BaseResponse ViewAssignedDataByid(int empid)
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                response = _assetassignservice.ViewAllDataAssigned(empid);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+        }
+
     }
     }
 
