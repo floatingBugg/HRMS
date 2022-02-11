@@ -487,6 +487,7 @@ namespace Web.Services.Concrete
             BaseResponse response = new BaseResponse();
             EmsTblEmployeeDetails emsTblEmployeeDetails = new EmsTblEmployeeDetails();
             EmsTblEmployeeDetails emsTblEmployeeDetailsInsert = new EmsTblEmployeeDetails();
+            EmsTblHrmsUser emsTblUser = new EmsTblHrmsUser();
 
             bool count = _hrmsemployeeRepository.Table.Where(p => p.EtedEmployeeId == employee.EtedEmployeeId).Count() > 0;
             if (count == true)
@@ -536,9 +537,36 @@ namespace Web.Services.Concrete
                 emsTblEmployeeDetails.EtedModifiedByDate = DateTime.Now;
                 emsTblEmployeeDetails.EtedModifiedBy = employee.EtedModifiedBy;
                 emsTblEmployeeDetails.EtedModifiedByName = employee.EtedModifiedByName;
+                emsTblEmployeeDetails.EtedManagerId = employee.EtedManagerId;
+                if (employee.EtrEthuRoleId == 3)
+                {
+
+                    emsTblEmployeeDetails.EtedIsManager = true;
+                }
+                else
+                {
+                    emsTblEmployeeDetails.EtedIsManager = false;
+                }
 
                 _hrmsemployeeRepository.Update(emsTblEmployeeDetails);
 
+
+            
+                emsTblUser.EthuPassword = employee.EthuPassword;
+                emsTblUser.EthuGender = employee.EtedGender;
+                emsTblUser.EthuEmailAddress = employee.EtedOfficialEmailAddress;
+                emsTblUser.EthuFullName = employee.EtedFirstName + " " + employee.EtedLastName;
+                emsTblUser.EtrEthuRoleId = employee.EtrEthuRoleId;
+                emsTblUser.EthuUserName = employee.EtedFirstName + " " + employee.EtedEmployeeId;
+                emsTblUser.EthuPhoneNumber = employee.EtedContactNumber;
+                emsTblUser.EtedEthuEmpId = employee.EtedEmployeeId;
+                emsTblUser.EtrEthuRoleId = employee.EtrEthuRoleId;
+                emsTblUser.EthuIsDelete = false;
+                emsTblUser.EthuModifiedBy = employee.EtedModifiedBy;
+                emsTblUser.EthuModifiedByDate = DateTime.Now;
+                emsTblUser.EthuModifiedByName = employee.EtedModifiedByName;
+
+                _hrmsUserAuthRepository.Update(emsTblUser);
 
                 if (employee.EmsTblAcademicQualification.Count > 0)
                 {
@@ -803,6 +831,44 @@ namespace Web.Services.Concrete
                     if (_emsTblWorkingHistoryList.Count() > 0)
                     {
                         _workinghistoryRepository.Insert(_emsTblWorkingHistoryList.ToList());
+                    }
+
+                    if (employee.ImsAssign.Count > 0)
+                    {
+
+                        foreach (var imsAssign in employee.ImsAssign)
+                        {
+                            var remaining = _hrmsassetRepository.Table.Where(x => x.ItaAssetId == imsAssign.ItasItaAssetId).Select(y => y.ItaRemaining).FirstOrDefault();
+                            var assigned = _hrmsassetRepository.Table.Where(x => x.ItaAssetId == imsAssign.ItasItaAssetId).Select(y => y.ItaAssignQuantity).FirstOrDefault();
+                            assigned = assigned + imsAssign.ItasQuantity;
+                            remaining = remaining - imsAssign.ItasQuantity;
+                            if (remaining > 0)
+                            {
+                                _hrmsassetRepository.Table.Where(p => p.ItaAssetId == imsAssign.ItasItaAssetId)
+                               .ToList()
+                               .ForEach(x =>
+                               {
+                                   x.ItaAssignQuantity = assigned;
+                                   x.ItaRemaining = remaining;
+
+                               });
+                                var _imsAssignList = new ImsAssign
+                                {
+                                    ItasEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
+                                    ItasItacCategoryId = imsAssign.ItasItacCategoryId,
+                                    ItasItaAssetId = imsAssign.ItasItaAssetId,
+                                    ItasQuantity = imsAssign.ItasQuantity,
+                                    ItasAssignedDate = imsAssign.ItasAssignedDate,
+                                    ItasCreatedBy = imsAssign.ItasCreatedBy,
+                                    ItasCreatedByDate = imsAssign.ItasCreatedByDate,
+                                    ItasCreatedByName = imsAssign.ItasCreatedByName,
+                                    ItasIsDelete = false
+                                };
+                                _hrmsassetAssignRepository.Update(_imsAssignList);
+                            }
+
+                        }
+
                     }
                 }
 
