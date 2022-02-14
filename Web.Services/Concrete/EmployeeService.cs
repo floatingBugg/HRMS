@@ -834,43 +834,6 @@ namespace Web.Services.Concrete
                         _workinghistoryRepository.Insert(_emsTblWorkingHistoryList.ToList());
                     }
 
-                    if (employee.ImsAssign.Count > 0)
-                    {
-
-                        foreach (var imsAssign in employee.ImsAssign)
-                        {
-                            var remaining = _hrmsassetRepository.Table.Where(x => x.ItaAssetId == imsAssign.ItasItaAssetId).Select(y => y.ItaRemaining).FirstOrDefault();
-                            var assigned = _hrmsassetRepository.Table.Where(x => x.ItaAssetId == imsAssign.ItasItaAssetId).Select(y => y.ItaAssignQuantity).FirstOrDefault();
-                            assigned = assigned + imsAssign.ItasQuantity;
-                            remaining = remaining - imsAssign.ItasQuantity;
-                            if (remaining > 0)
-                            {
-                                _hrmsassetRepository.Table.Where(p => p.ItaAssetId == imsAssign.ItasItaAssetId)
-                               .ToList()
-                               .ForEach(x =>
-                               {
-                                   x.ItaAssignQuantity = assigned;
-                                   x.ItaRemaining = remaining;
-
-                               });
-                                var _imsAssignList = new ImsAssign
-                                {
-                                    ItasEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
-                                    ItasItacCategoryId = imsAssign.ItasItacCategoryId,
-                                    ItasItaAssetId = imsAssign.ItasItaAssetId,
-                                    ItasQuantity = imsAssign.ItasQuantity,
-                                    ItasAssignedDate = imsAssign.ItasAssignedDate,
-                                    ItasCreatedBy = imsAssign.ItasCreatedBy,
-                                    ItasCreatedByDate = imsAssign.ItasCreatedByDate,
-                                    ItasCreatedByName = imsAssign.ItasCreatedByName,
-                                    ItasIsDelete = false
-                                };
-                                _hrmsassetAssignRepository.Update(_imsAssignList);
-                            }
-
-                        }
-
-                    }
                 }
 
                 if (employee.ImsAssign.Count > 0)
