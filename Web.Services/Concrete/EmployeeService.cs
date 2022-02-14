@@ -446,7 +446,7 @@ namespace Web.Services.Concrete
                                 ItasItaAssetId = imsAssign.ItasItaAssetId,
                                 ItasQuantity = imsAssign.ItasQuantity,
                                 ItasAssignedDate = imsAssign.ItasAssignedDate,
-                                ItasCreatedBy = imsAssign.ItasCreatedBy,
+                                ItasCreatedBy = imsAssign.ItasCreatedBy.ToString(),
                                 ItasCreatedByDate = imsAssign.ItasCreatedByDate,
                                 ItasCreatedByName = imsAssign.ItasCreatedByName,
                                 ItasIsDelete = false
@@ -865,7 +865,7 @@ namespace Web.Services.Concrete
                                 ItasItaAssetId = imsAssign.ItasItaAssetId,
                                 ItasQuantity = imsAssign.ItasQuantity,
                                 ItasAssignedDate = imsAssign.ItasAssignedDate,
-                                ItasCreatedBy = imsAssign.ItasCreatedBy,
+                                ItasCreatedBy = imsAssign.ItasCreatedBy.ToString(),
                                 ItasCreatedByDate = imsAssign.ItasCreatedByDate,
                                 ItasCreatedByName = imsAssign.ItasCreatedByName,
                                 ItasIsDelete = false
@@ -881,7 +881,7 @@ namespace Web.Services.Concrete
                                     ItasItaAssetId = imsAssign.ItasItaAssetId,
                                     ItasQuantity = imsAssign.ItasQuantity,
                                     ItasAssignedDate = imsAssign.ItasAssignedDate,
-                                    ItasCreatedBy = imsAssign.ItasCreatedBy,
+                                    ItasCreatedBy = imsAssign.ItasCreatedBy.ToString(),
                                     ItasCreatedByDate = imsAssign.ItasCreatedByDate,
                                     ItasCreatedByName = imsAssign.ItasCreatedByName,
                                     ItasIsDelete = false

@@ -52,7 +52,7 @@ namespace Web.Services.Concrete
                 imsAssign.ItasEtedEmployeeId = assign.ItasEtedEmployeeId;
                 imsAssign.ItasQuantity = assign.ItasQuantity;
                 imsAssign.ItasAssignedDate = assign.ItasAssignedDate;
-                imsAssign.ItasCreatedBy = assign.ItasCreatedBy;
+                imsAssign.ItasCreatedBy = assign.ItasCreatedBy.ToString();
                 imsAssign.ItasCreatedByName = assign.ItasCreatedByName;
                 imsAssign.ItasCreatedByDate = DateTime.Now;
                 imsAssign.ItasIsDelete = false;
@@ -195,7 +195,7 @@ namespace Web.Services.Concrete
                 imsAssign.ItasItaAssetId = assign.ItasItaAssetId;
                 imsAssign.ItasEtedEmployeeId = assign.ItasEtedEmployeeId;
                 imsAssign.ItasQuantity = assign.ItasQuantity;
-                imsAssign.ItasModifiedBy = assign.ItasModifiedBy;
+                imsAssign.ItasModifiedBy = assign.ItasModifiedBy.ToString();
                 imsAssign.ItasModifiedByName = assign.ItasModifiedByName;
                 imsAssign.ItasModifiedByDate = DateTime.Now;
                 imsAssign.ItasIsDelete = false;

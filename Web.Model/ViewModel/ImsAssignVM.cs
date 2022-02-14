@@ -14,10 +14,10 @@ namespace Web.Model.ViewModel
         public int? ItasItacCategoryId { get; set; }
         public int? ItasQuantity { get; set; }
         public DateTime? ItasAssignedDate { get; set; }
-        public string ItasCreatedBy { get; set; }
+        public int ItasCreatedBy { get; set; }
         public string ItasCreatedByName { get; set; }
         public DateTime? ItasCreatedByDate { get; set; }
-        public string ItasModifiedBy { get; set; }
+        public int ItasModifiedBy { get; set; }
         public string ItasModifiedByName { get; set; }
         public DateTime? ItasModifiedByDate { get; set; }
         public bool? ItasIsDelete { get; set; }
