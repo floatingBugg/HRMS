@@ -28,11 +28,12 @@ namespace Web.Services.Concrete
         private readonly IHRMSDropdownValueRepository _hrmsdropdownvaluerepository;
         private readonly IHRMSAssetRepository _hrmsassetRepository;
         private readonly IHRMSAssetAssignRepository _hrmsassetAssignRepository;
+        private readonly IHRMSEmployementStatusRepository _hrmsstatusRepository;
 
 
         IConfiguration _config;
         private readonly IUnitOfWork _uow;
-        public EmployeeService(IConfiguration config, IHRMSUserAuthRepository hrmsUserAuthRepository, IHRMSAssetRepository hrmsassetRepository, IHRMSEmployeeRepository hrmsemployeeRepository, IHRMSAcademicRepository hRMSAcademicRepository, IHRMSEmployeeContactRepository employeeContactRepository, IHRMSPRofessionalRepository hRMSProfessionalRepository, IHRMSEmployeeWorkingHistoryRepository workingHistoryRepository, IHRMSProfessionalDetailsRepository hRMSProfessionalDetailsRepository, IHRMSDropdownValueRepository hrmsdropdownvaluerepository, IUnitOfWork uow, IHRMSAssetAssignRepository hrmsassetAssignRepository)
+        public EmployeeService(IConfiguration config, IHRMSEmployementStatusRepository hrmsstatusRepository, IHRMSUserAuthRepository hrmsUserAuthRepository, IHRMSAssetRepository hrmsassetRepository, IHRMSEmployeeRepository hrmsemployeeRepository, IHRMSAcademicRepository hRMSAcademicRepository, IHRMSEmployeeContactRepository employeeContactRepository, IHRMSPRofessionalRepository hRMSProfessionalRepository, IHRMSEmployeeWorkingHistoryRepository workingHistoryRepository, IHRMSProfessionalDetailsRepository hRMSProfessionalDetailsRepository, IHRMSDropdownValueRepository hrmsdropdownvaluerepository, IUnitOfWork uow, IHRMSAssetAssignRepository hrmsassetAssignRepository)
         {
             _config = config;
             _hrmsassetRepository = hrmsassetRepository;
@@ -45,6 +46,7 @@ namespace Web.Services.Concrete
             _hrmsprofessionaldetailsrepository = hRMSProfessionalDetailsRepository;
             _hrmsUserAuthRepository = hrmsUserAuthRepository;
             _hrmsdropdownvaluerepository = hrmsdropdownvaluerepository;
+            _hrmsstatusRepository = hrmsstatusRepository;
 
             _uow = uow;
         }
@@ -377,6 +379,7 @@ namespace Web.Services.Concrete
                     });
                     _employeeContactRepository.Insert(_emsTblEmergencyContactList.ToList());
                 }
+
                 //Working History
                 if (employee.EmsTblWorkingHistory.Count > 0)
                 {
@@ -703,15 +706,63 @@ namespace Web.Services.Concrete
                     }
                 }
 
+                if (employee.EmpStatus.Count > 0)
+                {
+                    var value = employee.EmpStatus.Select(x => x.EesEcsEmpstatusId).FirstOrDefault();
+                    if (value == 1)
+                    {
+                        var _emsEmpStatusList = employee.EmpStatus.Select(x => new EmsEmployementStatus
+                        {
+                            EesEcsEmpstatusId=x.EesEcsEmpstatusId,
+                            EesEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
+                            EesStartDate = x.EesStartDate,
+                            EesEndDate = x.EesEndDate,
+                            EesDuration = x.EesDuration,
+                            EesIncrement = x.EesIncrement,
+                            EesDateOfIncrement = x.EesDateOfIncrement,
+                            EesRemarks=x.EesRemarks,
+                            EesCreatedBy = x.EesCreatedBy,
+                            EesCreatedByDate = DateTime.Now,
+                            EesCreatedByName = x.EesCreatedByName,
+                            EesIsDelete = false,
+                        });
+                        _hrmsstatusRepository.Insert(_emsEmpStatusList.ToList());
+                    }
+                    else if (value == 2)
+                    {
+                        var _emsEmpStatusList = employee.EmpStatus.Select(x => new EmsEmployementStatus
+                        {
+                            EesEcsEmpstatusId = x.EesEcsEmpstatusId,
+                            EesEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
+                            EesStartDate = x.EesStartDate,
+                            EesEndDate = x.EesEndDate,
+                            EesDuration = x.EesDuration,
+                            EesContractType=x.EesContractType,
+                            EesSalary=x.EesSalary,
+                            EesDateOfIncrement = x.EesDateOfIncrement,
+                            EesCreatedBy = x.EesCreatedBy,
+                            EesCreatedByDate = DateTime.Now,
+                            EesCreatedByName = x.EesCreatedByName,
+                            EesIsDelete = false,
+                        });
+                        _hrmsstatusRepository.Insert(_emsEmpStatusList.ToList());
+                    }
+                }
+
                 if (employee.EmsTblEmployeeProfessionalDetails.Count > 0)
                 {
-
+                    var incremnent = employee.EmpStatus.Select(x => x.EesIncrement).FirstOrDefault();
+                    if (incremnent == null)
+                    {
+                        incremnent = 0;
+                    }
+                    
                     var _emsTblEmployeeProfessionalDetailsList1 = employee.EmsTblEmployeeProfessionalDetails.Where(z => z.EtepdPdId > 0).Select(x => new EmsTblEmployeeProfessionalDetails
                     {
                         EtepdPdId = x.EtepdPdId,
                         EtepdEtedEmployeeId = employee.EtedEmployeeId,
                         EtepdDesignation = x.EtepdDesignation,
-                        EtepdSalary = x.EtepdSalary,
+                        EtepdSalary = x.EtepdSalary+incremnent,
                         EtepdJoiningDate = x.EtepdJoiningDate,
                         EtepdProbation = x.EtepdProbation,
                         EtepdCreatedBy = x.EtepdCreatedBy,
