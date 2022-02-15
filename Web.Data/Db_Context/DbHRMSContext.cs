@@ -20,6 +20,8 @@ namespace Web.Data.Db_Context
         {
         }
 
+        public virtual DbSet<EmsCategoryStatus> EmsCategoryStatus { get; set; }
+        public virtual DbSet<EmsEmployementStatus> EmsEmployementStatus { get; set; }
         public virtual DbSet<EmsTblAcademicQualification> EmsTblAcademicQualification { get; set; }
         public virtual DbSet<EmsTblEmergencyContact> EmsTblEmergencyContact { get; set; }
         public virtual DbSet<EmsTblEmployeeDetails> EmsTblEmployeeDetails { get; set; }
@@ -42,13 +44,125 @@ namespace Web.Data.Db_Context
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=192.168.0.4;Initial Catalog=HRMS;Persist Security Info=True;User ID=sa;Password=4292");
+                optionsBuilder.UseSqlServer("Data Source=192.168.0.4;Initial Catalog=HRMS;User ID=sa;Password=4292");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
+
+            modelBuilder.Entity<EmsCategoryStatus>(entity =>
+            {
+                entity.HasKey(e => e.EcsStatusId)
+                    .HasName("PK__ems_cate__8FD094BE8D2D0F62");
+
+                entity.ToTable("ems_category_status");
+
+                entity.Property(e => e.EcsStatusId).HasColumnName("ecs_status_id");
+
+                entity.Property(e => e.EcsCreatedBy)
+                    .HasMaxLength(100)
+                    .HasColumnName("ecs_created_by");
+
+                entity.Property(e => e.EcsCreatedByDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("ecs_created_by_date");
+
+                entity.Property(e => e.EcsCreatedByName)
+                    .HasMaxLength(100)
+                    .HasColumnName("ecs_created_by_name");
+
+                entity.Property(e => e.EcsIsDelete).HasColumnName("ecs_is_delete");
+
+                entity.Property(e => e.EcsStatusName)
+                    .HasMaxLength(100)
+                    .HasColumnName("ecs_status_name");
+            });
+
+            modelBuilder.Entity<EmsEmployementStatus>(entity =>
+            {
+                entity.HasKey(e => e.EesEmployementId)
+                    .HasName("PK__ems_empl__363358D6E65BF824");
+
+                entity.ToTable("ems_employement_status");
+
+                entity.Property(e => e.EesEmployementId).HasColumnName("ees_employement_id");
+
+                entity.Property(e => e.EesClearenceDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("ees_clearence_date");
+
+                entity.Property(e => e.EesContractType)
+                    .HasMaxLength(100)
+                    .HasColumnName("ees_contract_type");
+
+                entity.Property(e => e.EesCreatedBy)
+                    .HasMaxLength(100)
+                    .HasColumnName("ees_created_by");
+
+                entity.Property(e => e.EesCreatedByDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("ees_created_by_date");
+
+                entity.Property(e => e.EesCreatedByName)
+                    .HasMaxLength(100)
+                    .HasColumnName("ees_created_by_name");
+
+                entity.Property(e => e.EesDateOfIncrement)
+                    .HasMaxLength(100)
+                    .HasColumnName("ees_date_of_increment");
+
+                entity.Property(e => e.EesDuration)
+                    .HasMaxLength(100)
+                    .HasColumnName("ees_duration");
+
+                entity.Property(e => e.EesEcsEmpstatusId).HasColumnName("ees_ecs_empstatus_id");
+
+                entity.Property(e => e.EesEndDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("ees_end_date");
+
+                entity.Property(e => e.EesEtedEmployeeId).HasColumnName("ees_eted_employee_id");
+
+                entity.Property(e => e.EesIncrement).HasColumnName("ees_increment");
+
+                entity.Property(e => e.EesIsDelete).HasColumnName("ees_is_delete");
+
+                entity.Property(e => e.EesModifiedBy)
+                    .HasMaxLength(100)
+                    .HasColumnName("ees_modified_by");
+
+                entity.Property(e => e.EesModifiedByDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("ees_modified_by_date");
+
+                entity.Property(e => e.EesModifiedByName)
+                    .HasMaxLength(100)
+                    .HasColumnName("ees_modified_by_name");
+
+                entity.Property(e => e.EesRemarks)
+                    .HasMaxLength(100)
+                    .HasColumnName("ees_remarks");
+
+                entity.Property(e => e.EesSalary).HasColumnName("ees_salary");
+
+                entity.Property(e => e.EesStartDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("ees_start_date");
+
+                entity.HasOne(d => d.EesEcsEmpstatus)
+                    .WithMany(p => p.EmsEmployementStatus)
+                    .HasForeignKey(d => d.EesEcsEmpstatusId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__ems_emplo__ees_e__756D6ECB");
+
+                entity.HasOne(d => d.EesEcsEmpstatusNavigation)
+                    .WithMany(p => p.EmsEmployementStatus)
+                    .HasForeignKey(d => d.EesEcsEmpstatusId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__ems_emplo__ees_e__76619304");
+            });
 
             modelBuilder.Entity<EmsTblAcademicQualification>(entity =>
             {
@@ -280,7 +394,7 @@ namespace Web.Data.Db_Context
             modelBuilder.Entity<EmsTblHrmsUser>(entity =>
             {
                 entity.HasKey(e => e.EthuUserId)
-                    .HasName("PK__ems_tbl___7F2D16AC11AAF32E");
+                    .HasName("PK__ems_tbl___7F2D16AC85C7AB07");
 
                 entity.ToTable("ems_tbl_hrms_user");
 
@@ -340,13 +454,15 @@ namespace Web.Data.Db_Context
                     .HasMaxLength(100)
                     .HasColumnName("ethu_user_name");
 
+                entity.Property(e => e.EthuUserStatus).HasColumnName("ethu_user_status");
+
                 entity.Property(e => e.EtrEthuRoleId).HasColumnName("etr_ethu_role_id");
 
                 entity.HasOne(d => d.EtrEthuRole)
                     .WithMany(p => p.EmsTblHrmsUser)
                     .HasForeignKey(d => d.EtrEthuRoleId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__ems_tbl_h__etr_e__367C1819");
+                    .HasConstraintName("FK__ems_tbl_h__etr_e__74794A92");
             });
 
             modelBuilder.Entity<EmsTblProfessionalQualification>(entity =>

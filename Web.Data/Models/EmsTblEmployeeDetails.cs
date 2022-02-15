@@ -9,6 +9,7 @@ namespace Web.Data.Models
     {
         public EmsTblEmployeeDetails()
         {
+            EmsEmployementStatus = new HashSet<EmsEmployementStatus>();
             EmsTblAcademicQualification = new HashSet<EmsTblAcademicQualification>();
             EmsTblEmergencyContact = new HashSet<EmsTblEmergencyContact>();
             EmsTblEmployeeProfessionalDetails = new HashSet<EmsTblEmployeeProfessionalDetails>();
@@ -45,6 +46,7 @@ namespace Web.Data.Models
         public DateTime? EtedModifiedByDate { get; set; }
         public bool? EtedIsDelete { get; set; }
 
+        public virtual ICollection<EmsEmployementStatus> EmsEmployementStatus { get; set; }
         public virtual ICollection<EmsTblAcademicQualification> EmsTblAcademicQualification { get; set; }
         public virtual ICollection<EmsTblEmergencyContact> EmsTblEmergencyContact { get; set; }
         public virtual ICollection<EmsTblEmployeeProfessionalDetails> EmsTblEmployeeProfessionalDetails { get; set; }

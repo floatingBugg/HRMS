@@ -11,6 +11,7 @@ namespace Web.Data.Models
         public int EtrEthuRoleId { get; set; }
         public string EthuFullName { get; set; }
         public string EthuUserName { get; set; }
+        public bool? EthuUserStatus { get; set; }
         public string EthuEmailAddress { get; set; }
         public string EthuPhoneNumber { get; set; }
         public string EthuPassword { get; set; }
