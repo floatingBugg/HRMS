@@ -28,6 +28,7 @@ namespace Web.Services.Concrete
         private readonly IHRMSDropdownValueRepository _hrmsdropdownvaluerepository;
         private readonly IHRMSAssetRepository _hrmsassetRepository;
         private readonly IHRMSAssetAssignRepository _hrmsassetAssignRepository;
+        
 
 
         IConfiguration _config;
@@ -48,6 +49,7 @@ namespace Web.Services.Concrete
 
             _uow = uow;
         }
+
 
         public BaseResponse GetAllEmployee()
         {
@@ -91,7 +93,7 @@ namespace Web.Services.Concrete
             }
             return response;
         }
-
+        
         public BaseResponse GetAllEmployee(int roleid,int empid)
         {
             
@@ -480,7 +482,6 @@ namespace Web.Services.Concrete
 
             return response;
         }
-
         public BaseResponse UpdateEmployee(EmsTblEmployeeDetailsVM employee, string rootpath)
         {
 
@@ -911,7 +912,6 @@ namespace Web.Services.Concrete
 
             return response;
         }
-
         public BaseResponse DeleteEmployee(int empid)
         {
             BaseResponse response = new BaseResponse();
@@ -985,7 +985,7 @@ namespace Web.Services.Concrete
             BaseResponse response = new BaseResponse();
 
             bool count = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false && z.EtedEmployeeId == id).Count() > 0;
-            var employeesData = _hrmsemployeeRepository.Table.Include(x => x.EmsTblAcademicQualification).Include(x => x.EmsTblEmergencyContact).Include(x => x.EmsTblEmployeeProfessionalDetails).Include(x => x.EmsTblProfessionalQualification).Include(x => x.EmsTblWorkingHistory).Where(x => x.EtedEmployeeId == id).ToList();
+            var employeesData = _hrmsemployeeRepository.Table.Include(x => x.EmsTblAcademicQualification).Include(x => x.EmsTblEmergencyContact).Include(x => x.EmsTblEmployeeProfessionalDetails).Include(x => x.EmsTblProfessionalQualification).Include(x => x.EmsEmployementStatus).Include(x => x.EmsTblWorkingHistory).Where(x => x.EtedEmployeeId == id).ToList();
             var userData = _hrmsUserAuthRepository.Table.Where(x => x.EtedEthuEmpId == id).ToList();
 
             if (count == true)
