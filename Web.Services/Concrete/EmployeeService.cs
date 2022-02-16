@@ -711,41 +711,164 @@ namespace Web.Services.Concrete
                     var value = employee.EmpStatus.Select(x => x.EesEcsEmpstatusId).FirstOrDefault();
                     if (value == 1)
                     {
-                        var _emsEmpStatusList = employee.EmpStatus.Select(x => new EmsEmployementStatus
-                        {
-                            EesEcsEmpstatusId=x.EesEcsEmpstatusId,
-                            EesEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
-                            EesStartDate = x.EesStartDate,
-                            EesEndDate = x.EesEndDate,
-                            EesDuration = x.EesDuration,
-                            EesIncrement = x.EesIncrement,
-                            EesDateOfIncrement = x.EesDateOfIncrement,
-                            EesRemarks=x.EesRemarks,
-                            EesCreatedBy = x.EesCreatedBy,
-                            EesCreatedByDate = DateTime.Now,
-                            EesCreatedByName = x.EesCreatedByName,
-                            EesIsDelete = false,
-                        });
-                        _hrmsstatusRepository.Insert(_emsEmpStatusList.ToList());
-                    }
-                    else if (value == 2)
-                    {
-                        var _emsEmpStatusList = employee.EmpStatus.Select(x => new EmsEmployementStatus
+                        var _emsEmpStatusList = employee.EmpStatus.Where(z => z.EesEmployementId == 0).Select(x => new EmsEmployementStatus
                         {
                             EesEcsEmpstatusId = x.EesEcsEmpstatusId,
                             EesEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
                             EesStartDate = x.EesStartDate,
                             EesEndDate = x.EesEndDate,
                             EesDuration = x.EesDuration,
-                            EesContractType=x.EesContractType,
-                            EesSalary=x.EesSalary,
+                            EesIncrement = x.EesIncrement,
                             EesDateOfIncrement = x.EesDateOfIncrement,
+                            EesRemarks = x.EesRemarks,
                             EesCreatedBy = x.EesCreatedBy,
                             EesCreatedByDate = DateTime.Now,
                             EesCreatedByName = x.EesCreatedByName,
                             EesIsDelete = false,
                         });
+                        if (_emsEmpStatusList.Count() > 0)
+                        {
+                            _hrmsstatusRepository.Insert(_emsEmpStatusList.ToList());
+                        }
+                        var _emsEmpStatusList1 = employee.EmpStatus.Where(z => z.EesEmployementId > 0).Select(x => new EmsEmployementStatus
+                        {
+                            EesEcsEmpstatusId = x.EesEcsEmpstatusId,
+                            EesEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
+                            EesStartDate = x.EesStartDate,
+                            EesEndDate = x.EesEndDate,
+                            EesDuration = x.EesDuration,
+                            EesIncrement = x.EesIncrement,
+                            EesDateOfIncrement = x.EesDateOfIncrement,
+                            EesRemarks = x.EesRemarks,
+                            EesCreatedBy = x.EesCreatedBy,
+                            EesCreatedByDate = DateTime.Now,
+                            EesCreatedByName = x.EesCreatedByName,
+                            EesIsDelete = false,
+                        });
+                        if (_emsEmpStatusList.Count() > 0)
+                        {
+                            _hrmsstatusRepository.Update(_emsEmpStatusList.ToList());
+                        }
+                    }
+                    else if (value == 2)
+                    {
+                        var _emsEmpStatusList = employee.EmpStatus.Where(z => z.EesEmployementId == 0).Select(x => new EmsEmployementStatus
+                        {
+                            EesEcsEmpstatusId = x.EesEcsEmpstatusId,
+                            EesEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
+                            EesStartDate = x.EesStartDate,
+                            EesEndDate = x.EesEndDate,
+                            EesDuration = x.EesDuration,
+                            EesContractType = x.EesContractType,
+                            EesSalary = x.EesSalary,
+                            EesRemarks = x.EesRemarks,
+                            EesCreatedBy = x.EesCreatedBy,
+                            EesCreatedByDate = DateTime.Now,
+                            EesCreatedByName = x.EesCreatedByName,
+                            EesIsDelete = false,
+                        });
+                        if (_emsEmpStatusList.Count() > 0)
+                        { 
                         _hrmsstatusRepository.Insert(_emsEmpStatusList.ToList());
+                        }
+                        var _emsEmpStatusList1 = employee.EmpStatus.Where(z => z.EesEmployementId > 0).Select(x => new EmsEmployementStatus
+                        {
+                            EesEcsEmpstatusId = x.EesEcsEmpstatusId,
+                            EesEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
+                            EesStartDate = x.EesStartDate,
+                            EesEndDate = x.EesEndDate,
+                            EesDuration = x.EesDuration,
+                            EesContractType = x.EesContractType,
+                            EesSalary = x.EesSalary,
+                            EesRemarks = x.EesRemarks,
+                            EesCreatedBy = x.EesCreatedBy,
+                            EesCreatedByDate = DateTime.Now,
+                            EesCreatedByName = x.EesCreatedByName,
+                            EesIsDelete = false,
+                        });
+                        if (_emsEmpStatusList.Count() > 0)
+                        {
+                            _hrmsstatusRepository.Update(_emsEmpStatusList.ToList());
+                        }
+                    }
+                    else if (value == 3)
+                    {
+                        var _emsEmpstatusList = employee.EmpStatus.Where(z=>z.EesEmployementId==0).Select(x => new EmsEmployementStatus
+                        {
+                            EesEcsEmpstatusId=x.EesEcsEmpstatusId,
+                            EesEtedEmployeeId=emsTblEmployeeDetails.EtedEmployeeId,
+                            EesStartDate=x.EesStartDate,
+                            EesEndDate=x.EesEndDate,
+                            EesDuration=x.EesDuration,
+                            EesClearenceDate=x.EesClearenceDate,
+                            EesRemarks=x.EesRemarks,
+                            EesCreatedBy=x.EesCreatedBy,
+                            EesCreatedByName=x.EesCreatedByName,
+                            EesCreatedByDate=DateTime.Now,
+                            EesIsDelete=false
+                        });
+                        if (_emsEmpstatusList.Count() > 0)
+                        {
+                            _hrmsstatusRepository.Insert(_emsEmpstatusList.ToList());
+                        }
+
+                        var _emsEmpstatusList1 = employee.EmpStatus.Where(z => z.EesEmployementId > 0).Select(x => new EmsEmployementStatus
+                        {
+                            EesEcsEmpstatusId = x.EesEcsEmpstatusId,
+                            EesEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
+                            EesStartDate = x.EesStartDate,
+                            EesEndDate = x.EesEndDate,
+                            EesDuration = x.EesDuration,
+                            EesClearenceDate = x.EesClearenceDate,
+                            EesRemarks = x.EesRemarks,
+                            EesCreatedBy = x.EesCreatedBy,
+                            EesCreatedByName = x.EesCreatedByName,
+                            EesCreatedByDate = DateTime.Now,
+                            EesIsDelete = false
+                        });
+                        if (_emsEmpstatusList.Count() > 0)
+                        {
+                            _hrmsstatusRepository.Update(_emsEmpstatusList.ToList());
+                        }
+                    }
+                    else if (value == 4)
+                    {
+                        var _emsEmpstatusList = employee.EmpStatus.Where(z=>z.EesEmployementId==0).Select(x => new EmsEmployementStatus
+                        {
+                            EesEcsEmpstatusId=x.EesEcsEmpstatusId,
+                            EesEtedEmployeeId=emsTblEmployeeDetails.EtedEmployeeId,
+                            EesStartDate=x.EesStartDate,
+                            EesEndDate=x.EesEndDate,
+                            EesClearenceDate=x.EesClearenceDate,
+                            EesDuration=x.EesDuration,
+                            EesRemarks=x.EesRemarks,
+                            EesCreatedBy=x.EesCreatedBy,
+                            EesCreatedByName=x.EesCreatedByName,
+                            EesCreatedByDate=DateTime.Now,
+                            EesIsDelete=false
+                        });
+                        if (_emsEmpstatusList.Count() > 0)
+                        {
+                            _hrmsstatusRepository.Insert(_emsEmpstatusList.ToList());
+                        }
+                        var _emsEmpstatusList1 = employee.EmpStatus.Where(z => z.EesEmployementId > 0).Select(x => new EmsEmployementStatus
+                        {
+                            EesEcsEmpstatusId = x.EesEcsEmpstatusId,
+                            EesEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
+                            EesStartDate = x.EesStartDate,
+                            EesEndDate = x.EesEndDate,
+                            EesClearenceDate = x.EesClearenceDate,
+                            EesDuration = x.EesDuration,
+                            EesRemarks = x.EesRemarks,
+                            EesCreatedBy = x.EesCreatedBy,
+                            EesCreatedByName = x.EesCreatedByName,
+                            EesCreatedByDate = DateTime.Now,
+                            EesIsDelete = false
+                        });
+                        if (_emsEmpstatusList.Count() > 0)
+                        {
+                            _hrmsstatusRepository.Update(_emsEmpstatusList.ToList());
+                        }
                     }
                 }
 
