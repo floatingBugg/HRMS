@@ -277,7 +277,7 @@ namespace Web.Services.Concrete
             BaseResponse response = new BaseResponse();
 
             bool count = _hrmsassetRepository.Table.Where(z => z.ItaIsDelete == false).Count() > 0;
-            var assignData = _hrmsassetRepository.Table.Where(x => x.ItaIsDelete == false).Select(y => new UnAssignedAssetEmployeeGrid()
+            var assignData = _hrmsassetRepository.Table.Where(x => x.ItaIsDelete == false && x.ItaRemaining > 0).Select(y => new UnAssignedAssetEmployeeGrid()
             {
                 assetid = y.ItaAssetId,
                 assetname=y.ItaAssetName,

@@ -8,10 +8,11 @@ namespace Web.Model.Common
 {
     public class DisplayAssetAssignCredential
     {
+        public int ItasAssignId { get; set; }
         public int assignid { get; set; }
         public int assetid { get; set; }
         public string categoryname { get; set; }
-        public int itasItaAssetId { get; set; }
+        public int? itasItaAssetId { get; set; }
         public string assetName { get; set; }
 
         public int? itasItacCategoryId { get; set; }

@@ -444,23 +444,23 @@ namespace Web.Services.Concrete
                           x.ItaRemaining = remaining;
 
                       });
-                            var _imsAssignList = new ImsAssign
-                            {
-                                ItasEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
-                                ItasItacCategoryId = imsAssign.ItasItacCategoryId,
-                                ItasItaAssetId = imsAssign.ItasItaAssetId,
-                                ItasQuantity = imsAssign.ItasQuantity,
-                                ItasAssignedDate = imsAssign.ItasAssignedDate,
-                                ItasCreatedBy = imsAssign.ItasCreatedBy.ToString(),
-                                ItasCreatedByDate = imsAssign.ItasCreatedByDate,
-                                ItasCreatedByName = imsAssign.ItasCreatedByName,
-                                ItasIsDelete = false
-                            };
-                            _hrmsassetAssignRepository.Insert(_imsAssignList);
+                            
                         }
-                        
                     }
-                    
+                    var _imsAssignList = employee.ImsAssign.Select(x => new ImsAssign
+                    {
+                        ItasEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
+                        ItasItacCategoryId = x.ItasItacCategoryId,
+                        ItasItaAssetId = x.ItasItaAssetId,
+                        ItasQuantity = x.ItasQuantity,
+                        ItasAssignedDate = x.ItasAssignedDate,
+                        ItasCreatedBy = x.ItasCreatedBy.ToString(),
+                        ItasCreatedByDate = x.ItasCreatedByDate,
+                        ItasCreatedByName = x.ItasCreatedByName,
+                        ItasIsDelete = false
+                    });
+                    _hrmsassetAssignRepository.Insert(_imsAssignList.ToList());
+
                 }
 
                 response.Success = true;
@@ -707,7 +707,7 @@ namespace Web.Services.Concrete
                     }
                 }
 
-                if (employee.EmpStatus.Count > 0)
+               /* if (employee.EmpStatus.Count > 0 && employee.EmpStatus!=null)
                 {
                     var value = employee.EmpStatus.Select(x => x.EesEcsEmpstatusId).FirstOrDefault();
                     if (value == 1)
@@ -871,15 +871,17 @@ namespace Web.Services.Concrete
                             _hrmsstatusRepository.Update(_emsEmpstatusList.ToList());
                         }
                     }
-                }
+                }*/
 
                 if (employee.EmsTblEmployeeProfessionalDetails.Count > 0)
                 {
-                    var incremnent = employee.EmpStatus.Select(x => x.EesIncrement).FirstOrDefault();
+                    
+                    var incremnent = employee.EmpStatus.Select(x => x.EesIncrement).ToList() ?? null;
                     if (incremnent == null)
                     {
-                        incremnent = 0;
+                        incremnent[0] = 0;   
                     }
+                  
                     
                     var _emsTblEmployeeProfessionalDetailsList1 = employee.EmsTblEmployeeProfessionalDetails.Where(z => z.EtepdPdId > 0).Select(x => new EmsTblEmployeeProfessionalDetails
                     {

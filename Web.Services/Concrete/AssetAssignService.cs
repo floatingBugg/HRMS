@@ -336,7 +336,8 @@ namespace Web.Services.Concrete
             bool count = _hrmsassetassignRepository.Table.Where(z => z.ItasIsDelete != true).Count() > 0;
             var assignData = _hrmsassetassignRepository.Table.Where(x => x.ItasIsDelete != true && x.ItasEtedEmployeeId == empid).Select(y => new DisplayAssetAssignCredential()
             {
-                itasItaAssetId = y.ItasAssignId,
+                ItasAssignId=y.ItasAssignId,
+                itasItaAssetId = y.ItasItaAssetId,
                 assetName= _hrmsassetRepository.Table.Where(z => z.ItaAssetId == y.ItasItaAssetId).Select(z => z.ItaAssetName).FirstOrDefault(),
                 assetCatagoryName = _hrmsassetcategoryRepository.Table.Where(z => z.ItacCategoryId == y.ItasItacCategoryId).Select(z => z.ItacCategoryName).FirstOrDefault(),
                 itasItacCategoryId=y.ItasItacCategoryId,
