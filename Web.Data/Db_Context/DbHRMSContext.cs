@@ -44,7 +44,7 @@ namespace Web.Data.Db_Context
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=192.168.0.4;Initial Catalog=HRMS;User ID=sa;Password=4292");
+                optionsBuilder.UseSqlServer("Data Source=192.168.0.4;Initial Catalog=HRMS;Persist Security Info=True;User ID=sa;Password=4292");
             }
         }
 
@@ -457,6 +457,12 @@ namespace Web.Data.Db_Context
                 entity.Property(e => e.EthuUserStatus).HasColumnName("ethu_user_status");
 
                 entity.Property(e => e.EtrEthuRoleId).HasColumnName("etr_ethu_role_id");
+
+                entity.HasOne(d => d.EtedEthuEmp)
+                    .WithMany(p => p.EmsTblHrmsUser)
+                    .HasForeignKey(d => d.EtedEthuEmpId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ems_tbl_hrms_user_ems_tbl_employee_details");
 
                 entity.HasOne(d => d.EtrEthuRole)
                     .WithMany(p => p.EmsTblHrmsUser)
