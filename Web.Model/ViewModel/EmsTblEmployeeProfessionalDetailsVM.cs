@@ -21,5 +21,6 @@ namespace Web.Model.ViewModel
         public string EtepdModifiedByName { get; set; }
         public DateTime? EtepdModifiedByDate { get; set; }
         public bool? EtepdIsDelete { get; set; }
+        public string EtedempStatus { get; set; }
     }
 }

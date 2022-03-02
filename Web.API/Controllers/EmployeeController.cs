@@ -116,6 +116,8 @@ namespace Web.API.Controllers
         public BaseResponse Update([FromBody] EmsTblEmployeeDetailsVM employee)
         {
             BaseResponse response = new BaseResponse();
+
+            var modelState = ModelState;
             string projectRootPath = _hostEnvironment.WebRootPath;
             try
             {
