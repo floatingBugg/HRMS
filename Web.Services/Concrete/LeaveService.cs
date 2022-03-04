@@ -142,6 +142,7 @@ namespace Web.Services.Concrete
             bool count = _hrmsleaverecordrepository.Table.Where(z => z.LmslrRecordId == id && z.LmslrIsDelete == false).Count() > 0;
             var leavedata = _hrmsleaverecordrepository.Table.Where(x => x.LmslrRecordId == id && x.LmslrIsDelete == false).Select(x => new LmsLeaveRecordVM
             {
+                LmslrEtedEmployeeId = x.LmslrEtedEmployeeId,
                 LmslrRecordId = x.LmslrRecordId,
                 LmslrEtedEmployeeName = _hrmsemployeeRepository.Table.Where(z => z.EtedEmployeeId == x.LmslrEtedEmployeeId).Select(z => z.EtedFirstName + " " + z.EtedLastName).FirstOrDefault(),
                 LmslrCasualTaken = x.LmslrCasualTaken,
@@ -179,6 +180,7 @@ namespace Web.Services.Concrete
             bool count = _hrmsleaverecordrepository.Table.Where(z => z.LmslrIsDelete == false).Count() > 0;
             var leavedata = _hrmsleaverecordrepository.Table.Where(x => x.LmslrIsDelete == false).Select(x => new LmsLeaveRecordVM
             {
+                LmslrEtedEmployeeId = x.LmslrEtedEmployeeId,
                 LmslrRecordId = x.LmslrRecordId,
                 LmslrEtedEmployeeName = _hrmsemployeeRepository.Table.Where(z => z.EtedEmployeeId == x.LmslrEtedEmployeeId).Select(z => z.EtedFirstName + " " + z.EtedLastName).FirstOrDefault(),
                 LmslrCasualTaken = x.LmslrCasualTaken,
