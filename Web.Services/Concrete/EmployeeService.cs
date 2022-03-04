@@ -29,12 +29,13 @@ namespace Web.Services.Concrete
         private readonly IHRMSAssetRepository _hrmsassetRepository;
         private readonly IHRMSAssetAssignRepository _hrmsassetAssignRepository;
         private readonly IHRMSEmployementStatusRepository _hrmsstatusRepository;
+        private readonly IHRMSLeaveRecordRepository _hrmsleaverecordrepository;
 
 
 
         IConfiguration _config;
         private readonly IUnitOfWork _uow;
-        public EmployeeService(IConfiguration config, IHRMSEmployementStatusRepository hrmsstatusRepository, IHRMSUserAuthRepository hrmsUserAuthRepository, IHRMSAssetRepository hrmsassetRepository, IHRMSEmployeeRepository hrmsemployeeRepository, IHRMSAcademicRepository hRMSAcademicRepository, IHRMSEmployeeContactRepository employeeContactRepository, IHRMSPRofessionalRepository hRMSProfessionalRepository, IHRMSEmployeeWorkingHistoryRepository workingHistoryRepository, IHRMSProfessionalDetailsRepository hRMSProfessionalDetailsRepository, IHRMSDropdownValueRepository hrmsdropdownvaluerepository, IUnitOfWork uow, IHRMSAssetAssignRepository hrmsassetAssignRepository)
+        public EmployeeService(IConfiguration config, IHRMSLeaveRecordRepository hrmsleaverecordrepository, IHRMSEmployementStatusRepository hrmsstatusRepository, IHRMSUserAuthRepository hrmsUserAuthRepository, IHRMSAssetRepository hrmsassetRepository, IHRMSEmployeeRepository hrmsemployeeRepository, IHRMSAcademicRepository hRMSAcademicRepository, IHRMSEmployeeContactRepository employeeContactRepository, IHRMSPRofessionalRepository hRMSProfessionalRepository, IHRMSEmployeeWorkingHistoryRepository workingHistoryRepository, IHRMSProfessionalDetailsRepository hRMSProfessionalDetailsRepository, IHRMSDropdownValueRepository hrmsdropdownvaluerepository, IUnitOfWork uow, IHRMSAssetAssignRepository hrmsassetAssignRepository)
         {
             _config = config;
             _hrmsassetRepository = hrmsassetRepository;
@@ -48,6 +49,7 @@ namespace Web.Services.Concrete
             _hrmsUserAuthRepository = hrmsUserAuthRepository;
             _hrmsdropdownvaluerepository = hrmsdropdownvaluerepository;
             _hrmsstatusRepository = hrmsstatusRepository;
+            _hrmsleaverecordrepository = hrmsleaverecordrepository;
 
             _uow = uow;
         }
@@ -189,9 +191,10 @@ namespace Web.Services.Concrete
             //Employee Details
 
             if (!string.IsNullOrEmpty(employee.EtedCreatedBy) && !string.IsNullOrEmpty(employee.EtedCreatedByName)
-               && !string.IsNullOrEmpty(employee.EtedOfficialEmailAddress) && !string.IsNullOrEmpty(employee.EtedAddress) && !string.IsNullOrEmpty(employee.EtedGender)
-               && !string.IsNullOrEmpty(employee.EtedReligion)
-               && (employee.EtedCnic != null) && doesEmailExistAlready == false && doesCNICExistAlready == false)
+               //&& !string.IsNullOrEmpty(employee.EtedOfficialEmailAddress) && !string.IsNullOrEmpty(employee.EtedAddress) && !string.IsNullOrEmpty(employee.EtedGender)
+               //&& !string.IsNullOrEmpty(employee.EtedReligion)
+               //&& (employee.EtedCnic != null) && doesEmailExistAlready == false && doesCNICExistAlready == false
+               )
             {
                 if (!string.IsNullOrEmpty(employee.EtedPhotograph) && employee.EtedPhotograph!="")
                 {
@@ -425,6 +428,7 @@ namespace Web.Services.Concrete
                     _workinghistoryRepository.Insert(_emsTblWorkingHistoryList.ToList());
 
                 }
+               
 
                 if (employee.ImsAssign.Count > 0)
                 {
@@ -461,6 +465,30 @@ namespace Web.Services.Concrete
                     });
                     _hrmsassetAssignRepository.Insert(_imsAssignList.ToList());
 
+                }
+                ///////////////////Add Leave Record//////////////////
+                if (employee.Empleaveassign.Count > 0)
+                {
+
+                  
+                    var _lmsLeaveRecordlist = employee.Empleaveassign.Select(x => new LmsLeaveRecord
+                    {
+                        LmslrEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
+                        //LmslrEtedEmployeeId = emsTblEmployeeProfessionalDetails.EtepdDesignation,
+                        LmslrAnnualAssign = x.LmslrAnnualAssign,
+                        LmslrSickAssign = x.LmslrSickAssign,
+                        LmslrCasualAssign = x.LmslrCasualAssign,
+                        LmslrTotalAssign = x.LmslrTotalAssign,
+                        LmslrAnnualTaken = x.LmslrAnnualTaken,
+                        LmslrSickTaken = x.LmslrSickTaken,
+                        LmslrCasualTaken = x.LmslrCasualTaken,
+                        LmslrTotalTaken = x.LmslrTotalTaken,
+                        LmslrCreatedBy = x.LmslrCreatedBy,
+                        LmslrCreatedByName = x.LmslrCreatedByName,
+                        LmslrCreatedByDate = DateTime.Now,
+                        LmslrIsDelete =false,
+                    });
+                    _hrmsleaverecordrepository.Insert(_lmsLeaveRecordlist.ToList());
                 }
 
                 response.Success = true;
@@ -720,7 +748,7 @@ namespace Web.Services.Concrete
                             EesEndDate = Convert.ToDateTime(x.EesEndDate),
                             EesDuration = x.EesDuration,
                             EesIncrement = x.EesIncrement,
-                            EesDateOfIncrement = x.EesDateOfIncrement,
+                            EesDateOfIncrement = Convert.ToDateTime(x.EesDateOfIncrement),
                             EesRemarks = x.EesRemarks,
                             EesCreatedBy = x.EesCreatedBy,
                             EesCreatedByDate = DateTime.Now,
@@ -739,7 +767,7 @@ namespace Web.Services.Concrete
                             EesEndDate = Convert.ToDateTime(x.EesEndDate),
                             EesDuration = x.EesDuration,
                             EesIncrement = x.EesIncrement,
-                            EesDateOfIncrement = x.EesDateOfIncrement,
+                            EesDateOfIncrement = Convert.ToDateTime(x.EesDateOfIncrement),
                             EesRemarks = x.EesRemarks,
                             EesCreatedBy = x.EesCreatedBy,
                             EesCreatedByDate = DateTime.Now,

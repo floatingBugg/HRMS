@@ -14,7 +14,7 @@ namespace Web.Data.Models
         public DateTime? EesEndDate { get; set; }
         public DateTime? EesClearenceDate { get; set; }
         public int? EesIncrement { get; set; }
-        public string EesDateOfIncrement { get; set; }
+        public DateTime? EesDateOfIncrement { get; set; }
         public string EesRemarks { get; set; }
         public string EesDuration { get; set; }
         public string EesContractType { get; set; }
