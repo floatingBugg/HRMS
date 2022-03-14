@@ -43,6 +43,11 @@ namespace Web.Model.ViewModel
         public List<EmsTblWorkingHistoryVM> EmsTblWorkingHistory { get; set; }
         public List<ImsAssignVM> ImsAssign { get; set; }
         public List<EmsEmployementStatusVM> EmsTblPermanentEmployee { get; set; }
+        public List<EmsEmployementStatusVM> EmsTblContractEmployee { get; set; }
+        public List<EmsEmployementStatusVM> Empreleaseddata { get; set; }
+        public List<EmsEmployementStatusVM> Empresigneddata { get; set; }
+        public List<EmsEmployementStatusVM> EmsTblPartTimeEmployee { get; set; }
+        public List<EmsEmployementStatusVM> EmsTblInterneedata { get; set; }
         //public List<LmsEmployeeLeaveVM> Empleaveassign { get; set; }
         public List<LmsLeaveRecordVM> Empleaveassign { get; set; }
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -9,6 +10,7 @@ using Web.Services.Interfaces;
 
 namespace Web.API.Controllers
 {
+
     public class UserAuthenticationController : Controller
     {
         private readonly IJwtAuthService _jwtAuth;

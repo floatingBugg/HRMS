@@ -735,7 +735,8 @@ namespace Web.Services.Concrete
                     }
                 }
 
-                if (employee.EmsTblPermanentEmployee.Count > 0 && employee.EmsTblPermanentEmployee != null)
+                if (employee.EmsTblPermanentEmployee.Count > 0 && employee.EmsTblPermanentEmployee != null || employee.EmsTblContractEmployee.Count > 0 && employee.EmsTblContractEmployee != null ||employee.Empreleaseddata.Count>0 && employee.Empreleaseddata
+                    != null || employee.Empresigneddata.Count>0 && employee.Empresigneddata!= null || employee.EmsTblPartTimeEmployee.Count>0 && employee.EmsTblPartTimeEmployee!=null || employee.EmsTblInterneedata.Count>0 && employee.EmsTblInterneedata!=null)
                 {
                     var value =Convert.ToInt32(employee.EmsTblEmployeeProfessionalDetails.Select(x => x.EtedempStatus).FirstOrDefault());
                     if (value == 1)
@@ -781,7 +782,7 @@ namespace Web.Services.Concrete
                     }
                     else if (value == 2)
                     {
-                        var _emsEmpStatusList = employee.EmsTblPermanentEmployee.Where(z => z.EesEmployementId == 0).Select(x => new EmsEmployementStatus
+                        var _emsEmpStatusList = employee.EmsTblContractEmployee.Where(z => z.EesEmployementId == 0).Select(x => new EmsEmployementStatus
                         {
                             EesEcsEmpstatusId = x.EesEcsEmpstatusId,
                             EesEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
@@ -800,7 +801,7 @@ namespace Web.Services.Concrete
                         {
                             _hrmsstatusRepository.Insert(_emsEmpStatusList.ToList());
                         }
-                        var _emsEmpStatusList1 = employee.EmsTblPermanentEmployee.Where(z => z.EesEmployementId > 0).Select(x => new EmsEmployementStatus
+                        var _emsEmpStatusList1 = employee.EmsTblContractEmployee.Where(z => z.EesEmployementId > 0).Select(x => new EmsEmployementStatus
                         {
                             EesEcsEmpstatusId = x.EesEcsEmpstatusId,
                             EesEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
@@ -822,14 +823,14 @@ namespace Web.Services.Concrete
                     }
                     else if (value == 3)
                     {
-                        var _emsEmpstatusList = employee.EmsTblPermanentEmployee.Where(z => z.EesEmployementId == 0).Select(x => new EmsEmployementStatus
+                        var _emsEmpstatusList = employee.Empreleaseddata.Where(z => z.EesEmployementId == 0).Select(x => new EmsEmployementStatus
                         {
                             EesEcsEmpstatusId = x.EesEcsEmpstatusId,
                             EesEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
                             EesStartDate = x.EesStartDate,
-                            EesEndDate = Convert.ToDateTime(x.EesEndDate),
+                            EesEndDate = x.EesEndDate,
                             EesDuration = x.EesDuration,
-                            EesClearenceDate = x.EesClearenceDate,
+                            EesClearenceDate = Convert.ToDateTime(x.EesClearenceDate),
                             EesRemarks = x.EesRemarks,
                             EesCreatedBy = x.EesCreatedBy,
                             EesCreatedByName = x.EesCreatedByName,
@@ -841,14 +842,14 @@ namespace Web.Services.Concrete
                             _hrmsstatusRepository.Insert(_emsEmpstatusList.ToList());
                         }
 
-                        var _emsEmpstatusList1 = employee.EmsTblPermanentEmployee.Where(z => z.EesEmployementId > 0).Select(x => new EmsEmployementStatus
+                        var _emsEmpstatusList1 = employee.Empreleaseddata.Where(z => z.EesEmployementId > 0).Select(x => new EmsEmployementStatus
                         {
                             EesEcsEmpstatusId = x.EesEcsEmpstatusId,
                             EesEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
                             EesStartDate = x.EesStartDate,
-                            EesEndDate = Convert.ToDateTime(x.EesEndDate),
+                            EesEndDate = x.EesEndDate,
                             EesDuration = x.EesDuration,
-                            EesClearenceDate = x.EesClearenceDate,
+                            EesClearenceDate = Convert.ToDateTime(x.EesClearenceDate),
                             EesRemarks = x.EesRemarks,
                             EesCreatedBy = x.EesCreatedBy,
                             EesCreatedByName = x.EesCreatedByName,
@@ -862,13 +863,13 @@ namespace Web.Services.Concrete
                     }
                     else if (value == 4)
                     {
-                        var _emsEmpstatusList = employee.EmsTblPermanentEmployee.Where(z => z.EesEmployementId == 0).Select(x => new EmsEmployementStatus
+                        var _emsEmpstatusList = employee.Empresigneddata.Where(z => z.EesEmployementId == 0).Select(x => new EmsEmployementStatus
                         {
                             EesEcsEmpstatusId = x.EesEcsEmpstatusId,
                             EesEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
                             EesStartDate = x.EesStartDate,
                             EesEndDate = Convert.ToDateTime(x.EesEndDate),
-                            EesClearenceDate = x.EesClearenceDate,
+                            EesClearenceDate =Convert.ToDateTime(x.EesClearenceDate),
                             EesDuration = x.EesDuration,
                             EesRemarks = x.EesRemarks,
                             EesCreatedBy = x.EesCreatedBy,
@@ -880,7 +881,7 @@ namespace Web.Services.Concrete
                         {
                             _hrmsstatusRepository.Insert(_emsEmpstatusList.ToList());
                         }
-                        var _emsEmpstatusList1 = employee.EmsTblPermanentEmployee.Where(z => z.EesEmployementId > 0).Select(x => new EmsEmployementStatus
+                        var _emsEmpstatusList1 = employee.Empresigneddata.Where(z => z.EesEmployementId > 0).Select(x => new EmsEmployementStatus
                         {
                             EesEcsEmpstatusId = x.EesEcsEmpstatusId,
                             EesEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
@@ -899,9 +900,91 @@ namespace Web.Services.Concrete
                             _hrmsstatusRepository.Update(_emsEmpstatusList.ToList());
                         }
                     }
-                }
 
-                if (employee.EmsTblEmployeeProfessionalDetails.Count > 0)
+                else if (value== 5)
+                {
+                    var _emsEmpstatusList = employee.EmsTblInterneedata.Where(z => z.EesEmployementId == 0).Select(x => new EmsEmployementStatus
+                    {
+                        EesEcsEmpstatusId = x.EesEcsEmpstatusId,
+                        EesEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
+                        EesStartDate = x.EesStartDate,
+                        EesEndDate = x.EesEndDate,
+                        EesClearenceDate = Convert.ToDateTime(x.EesClearenceDate),
+                        EesDuration = x.EesDuration,
+                        EesRemarks = x.EesRemarks,
+                        EesCreatedBy = x.EesCreatedBy,
+                        EesCreatedByName = x.EesCreatedByName,
+                        EesCreatedByDate = DateTime.Now,
+                        EesIsDelete = false
+                    });
+                    if (_emsEmpstatusList.Count() > 0)
+                    {
+                        _hrmsstatusRepository.Insert(_emsEmpstatusList.ToList());
+                    }
+                    var _emsEmpstatusList1 = employee.EmsTblInterneedata.Where(z => z.EesEmployementId > 0).Select(x => new EmsEmployementStatus
+                    {
+                        EesEcsEmpstatusId = x.EesEcsEmpstatusId,
+                        EesEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
+                        EesStartDate = x.EesStartDate,
+                        EesEndDate = Convert.ToDateTime(x.EesEndDate),
+                        EesClearenceDate = x.EesClearenceDate,
+                        EesDuration = x.EesDuration,
+                        EesRemarks = x.EesRemarks,
+                        EesCreatedBy = x.EesCreatedBy,
+                        EesCreatedByName = x.EesCreatedByName,
+                        EesCreatedByDate = DateTime.Now,
+                        EesIsDelete = false
+                    });
+                    if (_emsEmpstatusList.Count() > 0)
+                    {
+                        _hrmsstatusRepository.Update(_emsEmpstatusList.ToList());
+                    }
+                }
+            else if (value == 6)
+            {
+                var _emsEmpstatusList = employee.Empresigneddata.Where(z => z.EesEmployementId == 0).Select(x => new EmsEmployementStatus
+                {
+                    EesEcsEmpstatusId = x.EesEcsEmpstatusId,
+                    EesEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
+                    EesStartDate = x.EesStartDate,
+                    EesEndDate = Convert.ToDateTime(x.EesEndDate),
+                    EesetedpartTimetype=x.EesetedpartTimetype,
+                    EesDays=x.EesDays,
+                    EesClearenceDate = x.EesClearenceDate,
+                    EesDuration = x.EesDuration,
+                    EesRemarks = x.EesRemarks,
+                    EesCreatedBy = x.EesCreatedBy,
+                    EesCreatedByName = x.EesCreatedByName,
+                    EesCreatedByDate = DateTime.Now,
+                    EesIsDelete = false
+                });
+                if (_emsEmpstatusList.Count() > 0)
+                {
+                    _hrmsstatusRepository.Insert(_emsEmpstatusList.ToList());
+                }
+                var _emsEmpstatusList1 = employee.Empresigneddata.Where(z => z.EesEmployementId > 0).Select(x => new EmsEmployementStatus
+                {
+                    EesEcsEmpstatusId = x.EesEcsEmpstatusId,
+                    EesEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
+                    EesStartDate = x.EesStartDate,
+                    EesEndDate = Convert.ToDateTime(x.EesEndDate),
+                    EesClearenceDate = x.EesClearenceDate,
+                    EesEtedPartTimeType= x.EesetedpartTimetype,
+                    EesDays = x.EesDays,
+                    EesDuration = x.EesDuration,
+                    EesRemarks = x.EesRemarks,
+                    EesCreatedBy = x.EesCreatedBy,
+                    EesCreatedByName = x.EesCreatedByName,
+                    EesCreatedByDate = DateTime.Now,
+                    EesIsDelete = false
+                });
+                if (_emsEmpstatusList.Count() > 0)
+                {
+                    _hrmsstatusRepository.Update(_emsEmpstatusList.ToList());
+                }
+            }
+        }
+            if (employee.EmsTblEmployeeProfessionalDetails.Count > 0)
                 {
                     
                     var incremnent = employee.EmsTblPermanentEmployee.Select(x => x.EesIncrement).ToList() ?? null;

@@ -113,6 +113,11 @@ namespace Web.Data.Db_Context
                     .HasMaxLength(100)
                     .HasColumnName("ees_date_of_increment");
 
+                entity.Property(e => e.EesDays)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("ees_days");
+
                 entity.Property(e => e.EesDuration)
                     .HasMaxLength(100)
                     .HasColumnName("ees_duration");
@@ -124,6 +129,11 @@ namespace Web.Data.Db_Context
                     .HasColumnName("ees_end_date");
 
                 entity.Property(e => e.EesEtedEmployeeId).HasColumnName("ees_eted_employee_id");
+
+                entity.Property(e => e.EesEtedParttimeType)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("ees_eted_parttime_type");
 
                 entity.Property(e => e.EesIncrement).HasColumnName("ees_increment");
 

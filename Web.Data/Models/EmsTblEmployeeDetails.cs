@@ -46,7 +46,7 @@ namespace Web.Data.Models
         public string EtedModifiedByName { get; set; }
         public DateTime? EtedModifiedByDate { get; set; }
         public bool? EtedIsDelete { get; set; }
-        
+
         public virtual ICollection<EmsEmployementStatus> EmsEmployementStatus { get; set; }
         public virtual ICollection<EmsTblAcademicQualification> EmsTblAcademicQualification { get; set; }
         public virtual ICollection<EmsTblEmergencyContact> EmsTblEmergencyContact { get; set; }
