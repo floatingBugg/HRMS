@@ -28,7 +28,6 @@ namespace Web.Data.Models
         public bool? EesIsDelete { get; set; }
         public string EesDays { get; set; }
         public string EesEtedParttimeType { get; set; }
-
         public virtual EmsCategoryStatus EesEcsEmpstatus { get; set; }
         public virtual EmsTblEmployeeDetails EesEcsEmpstatusNavigation { get; set; }
     }
