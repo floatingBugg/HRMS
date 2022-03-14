@@ -30,12 +30,13 @@ namespace Web.Services.Concrete
         private readonly IHRMSAssetAssignRepository _hrmsassetAssignRepository;
         private readonly IHRMSEmployementStatusRepository _hrmsstatusRepository;
         private readonly IHRMSLeaveRecordRepository _hrmsleaverecordrepository;
+        private readonly IHRMSEmployeeLeaveRepository _hrmsemployeeLeaveRepository;
 
 
 
         IConfiguration _config;
         private readonly IUnitOfWork _uow;
-        public EmployeeService(IConfiguration config, IHRMSLeaveRecordRepository hrmsleaverecordrepository, IHRMSEmployementStatusRepository hrmsstatusRepository, IHRMSUserAuthRepository hrmsUserAuthRepository, IHRMSAssetRepository hrmsassetRepository, IHRMSEmployeeRepository hrmsemployeeRepository, IHRMSAcademicRepository hRMSAcademicRepository, IHRMSEmployeeContactRepository employeeContactRepository, IHRMSPRofessionalRepository hRMSProfessionalRepository, IHRMSEmployeeWorkingHistoryRepository workingHistoryRepository, IHRMSProfessionalDetailsRepository hRMSProfessionalDetailsRepository, IHRMSDropdownValueRepository hrmsdropdownvaluerepository, IUnitOfWork uow, IHRMSAssetAssignRepository hrmsassetAssignRepository)
+        public EmployeeService(IConfiguration config, IHRMSEmployeeLeaveRepository hrmsemployeeLeaveRepository, IHRMSLeaveRecordRepository hrmsleaverecordrepository, IHRMSEmployementStatusRepository hrmsstatusRepository, IHRMSUserAuthRepository hrmsUserAuthRepository, IHRMSAssetRepository hrmsassetRepository, IHRMSEmployeeRepository hrmsemployeeRepository, IHRMSAcademicRepository hRMSAcademicRepository, IHRMSEmployeeContactRepository employeeContactRepository, IHRMSPRofessionalRepository hRMSProfessionalRepository, IHRMSEmployeeWorkingHistoryRepository workingHistoryRepository, IHRMSProfessionalDetailsRepository hRMSProfessionalDetailsRepository, IHRMSDropdownValueRepository hrmsdropdownvaluerepository, IUnitOfWork uow, IHRMSAssetAssignRepository hrmsassetAssignRepository)
         {
             _config = config;
             _hrmsassetRepository = hrmsassetRepository;
@@ -50,7 +51,7 @@ namespace Web.Services.Concrete
             _hrmsdropdownvaluerepository = hrmsdropdownvaluerepository;
             _hrmsstatusRepository = hrmsstatusRepository;
             _hrmsleaverecordrepository = hrmsleaverecordrepository;
-
+            _hrmsemployeeLeaveRepository = hrmsemployeeLeaveRepository;
             _uow = uow;
         }
 
@@ -1272,7 +1273,51 @@ namespace Web.Services.Concrete
             BaseResponse response = new BaseResponse();
 
             bool count = _hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false && z.EtedEmployeeId == id).Count() > 0;
-            var employeesData = _hrmsemployeeRepository.Table.Include(x => x.EmsTblAcademicQualification).Include(x => x.EmsTblEmergencyContact).Include(x => x.EmsTblEmployeeProfessionalDetails).Include(x => x.EmsTblProfessionalQualification).Include(x => x.EmsTblWorkingHistory).Include(x => x.EmsTblHrmsUser).Where(x => x.EtedEmployeeId == id).ToList();
+            var employeesData = (from emp in this._hrmsemployeeRepository.Table
+                                 where emp.EtedEmployeeId == id
+                                 select new EmsTblEmployeeDetails
+                                 {
+                                     EtedEmployeeId = emp.EtedEmployeeId,
+                                     EtedFirstName = emp.EtedFirstName,
+                                     EtedLastName = emp.EtedLastName,
+                                     EtedEmailAddress = emp.EtedEmailAddress,
+                                     EtedDob = emp.EtedDob,
+                                     EtedContactNumber = emp.EtedContactNumber,
+                                     EtedAddress = emp.EtedAddress,
+                                     EtedGender = emp.EtedGender,
+                                     EtedMaritalStatus = emp.EtedMaritalStatus,
+                                     EtedBloodGroup = emp.EtedBloodGroup,
+                                     EtedPhotograph = emp.EtedPhotograph,
+                                     EtedCnic = emp.EtedCnic,
+                                     EtedOfficialEmailAddress = emp.EtedOfficialEmailAddress,
+                                     EtedReligion = emp.EtedReligion,
+                                     EtedNationality = emp.EtedNationality,
+                                     EtedStatus = emp.EtedStatus,
+                                     EtedIsManager = emp.EtedIsManager,
+                                     EtedManagerId = emp.EtedManagerId,
+                                     EtedCreatedBy = emp.EtedCreatedBy,
+                                     EtedCreatedByName = emp.EtedCreatedByName,
+                                     EtedModifiedBy = emp.EtedModifiedBy,
+                                     EtedModifiedByName = emp.EtedModifiedByName,
+                                     EtedModifiedByDate = emp.EtedModifiedByDate,
+                                     EtedIsDelete = emp.EtedIsDelete,
+
+                                     EmsTblProfessionalQualification = (from pq in this._hrmsprofessionalrepository.Table where pq.EtpqEtedEmployeeId == id select pq).ToList(),
+                                     EmsEmployementStatus = (from es in this._hrmsstatusRepository.Table where es.EesEtedEmployeeId == id select es).ToList(),
+                                     EmsTblAcademicQualification = (from aq in this._hrmsacademicrepository.Table where aq.EtaqEtedEmployeeId == id select aq).ToList(),
+                                     EmsTblEmergencyContact = (from ec in this._employeeContactRepository.Table where ec.EtecEtedEmployeeId == id select ec).ToList(),
+                                     EmsTblEmployeeProfessionalDetails= (from pd in this._hrmsprofessionaldetailsrepository.Table where pd.EtepdEtedEmployeeId== id select pd).ToList(),
+                                     EmsTblHrmsUser = (from hu in this._hrmsUserAuthRepository.Table where hu.EtedEthuEmpId== id select hu).ToList(),
+                                     EmsTblWorkingHistory = (from wh in this._workinghistoryRepository.Table where wh.EtwhEtedEmployeeId== id select wh).ToList(),
+                                     ImsAssign = (from ia in this._hrmsassetAssignRepository.Table where ia.ItasEtedEmployeeId == id select ia).ToList(),
+                                     LmsLeaveRecord = (from lr in this._hrmsleaverecordrepository.Table where lr.LmslrEtedEmployeeId== id select lr).ToList(),
+                                     LmsEmployeeLeave = (from el in this._hrmsemployeeLeaveRepository.Table where el.LmselEtedEmployeeId== id select el).ToList(),
+
+
+                                 }).ToList();
+            
+
+            //var employeesData = _hrmsemployeeRepository.Table.Include(x => x.EmsTblAcademicQualification).Include(x => x.EmsTblEmergencyContact).Include(x => x.EmsTblEmployeeProfessionalDetails).Include(x => x.EmsTblProfessionalQualification).Include(x => x.EmsTblWorkingHistory).Include(x => x.EmsTblHrmsUser).Where(x => x.EtedEmployeeId == id).ToList();
             if (count == true)
             {
                 response.Data = employeesData;
@@ -1289,7 +1334,7 @@ namespace Web.Services.Concrete
             }
             return response;
         }
-
+        
         public BaseResponse CreateDropdownvalue(HrmsDropdownValueVM value)
         {
             BaseResponse response = new BaseResponse();
