@@ -13,7 +13,7 @@ namespace Web.Model.ViewModel
         public int EesEtedEmployeeId { get; set; }
         public int EesEcsEmpstatusId { get; set; }
         public DateTime? EesStartDate { get; set; }
-        public DateTime? EesEndDate { get; set; }
+        public string EesEndDate { get; set; }
         public DateTime? EesClearenceDate { get; set; }
         public int? EesIncrement { get; set; }
         public String EesDateOfIncrement { get; set; }
@@ -28,7 +28,7 @@ namespace Web.Model.ViewModel
         public string EesModifiedByName { get; set; }
         public DateTime? EesModifiedByDate { get; set; }
         public bool? EesIsDelete { get; set; }
-        public int? EesetedpartTimetype { get; set; }
+        public string EesetedpartTimetype { get; set; }
         public string EesDays { get; set; }
     }
 }

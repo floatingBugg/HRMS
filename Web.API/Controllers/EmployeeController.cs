@@ -115,6 +115,10 @@ namespace Web.API.Controllers
         [HttpPost("/Employee/UpdateEmployee")]
         public BaseResponse Update([FromBody] EmsTblEmployeeDetailsVM employee)
         {
+            var date = "Tuesday, 15 March 2022";
+            DateTime dateFromString =
+    DateTime.Parse(date);
+          
             BaseResponse response = new BaseResponse();
 
             var modelState = ModelState;

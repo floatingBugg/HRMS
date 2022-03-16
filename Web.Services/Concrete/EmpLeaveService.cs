@@ -42,15 +42,19 @@ namespace Web.Services.Concrete
             var casual = _hrmsleaverecordrepository.Table.Where(x => x.LmslrEtedEmployeeId == leave.LmselEtedEmployeeId).Select(y => y.LmslrCasualTaken).FirstOrDefault();
             var annual = _hrmsleaverecordrepository.Table.Where(x => x.LmslrEtedEmployeeId == leave.LmselEtedEmployeeId).Select(y => y.LmslrAnnualTaken).FirstOrDefault();
             totalremaining = totalremaining + leave.LmselDays;
-            if (leave.LmselLeaveType==2 && sick<=6) 
+            var sickassign = _hrmsleaverecordrepository.Table.Where(x => x.LmslrEtedEmployeeId == leave.LmselEtedEmployeeId).Select(y => y.LmslrSickAssign).FirstOrDefault();
+            var annualassign = _hrmsleaverecordrepository.Table.Where(x => x.LmslrEtedEmployeeId == leave.LmselEtedEmployeeId).Select(y => y.LmslrAnnualAssign).FirstOrDefault();
+            var casualassign = _hrmsleaverecordrepository.Table.Where(x => x.LmslrEtedEmployeeId == leave.LmselEtedEmployeeId).Select(y => y.LmslrCasualAssign).FirstOrDefault();
+
+            if (leave.LmselLeaveType==2 && sick<= sickassign) 
             {
                 sick = sick + leave.LmselDays;
             }
-            else if (leave.LmselLeaveType == 3 && casual<=6)
+            else if (leave.LmselLeaveType == 3 && casual<= casualassign)
             {
                 casual = casual + leave.LmselDays;
             }
-            else if (leave.LmselLeaveType == 1 && annual<=12)
+            else if (leave.LmselLeaveType == 1 && annual<= annualassign)
             {
                 annual = annual + leave.LmselDays;
                 
