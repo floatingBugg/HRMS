@@ -14,7 +14,7 @@ using Web.Services.Interfaces;
 
 namespace Web.API.Controllers
 {
-    [Authorize]
+   //Authorize]
     public class LeaveController : Controller
     {
        private readonly ILeaveService _leaveservice;
@@ -73,7 +73,7 @@ namespace Web.API.Controllers
                 return response;
             }
         }
-
+        [AllowAnonymous]
         [HttpGet("/Leave/ViewLeaveRecordByEmpid")]
         public BaseResponse ViewRecordbyempid(int id)
         {
@@ -119,6 +119,7 @@ namespace Web.API.Controllers
                 return response;
             }
         }
+       
 
         [HttpGet("/Leave/ViewAllLeaveRecord")]
         public BaseResponse ViewAllRecord()
@@ -143,6 +144,27 @@ namespace Web.API.Controllers
             }
         }
 
+        [HttpGet("/Leave/EmployeeLeaveDetail")]
+        public BaseResponse  EmployeeLeaveDetail(int id)
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                var test = ModelState;
+                response = _leaveservice.EmployeeLeaveDetail(id);
 
+
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+        }
     }
 }

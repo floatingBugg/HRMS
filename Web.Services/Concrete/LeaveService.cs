@@ -263,5 +263,57 @@ namespace Web.Services.Concrete
             }
             return response;
         }
+        public BaseResponse EmployeeLeaveDetail(int id)
+        {
+            BaseResponse response = new BaseResponse();
+
+            ////bool count = _hrmsleaverecordrepository.Table.Where(z => z.LmslrEtedEmployeeId == id && z.LmslrIsDelete == false).Count() > 0;
+            ////var leavedata = _hrmsleaverecordrepository.Table.Where(x => x.LmslrEtedEmployeeId == id && x.LmslrIsDelete == false).Select(x => new LmsLeaveRecordVM
+            ////{
+            ////    LmslrEtedEmployeeId = x.LmslrEtedEmployeeId,
+            ////    LmslrRecordId = x.LmslrRecordId,
+            ////    LmslrEtedEmployeeName = _hrmsemployeeRepository.Table.Where(z => z.EtedEmployeeId == x.LmslrEtedEmployeeId).Select(z => z.EtedFirstName + " " + z.EtedLastName).FirstOrDefault(),
+            ////    LmslrCasualTaken = x.LmslrCasualTaken,
+            ////    LmslrSickTaken = x.LmslrSickTaken,
+            ////    LmslrAnnualTaken = x.LmslrAnnualTaken,
+            ////    LmslrTotalTaken = x.LmslrTotalTaken,
+            ////    LmslrCasualAssign = x.LmslrCasualAssign,
+            ////    LmslrSickAssign = x.LmslrSickAssign,
+            ////    LmslrAnnualAssign = x.LmslrAnnualAssign,
+            ////    LmslrTotalAssign = x.LmslrTotalAssign
+
+            ////}).ToList().OrderByDescending(x => x.LmslrRecordId);
+            ///
+
+
+            bool count = _hrmsemployeeLeaveRepository.Table.Where(z => z.LmselEtedEmployeeId == id && z.LmselIsDelete != true).Count() > 0;
+            var leavedata = _hrmsemployeeLeaveRepository.Table.Where(x => x.LmselEtedEmployeeId == id && x.LmselIsDelete != true).Select(x => new LmsEmployeeLeaveVM
+            {
+                LmselEtedEmployeeId = x.LmselEtedEmployeeId,
+                LmselEtedEmployeeName = _hrmsemployeeRepository.Table.Where(z => z.EtedEmployeeId == x.LmselEtedEmployeeId).Select(z => z.EtedFirstName + " " + z.EtedLastName).FirstOrDefault(),
+                LmselLeaveType = x.LmselLeaveType,
+                LmselDays = x.LmselDays,
+                //remarks = x.LmslrSickTaken,
+                LmselStartDate = x.LmselStartDate,
+                LmselEndDate = x.LmselEndDate,
+
+            }).ToList().OrderByDescending(x => x.LmselLeaveId);
+
+            if (count == true)
+            {
+                response.Data = leavedata;
+                response.Success = true;
+                response.Message = UserMessages.strSuccess;
+
+
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotfound;
+            }
+            return response;
+        }
     }
 }
