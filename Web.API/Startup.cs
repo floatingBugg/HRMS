@@ -20,6 +20,7 @@ using Web.Data.Interfaces;
 using Web.Services.Concrete;
 using Web.Services.Interfaces;
 using Microsoft.Extensions.FileProviders;
+using Web.Services.Helper;
 
 namespace Web.API
 {
@@ -40,8 +41,12 @@ namespace Web.API
               options.UseSqlServer(
                  Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.IgnoreNullValues = true);
-         
+            services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.IgnoreNullValues = true;
+                options.JsonSerializerOptions.Converters.Add(new DateTimeConverter());
+            });
+
             /*services.AddControllersWithViews().AddJsonOptions(options =>
             {
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
