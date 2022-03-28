@@ -67,7 +67,7 @@ namespace Web.Services.Concrete
                 response.Data = null;
             }
             
-            if (leave.LmselLeaveType != null && totalremaining<=24 && sick<=6 && casual<=6 && annual<=12)
+            if (leave.LmselLeaveType != null && totalremaining<=24 && sick<=6 && casual<=12 && annual<=6)
             {
                 LmsEmployeeLeave lmsEmployeeLeave = new LmsEmployeeLeave();
 
