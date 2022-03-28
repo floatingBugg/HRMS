@@ -13,6 +13,8 @@ namespace Web.Model.ViewModel
         public string? LmselEtedEmployeeName { get; set; }
         public int? LmselLeaveType { get; set; }
         public DateTime? LmselStartDate { get; set; }
+        public string LmselStartDateStr { get; set; }
+        public string LmselEndDateStr { get; set; }
         public DateTime? LmselEndDate { get; set; }
         public int? LmselDays { get; set; }
         public string LmselCreatedBy { get; set; }

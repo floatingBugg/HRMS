@@ -295,6 +295,8 @@ namespace Web.Services.Concrete
                 LmselDays = x.LmselDays,
                 //remarks = x.LmslrSickTaken,
                 LmselStartDate = x.LmselStartDate,
+                LmselStartDateStr = x.LmselStartDate.HasValue ? x.LmselStartDate.Value.ToString("yyyy-MM-dd") : "",
+                LmselEndDateStr = x.LmselEndDate.HasValue ? x.LmselEndDate.Value.ToString("yyyy-MM-dd ") : "",
                 LmselEndDate = x.LmselEndDate,
 
             }).ToList().OrderByDescending(x => x.LmselLeaveId);

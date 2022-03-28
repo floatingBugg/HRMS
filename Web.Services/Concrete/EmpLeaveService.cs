@@ -35,8 +35,9 @@ namespace Web.Services.Concrete
         }
 
         public BaseResponse createLeave(LmsEmployeeLeaveVM leave)
-        {
+            {
             BaseResponse response = new BaseResponse();
+            leave.LmselStartDate = leave.LmselStartDateStr != null && leave.LmselStartDateStr != "" ? DateTime.Parse(leave.LmselStartDateStr) : leave.LmselStartDate;
             var totalremaining = _hrmsleaverecordrepository.Table.Where(x => x.LmslrEtedEmployeeId == leave.LmselEtedEmployeeId).Select(y => y.LmslrTotalTaken).FirstOrDefault();
             var sick = _hrmsleaverecordrepository.Table.Where(x => x.LmslrEtedEmployeeId == leave.LmselEtedEmployeeId).Select(y => y.LmslrSickTaken).FirstOrDefault();
             var casual = _hrmsleaverecordrepository.Table.Where(x => x.LmslrEtedEmployeeId == leave.LmselEtedEmployeeId).Select(y => y.LmslrCasualTaken).FirstOrDefault();
