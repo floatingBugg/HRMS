@@ -38,26 +38,27 @@ namespace Web.Services.Concrete
             {
             BaseResponse response = new BaseResponse();
             leave.LmselStartDate = leave.LmselStartDateStr != null && leave.LmselStartDateStr != "" ? DateTime.Parse(leave.LmselStartDateStr) : leave.LmselStartDate;
-            var totalremaining = _hrmsleaverecordrepository.Table.Where(x => x.LmslrEtedEmployeeId == leave.LmselEtedEmployeeId).Select(y => y.LmslrTotalTaken).FirstOrDefault();
-            var sick = _hrmsleaverecordrepository.Table.Where(x => x.LmslrEtedEmployeeId == leave.LmselEtedEmployeeId).Select(y => y.LmslrSickTaken).FirstOrDefault();
-            var casual = _hrmsleaverecordrepository.Table.Where(x => x.LmslrEtedEmployeeId == leave.LmselEtedEmployeeId).Select(y => y.LmslrCasualTaken).FirstOrDefault();
-            var annual = _hrmsleaverecordrepository.Table.Where(x => x.LmslrEtedEmployeeId == leave.LmselEtedEmployeeId).Select(y => y.LmslrAnnualTaken).FirstOrDefault();
-            totalremaining = totalremaining + leave.LmselDays;
+            var totalTaken = _hrmsleaverecordrepository.Table.Where(x => x.LmslrEtedEmployeeId == leave.LmselEtedEmployeeId).Select(y => y.LmslrTotalTaken).FirstOrDefault();
+            var sickTaken = _hrmsleaverecordrepository.Table.Where(x => x.LmslrEtedEmployeeId == leave.LmselEtedEmployeeId).Select(y => y.LmslrSickTaken).FirstOrDefault();
+            var casualTaken = _hrmsleaverecordrepository.Table.Where(x => x.LmslrEtedEmployeeId == leave.LmselEtedEmployeeId).Select(y => y.LmslrCasualTaken).FirstOrDefault();
+            var annualTaken = _hrmsleaverecordrepository.Table.Where(x => x.LmslrEtedEmployeeId == leave.LmselEtedEmployeeId).Select(y => y.LmslrAnnualTaken).FirstOrDefault();
+            totalTaken = totalTaken + leave.LmselDays;
+            var totalassign = _hrmsleaverecordrepository.Table.Where(x => x.LmslrEtedEmployeeId == leave.LmselEtedEmployeeId).Select(y => y.LmslrTotalAssign).FirstOrDefault();
             var sickassign = _hrmsleaverecordrepository.Table.Where(x => x.LmslrEtedEmployeeId == leave.LmselEtedEmployeeId).Select(y => y.LmslrSickAssign).FirstOrDefault();
             var annualassign = _hrmsleaverecordrepository.Table.Where(x => x.LmslrEtedEmployeeId == leave.LmselEtedEmployeeId).Select(y => y.LmslrAnnualAssign).FirstOrDefault();
             var casualassign = _hrmsleaverecordrepository.Table.Where(x => x.LmslrEtedEmployeeId == leave.LmselEtedEmployeeId).Select(y => y.LmslrCasualAssign).FirstOrDefault();
 
-            if (leave.LmselLeaveType==2 && sick<= sickassign) 
+            if (leave.LmselLeaveType==2 && sickTaken <= sickassign) 
             {
-                sick = sick + leave.LmselDays;
+                sickTaken = sickTaken + leave.LmselDays;
             }
-            else if (leave.LmselLeaveType == 3 && casual<= casualassign)
+            else if (leave.LmselLeaveType == 3 && casualTaken <= casualassign)
             {
-                casual = casual + leave.LmselDays;
+                casualTaken = casualTaken + leave.LmselDays;
             }
-            else if (leave.LmselLeaveType == 1 && annual<= annualassign)
+            else if (leave.LmselLeaveType == 1 && annualTaken <= annualassign)
             {
-                annual = annual + leave.LmselDays;
+                annualTaken = annualTaken + leave.LmselDays;
                 
             }
 
@@ -67,7 +68,7 @@ namespace Web.Services.Concrete
                 response.Data = null;
             }
             
-            if (leave.LmselLeaveType != null && totalremaining<=24 && sick<=6 && casual<=12 && annual<=6)
+            if (leave.LmselLeaveType != null && totalTaken<= totalassign && sickTaken <= sickassign && casualTaken<=casualassign&& annualTaken<=annualassign)
             {
                 LmsEmployeeLeave lmsEmployeeLeave = new LmsEmployeeLeave();
 
@@ -85,10 +86,10 @@ namespace Web.Services.Concrete
                 _hrmsleaverecordrepository.Table.Where(p => p.LmslrEtedEmployeeId == leave.LmselEtedEmployeeId)
                     .ToList()
                     .ForEach(x => {
-                        x.LmslrTotalTaken = totalremaining;
-                        x.LmslrSickTaken = sick;
-                        x.LmslrCasualTaken = casual;
-                        x.LmslrAnnualTaken = annual;
+                        x.LmslrTotalTaken = totalTaken;
+                        x.LmslrSickTaken = sickTaken;
+                        x.LmslrCasualTaken = casualTaken;
+                        x.LmslrAnnualTaken = annualTaken;
                     });
 
                 _hrmsemployeeleaverepository.Insert(lmsEmployeeLeave);

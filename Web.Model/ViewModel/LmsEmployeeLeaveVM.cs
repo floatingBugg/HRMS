@@ -21,5 +21,6 @@ namespace Web.Model.ViewModel
         public string LmselCreatedByName { get; set; }
         public DateTime? LmselCreatedByDate { get; set; }
         public bool? LmselIsDelete { get; set; }
+        public string LmselReason { get; set; }
     }
 }
