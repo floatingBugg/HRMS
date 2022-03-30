@@ -8,8 +8,8 @@ namespace Web.Data.Models
     public partial class EmsEmployementStatus
     {
         public int EesEmployementId { get; set; }
-        public int EesEtedEmployeeId { get; set; }
-        public int EesEcsEmpstatusId { get; set; }
+        public int? EesEtedEmployeeId { get; set; }
+        public int? EesEcsEmpstatusId { get; set; }
         public DateTime? EesStartDate { get; set; }
         public DateTime? EesEndDate { get; set; }
         public DateTime? EesClearenceDate { get; set; }
@@ -26,8 +26,9 @@ namespace Web.Data.Models
         public string EesModifiedByName { get; set; }
         public DateTime? EesModifiedByDate { get; set; }
         public bool? EesIsDelete { get; set; }
+        public string EesEtedPartTimeType { get; set; }
         public string EesDays { get; set; }
-        public string EesEtedParttimeType { get; set; }
+
         public virtual EmsCategoryStatus EesEcsEmpstatus { get; set; }
         public virtual EmsTblEmployeeDetails EesEcsEmpstatusNavigation { get; set; }
     }

@@ -81,6 +81,7 @@ namespace Web.Services.Concrete
                 lmsEmployeeLeave.LmselCreatedByName = leave.LmselCreatedByName;
                 lmsEmployeeLeave.LmselCreatedByDate = leave.LmselCreatedByDate;
                 lmsEmployeeLeave.LmselIsDelete = leave.LmselIsDelete;
+                lmsEmployeeLeave.LmselReason = leave.LmselReason;
 
 
                 _hrmsleaverecordrepository.Table.Where(p => p.LmslrEtedEmployeeId == leave.LmselEtedEmployeeId)
@@ -129,6 +130,7 @@ namespace Web.Services.Concrete
                     lmsEmployeeLeave.LmselEndDate = leave.LmselEndDate;
                     lmsEmployeeLeave.LmselDays = leave.LmselDays;
                     lmsEmployeeLeave.LmselIsDelete =leave.LmselIsDelete;
+                    lmsEmployeeLeave.LmselReason = leave.LmselReason;
                     
                 }
 

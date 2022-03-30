@@ -105,6 +105,7 @@ namespace Web.Services.Concrete
                 empleave.LmslrCreatedBy = leave.LmslrCreatedBy;
                 empleave.LmslrCreatedByName = leave.LmslrCreatedByName;
                 empleave.LmslrCreatedByDate = leave.LmslrCreatedByDate;
+                
                 empleave.LmslrIsDelete = false;
 
                 _hrmsleaverecordrepository.Update(empleave);
@@ -298,6 +299,7 @@ namespace Web.Services.Concrete
                 LmselStartDateStr = x.LmselStartDate.HasValue ? x.LmselStartDate.Value.ToString("yyyy-MM-dd") : "",
                 LmselEndDateStr = x.LmselEndDate.HasValue ? x.LmselEndDate.Value.ToString("yyyy-MM-dd ") : "",
                 LmselEndDate = x.LmselEndDate,
+                LmselReason=x.LmselReason
 
             }).ToList().OrderByDescending(x => x.LmselLeaveId);
 

@@ -35,6 +35,8 @@ namespace Web.Data.Db_Context
         public virtual DbSet<ImsAssets> ImsAssets { get; set; }
         public virtual DbSet<ImsAssetsCategory> ImsAssetsCategory { get; set; }
         public virtual DbSet<ImsAssign> ImsAssign { get; set; }
+        public virtual DbSet<ImsTblAssests> ImsTblAssests { get; set; }
+        public virtual DbSet<ImsTblAssetsCategory> ImsTblAssetsCategory { get; set; }
         public virtual DbSet<LmsEmployeeLeave> LmsEmployeeLeave { get; set; }
         public virtual DbSet<LmsLeaveRecord> LmsLeaveRecord { get; set; }
         public virtual DbSet<LmsLeaveType> LmsLeaveType { get; set; }
@@ -130,10 +132,9 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.EesEtedEmployeeId).HasColumnName("ees_eted_employee_id");
 
-                entity.Property(e => e.EesEtedParttimeType)
+                entity.Property(e => e.EesEtedPartTimeType)
                     .HasMaxLength(255)
-                    .IsUnicode(false)
-                    .HasColumnName("ees_eted_parttime_type");
+                    .HasColumnName("ees_eted_partTime_type");
 
                 entity.Property(e => e.EesIncrement).HasColumnName("ees_increment");
 
@@ -164,13 +165,11 @@ namespace Web.Data.Db_Context
                 entity.HasOne(d => d.EesEcsEmpstatus)
                     .WithMany(p => p.EmsEmployementStatus)
                     .HasForeignKey(d => d.EesEcsEmpstatusId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__ems_emplo__ees_e__756D6ECB");
 
                 entity.HasOne(d => d.EesEcsEmpstatusNavigation)
                     .WithMany(p => p.EmsEmployementStatus)
                     .HasForeignKey(d => d.EesEcsEmpstatusId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__ems_emplo__ees_e__76619304");
             });
 
@@ -310,6 +309,7 @@ namespace Web.Data.Db_Context
                     .HasColumnName("eted_email_address");
 
                 entity.Property(e => e.EtedFirstName)
+                    .IsRequired()
                     .HasMaxLength(50)
                     .HasColumnName("eted_first_name");
 
@@ -325,6 +325,7 @@ namespace Web.Data.Db_Context
                 entity.Property(e => e.EtedIsManager).HasColumnName("eted_is_manager");
 
                 entity.Property(e => e.EtedLastName)
+                    .IsRequired()
                     .HasMaxLength(50)
                     .HasColumnName("eted_last_name");
 
@@ -478,7 +479,7 @@ namespace Web.Data.Db_Context
                     .WithMany(p => p.EmsTblHrmsUser)
                     .HasForeignKey(d => d.EtrEthuRoleId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__ems_tbl_h__etr_e__74794A92");
+                    .HasConstraintName("FK__ems_tbl_h__etr_e__29E1370A");
             });
 
             modelBuilder.Entity<EmsTblProfessionalQualification>(entity =>
@@ -832,6 +833,87 @@ namespace Web.Data.Db_Context
                     .HasConstraintName("FK__ims_assig__itas___40058253");
             });
 
+            modelBuilder.Entity<ImsTblAssests>(entity =>
+            {
+                entity.HasKey(e => e.ItaAssetId)
+                    .HasName("PK__ims_tbl___B51DD0C32BA64D08");
+
+                entity.ToTable("ims_tbl_assests");
+
+                entity.Property(e => e.ItaAssetId).HasColumnName("ita_asset_id");
+
+                entity.Property(e => e.ItaAssetDetails).HasColumnName("ita_asset_details");
+
+                entity.Property(e => e.ItaAssetsName).HasColumnName("ita_assets_name");
+
+                entity.Property(e => e.ItaAssetsSrNo).HasColumnName("ita_assets_sr_no");
+
+                entity.Property(e => e.ItaAssignedTo).HasColumnName("ita_assigned_to");
+
+                entity.Property(e => e.ItaCategoryId).HasColumnName("ita_category_id");
+
+                entity.Property(e => e.ItaCost).HasColumnName("ita_cost");
+
+                entity.Property(e => e.ItaCreatedBy).HasColumnName("ita_created_by");
+
+                entity.Property(e => e.ItaCreatedByDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("ita_created_by_date");
+
+                entity.Property(e => e.ItaCreatedByName).HasColumnName("ita_created_by_name");
+
+                entity.Property(e => e.ItaIsDelete).HasColumnName("ita_is_delete");
+
+                entity.Property(e => e.ItaModifiedBy).HasColumnName("ita_modified_by");
+
+                entity.Property(e => e.ItaModifiedByDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("ita_modified_by_date");
+
+                entity.Property(e => e.ItaModifiedByName).HasColumnName("ita_modified_by_name");
+
+                entity.Property(e => e.ItaPurchasingDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("ita_purchasing_date");
+
+                entity.Property(e => e.ItaQuantity).HasColumnName("ita_quantity");
+
+                entity.HasOne(d => d.ItaCategory)
+                    .WithMany(p => p.ImsTblAssests)
+                    .HasForeignKey(d => d.ItaCategoryId)
+                    .HasConstraintName("FK__ims_tbl_a__ita_c__5BE2A6F2");
+            });
+
+            modelBuilder.Entity<ImsTblAssetsCategory>(entity =>
+            {
+                entity.HasKey(e => e.ItacAcId)
+                    .HasName("PK__ims_tbl___27D6367E50AEE336");
+
+                entity.ToTable("ims_tbl_assets_category");
+
+                entity.Property(e => e.ItacAcId).HasColumnName("itac_ac_id");
+
+                entity.Property(e => e.ItacCategory).HasColumnName("itac_category");
+
+                entity.Property(e => e.ItacCreatedBy).HasColumnName("itac_created_by");
+
+                entity.Property(e => e.ItacCreatedByDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("itac_created_by_date");
+
+                entity.Property(e => e.ItacCreatedByName).HasColumnName("itac_created_by_name");
+
+                entity.Property(e => e.ItacIsDelete).HasColumnName("itac_is_delete");
+
+                entity.Property(e => e.ItacModifiedBy).HasColumnName("itac_modified_by");
+
+                entity.Property(e => e.ItacModifiedByDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("itac_modified_by_date");
+
+                entity.Property(e => e.ItacModifiedByName).HasColumnName("itac_modified_by_name");
+            });
+
             modelBuilder.Entity<LmsEmployeeLeave>(entity =>
             {
                 entity.HasKey(e => e.LmselLeaveId)
@@ -864,6 +946,8 @@ namespace Web.Data.Db_Context
                 entity.Property(e => e.LmselIsDelete).HasColumnName("lmsel_is_delete");
 
                 entity.Property(e => e.LmselLeaveType).HasColumnName("lmsel_leave_type");
+
+                entity.Property(e => e.LmselReason).HasColumnName("lmsel_reason");
 
                 entity.Property(e => e.LmselStartDate)
                     .HasColumnType("datetime")
