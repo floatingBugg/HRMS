@@ -3,19 +3,18 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Web.Data.Models;
 
 #nullable disable
 
-namespace Web.Data.Db_Context
+namespace Web.API
 {
-    public partial class DbHRMSContext : DbContext
+    public partial class HRMS2Context : DbContext
     {
-        public DbHRMSContext()
+        public HRMS2Context()
         {
         }
 
-        public DbHRMSContext(DbContextOptions<DbHRMSContext> options)
+        public HRMS2Context(DbContextOptions<HRMS2Context> options)
             : base(options)
         {
         }
@@ -40,15 +39,6 @@ namespace Web.Data.Db_Context
         public virtual DbSet<LmsEmployeeLeave> LmsEmployeeLeave { get; set; }
         public virtual DbSet<LmsLeaveRecord> LmsLeaveRecord { get; set; }
         public virtual DbSet<LmsLeaveType> LmsLeaveType { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=192.168.0.44;Initial Catalog=HRMS2;User ID=sa;Password=4292");
-            }
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -947,11 +937,6 @@ namespace Web.Data.Db_Context
                 entity.Property(e => e.LmselIsDelete).HasColumnName("lmsel_is_delete");
 
                 entity.Property(e => e.LmselLeaveType).HasColumnName("lmsel_leave_type");
-
-                entity.Property(e => e.LmselReason)
-                    .HasMaxLength(255)
-                    .IsUnicode(false)
-                    .HasColumnName("lmsel_reason");
 
                 entity.Property(e => e.LmselStartDate)
                     .HasColumnType("datetime")

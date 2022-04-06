@@ -299,7 +299,7 @@ namespace Web.Services.Concrete
                 LmselStartDateStr = x.LmselStartDate.HasValue ? x.LmselStartDate.Value.ToString("yyyy-MM-dd") : "",
                 LmselEndDateStr = x.LmselEndDate.HasValue ? x.LmselEndDate.Value.ToString("yyyy-MM-dd ") : "",
                 LmselEndDate = x.LmselEndDate,
-                LmselReason=x.LmselReason
+                LmselReason = x.LmselReason,
 
             }).ToList().OrderByDescending(x => x.LmselLeaveId);
 

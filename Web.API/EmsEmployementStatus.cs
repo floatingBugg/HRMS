@@ -3,7 +3,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Web.Data.Models
+namespace Web.API
 {
     public partial class EmsEmployementStatus
     {
