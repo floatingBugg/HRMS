@@ -12,7 +12,7 @@ namespace Web.Model.ViewModel
         public int EesEmployementId { get; set; }
         public int EesEtedEmployeeId { get; set; }
         public int EesEcsEmpstatusId { get; set; }
-        public string EesStartDate { get; set; }
+        public DateTime? EesStartDate { get; set; }
         public DateTime? EesEndDate { get; set; }
         public DateTime? EesClearenceDate { get; set; }
         public int? EesIncrement { get; set; }

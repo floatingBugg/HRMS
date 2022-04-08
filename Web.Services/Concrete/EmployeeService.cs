@@ -744,11 +744,11 @@ namespace Web.Services.Concrete
                     {
                         var _emsEmpStatusList = employee.EmsTblPermanentEmployee.Where(z => z.EesEmployementId == 0).Select(x => new EmsEmployementStatus
                         {
-                            EesEcsEmpstatusId = x.EesEcsEmpstatusId,
+                            EesEcsEmpstatusId = value,
                             EesEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
-                            EesStartDate = Convert.ToDateTime(x.EesStartDate),
-                            EesEndDate=x.EesEndDate,
-                            //EesEndDate = Convert.ToDateTime(x.EesEndDate),
+                            EesStartDate = x.EesStartDate,
+                            //EesEndDate=x.EesEndDate,
+                            EesEndDate = Convert.ToDateTime(x.EesEndDate),
                             EesDuration = x.EesDuration,
                             EesIncrement = x.EesIncrement,
                             EesDateOfIncrement =Convert.ToString(x.EesDateOfIncrement),
@@ -764,11 +764,11 @@ namespace Web.Services.Concrete
                         }
                         var _emsEmpStatusList1 = employee.EmsTblPermanentEmployee.Where(z => z.EesEmployementId > 0).Select(x => new EmsEmployementStatus
                         {
-                            EesEcsEmpstatusId = x.EesEcsEmpstatusId,
+                            EesEcsEmpstatusId = value,
                             EesEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
-                            EesStartDate = Convert.ToDateTime(x.EesStartDate),
-                            EesEndDate=x.EesEndDate,
-                            //EesEndDate = Convert.ToDateTime(x.EesEndDate),
+                            EesStartDate = x.EesStartDate,
+                            //EesEndDate =x.EesEndDate,
+                            EesEndDate = Convert.ToDateTime(x.EesEndDate),
                             EesDuration = x.EesDuration,
                             EesIncrement = x.EesIncrement,
                             EesDateOfIncrement =Convert.ToString(x.EesDateOfIncrement),
@@ -787,11 +787,11 @@ namespace Web.Services.Concrete
                     {
                         var _emsEmpStatusList = employee.EmsTblContractEmployee.Where(z => z.EesEmployementId == 0).Select(x => new EmsEmployementStatus
                         {
-                            EesEcsEmpstatusId = x.EesEcsEmpstatusId,
+                            EesEcsEmpstatusId = value,
                             EesEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
-                            EesStartDate = Convert.ToDateTime(x.EesStartDate),
-                            EesEndDate=x.EesEndDate,
-                            //EesEndDate = Convert.ToDateTime(x.EesEndDate),
+                            EesStartDate = x.EesStartDate,
+                            //EesEndDate =x.EesEndDate,
+                            EesEndDate = Convert.ToDateTime(x.EesEndDate),
                             EesDuration = x.EesDuration,
                             EesContractType = x.EesContractType,
                             EesSalary = x.EesSalary,
@@ -807,10 +807,10 @@ namespace Web.Services.Concrete
                         }
                         var _emsEmpStatusList1 = employee.EmsTblContractEmployee.Where(z => z.EesEmployementId > 0).Select(x => new EmsEmployementStatus
                         {
-                            EesEcsEmpstatusId = x.EesEcsEmpstatusId,
+                            EesEcsEmpstatusId = value,
                             EesEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
-                            EesStartDate = Convert.ToDateTime(x.EesStartDate),
-                            EesEndDate=x.EesEndDate,
+                            EesStartDate = x.EesStartDate,
+                            EesEndDate =x.EesEndDate,
                             //EesEndDate = Convert.ToDateTime(x.EesEndDate),
                             EesDuration = x.EesDuration,
                             EesContractType = x.EesContractType,
@@ -830,14 +830,14 @@ namespace Web.Services.Concrete
                     {
                         var _emsEmpstatusList = employee.Empreleaseddata.Where(z => z.EesEmployementId == 0).Select(x => new EmsEmployementStatus
                         {
-                            EesEcsEmpstatusId = x.EesEcsEmpstatusId,
+                            EesEcsEmpstatusId = value,
                             EesEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
-                            EesStartDate = Convert.ToDateTime(x.EesStartDate),
-                            EesEndDate=x.EesEndDate,
+                            EesStartDate =Convert.ToDateTime(x.EesStartDate),
+                            EesEndDate =Convert.ToDateTime(x.EesEndDate),
                             //EesEndDate = DateTime.Parse(x.EesEndDate, System.Globalization.CultureInfo.InvariantCulture),
                             EesDuration = x.EesDuration,
-                            EesClearenceDate=x.EesClearenceDate,
-                            //EesClearenceDate = Convert.ToDateTime(x.EesClearenceDate),
+                            //EesClearenceDate=x.EesClearenceDate,
+                            EesClearenceDate = Convert.ToDateTime(x.EesClearenceDate),
                             EesRemarks = x.EesRemarks,
                             EesCreatedBy = x.EesCreatedBy,
                             EesCreatedByName = x.EesCreatedByName,
@@ -851,14 +851,14 @@ namespace Web.Services.Concrete
 
                         var _emsEmpstatusList1 = employee.Empreleaseddata.Where(z => z.EesEmployementId > 0).Select(x => new EmsEmployementStatus
                         {
-                            EesEcsEmpstatusId = x.EesEcsEmpstatusId,
+                            EesEcsEmpstatusId = value,
                             EesEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
                             EesStartDate = Convert.ToDateTime(x.EesStartDate),
-                            EesEndDate=x.EesEndDate,
+                            EesEndDate =Convert.ToDateTime(x.EesEndDate),
                             //EesEndDate = DateTime.Parse(x.EesEndDate, System.Globalization.CultureInfo.InvariantCulture),
                             EesDuration = x.EesDuration,
-                            EesClearenceDate=x.EesClearenceDate,
-                            //EesClearenceDate = Convert.ToDateTime(x.EesClearenceDate),
+                            //EesClearenceDate=x.EesClearenceDate,
+                            EesClearenceDate = Convert.ToDateTime(x.EesClearenceDate),
                             EesRemarks = x.EesRemarks,
                             EesCreatedBy = x.EesCreatedBy,
                             EesCreatedByName = x.EesCreatedByName,
@@ -874,13 +874,14 @@ namespace Web.Services.Concrete
                     {
                         var _emsEmpstatusList = employee.Empresigneddata.Where(z => z.EesEmployementId == 0).Select(x => new EmsEmployementStatus
                         {
-                            EesEcsEmpstatusId = x.EesEcsEmpstatusId,
+                            EesEcsEmpstatusId = value,
                             EesEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
-                            EesStartDate = Convert.ToDateTime(x.EesStartDate),
-                            EesEndDate=x.EesEndDate,
+                            EesStartDate=x.EesStartDate,
+                            //EesStartDate = Convert.ToDateTime(x.EesStartDate),
+                            EesEndDate = x.EesEndDate,
                             //EesEndDate = Convert.ToDateTime(x.EesEndDate),
-                            EesClearenceDate=x.EesClearenceDate,
-                            //EesClearenceDate =Convert.ToDateTime(x.EesClearenceDate),
+                            //EesClearenceDate =x.EesClearenceDate,
+                            EesClearenceDate = Convert.ToDateTime(x.EesClearenceDate),
                             EesDuration = x.EesDuration,
                             EesRemarks = x.EesRemarks,
                             EesCreatedBy = x.EesCreatedBy,
@@ -894,12 +895,13 @@ namespace Web.Services.Concrete
                         }
                         var _emsEmpstatusList1 = employee.Empresigneddata.Where(z => z.EesEmployementId > 0).Select(x => new EmsEmployementStatus
                         {
-                            EesEcsEmpstatusId = x.EesEcsEmpstatusId,
+                            EesEcsEmpstatusId = value,
                             EesEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
+                            //EesStartDate= x.EesStartDate,
                             EesStartDate = Convert.ToDateTime(x.EesStartDate),
-                            EesEndDate=x.EesEndDate,
-                            //EesEndDate = Convert.ToDateTime(x.EesEndDate),
-                            EesClearenceDate = x.EesClearenceDate,
+                            //EesEndDate =x.EesEndDate,
+                            EesEndDate = Convert.ToDateTime(x.EesEndDate),
+                            EesClearenceDate = Convert.ToDateTime(x.EesClearenceDate),
                             EesDuration = x.EesDuration,
                             EesRemarks = x.EesRemarks,
                             EesCreatedBy = x.EesCreatedBy,
@@ -917,10 +919,11 @@ namespace Web.Services.Concrete
                 {
                     var _emsEmpstatusList = employee.EmsTblInterneedata.Where(z => z.EesEmployementId == 0).Select(x => new EmsEmployementStatus
                     {
-                        EesEcsEmpstatusId = x.EesEcsEmpstatusId,
+                        EesEcsEmpstatusId = value,
                         EesEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
-                        EesStartDate = Convert.ToDateTime(x.EesStartDate),
-                        EesEndDate=x.EesEndDate,
+                        EesStartDate= x.EesStartDate,
+                        //EesStartDate = Convert.ToDateTime(x.EesStartDate),
+                        EesEndDate =x.EesEndDate,
                         //EesEndDate = DateTime.Parse(x.EesEndDate, System.Globalization.CultureInfo.InvariantCulture),
                         //EesClearenceDate = Convert.ToDateTime(x.EesClearenceDate),
                         EesClearenceDate=x.EesClearenceDate,
@@ -937,11 +940,12 @@ namespace Web.Services.Concrete
                     }
                     var _emsEmpstatusList1 = employee.EmsTblInterneedata.Where(z => z.EesEmployementId > 0).Select(x => new EmsEmployementStatus
                     {
-                        EesEcsEmpstatusId = x.EesEcsEmpstatusId,
+                        EesEcsEmpstatusId = value,
                         EesEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
-                        EesStartDate = Convert.ToDateTime(x.EesStartDate),
+                        EesStartDate= x.EesStartDate,
+                        //EesStartDate = Convert.ToDateTime(x.EesStartDate),
                         //EesEndDate = Convert.ToDateTime(x.EesEndDate),
-                        EesEndDate=x.EesEndDate,
+                        EesEndDate =x.EesEndDate,
                         EesClearenceDate = x.EesClearenceDate,
                         EesDuration = x.EesDuration,
                         EesRemarks = x.EesRemarks,
@@ -959,11 +963,12 @@ namespace Web.Services.Concrete
             {
                 var _emsEmpstatusList = employee.Empresigneddata.Where(z => z.EesEmployementId == 0).Select(x => new EmsEmployementStatus
                 {
-                    EesEcsEmpstatusId = x.EesEcsEmpstatusId,
+                    EesEcsEmpstatusId = value,
                     EesEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
-                    EesStartDate = Convert.ToDateTime(x.EesStartDate),
+                    EesStartDate= x.EesStartDate,
+                    //EesStartDate = Convert.ToDateTime(x.EesStartDate),
                     //EesEndDate = Convert.ToDateTime(x.EesEndDate),
-                    EesEndDate=x.EesEndDate,
+                    EesEndDate =x.EesEndDate,
                     EesEtedParttimeType = x.EesetedpartTimetype.ToString(),
                     EesDays=x.EesDays,
                     EesClearenceDate = x.EesClearenceDate,
@@ -980,11 +985,12 @@ namespace Web.Services.Concrete
                 }
                 var _emsEmpstatusList1 = employee.Empresigneddata.Where(z => z.EesEmployementId > 0).Select(x => new EmsEmployementStatus
                 {
-                    EesEcsEmpstatusId = x.EesEcsEmpstatusId,
+                    EesEcsEmpstatusId = value,
                     EesEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
-                    EesStartDate = Convert.ToDateTime(x.EesStartDate),
+                    EesStartDate= x.EesStartDate,
+                    //EesStartDate = Convert.ToDateTime(x.EesStartDate),
                     //EesEndDate = Convert.ToDateTime(x.EesEndDate),
-                    EesEndDate=x.EesEndDate,
+                    EesEndDate =x.EesEndDate,
                     EesClearenceDate = x.EesClearenceDate,
                     EesEtedParttimeType = x.EesetedpartTimetype.ToString(),
                     EesDays = x.EesDays,
@@ -1016,7 +1022,7 @@ namespace Web.Services.Concrete
                         EtepdPdId = x.EtepdPdId,
                         EtepdEtedEmployeeId = employee.EtedEmployeeId,
                         EtepdDesignation = x.EtepdDesignation,
-                        EtepdSalary = x.EtepdSalary+incremnent,
+                        EtepdSalary = x.EtepdSalary != null ? Convert.ToString(Convert.ToInt32(x.EtepdSalary) + incremnent[0]) : "0",
                         EtepdJoiningDate = x.EtepdJoiningDate,
                         EtepdProbation = x.EtepdProbation,
                         EtepdCreatedBy = x.EtepdCreatedBy,
