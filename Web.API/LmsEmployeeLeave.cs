@@ -17,6 +17,7 @@ namespace Web.API
         public string LmselCreatedByName { get; set; }
         public DateTime? LmselCreatedByDate { get; set; }
         public bool? LmselIsDelete { get; set; }
+        public string LmselReason { get; set; }
 
         public virtual EmsTblEmployeeDetails LmselEtedEmployee { get; set; }
         public virtual LmsLeaveType LmselLeaveTypeNavigation { get; set; }

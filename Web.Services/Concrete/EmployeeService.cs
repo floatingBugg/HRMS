@@ -747,11 +747,10 @@ namespace Web.Services.Concrete
                             EesEcsEmpstatusId = value,
                             EesEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
                             EesStartDate = x.EesStartDate,
-                            //EesEndDate=x.EesEndDate,
-                            EesEndDate = Convert.ToDateTime(x.EesEndDate),
+                            EesEvaluationDate = x.EesEvaluationDate,
                             EesDuration = x.EesDuration,
                             EesIncrement = x.EesIncrement,
-                            EesDateOfIncrement =Convert.ToString(x.EesDateOfIncrement),
+                            EesDateOfIncrement =x.EesDateOfIncrement,
                             EesRemarks = x.EesRemarks,
                             EesCreatedBy = x.EesCreatedBy,
                             EesCreatedByDate = DateTime.Now,
@@ -767,20 +766,19 @@ namespace Web.Services.Concrete
                             EesEcsEmpstatusId = value,
                             EesEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
                             EesStartDate = x.EesStartDate,
-                            //EesEndDate =x.EesEndDate,
-                            EesEndDate = Convert.ToDateTime(x.EesEndDate),
+                            EesEvaluationDate = x.EesEvaluationDate,
                             EesDuration = x.EesDuration,
                             EesIncrement = x.EesIncrement,
-                            EesDateOfIncrement =Convert.ToString(x.EesDateOfIncrement),
+                            EesDateOfIncrement =x.EesDateOfIncrement,
                             EesRemarks = x.EesRemarks,
                             EesCreatedBy = x.EesCreatedBy,
                             EesCreatedByDate = DateTime.Now,
                             EesCreatedByName = x.EesCreatedByName,
                             EesIsDelete = false,
                         });
-                        if (_emsEmpStatusList.Count() > 0)
+                        if (_emsEmpStatusList1.Count() > 0)
                         {
-                            _hrmsstatusRepository.Update(_emsEmpStatusList.ToList());
+                            _hrmsstatusRepository.Update(_emsEmpStatusList1.ToList());
                         }
                     }
                     else if (value == 2)
@@ -821,9 +819,9 @@ namespace Web.Services.Concrete
                             EesCreatedByName = x.EesCreatedByName,
                             EesIsDelete = false,
                         });
-                        if (_emsEmpStatusList.Count() > 0)
+                        if (_emsEmpStatusList1.Count() > 0)
                         {
-                            _hrmsstatusRepository.Update(_emsEmpStatusList.ToList());
+                            _hrmsstatusRepository.Update(_emsEmpStatusList1.ToList());
                         }
                     }
                     else if (value == 3)
@@ -837,7 +835,7 @@ namespace Web.Services.Concrete
                             //EesEndDate = DateTime.Parse(x.EesEndDate, System.Globalization.CultureInfo.InvariantCulture),
                             EesDuration = x.EesDuration,
                             //EesClearenceDate=x.EesClearenceDate,
-                            EesClearenceDate = Convert.ToDateTime(x.EesClearenceDate),
+                            EesClearenceDate = x.EesClearenceDate.ToString(),
                             EesRemarks = x.EesRemarks,
                             EesCreatedBy = x.EesCreatedBy,
                             EesCreatedByName = x.EesCreatedByName,
@@ -858,16 +856,16 @@ namespace Web.Services.Concrete
                             //EesEndDate = DateTime.Parse(x.EesEndDate, System.Globalization.CultureInfo.InvariantCulture),
                             EesDuration = x.EesDuration,
                             //EesClearenceDate=x.EesClearenceDate,
-                            EesClearenceDate = Convert.ToDateTime(x.EesClearenceDate),
+                            EesClearenceDate = x.EesClearenceDate,
                             EesRemarks = x.EesRemarks,
                             EesCreatedBy = x.EesCreatedBy,
                             EesCreatedByName = x.EesCreatedByName,
                             EesCreatedByDate = DateTime.Now,
                             EesIsDelete = false
                         });
-                        if (_emsEmpstatusList.Count() > 0)
+                        if (_emsEmpstatusList1.Count() > 0)
                         {
-                            _hrmsstatusRepository.Update(_emsEmpstatusList.ToList());
+                            _hrmsstatusRepository.Update(_emsEmpstatusList1.ToList());
                         }
                     }
                     else if (value == 4)
@@ -881,7 +879,7 @@ namespace Web.Services.Concrete
                             EesEndDate = x.EesEndDate,
                             //EesEndDate = Convert.ToDateTime(x.EesEndDate),
                             //EesClearenceDate =x.EesClearenceDate,
-                            EesClearenceDate = Convert.ToDateTime(x.EesClearenceDate),
+                            EesClearenceDate = x.EesClearenceDate,
                             EesDuration = x.EesDuration,
                             EesRemarks = x.EesRemarks,
                             EesCreatedBy = x.EesCreatedBy,
@@ -901,7 +899,7 @@ namespace Web.Services.Concrete
                             EesStartDate = Convert.ToDateTime(x.EesStartDate),
                             //EesEndDate =x.EesEndDate,
                             EesEndDate = Convert.ToDateTime(x.EesEndDate),
-                            EesClearenceDate = Convert.ToDateTime(x.EesClearenceDate),
+                            EesClearenceDate = x.EesClearenceDate,
                             EesDuration = x.EesDuration,
                             EesRemarks = x.EesRemarks,
                             EesCreatedBy = x.EesCreatedBy,
@@ -909,9 +907,9 @@ namespace Web.Services.Concrete
                             EesCreatedByDate = DateTime.Now,
                             EesIsDelete = false
                         });
-                        if (_emsEmpstatusList.Count() > 0)
+                        if (_emsEmpstatusList1.Count() > 0)
                         {
-                            _hrmsstatusRepository.Update(_emsEmpstatusList.ToList());
+                            _hrmsstatusRepository.Update(_emsEmpstatusList1.ToList());
                         }
                     }
 
@@ -954,14 +952,14 @@ namespace Web.Services.Concrete
                         EesCreatedByDate = DateTime.Now,
                         EesIsDelete = false
                     });
-                    if (_emsEmpstatusList.Count() > 0)
+                    if (_emsEmpstatusList1.Count() > 0)
                     {
-                        _hrmsstatusRepository.Update(_emsEmpstatusList.ToList());
+                        _hrmsstatusRepository.Update(_emsEmpstatusList1.ToList());
                     }
                 }
             else if (value == 6)
             {
-                var _emsEmpstatusList = employee.Empresigneddata.Where(z => z.EesEmployementId == 0).Select(x => new EmsEmployementStatus
+                var _emsEmpstatusList = employee.EmsTblPartTimeEmployee.Where(z => z.EesEmployementId == 0).Select(x => new EmsEmployementStatus
                 {
                     EesEcsEmpstatusId = value,
                     EesEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
@@ -969,8 +967,8 @@ namespace Web.Services.Concrete
                     //EesStartDate = Convert.ToDateTime(x.EesStartDate),
                     //EesEndDate = Convert.ToDateTime(x.EesEndDate),
                     EesEndDate =x.EesEndDate,
-                    EesEtedParttimeType = x.EesetedpartTimetype.ToString(),
-                    EesDays=x.EesDays,
+                    EesEtedParttimeType = x.EesetedpartTimetype,
+                 
                     EesClearenceDate = x.EesClearenceDate,
                     EesDuration = x.EesDuration,
                     EesRemarks = x.EesRemarks,
@@ -983,7 +981,7 @@ namespace Web.Services.Concrete
                 {
                     _hrmsstatusRepository.Insert(_emsEmpstatusList.ToList());
                 }
-                var _emsEmpstatusList1 = employee.Empresigneddata.Where(z => z.EesEmployementId > 0).Select(x => new EmsEmployementStatus
+                var _emsEmpstatusList1 = employee.EmsTblPartTimeEmployee.Where(z => z.EesEmployementId > 0).Select(x => new EmsEmployementStatus
                 {
                     EesEcsEmpstatusId = value,
                     EesEtedEmployeeId = emsTblEmployeeDetails.EtedEmployeeId,
@@ -992,8 +990,8 @@ namespace Web.Services.Concrete
                     //EesEndDate = Convert.ToDateTime(x.EesEndDate),
                     EesEndDate =x.EesEndDate,
                     EesClearenceDate = x.EesClearenceDate,
-                    EesEtedParttimeType = x.EesetedpartTimetype.ToString(),
-                    EesDays = x.EesDays,
+                    EesEtedParttimeType = x.EesetedpartTimetype,
+                   
                     EesDuration = x.EesDuration,
                     EesRemarks = x.EesRemarks,
                     EesCreatedBy = x.EesCreatedBy,
@@ -1001,9 +999,9 @@ namespace Web.Services.Concrete
                     EesCreatedByDate = DateTime.Now,
                     EesIsDelete = false
                 });
-                if (_emsEmpstatusList.Count() > 0)
+                if (_emsEmpstatusList1.Count() > 0)
                 {
-                    _hrmsstatusRepository.Update(_emsEmpstatusList.ToList());
+                    _hrmsstatusRepository.Update(_emsEmpstatusList1.ToList());
                 }
             }
         }

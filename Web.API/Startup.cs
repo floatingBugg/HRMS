@@ -44,7 +44,7 @@ namespace Web.API
             services.AddControllers().AddJsonOptions(options =>
             {
                 options.JsonSerializerOptions.IgnoreNullValues = true;
-                options.JsonSerializerOptions.Converters.Add(new DateTimeConverter());
+                //options.JsonSerializerOptions.Converters.Add(new DateTimeConverter());
             });
 
             /*services.AddControllersWithViews().AddJsonOptions(options =>

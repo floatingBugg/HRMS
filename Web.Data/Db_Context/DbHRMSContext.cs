@@ -92,12 +92,11 @@ namespace Web.Data.Db_Context
                 entity.Property(e => e.EesEmployementId).HasColumnName("ees_employement_id");
 
                 entity.Property(e => e.EesClearenceDate)
-                    .HasColumnType("datetime")
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
                     .HasColumnName("ees_clearence_date");
 
-                entity.Property(e => e.EesContractType)
-                    .HasMaxLength(100)
-                    .HasColumnName("ees_contract_type");
+                entity.Property(e => e.EesContractType).HasColumnName("ees_contract_type");
 
                 entity.Property(e => e.EesCreatedBy)
                     .HasMaxLength(100)
@@ -112,13 +111,8 @@ namespace Web.Data.Db_Context
                     .HasColumnName("ees_created_by_name");
 
                 entity.Property(e => e.EesDateOfIncrement)
-                    .HasMaxLength(100)
+                    .HasColumnType("datetime")
                     .HasColumnName("ees_date_of_increment");
-
-                entity.Property(e => e.EesDays)
-                    .HasMaxLength(255)
-                    .IsUnicode(false)
-                    .HasColumnName("ees_days");
 
                 entity.Property(e => e.EesDuration)
                     .HasMaxLength(100)
@@ -132,10 +126,12 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.EesEtedEmployeeId).HasColumnName("ees_eted_employee_id");
 
-                entity.Property(e => e.EesEtedParttimeType)
+                entity.Property(e => e.EesEtedParttimeType).HasColumnName("ees_eted_parttime_type");
+
+                entity.Property(e => e.EesEvaluationDate)
                     .HasMaxLength(255)
                     .IsUnicode(false)
-                    .HasColumnName("ees_eted_parttime_type");
+                    .HasColumnName("ees_evaluation_date");
 
                 entity.Property(e => e.EesIncrement).HasColumnName("ees_increment");
 
@@ -152,6 +148,11 @@ namespace Web.Data.Db_Context
                 entity.Property(e => e.EesModifiedByName)
                     .HasMaxLength(100)
                     .HasColumnName("ees_modified_by_name");
+
+                entity.Property(e => e.EesReleasingDate)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("ees_releasing_date");
 
                 entity.Property(e => e.EesRemarks)
                     .HasMaxLength(100)
