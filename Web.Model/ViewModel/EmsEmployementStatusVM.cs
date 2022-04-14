@@ -26,17 +26,14 @@ namespace Web.Model.ViewModel
         public string EesModifiedByName { get; set; }
         public DateTime? EesModifiedByDate { get; set; }
         public bool? EesIsDelete { get; set; }
-        public int? Monday { get; set; }
-        public int? Tuesday { get; set; }
-        public int? Wednesday { get; set; }
-        public int? Thrusday { get; set; }
-        public int? Friday { get; set; }
+        //public string Eesdays { get; set; }
         public int? EesEtedParttimeType { get; set; }
         public int? EesContractType { get; set; }
         public string EesClearenceDate { get; set; }
         public string EesEvaluationDate { get; set; }
         public string EesReleasingDate { get; set; }
+        public string EesDays { get; set; }
 
-        public int EesetedpartTimetype { get; set; }
+        //public int EesEtedParttimeType { get; set; }//
     }
 }

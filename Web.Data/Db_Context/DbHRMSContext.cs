@@ -46,7 +46,7 @@ namespace Web.Data.Db_Context
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=192.168.0.44;Initial Catalog=HRMS2;User ID=sa;Password=4292");
+                optionsBuilder.UseSqlServer("Data Source=192.168.0.44;Initial Catalog=HRMS2;Persist Security Info=True;User ID=sa;Password=4292");
             }
         }
 
@@ -113,6 +113,11 @@ namespace Web.Data.Db_Context
                 entity.Property(e => e.EesDateOfIncrement)
                     .HasColumnType("datetime")
                     .HasColumnName("ees_date_of_increment");
+
+                entity.Property(e => e.EesDays)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("ees_days");
 
                 entity.Property(e => e.EesDuration)
                     .HasMaxLength(100)
@@ -376,6 +381,8 @@ namespace Web.Data.Db_Context
 
                 entity.Property(e => e.EtepdDesignation).HasColumnName("etepd_designation");
 
+                entity.Property(e => e.EtepdEcsStatusId).HasColumnName("etepd_ecs_status_id");
+
                 entity.Property(e => e.EtepdEtedEmployeeId).HasColumnName("etepd_eted_employee_id");
 
                 entity.Property(e => e.EtepdIsDelete)
@@ -397,6 +404,11 @@ namespace Web.Data.Db_Context
                 entity.Property(e => e.EtepdProbation).HasColumnName("etepd_probation");
 
                 entity.Property(e => e.EtepdSalary).HasColumnName("etepd_salary");
+
+                entity.HasOne(d => d.EtepdEcsStatus)
+                    .WithMany(p => p.EmsTblEmployeeProfessionalDetails)
+                    .HasForeignKey(d => d.EtepdEcsStatusId)
+                    .HasConstraintName("FK_ems_tbl_employee_professional_details_ems_category_status");
 
                 entity.HasOne(d => d.EtepdEtedEmployee)
                     .WithMany(p => p.EmsTblEmployeeProfessionalDetails)

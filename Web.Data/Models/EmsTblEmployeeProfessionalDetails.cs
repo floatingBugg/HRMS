@@ -20,7 +20,9 @@ namespace Web.Data.Models
         public string EtepdModifiedByName { get; set; }
         public DateTime? EtepdModifiedByDate { get; set; }
         public bool? EtepdIsDelete { get; set; }
+        public int? EtepdEcsStatusId { get; set; }
 
+        public virtual EmsCategoryStatus EtepdEcsStatus { get; set; }
         public virtual EmsTblEmployeeDetails EtepdEtedEmployee { get; set; }
     }
 }

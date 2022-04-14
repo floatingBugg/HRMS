@@ -10,6 +10,7 @@ namespace Web.API
         public EmsCategoryStatus()
         {
             EmsEmployementStatus = new HashSet<EmsEmployementStatus>();
+            EmsTblEmployeeProfessionalDetails = new HashSet<EmsTblEmployeeProfessionalDetails>();
         }
 
         public int EcsStatusId { get; set; }
@@ -20,5 +21,6 @@ namespace Web.API
         public bool? EcsIsDelete { get; set; }
 
         public virtual ICollection<EmsEmployementStatus> EmsEmployementStatus { get; set; }
+        public virtual ICollection<EmsTblEmployeeProfessionalDetails> EmsTblEmployeeProfessionalDetails { get; set; }
     }
 }
