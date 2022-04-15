@@ -741,7 +741,7 @@ namespace Web.Services.Concrete
                 if (employee.EmsTblPermanentEmployee.Count > 0 && employee.EmsTblPermanentEmployee != null || employee.EmsTblContractEmployee.Count > 0 && employee.EmsTblContractEmployee != null ||employee.Empreleaseddata.Count>0 && employee.Empreleaseddata
                     != null || employee.Empresigneddata.Count>0 && employee.Empresigneddata!= null || employee.EmsTblPartTimeEmployee.Count>0 && employee.EmsTblPartTimeEmployee!=null || employee.EmsTblInterneedata.Count>0 && employee.EmsTblInterneedata!=null)
                 {
-                    var value =Convert.ToInt32(employee.EmsTblEmployeeProfessionalDetails.Select(x => x.EtedempStatus).FirstOrDefault());
+                    var value =Convert.ToInt32(employee.EmsTblEmployeeProfessionalDetails.Select(x => x.EtepdEcsStatusId).FirstOrDefault());
                     if (value == 1)
                     {
                         var _emsEmpStatusList = employee.EmsTblPermanentEmployee.Where(z => z.EesEmployementId == 0).Select(x => new EmsEmployementStatus
@@ -921,7 +921,7 @@ namespace Web.Services.Concrete
                         }
                     }
 
-                else if (value== 5)
+                else if (value== 6)
                 {
                     var _emsEmpstatusList = employee.EmsTblInterneedata.Where(z => z.EesEmployementId == 0).Select(x => new EmsEmployementStatus
                     {
@@ -966,7 +966,7 @@ namespace Web.Services.Concrete
                         _hrmsstatusRepository.Update(_emsEmpstatusList1.ToList());
                     }
                 }
-            else if (value == 6)
+            else if (value == 5)
             {
                 var _emsEmpstatusList = employee.EmsTblPartTimeEmployee.Where(z => z.EesEmployementId == 0).Select(x => new EmsEmployementStatus
                 {

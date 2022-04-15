@@ -191,25 +191,13 @@ namespace Web.Services.Concrete
 
             BaseResponse response = new BaseResponse();
             List<DisplayEmployeeGrid> empCred = new List<DisplayEmployeeGrid>();
-            bool count = _hrmsemployeerepository.Table.Count() > 0;
+            bool count = _hrmsemployeeleaverepository.Table.Count() > 0;
 
-            var employeeData = _hrmsemployeerepository.Table.Where(z => z.EtedIsDelete == false && z.EtedEmployeeId == empid).Select(x => new DisplayEmployeeGrid()
-            {
-                empID = x.EtedEmployeeId,
-                fullName = x.EtedFirstName,
-                empDesignation = x.EmsTblEmployeeProfessionalDetails.Count > 0 ? x.EmsTblEmployeeProfessionalDetails.Where(y => y.EtepdEtedEmployeeId == x.EtedEmployeeId).Select(z => z.EtepdDesignation).FirstOrDefault() : "Not Assigned",
-                empStatus = x.EtedStatus,
-            }).ToList().OrderByDescending(x => x.empID);
+            var employeeData = _hrmsemployeeleaverepository.Table.Where(z => z.LmselIsDelete == false && z.LmselEtedEmployeeId == empid).ToList().OrderByDescending(x => x.LmselEtedEmployeeId);
 
 
 
-            var managerData = _hrmsemployeerepository.Table.Where(z => z.EtedIsDelete == false && z.EtedIsManager == true).Select(x => new DisplayEmployeeGrid()
-            {
-                empID = x.EtedEmployeeId,
-                fullName = x.EtedFirstName,
-                empDesignation = x.EmsTblEmployeeProfessionalDetails.Count > 0 ? x.EmsTblEmployeeProfessionalDetails.Where(y => y.EtepdEtedEmployeeId == x.EtedEmployeeId).Select(z => z.EtepdDesignation).FirstOrDefault() : "Not Assigned",
-                empStatus = x.EtedStatus,
-            }).ToList().OrderByDescending(x => x.empID);
+            var managerData = _hrmsemployeerepository.Table.Where(z => z.EtedIsDelete == false && z.EtedIsManager == true && z.EtedEmployeeId==empid).ToList().OrderByDescending(x => x.EtedEmployeeId);
 
             if (roleid == 1 || roleid == 2)
             {
