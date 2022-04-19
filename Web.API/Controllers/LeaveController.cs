@@ -166,5 +166,28 @@ namespace Web.API.Controllers
                 return response;
             }
         }
+
+        [HttpGet("/Leave/ViewAllLeaveRecordByRole")]
+        public BaseResponse ViewAllLeaveRecord(int empid,int roleid)
+        {
+            BaseResponse response = new BaseResponse();
+            try
+            {
+                var test = ModelState;
+                response = _leaveservice.ViewLeaveEmployeeByRole(empid,roleid);
+
+
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogExceptions(ex);
+                response.Data = null;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
+        }
     }
 }

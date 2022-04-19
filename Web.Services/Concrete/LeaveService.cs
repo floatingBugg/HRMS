@@ -16,6 +16,7 @@ namespace Web.Services.Concrete
 {
     public class LeaveService : ILeaveService
     {
+        private readonly IHRMSEmployeeLeaveRepository _hrmsemployeeleaverepository;
         private readonly IHRMSLeaveRecordRepository _hrmsleaverecordrepository;
         private readonly IHRMSEmployeeRepository _hrmsemployeeRepository;
 
@@ -32,7 +33,7 @@ namespace Web.Services.Concrete
         private readonly IHRMSEmployeeLeaveRepository _hrmsemployeeLeaveRepository;
         IConfiguration _config;
         private readonly IUnitOfWork _uow;
-        public LeaveService(IConfiguration config, IHRMSLeaveRecordRepository hrmsleaverecordrepository,IHRMSEmployeeRepository hrmsemployeeRepository,
+        public LeaveService(IConfiguration config, IHRMSEmployeeRepository hrmsEmployeeRepository, IHRMSLeaveRecordRepository hrmsleaverecordrepository,IHRMSEmployeeRepository hrmsemployeeRepository,
             IHRMSEmployeeLeaveRepository hrmsemployeeLeaveRepository, IHRMSEmployementStatusRepository hrmsstatusRepository, IHRMSUserAuthRepository hrmsUserAuthRepository, IHRMSAssetRepository hrmsassetRepository, IHRMSAcademicRepository hRMSAcademicRepository, IHRMSEmployeeContactRepository employeeContactRepository, IHRMSPRofessionalRepository hRMSProfessionalRepository, IHRMSEmployeeWorkingHistoryRepository workingHistoryRepository, IHRMSProfessionalDetailsRepository hRMSProfessionalDetailsRepository, IHRMSDropdownValueRepository hrmsdropdownvaluerepository, IUnitOfWork uow, IHRMSAssetAssignRepository hrmsassetAssignRepository)
         {
             _config = config;
@@ -49,6 +50,7 @@ namespace Web.Services.Concrete
             _hrmsstatusRepository = hrmsstatusRepository;
             _hrmsleaverecordrepository = hrmsleaverecordrepository;
             _hrmsemployeeLeaveRepository = hrmsemployeeLeaveRepository;
+            _hrmsemployeeleaverepository = hrmsemployeeLeaveRepository;
             _uow = uow;
         }
         public BaseResponse CreateLeave(LmsLeaveRecordVM leave)
@@ -248,6 +250,130 @@ namespace Web.Services.Concrete
 
             //}).ToList().OrderByDescending(x => x.LmslrRecordId);
 
+            if (count == true)
+            {
+                response.Data = LmsLeaveRecords;
+                response.Success = true;
+                response.Message = UserMessages.strSuccess;
+
+
+            }
+            else
+            {
+                response.Data = null;
+                response.Success = false;
+                response.Message = UserMessages.strNotfound;
+            }
+            return this.ViewLeaveEmployeeByRole(6189 , 3);
+            //return response;
+        }
+
+        public BaseResponse ViewLeaveEmployeeByRole(int empid,int roleid)
+        {
+            BaseResponse response = new BaseResponse();
+            List<leaveGridVM> empCred = new List<leaveGridVM>();
+            bool count = true;/// _hrmsemployeeleaverepository.Table.Count() > 0;
+
+            var employeeData = _hrmsemployeeleaverepository.Table.Where(z => z.LmselIsDelete == false && z.LmselEtedEmployeeId == empid).ToList().OrderByDescending(x => x.LmselEtedEmployeeId);
+
+
+
+            var managerData = this._hrmsemployeeRepository.Table.Where(z => z.EtedIsDelete == false && z.EtedIsManager == true && z.EtedEmployeeId == empid).ToList().OrderByDescending(x => x.EtedEmployeeId);
+            IQueryable<LmsLeaveRecordVM> LmsLeaveRecords = null;
+
+
+            if (roleid == 1 || roleid == 2)
+            {
+                 LmsLeaveRecords = (from lr in this._hrmsleaverecordrepository.Table
+                                       join s in this._hrmsemployeeRepository.Table on lr.LmslrEtedEmployeeId equals s.EtedEmployeeId
+                                       where s.EtedStatus == "active" && lr.LmslrIsDelete == false// && s.EtedManagerId != empid
+                                       select new LmsLeaveRecordVM
+                                       {
+                                           LmslrEtedEmployeeId = lr.LmslrEtedEmployeeId,
+                                           LmslrRecordId = lr.LmslrRecordId,
+                                           LmslrEtedEmployeeName = s.EtedFirstName + s.EtedLastName,
+                                           LmslrCasualTaken = lr.LmslrCasualTaken,
+                                           EmpDesignation = _hrmsemployeeRepository.Table.Where(z => z.EtedEmployeeId == lr.LmslrEtedEmployeeId).Select(z => z.EmsTblEmployeeProfessionalDetails.Where(i => i.EtepdEtedEmployeeId == lr.LmslrEtedEmployeeId).Select(u => u.EtepdDesignation).FirstOrDefault()).FirstOrDefault(),
+                                           LmslrSickTaken = lr.LmslrSickTaken,
+                                           LmslrAnnualTaken = lr.LmslrAnnualTaken,
+                                           LmslrTotalTaken = lr.LmslrTotalTaken,
+                                           LmslrCasualAssign = lr.LmslrCasualAssign,
+                                           LmslrSickAssign = lr.LmslrSickAssign,
+                                           LmslrAnnualAssign = lr.LmslrAnnualAssign,
+                                           LmslrTotalAssign = lr.LmslrTotalAssign
+
+                                       }).AsQueryable().OrderByDescending(x => x.LmslrRecordId );
+
+                //var count = LmsLeaveRecords.Count() > 0;
+
+            }
+            else if (roleid==3) {
+                 LmsLeaveRecords = (from lr in this._hrmsleaverecordrepository.Table
+                                       join s in this._hrmsemployeeRepository.Table on lr.LmslrEtedEmployeeId equals s.EtedEmployeeId
+                                       where s.EtedStatus == "active" && lr.LmslrIsDelete == false && (s.EtedManagerId == empid || s.EtedEmployeeId == empid)
+                                       select new LmsLeaveRecordVM
+                                       {
+                                           LmslrEtedEmployeeId = lr.LmslrEtedEmployeeId,
+                                           LmslrRecordId = lr.LmslrRecordId,
+                                           LmslrEtedEmployeeName = s.EtedFirstName + s.EtedLastName,
+                                           LmslrCasualTaken = lr.LmslrCasualTaken,
+                                           EmpDesignation = _hrmsemployeeRepository.Table.Where(z => z.EtedEmployeeId == lr.LmslrEtedEmployeeId).Select(z => z.EmsTblEmployeeProfessionalDetails.Where(i => i.EtepdEtedEmployeeId == lr.LmslrEtedEmployeeId).Select(u => u.EtepdDesignation).FirstOrDefault()).FirstOrDefault(),
+                                           LmslrSickTaken = lr.LmslrSickTaken,
+                                           LmslrAnnualTaken = lr.LmslrAnnualTaken,
+                                           LmslrTotalTaken = lr.LmslrTotalTaken,
+                                           LmslrCasualAssign = lr.LmslrCasualAssign,
+                                           LmslrSickAssign = lr.LmslrSickAssign,
+                                           LmslrAnnualAssign = lr.LmslrAnnualAssign,
+                                           LmslrTotalAssign = lr.LmslrTotalAssign
+
+                                       }).AsQueryable().OrderByDescending(x => x.LmslrRecordId);
+
+                //var count = LmsLeaveRecords.Count() > 0;
+            }
+            else if (roleid == 4)
+            {
+                LmsLeaveRecords = (from lr in this._hrmsleaverecordrepository.Table
+                                   join s in this._hrmsemployeeRepository.Table on lr.LmslrEtedEmployeeId equals s.EtedEmployeeId
+                                   where s.EtedStatus == "active" && lr.LmslrIsDelete == false && s.EtedEmployeeId == empid
+                                   select new LmsLeaveRecordVM
+                                   {
+                                       LmslrEtedEmployeeId = lr.LmslrEtedEmployeeId,
+                                       LmslrRecordId = lr.LmslrRecordId,
+                                       LmslrEtedEmployeeName = s.EtedFirstName + s.EtedLastName,
+                                       LmslrCasualTaken = lr.LmslrCasualTaken,
+                                       EmpDesignation = _hrmsemployeeRepository.Table.Where(z => z.EtedEmployeeId == lr.LmslrEtedEmployeeId).Select(z => z.EmsTblEmployeeProfessionalDetails.Where(i => i.EtepdEtedEmployeeId == lr.LmslrEtedEmployeeId).Select(u => u.EtepdDesignation).FirstOrDefault()).FirstOrDefault(),
+                                       LmslrSickTaken = lr.LmslrSickTaken,
+                                       LmslrAnnualTaken = lr.LmslrAnnualTaken,
+                                       LmslrTotalTaken = lr.LmslrTotalTaken,
+                                       LmslrCasualAssign = lr.LmslrCasualAssign,
+                                       LmslrSickAssign = lr.LmslrSickAssign,
+                                       LmslrAnnualAssign = lr.LmslrAnnualAssign,
+                                       LmslrTotalAssign = lr.LmslrTotalAssign
+
+                                   }).AsQueryable().OrderByDescending(x => x.LmslrRecordId);
+
+                //var count = LmsLeaveRecords.Count() > 0;
+            }
+
+            //if (count == true)
+            //    {
+            //        response.Data3 = managerData;
+            //        response.Data2 = employeeData;
+
+            //        response.Success = true;
+            //        response.Message = UserMessages.strSuccess;
+
+
+            //    }
+
+            //    else
+            //    {
+            //        response.Data = null;
+            //        response.Success = false;
+            //        response.Message = UserMessages.strNotfound;
+            //    }
+            //    return response;
+            //}
             if (count == true)
             {
                 response.Data = LmsLeaveRecords;

@@ -185,12 +185,12 @@ namespace Web.Services.Concrete
             return response;
         }
 
-        public BaseResponse EmployeeData(int roleid, int empid)
+        public BaseResponse ViewLeaveEmployeeByRole(int roleid, int empid)
         {
             
 
             BaseResponse response = new BaseResponse();
-            List<DisplayEmployeeGrid> empCred = new List<DisplayEmployeeGrid>();
+            List<leaveGridVM> empCred = new List<leaveGridVM>();
             bool count = _hrmsemployeeleaverepository.Table.Count() > 0;
 
             var employeeData = _hrmsemployeeleaverepository.Table.Where(z => z.LmselIsDelete == false && z.LmselEtedEmployeeId == empid).ToList().OrderByDescending(x => x.LmselEtedEmployeeId);
@@ -245,5 +245,9 @@ namespace Web.Services.Concrete
             return response;
         }
 
+        public BaseResponse EmployeeData(int roleid, int empid)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
