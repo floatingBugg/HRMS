@@ -166,6 +166,7 @@ namespace Web.API.Controllers
                 return response;
             }
         }
+        
 
         [HttpGet("/Leave/ViewAllLeaveRecordByRole")]
         public BaseResponse ViewAllLeaveRecord(int empid,int roleid)

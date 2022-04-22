@@ -48,6 +48,7 @@ namespace Web.Services.Concrete
                 ImsAssign imsAssign = new ImsAssign();
 
                 imsAssign.ItasItacCategoryId = assign.ItasItacCategoryId;
+                //imsAssign.assetName = assign.assetName;
                 imsAssign.ItasItaAssetId = assign.ItasItaAssetId;
                 imsAssign.ItasEtedEmployeeId = assign.ItasEtedEmployeeId;
                 imsAssign.ItasQuantity = assign.ItasQuantity;

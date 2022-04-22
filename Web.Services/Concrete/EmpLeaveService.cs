@@ -185,65 +185,65 @@ namespace Web.Services.Concrete
             return response;
         }
 
-        public BaseResponse ViewLeaveEmployeeByRole(int roleid, int empid)
-        {
+        //public BaseResponse ViewLeaveEmployeeByRole(int roleid, int empid)
+        //{
             
 
-            BaseResponse response = new BaseResponse();
-            List<leaveGridVM> empCred = new List<leaveGridVM>();
-            bool count = _hrmsemployeeleaverepository.Table.Count() > 0;
+        //    BaseResponse response = new BaseResponse();
+        //    List<leaveGridVM> empCred = new List<leaveGridVM>();
+        //    bool count = _hrmsemployeeleaverepository.Table.Count() > 0;
 
-            var employeeData = _hrmsemployeeleaverepository.Table.Where(z => z.LmselIsDelete == false && z.LmselEtedEmployeeId == empid).ToList().OrderByDescending(x => x.LmselEtedEmployeeId);
+        //    var employeeData = _hrmsemployeeleaverepository.Table.Where(z => z.LmselIsDelete == false && z.LmselEtedEmployeeId == empid).ToList().OrderByDescending(x => x.LmselEtedEmployeeId);
 
 
 
-            var managerData = _hrmsemployeerepository.Table.Where(z => z.EtedIsDelete == false && z.EtedIsManager == true && z.EtedEmployeeId==empid).ToList().OrderByDescending(x => x.EtedEmployeeId);
+        //    var managerData = _hrmsemployeerepository.Table.Where(z => z.EtedIsDelete == false && z.EtedIsManager == true && z.EtedEmployeeId==empid).ToList().OrderByDescending(x => x.EtedEmployeeId);
 
-            if (roleid == 1 || roleid == 2)
-            {
-                var employeesData = _hrmsemployeerepository.Table.Where(z => z.EtedIsDelete == false && z.EtedEmployeeId != empid && z.EtedStatus=="Active").Select(x => new DisplayEmployeeGrid()
-                {
-                    empID = x.EtedEmployeeId,
-                    fullName = x.EtedFirstName,
-                    empDesignation = x.EmsTblEmployeeProfessionalDetails.Count > 0 ? x.EmsTblEmployeeProfessionalDetails.Where(y => y.EtepdEtedEmployeeId == x.EtedEmployeeId).Select(z => z.EtepdDesignation).FirstOrDefault() : "Not Assigned",
-                    empStatus = x.EtedStatus,
+        //    if (roleid == 1 || roleid == 2)
+        //    {
+        //        var employeesData = _hrmsemployeerepository.Table.Where(z => z.EtedIsDelete == false && z.EtedEmployeeId != empid && z.EtedStatus=="Active").Select(x => new DisplayEmployeeGrid()
+        //        {
+        //            empID = x.EtedEmployeeId,
+        //            fullName = x.EtedFirstName,
+        //            empDesignation = x.EmsTblEmployeeProfessionalDetails.Count > 0 ? x.EmsTblEmployeeProfessionalDetails.Where(y => y.EtepdEtedEmployeeId == x.EtedEmployeeId).Select(z => z.EtepdDesignation).FirstOrDefault() : "Not Assigned",
+        //            empStatus = x.EtedStatus,
                
-                }).ToList().OrderByDescending(x => x.empID);
-                response.Data = employeesData;
+        //        }).ToList().OrderByDescending(x => x.empID);
+        //        response.Data = employeesData;
 
-            }
+        //    }
 
-            else if (roleid == 3)
-            {
-                var employeesData = _hrmsemployeerepository.Table.Where(z => z.EtedIsDelete == false && z.EtedManagerId == empid).Select(x => new DisplayEmployeeGrid()
-                {
-                    empID = x.EtedEmployeeId,
-                    fullName = x.EtedFirstName,
-                    empDesignation = x.EmsTblEmployeeProfessionalDetails.Count > 0 ? x.EmsTblEmployeeProfessionalDetails.Where(y => y.EtepdEtedEmployeeId == x.EtedEmployeeId).Select(z => z.EtepdDesignation).FirstOrDefault() : "Not Assigned",
-                    empStatus = x.EtedStatus,
-                }).ToList().OrderByDescending(x => x.empID);
-                response.Data = employeesData;
-            }
+        //    else if (roleid == 3)
+        //    {
+        //        var employeesData = _hrmsemployeerepository.Table.Where(z => z.EtedIsDelete == false && z.EtedManagerId == empid).Select(x => new DisplayEmployeeGrid()
+        //        {
+        //            empID = x.EtedEmployeeId,
+        //            fullName = x.EtedFirstName,
+        //            empDesignation = x.EmsTblEmployeeProfessionalDetails.Count > 0 ? x.EmsTblEmployeeProfessionalDetails.Where(y => y.EtepdEtedEmployeeId == x.EtedEmployeeId).Select(z => z.EtepdDesignation).FirstOrDefault() : "Not Assigned",
+        //            empStatus = x.EtedStatus,
+        //        }).ToList().OrderByDescending(x => x.empID);
+        //        response.Data = employeesData;
+        //    }
 
-            if (count == true)
-            {
-                response.Data3 = managerData;
-                response.Data2 = employeeData;
+        //    if (count == true)
+        //    {
+        //        response.Data3 = managerData;
+        //        response.Data2 = employeeData;
 
-                response.Success = true;
-                response.Message = UserMessages.strSuccess;
+        //        response.Success = true;
+        //        response.Message = UserMessages.strSuccess;
 
 
-            }
+        //    }
 
-            else
-            {
-                response.Data = null;
-                response.Success = false;
-                response.Message = UserMessages.strNotfound;
-            }
-            return response;
-        }
+        //    else
+        //    {
+        //        response.Data = null;
+        //        response.Success = false;
+        //        response.Message = UserMessages.strNotfound;
+        //    }
+        //    return response;
+        //}
 
         public BaseResponse EmployeeData(int roleid, int empid)
         {
