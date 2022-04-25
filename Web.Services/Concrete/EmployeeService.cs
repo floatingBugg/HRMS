@@ -1037,7 +1037,7 @@ namespace Web.Services.Concrete
                         EtepdProbation = x.EtepdProbation,
                         EtepdCreatedBy = x.EtepdCreatedBy,
                         EtepdCreatedByDate = DateTime.Now,
-                        EtepdEcsStatusId = x.EtepdEcsStatusId,
+                        EtepdEcsStatusId = x.EtepdEcsStatusId == 0 ? null :x.EtepdEcsStatusId,
                         EtepdCreatedByName = x.EtepdCreatedByName,
                         EtepdIsDelete = false,
                     });
