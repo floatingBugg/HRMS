@@ -1339,10 +1339,22 @@ namespace Web.Services.Concrete
                                      EmsEmployementStatus = (from es in this._hrmsstatusRepository.Table where es.EesEtedEmployeeId == id select es).ToList(),
                                      EmsTblAcademicQualification = (from aq in this._hrmsacademicrepository.Table where aq.EtaqEtedEmployeeId == id select aq).ToList(),
                                      EmsTblEmergencyContact = (from ec in this._employeeContactRepository.Table where ec.EtecEtedEmployeeId == id select ec).ToList(),
-                                     EmsTblEmployeeProfessionalDetails= (from pd in this._hrmsprofessionaldetailsrepository.Table where pd.EtepdEtedEmployeeId== id select pd).ToList(),
-                                     EmsTblHrmsUser = (from hu in this._hrmsUserAuthRepository.Table where hu.EtedEthuEmpId== id select hu).ToList(),
-                                     EmsTblWorkingHistory = (from wh in this._workinghistoryRepository.Table where wh.EtwhEtedEmployeeId== id select wh).ToList(),
-                                     ImsAssign = (from ia in this._hrmsassetAssignRepository.Table where ia.ItasEtedEmployeeId == id select ia).ToList(),
+                                     EmsTblEmployeeProfessionalDetails = (from pd in this._hrmsprofessionaldetailsrepository.Table where pd.EtepdEtedEmployeeId == id select pd).ToList(),
+                                     EmsTblHrmsUser = (from hu in this._hrmsUserAuthRepository.Table where hu.EtedEthuEmpId == id select hu).ToList(),
+                                     EmsTblWorkingHistory = (from wh in this._workinghistoryRepository.Table where wh.EtwhEtedEmployeeId == id select wh).ToList(),
+                                     //ImsAssign = (from ia in this._hrmsassetAssignRepository.Table join bb in this._hrmsassetRepository on ia.ItasItaAssetId equals bb.ItaAssetId where ia.ItasEtedEmployeeId == id select bb).ToList(),
+                                     ImsAssign = (from a in this._hrmsassetRepository.Table 
+                                                  join ia in this._hrmsassetAssignRepository.Table 
+                                                  on a.ItaAssetId equals ia.ItasItaAssetId 
+                                                  where a.ItaAssetId == ia.ItasItaAssetId && ia.ItasIsDelete == false
+                                                  select new ImsAssign {
+                                                      //ass = a.ItaAssetName,
+                                                      ItasItaAssetId=a.ItaAssetId,
+                                                      ItasQuantity=ia.ItasQuantity
+                                         
+                                         
+                                         }).ToList(),
+                                     
                                      LmsLeaveRecord = (from lr in this._hrmsleaverecordrepository.Table where lr.LmslrEtedEmployeeId== id select lr).ToList(),
                                      LmsEmployeeLeave = (from el in this._hrmsemployeeLeaveRepository.Table where el.LmselEtedEmployeeId== id select el).ToList(),
 
